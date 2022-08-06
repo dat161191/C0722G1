@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>TRẦN QUỐC ĐẠT</title>
+</head>
+<body>
+<h1 STYLE="font-size: 100px;color: red;text-align: center">CACULATOR</h1>
+<table>
+    <tr>
+        <th><input type="number" id="so1" value="nhập số thứ 1" ></th>
+        <th><input type="number" id="so2" value="nhập số thứ 2"></th>
+    </tr></table>
+<table><tr>
+    <th>
+        <button onclick="Add()">Cộng(+)</button></th>
+    <th>
+        <button onclick="Sub()">Trừ(-)</button></th>
+    <th>
+        <button onclick="Multip()">Nhân(*)</button></th>
+    <th>
+        <button onclick="Division()">Chia(/)</button>
+    </th>
+</tr></table>
+<h2 id="result" style="color: blue">Result:</h2>
+
+</body>
+</html>
+<script>
+    function Add() {
+        let number1 = document.getElementById("so1").value;
+        let number2 = document.getElementById("so2").value;
+        let result = Number(number1) + Number(number2);
+        document.getElementById("result").innerHTML = ("Result=" + result);
+    }
+    function Sub() {
+        let number1 = document.getElementById("so1").value;
+        let number2 = document.getElementById("so2").value;
+        let result = Number(number1) - Number(number2);
+        document.getElementById("result").innerHTML = ("Result=" + result);
+    }
+    function Multip() {
+        let number1 = document.getElementById("so1").value;
+        let number2 = document.getElementById("so2").value;
+        let result = Number(number1) * Number(number2);
+        document.getElementById("result").innerHTML = ("Result=" + result);
+    }
+    function Division() {
+        let number1 = document.getElementById("so1").value;
+        let number2 = document.getElementById("so2").value;
+        let result = Number(number1) / Number(number2);
+        document.getElementById("result").innerHTML = ("Result=" + result);
+    }
+</script>
