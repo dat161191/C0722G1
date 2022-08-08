@@ -7,12 +7,12 @@
 <body>
 </body>
 <script>
-    let độC = parseInt(prompt("Nhập nhiệt độ"))
-    let độF = parseInt((độC / 5) * 9 + 32)
+    let độC = parseFloat(prompt("Nhập nhiệt độ"))
+    let độF = ((độC / 5) * 9 + 32)
     document.write("độ F =" + độF)
     document.write("</br>")
-    let nhietF = parseInt(prompt("Nhập nhiệt độ"))
-    let nhietC= parseInt(((nhietF - 32) / 9) * 5)
+    let nhietF = parseFloat(prompt("Nhập nhiệt độ"))
+    let nhietC= (((nhietF - 32) / 9) * 5)
     document.write("nhiệt C =" + nhietC)
 
 </script>
