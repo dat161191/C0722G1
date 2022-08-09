@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>TRẦN QUỐC ĐẠT</title>
+</head>
+<body>
+
+</body>
+<script>
+    let dbkt = +prompt("điểm bài kiểm tra")
+    let dtgk = +prompt("điểm thi giữa kỳ")
+    let dtck = +prompt("điểm thi cuối kỳ")
+    let dxlhl = (dbkt + dtgk * 2 + dtck * 3) / 6
+    if (dxlhl >= 8) {
+        alert("Học sinh giỏi")
+    } else if (dxlhl >= 6.5) {
+        alert("Học sinh khá")
+    } else if (dxlhl >= 5) {
+        alert("Học sinh trung bình")
+    } else {
+        alert("Học sinh yếu")
+    }
+
+
+</script>
+</html>
