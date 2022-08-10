@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Trần Quốc Đạt</title>
+</head>
+<body>
+<input type="number" id="sonam">
+<button onclick="nhapso()">OK</button>
+<p style="color: red" id="năm">Năm này là</p>
+</body>
+<script>
+    // cách 1
+    var year = parseFloat(prompt("enter the year"))
+    if (year % 4 == 0) {
+        if (year % 100 == 0) {
+            if (year % 400 == 0)
+                document.writeln("năm nhuận")
+            else{
+        document.write("nănm không nhuận")
+        }
+    } else {document.write("năm nhuận")}
+}
+
+    else { document.write("năm không nhuận")
+    }
+
+    // cách 2
+    /*function nhapso() {
+        var year = document.getElementById("sonam").value;
+        // var year = parseFloat(prompt("enter the year"))
+        if (year % 4 == 0 && year % 100 !== 0) {
+            // document.write("năm nhuận")
+            // document.getElementById("năm").innerHTML = ("Năm này là năm nhuận")
+        } else if (year % 100 == 0 && year % 400 == 0) {
+            // document.write("năm nhuận")
+            document.getElementById("năm").innerHTML = ("Năm này là năm nhuận")
+        } else {
+            // document.write("năm không nhuận")
+            document.getElementById("năm").innerHTML = ("Năm này là năm không nhuận")
+        }
+    }*/
+
+</script>
+</html>
