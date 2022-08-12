@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<button onclick="playGame()">Chơi game</button>
+</body>
+<script>
+    function playGame() {
+        let khoangSo = +prompt('Nhập vào bạn muốn đoán trong khoảng nào:');//khoảng số
+        let soMayRanDom = parseInt(Math.random() * khoangSo);//số máy random chọn
+        let soBanDoan;//số bạn đoán
+        let count = 1;
+        alert(soMayRanDom)
+        do {
+            soBanDoan = +prompt('Nhập số mà bạn đoán');
+            if (soBanDoan > soMayRanDom) {
+                alert('Số bạn đoán lớn hơn');
+            } else if (soBanDoan < soMayRanDom) {
+                alert('Số bạn đoán bé hơn');
+            } else {
+                alert('Bạn đã đoán đúng');
+                break;
+            }
+            if (count === 3) {
+                alert('Bạn đã hết lượt');
+                break;
+            }
+            count++;
+        } while (soBanDoan !== soMayRanDom);
+    }
+</script>
+</html>
