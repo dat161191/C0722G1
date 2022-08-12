@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>20 số đầu dãy fibonaci</title>
+</head>
+<body>
+
+</body>
+<script>
+    let so1 = 0, so2 = 1, soKeTiep;
+    let flag = true;
+    let kq;
+    for (let i = 1; i <= 20; i++) {
+        document.write(so1 + "<br>")
+        soKeTiep = so1 + so2;
+        so1 = so2;
+        so2 = soKeTiep;
+        if (flag && soKeTiep % 5 == 0) {
+            kq = soKeTiep;
+            flag = false;
+        }
+    }
+    document.write("số đầu tiên chia hết cho 5 " + kq + "<br>")
+
+</script>
+
+</html>
