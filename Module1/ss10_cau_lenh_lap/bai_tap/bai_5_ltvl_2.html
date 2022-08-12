@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Lãi suất ngân hàng</title>
+</head>
+<body>
+
+</body>
+<script>
+    let tienGui = +prompt("nhập tiền")
+    let tienLai = +prompt("nhập lãi")
+    let soThang = +prompt("nhập số tháng")
+    let laiThang = 0;
+    for (let i = 1; i <= soThang; i++) {
+        laiThang = tienGui * tienLai/100
+        tienGui = tienGui + laiThang
+    }
+    alert(tienGui)
+
+</script>
+</html>
