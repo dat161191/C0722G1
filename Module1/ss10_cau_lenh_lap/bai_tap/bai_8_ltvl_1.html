@@ -2,34 +2,38 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>đoán số</title>
 </head>
 <body>
-<button onclick="playGame()">Chơi game</button>
+<button onclick="nhapso()"><h1>Start</h1></button>
 </body>
 <script>
-    function playGame() {
-        let khoangSo = +prompt('Nhập vào bạn muốn đoán trong khoảng nào:');//khoảng số
-        let soMayRanDom = parseInt(Math.random() * khoangSo);//số máy random chọn
-        let soBanDoan;//số bạn đoán
-        let count = 1;
-        alert(soMayRanDom)
+    function nhapso() {
+        let soKhoang = parseInt(prompt("nhập khoảng số bạn muốn đoán"));
+        let soMayRandom = parseInt(Math.random() * soKhoang);
+        console.log('so' + soMayRandom);
+        let soDoan;
+        let coutn = 0;
         do {
-            soBanDoan = +prompt('Nhập số mà bạn đoán');
-            if (soBanDoan > soMayRanDom) {
-                alert('Số bạn đoán lớn hơn');
-            } else if (soBanDoan < soMayRanDom) {
-                alert('Số bạn đoán bé hơn');
+            soDoan = parseInt(prompt("nhập số bạn muốn đoán"));
+            if (soDoan == soMayRandom) {
+                alert("Bạn đã đoán trúng");
             } else {
-                alert('Bạn đã đoán đúng');
+                if (soDoan < soMayRandom) {
+                    alert('Ban đã đoán số nhỏ hơn');
+                } else {
+                    alert("Bạn đã đoán số lớn hơn");
+                }
+                coutn++
+            }
+            if (coutn === 3) {
+                alert("Bạn đã hết lượt")
                 break;
             }
-            if (count === 3) {
-                alert('Bạn đã hết lượt');
-                break;
-            }
-            count++;
-        } while (soBanDoan !== soMayRanDom);
+        }
+        while (soMayRandom !== soDoan) ;
     }
+
+
 </script>
 </html>
