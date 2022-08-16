@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Từ điển</title>
+</head>
+<body>
+<form>
+    <input type="text" id="enterText" value="Enter text">
+    <br>
+    <input type="button" onclick="search()" value="Search">
+
+    <p id="Result">Result</p>
+</form>
+
+</body>
+<script>
+        function search() {
+            let eng = ["Code", "Gym", "Eleven", "Floor"];
+            let vie = ["Mã", "Phòng tập luyện", "Số 11", "Tầng"];
+            let e = document.getElementById("enterText").value;
+            let index_eng = -1;
+            for (let i = 0; i < eng.length; i++) {
+                if (e == eng[i]) {
+                    index_eng = i;
+                }
+            }
+            if(index_eng == -1){
+                document.getElementById("Result").innerHTML = "Không có!";
+            } else {
+                document.getElementById("Result").innerHTML = vie[index_eng]
+            }
+        }
+</script>
+</html>

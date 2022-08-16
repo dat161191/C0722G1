@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+</body>
+<script>
+    let array = [-3, 6, 8, 9, 3, 2, 10];
+    let sodau = 0;
+    let socuoi = array.length - 1;
+    while (sodau < socuoi) {
+        let b = array[sodau];
+        array[sodau] = array[socuoi];
+        array[socuoi] = b;
+        sodau++;
+        socuoi--;
+    }
+    document.write(array);
+</script>
+</html>

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Hàm có sẵn</title>
+</head>
+<body>
+
+</body>
+<script>
+    //xuất chuỗi
+    // let arrayColor=["Red", "Green", "White", "Black"];
+    // document.write(arrayColor.toString());
+    // document.write('<br>')
+    // document.write(arrayColor.join(":"));
+    // //nhập vào số và thêm - giữa 2 số chẵn
+    // document.write('<br>')
+    // let num = prompt();
+    // let str = num;
+    // let result = [str[0]];
+    //
+    // for (let x = 0; x < str.length; x++) {
+    //     if ((str[x] % 2 === 0) && (str[x+1] % 2 === 0)) {
+    //         result.push('-', str[x+1]);
+    //     } else {
+    //         result.push(str[x+1]);
+    //     }
+    // }
+    // document.write(result.join(''));
+    // document.write('<br>')
+    //đổi chữ in hoa thành in thường...thường thành in hoa
+    var str = 'DaT';
+    var UPPER = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+    var LOWER = 'abcdefghijklmnopqrstuvwxyz';
+    var result = [];
+
+    for(var x=0; x<str.length; x++)
+    {
+        if(UPPER.indexOf(str[x]) !== -1)
+        {
+            result.push(str[x].toLowerCase());
+        }
+        else if(LOWER.indexOf(str[x]) !== -1)
+        {
+            result.push(str[x].toUpperCase());
+        }
+        else
+        {
+            result.push(str[x]);
+        }
+    }
+    document.write(result.join(''));
+
+</script>
+</html>

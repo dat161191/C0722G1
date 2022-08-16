@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+</body>
+<script>
+    let soLuong1 = parseInt(prompt('Số lượng phần tử  trong mảng 1'));
+    let array1 = [];
+    for (let i = 0; i < soLuong1; i++) {
+        let so1 = parseInt(prompt('Nhập phần tử trong mảng 1'));
+        array1.push(so1);
+    }
+    let soLuong2 = parseInt(prompt('Số lương phần tử trong mảng 2'));
+    let array2 = [];
+    for (let j = 0; j < soLuong2; j++) {
+        let so2 = parseInt(prompt('Nhập phần tử trong mảng 2'));
+        array2.push(so2);
+    }
+    let array3 = [];
+    array3=array1.concat(array2);
+    document.write(array3.toString())
+</script>
+</html>

@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+</body>
+<script>
+    let array = [1, 2, 3, 4, 5];
+    let max = array[0];
+    let sum = 0;
+    for (let i = 0; i < array.length; i++) {
+        sum = sum + array[i];
+        average = sum / array.length;
+        if (max < array[i]) {
+            max = array[i];
+        }
+    }
+    document.write("trung bình cộng của dãy là: " + average + "<br>")
+    document.write("sô lớn nhất là: " + max + "<br>")
+    document.write("Tổng của dãy là: " + sum);
+</script>
+</html>
