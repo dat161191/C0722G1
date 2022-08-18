@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+</body>
+<script>
+    function checkNumber(arr, number) {
+        let count = 0;
+        for (let i = 0; i < arr.length; i++) {
+            if (number == arr[i]) {
+                count++;
+            }
+            if (count == 0) {
+                return "-1";
+            } else {
+                return count;
+            }
+        }
+    }
+
+    let num = +prompt("nhập số");
+    let lengthArr = +prompt("nhập chiều dài mảng");
+    let array = [];
+    for (let i = 0; i < lengthArr; i++) {
+        number = +prompt("Nhập số thứ");
+        array.push(number);
+    }
+    alert("Result" + checkNumber(array, num));
+</script>
+</html>

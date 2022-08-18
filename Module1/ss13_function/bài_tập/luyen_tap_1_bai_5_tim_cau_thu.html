@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h1>Name Of Star:</h1>
+<br>
+<input type="button" value="Enter Name" onclick="enterName()">
+</body>
+<script>
+    let str1 = "Polaris, Aldebaran, Deneb, Vega, Altair, Dubhe, Regulus";
+    let str2 = "UrsaMinor, Tarurus, Cygnus, Lyra, Aquila, UrsaMajor, Leo";
+    let array1 = [];
+    array1 = str1.split(', ');
+    // document.write(array1)
+    array2 = str2.split(', ')
+
+    // document.write(array2)
+    function browseName(name) {
+        let count = 0;
+        for (let i = 0; i < array1.length; i++) {
+            if (name == array1[i]) {
+                count = i;
+            }
+        }
+        if (count == 0) {
+            return ("Không tìm thấy tên ngôi sao:");
+        } else {
+            return ("Cung hoàng đạo của ngôi sao là: " + array2[count]);
+        }
+    }
+
+    function enterName() {
+        let nameStar = prompt("Nhập tên ngôi sao");
+        alert(browseName(nameStar));
+    }
+
+</script>
+</html>
