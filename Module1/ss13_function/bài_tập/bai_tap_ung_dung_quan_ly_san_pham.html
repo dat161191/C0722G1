@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<form>
+    <h1>Add New Product</h1>
+    <input type="text" id="Enterproduct">
+    <input type="button" id="Addname" value="Add" onclick="addProduct()">
+</form>
+<table>
+    <tr>
+        <th>STT</th>
+        <th>Name of Product</th>
+        <th></th>
+        <th></th>
+    </tr>
+</table>
+
+</body>
+<script>
+    function addProduct(array) {
+        let name=document.getElementById("Enterproduct").value;
+        array.push(name)
+    }
+
+</script>
+</html>

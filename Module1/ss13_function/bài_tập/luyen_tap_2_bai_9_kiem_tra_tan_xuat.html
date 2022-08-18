@@ -8,27 +8,28 @@
 
 </body>
 <script>
-    function checkNumber(arr, number) {
+    function checkNumber(arr, character) {
         let count = 0;
         for (let i = 0; i < arr.length; i++) {
-            if (number == arr[i]) {
+            if (character == arr[i]) {
                 count++;
             }
-            if (count == 0) {
-                return "-1";
-            } else {
-                return count;
-            }
         }
+        if (count == 0) {
+            return -1;
+        } else {
+            return count;
+        }
+
     }
 
-    let num = +prompt("nhập số");
+    let character = prompt("nhập số");
     let lengthArr = +prompt("nhập chiều dài mảng");
     let array = [];
     for (let i = 0; i < lengthArr; i++) {
-        number = +prompt("Nhập số thứ");
-        array.push(number);
+        character1 = prompt("Nhập số thứ");
+        array.push(character1);
     }
-    alert("Result" + checkNumber(array, num));
+    alert("Result" + checkNumber(array, character));
 </script>
 </html>
