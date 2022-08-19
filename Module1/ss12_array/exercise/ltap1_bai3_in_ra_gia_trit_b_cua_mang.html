@@ -13,11 +13,12 @@
     let sum = 0;
     for (let i = 0; i < array.length; i++) {
         sum = sum + array[i];
-        average = sum / array.length;
+
         if (max < array[i]) {
             max = array[i];
         }
     }
+    average = sum / array.length;
     document.write("trung bình cộng của dãy là: " + average + "<br>")
     document.write("sô lớn nhất là: " + max + "<br>")
     document.write("Tổng của dãy là: " + sum);

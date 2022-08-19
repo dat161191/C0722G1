@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+</body>
+<script>
+    let soLuong = +prompt("số phần tử trong mảng");
+    let array = [];
+    for (let i = 0; i < soLuong; i++) {
+        array[i] = +prompt("giá trị phần tử mảng");
+    }
+    let fNumber = 0;
+    let lNumber = array.length - 1;
+    for (fNumber; fNumber < lNumber; fNumber++) {
+        let count = array[fNumber];
+        array[fNumber] = array[lNumber];
+        array[lNumber] = count;
+        lNumber--;
+    }
+    document.write(array);
+</script>
+</html>

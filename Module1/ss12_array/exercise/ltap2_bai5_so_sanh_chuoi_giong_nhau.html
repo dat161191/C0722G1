@@ -11,16 +11,15 @@
     let array1 = chuoi1.split('');
     let array2 = chuoi2.split('');
     let count = true;
-    for (let i = 0,j = 0; i<array1.length,j<array2.length;i++,j++) {
+    for (let i = 0, j = 0; i < array1.length, j < array2.length; i++, j++) {
         if (array1[i] !== array2[j]) {
-            count = false
+            count = false;
         }
     }
     if (count) {
-        document.write(" 2 chuỗi giống nhau :")
-    }
-    else {
-        document.write("2 chuỗi này khác nhau:")
+        document.write(" 2 chuỗi giống nhau :");
+    } else {
+        document.write("2 chuỗi này khác nhau:");
     }
 </script>
 

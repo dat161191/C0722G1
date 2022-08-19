@@ -8,14 +8,14 @@
 
 </body>
 <script>
-    let x = [-5, 6, 8, 4, 9, 10];
+    let x = [-5, 6, 8, 7, 4, 9, 10];
     let first = 0;
     let last = x.length - 1;
-    for (first;first<last;first++){
+    for (first; first < last; first++) {
         let b = x[first];
         x[first] = x[last];
         x[last] = b;
-        first++;
+        // first++;
         last--;
     }
     // while (first < last) {

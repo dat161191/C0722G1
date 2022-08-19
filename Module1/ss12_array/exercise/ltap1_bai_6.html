@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+</body>
+<script>
+    let number = +prompt("nhập số V");
+    let array = [];
+    let soLuong = +prompt("số phần tử mảng");
+    for (let i = 0; i < soLuong; i++) {
+        let num = +prompt("nhập giá trị phần tử mảng");
+        array.push(num);
+    }
+    let count = 0;
+    for (let i = 0; i < array.length; i++) {
+        if (number == array[i]) {
+            count++;
+        }
+    }
+    if (count == 0) {
+        document.write("Number không phải phần tử của mảng");
+    } else {
+        document.write("Number là phần tử của mảng");
+    }
+</script>
+
+</html>
