@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+</body>
+<script>
+    class Date {
+        constructor(day, month, year) {
+            this.day = day;
+            this.month = month;
+            this.year = year;
+        }
+
+        getDate() {
+            return this.day + "/" + this.month + '/' + this.year;
+        }
+
+        setDate(day, month, year) {
+            this.day = day;
+            this.month = month;
+            this.year = year;
+        }
+    }
+
+    let date = new Date(10, 12, 2022);
+    document.write(date.getDate() + '<br>');
+    date.setDate(11, 1, 2023);
+    document.write(date.getDate());
+
+
+</script>
+</html>

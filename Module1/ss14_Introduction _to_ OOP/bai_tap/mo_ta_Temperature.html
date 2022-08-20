@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+</body>
+<script>
+    class ChuyenDoi {
+        constructor(doC) {
+            this.doC = doC;
+        }
+
+        chuyendoF() {
+            return 9 / 5 * this.doC + 32;
+        }
+
+        chuyenDoK() {
+            return this.doC + 273.15;
+        }
+    }
+
+    let doC = new ChuyenDoi(25);
+    document.write(doC.chuyendoF() + '<br>');
+    document.write(doC.chuyenDoK());
+
+</script>
+
+</html>

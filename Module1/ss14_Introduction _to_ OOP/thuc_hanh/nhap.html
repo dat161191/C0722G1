@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<canvas id="myCanvas" width="200" height="100" style="border:1px solid #d3d3d3;">
+    Your browser does not support the HTML5 canvas tag.</canvas>
+
+</body>
+<script>
+    var c = document.getElementById("myCanvas");
+    var ctx = c.getContext("2d");
+    ctx.moveTo(10,10);
+    ctx.lineTo(100,500);
+    ctx.stroke();
+    document.write('<br>');
+    class TAO{
+        constructor(loai, mau, kichThuoc) {
+            this.loai=loai;
+            this.mau=mau;
+            this.kichThuoc=kichThuoc;
+        }
+        layThongTin(){
+            return this.mau +" "+ this.loai+" " + this.kichThuoc;
+        }
+        suaThongTin(loai){
+            this.loai = loai
+        }
+    }
+    let tao=new TAO("USA","red",5);
+    document.write(tao.layThongTin()+"<br>");
+    document.write(tao.loai+'<br>');
+    tao.suaThongTin(10);
+    document.write(tao.layThongTin());
+</script>
+
+</html>
