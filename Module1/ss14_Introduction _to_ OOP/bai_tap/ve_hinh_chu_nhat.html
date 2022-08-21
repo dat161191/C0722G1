@@ -15,35 +15,35 @@
             this.chieuRong = chieuRong;
         }
 
-        thayDoiChieuDai(chieuDai) {
+        setChieuDai(chieuDai) {
             this.chieuDai = chieuDai;
         }
 
-        thayDoiChieuRong(chieuRong) {
+        setChieuRong(chieuRong) {
             this.chieuRong = chieuRong;
         }
 
-        dTich() {
+        dienTich() {
             return this.chieuDai * this.chieuRong;
         }
 
-        cVi() {
+        chuVi() {
             return (this.chieuDai + this.chieuRong) * 2;
         }
 
-        tTinHinhChuNhat() {
+        getHinhChuNhat() {
             return this.chieuDai + ' ' + this.chieuRong + ' ' + "S =" + this.chieuDai * this.chieuRong + ' ' + 'ChuVi=' + (this.chieuDai + this.chieuRong) * 2;
         }
     }
 
 
-    let cDai = +prompt("nhập chiều dài");
-    let cRong = +prompt("nhap chiều rộng");
-    let kq = new HinhChuNhat(cDai, cRong);
-    alert(kq.tTinHinhChuNhat());
+    let chieuDai = +prompt("nhập chiều dài");
+    let chieuRong = +prompt("nhap chiều rộng");
+    let ketQua = new HinhChuNhat(chieuDai, chieuRong);
+    alert(ketQua.getHinhChuNhat());
     let canvas = document.getElementById("DemoCanvas");
     let ctx = canvas.getContext('2d');
     ctx.fillStyle = 'blue';
-    ctx.fillRect(10, 10, cDai, cRong);
+    ctx.fillRect(10, 10, chieuDai, chieuRong);
 </script>
 </html>
