@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+</body>
+<script>
+    class Lamp {
+        constructor() {
+            this.lampStatus = false;
+        }
+
+        getStatus() {
+            return this.lampStatus;
+        }
+
+        lampOn() {
+            this.lampStatus = true;
+        }
+
+        lampOff() {
+            this.lampStatus = false;
+        }
+    }
+
+    class SwitchButton {
+        constructor() {
+            this.switchStatus = false;
+            this.lamp = null;
+        }
+
+        collectLamp(lamp) {
+            this.lamp = lamp
+        }
+
+        getSwitchStatus() {
+            return this.switchStatus;
+        }
+
+        checkStatus() {
+            if (this.switchStatus == false) {
+                return 'Công tắc mỏ'
+            } else {
+                return 'Công tắc đóng';
+            }
+        }
+
+        turnOnSwitch() {
+            this.switchStatus = true
+            this.lamp.lampOn();
+        }
+
+        turnOffSwitch() {
+            this.switchStatus = false
+            this.lamp.lampOff();
+        }
+    }
+
+    let lamp = new Lamp();
+    let switchButton = new SwitchButton()
+    switchButton.collectLamp(lamp);
+    switchButton.turnOnSwitch();
+    document.write(lamp.getStatus() + '<br>');
+    switchButton.turnOffSwitch();
+    document.write(lamp.getStatus() + '<br>');
+
+
+    let i = 0;
+    while (i <= 10) {
+        switchButton.turnOnSwitch();
+        document.write(lamp.getStatus() + " Công tắc bật đèn sáng" + '<br>');
+        switchButton.turnOffSwitch();
+        document.write(lamp.getStatus() + ' Công tắc mở đèn tắt' + '<br>');
+        i++
+    }
+
+</script>
+</html>
