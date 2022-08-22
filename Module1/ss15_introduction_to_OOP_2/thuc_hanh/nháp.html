@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+</body>
+<script>
+    class Rectangle {
+        constructor(long, width) {
+            this.long = long;
+            this.width = width;
+        }
+
+        getLong() {
+            return ' chiều dài là: ' +this.long;
+        }
+        getWidth() {
+            return 'chiều rộng là: '+ this.width ;
+
+        }
+
+        setLong(long) {
+            this.long = long;
+        }
+
+        setwidth(width) {
+            this.width = width;
+        }
+
+        getArea() {
+            return this.long * this.width;
+        }
+
+        getPrimeter() {
+            return (this.long + this.width) * 2;
+        }
+    }
+
+    let rectangle1 = new Rectangle(20, 5);
+    document.write(rectangle1.getArea()+'<br>');
+    document.write(rectangle1.getPrimeter()+'<br>');
+    document.write(rectangle1.getLong()+ '<br>');
+    document.write(rectangle1.getWidth()+'<br>');
+    rectangle1.setLong(10);
+    rectangle1.setwidth(4);
+    document.write(rectangle1.getArea()+'<br>');
+    document.write(rectangle1.getPrimeter()+'<br>');
+
+
+
+</script>
+</html>
