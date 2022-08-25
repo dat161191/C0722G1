@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+</body>
+<script>
+    let a = "cbaca"
+    let c = a.split('')
+    let arrayb = [c[0]];
+    alert(c);
+    alert(arrayb);
+    for (let i = 0; i < c.length; i++) {
+        if (arrayb.indexOf(c[i]) == -1) {
+            arrayb.push(c[i]);
+        }
+    }
+    alert(arrayb);
+
+
+</script>
+
+</html>

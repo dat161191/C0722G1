@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+</body>
+<script>
+    let doDaiMang = +prompt("Nhập độ dài mảng: ");
+    while (doDaiMang >= 50 || doDaiMang <= 0) {
+        doDaiMang = +prompt("Vui lòng nhập lại");
+    }
+    let array = [];
+    for (let i = 0; i < doDaiMang; i++) {
+        array[i] = +prompt("Nhập phần tử thứ " + (i + 1));
+    }
+    document.write("Mảng vừa nhập là: " + array + '<br>')
+    let sum = 0;
+    let dem = 0;
+    for (let i = 1; i < array.length; i += 2) {
+        if (array[i] % 2 == 0) {
+            sum = sum + array[i];
+            dem = dem + 1;
+        }
+        document.write("số chẵn ở vị trí lẻ " + i + " là: "
+        + array[i] + "<br>" )
+    }
+    document.write("trung bình cộng của số chẵn vị trí lẻ trong dãy là: " + sum / dem)
+</script>
+</html>

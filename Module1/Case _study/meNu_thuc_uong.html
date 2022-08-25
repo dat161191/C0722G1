@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<!--Viết một chương trình gọi thức uống đơn giản.-->
+<!--Gợi ý: Trước tiên in ra màn hinh danh sách các loại thức uống cho người dùng chọn lựa-->
+<!--Đánh dấu theo thứ tự 1 (cafe), 2 (cam vắt), 3(nước ép cà rốt), 4(nước ép cà chua), 5(nước lọc), 6(nước dừa), 7(thoát gọi-->
+<!--món)-->
+<!--Khi người dùng lựa chọn 1 trong số các thức uống, chương trình sẽ hiện đơn giá của thức uống đó và cho phép người dùng-->
+<!--nhập số lượng. Cuối cùng hiển thị tổng số tiền người dùng cần phải trả.-->
+<!--Sử dụng vòng lặp do while lặp lại cho người dùng đặt thức uống, kết thúc quá trình đặt thức uống khi người nhấn số 7-->
+<button onclick="goiMon()">Clickme!</button>
+<p id="hiển thị">Các bạn vừa chợn:</p>
+<button onclick="thanhToan()">Thanh toán</button>
+<p id="Result">Tổng Tiền:</p>
+
+</body>
+<script>
+    let a = [1, 2, 3, 4, 5, 6]
+    let b = ["CFe", "Cam vắt", "Ép Cà Rốt", "Ép Cà Chua", "Nước Lọc", "Nước Dừa"]
+    let c = [15000, 16000, 16500, 17000, 7000, 17000];
+    let chon;
+    let soLuong;
+    let d = [];
+    let sum = 0;
+    let total = 0;
+
+    function goiMon() {
+        chon = +prompt("Chọn món bạn muốn \n" + "1(Cfe)\n" + "2(Cam vắt)\n" + "3(Ép Cà Rốt)\n" + "4(Ép cà chua)\n" +
+            "5(Nước Lọc)\n" + "6(Nước dừa)\n")
+        soLuong = +prompt("Chọn số lượng")
+        let count = -1
+        for (let i = 0; i < a.length; i++) {
+            if (chon == a[i]) {
+                count = i;
+            }
+        }
+        if (count == -1) {
+            chon
+        } else {
+            sum = soLuong * c[count]
+            document.getElementById('hiển thị').innerText = b[count] + "*" + soLuong + " " + '=' + c[count] * soLuong + " VND" ;
+            d.push(sum)
+        }
+    }
+
+    function thanhToan() {
+        for (let i = 0; i < d.length; i++) {
+            total = total + d[i]
+        }
+        document.getElementById('Result').innerHTML = "Tổng số tiền bạn phải trả là: " + total + " VND"
+
+    }
+
+
+</script>
+</html>

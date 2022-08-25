@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+</body>
+<script>
+
+    function transfer(string) {
+        string = string.toLowerCase();
+        let newStr = string.split(' ');
+        document.write(newStr +'<br>')
+        let newStr2 = [];
+        let newStr1 = [];
+        for (let i = 0; i < newStr.length; i++) {
+            if (newStr[i] != '') {
+                newStr1.push(newStr[i]);
+            }
+        }document.write(newStr1+'<br>')
+
+        for (let i = 0; i < newStr1.length; i++) {
+            newStr2.push(newStr1[i].charAt(0).toUpperCase() + newStr1[i].slice(1));
+        }return newStr2.join(" ")
+    }
+
+
+    function findLengthEst(string1) {
+        let newStr4 = transfer(string1).split(' ');
+        let lengthEst = newStr4[0];
+        for (let i = 0; i < newStr4.length - 1; i++) {
+            if (lengthEst.length < newStr4[i].length) {
+                lengthEst = newStr4[i];
+            }
+        }
+        return lengthEst;
+    }
+
+
+    let str = 'tRuong    TaN   HAI';
+    let s = transfer(str);
+    document.write(s + '<br>');
+    document.write('Từ dài nhất :' + findLengthEst(s));
+</script>
+</html>

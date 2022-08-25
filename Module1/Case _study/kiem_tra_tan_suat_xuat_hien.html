@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script !src="">
+    let mangSoNguyen = [1, 2, 2, 3, 3, 2, 4, 4, 4, 5, 5, 6];
+    demSoLanXuatHienCuaPhanTu(mangSoNguyen);
+
+    function demSoLanXuatHienCuaPhanTu(mang) {
+        let x = [];
+        for (let i = 0; i < mang.length; i++) {
+            if (x.indexOf(mang[i]) == -1) {
+                x.push(mang[i]);
+                let dem = 0;
+                for (let j = 0; j < mang.length; j++) {
+                    if (mang[i] === mang[j]) {
+                        dem++;
+                    }
+                }
+                document.write("Số lần xuất hiện phần tử " + mang[i] + " là: " + dem + "<br>");
+            }
+        }
+    }
+
+</script>
+</body>
+</html>

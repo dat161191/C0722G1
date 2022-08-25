@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+</body>
+<script !src="">
+    let input = +prompt("Nhập vào 1 số nguyên");
+    let arrFibonacci = [];
+    let arrSoNguyenTo = [];
+
+    function fibonacci(soNguyen) {
+
+        let fibonacci1 = 0;
+        let fibonacci2 = 1;
+        let fibonacciN;
+        for (let i = 0; i < soNguyen; i++) {
+            fibonacciN = fibonacci1 + fibonacci2;
+            if (fibonacciN <= soNguyen) {
+                arrFibonacci.push(fibonacciN);//add số fibo nào nhỏ hơn or bằng số nguyên
+            }
+            fibonacci1 = fibonacci2
+            fibonacci2 = fibonacciN;
+            // arrFibonacci.push(fibonacciN); add số lượng số fiBo bằng số nguyên
+        }
+    }
+
+    function kiemTraSoNguyenTo(so) {
+
+        for (let i = 1; i <= so; i++) {
+            let dem = 0;
+            for (let j = 1; j <= i; j++) {
+                if (i % j === 0) {
+                    dem++;
+                }
+            }
+            if (dem === 2) {
+                arrSoNguyenTo.push(i);
+            }
+        }
+    }
+
+    kiemTraSoNguyenTo(input);
+    fibonacci(input);
+    let result = [];
+    for (let k = 0; k < arrSoNguyenTo.length; k++) {
+        if (arrFibonacci.includes(arrSoNguyenTo[k])) {
+            result.push(arrSoNguyenTo[k])
+        }
+    }
+
+    document.write("Dãy Fibonacci: " + arrFibonacci + "<br>");
+    document.write("Dãy Số nguyên tố: " + arrSoNguyenTo + "<br>");
+    document.write("Phần tử chung: " + result);
+</script>
+</html>

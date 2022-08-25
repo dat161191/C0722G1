@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+</body>
+<script>
+    let chonMon;
+    let giaTien = 0;
+    let gia = 1;
+    let soLuong = 0;
+    let hoaDon = 0;
+    do {
+        chonMon = +prompt(" Nhập lựa chọn tương ứng để chọn thức uống: \n" +
+            "1.Cafe \n" +
+            "2.Cam vắt \n" +
+            "3.Nước ép cà rốt \n" +
+            "4.Nước ép cà chua \n" +
+            "5.Nước lọc \n" +
+            "6.Nước dừa \n" +
+            "7.Thoát gọi món"
+        )
+
+        switch (chonMon) {
+
+            case 1:
+                gia = 30;
+                soLuong = prompt("Nhập số lượng: ");
+                giaTien = gia * soLuong;
+                hoaDon += giaTien;
+                break;
+            case 2:
+                gia = 30;
+                soLuong = prompt("Nhập số lượng: ");
+                giaTien = gia * soLuong;
+                hoaDon += giaTien;
+                break;
+            case 3:
+                gia = 35;
+                soLuong = prompt("Nhập số lượng: ");
+                giaTien = gia * soLuong;
+                hoaDon += giaTien;
+                break;
+            case 4:
+                gia = 36;
+                soLuong = prompt("Nhập số lượng: ");
+                giaTien = gia * soLuong;
+                hoaDon += giaTien;
+                break;
+            case 5:
+                gia = 20;
+                soLuong = prompt("Nhập số lượng: ");
+                giaTien = gia * soLuong;
+                hoaDon += giaTien;
+                break;
+            case 6:
+                gia = 35;
+                soLuong = prompt("Nhập số lượng: ");
+                giaTien = gia * soLuong;
+                hoaDon += giaTien;
+                break;
+
+            default:
+        }
+    }
+    while (chonMon != 7)
+
+    alert("Tổng số tiền phải trả cho hóa đơn là: " + hoaDon + ".000VNĐ");
+
+</script>
+
+</html>

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+
+    let so1 = prompt("nhập vào 1 số")
+    document.write(kiemTraSoNguyenTo(so1)+ " ")
+    hienThi(so1);
+
+    function kiemTraSoNguyenTo(so) {
+        let dem = 0;
+        for (let i = 0; i <= so; i++) {
+            if (so % i === 0) {
+                dem++;
+            }
+        }
+        if (dem === 2) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+
+    function hienThi(so) {
+        for (let i = 0; i <= so; i++) {
+            if (kiemTraSoNguyenTo(i) === true) {
+                document.write( + i + ", ");
+            }
+        }
+
+        return;
+
+    }
+
+
+</script>
+</body>
+</html>
