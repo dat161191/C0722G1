@@ -7,8 +7,8 @@
 <body>
 <script>
 
-    let so1 = prompt("nhập vào 1 số")
-    document.write(kiemTraSoNguyenTo(so1)+ " ")
+    let so1 = +prompt("nhập vào 1 số")
+    document.write(kiemTraSoNguyenTo(so1)+ " ");
     hienThi(so1);
 
     function kiemTraSoNguyenTo(so) {
@@ -24,17 +24,12 @@
             return false;
         }
     }
-
-
     function hienThi(so) {
         for (let i = 0; i <= so; i++) {
             if (kiemTraSoNguyenTo(i) === true) {
-                document.write( + i + ", ");
+                document.write(  i + ", ");
             }
         }
-
-        return;
-
     }
 
 

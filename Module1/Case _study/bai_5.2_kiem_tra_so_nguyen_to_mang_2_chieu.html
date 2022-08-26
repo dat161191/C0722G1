@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+</body>
+<script>
+    let arr = new Array(3);
+    for (let i = 0; i < 3; i++) {
+        arr[i] = new Array(3);
+    }
+    for (var row = 0; row < arr.length; row++) {
+        for (var column = 0; column < arr[row].length; column++) {
+            arr[row][column] = Math.floor((Math.random() * 100) + 1);
+        }
+    }
+    document.write(arr + '<br>')
+
+    function kiemTraSoNguyenTo(so) {
+        let dem = 0;
+        for (let i = 0; i < so; i++) {
+            if (so % i === 0) {
+                dem++;
+            }
+        }
+        if (dem === 2) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    function hienThi(arr) {
+        let arr1 = [];
+        for (let i = 0; i < arr.length; i++) {
+            for (let j = 0; j < arr[i].length; j++) {
+                if (kiemTraSoNguyenTo(arr[i][j])) {
+                    arr1.push(arr[i][j]);
+                }
+
+            }
+        }
+        return arr1;
+    }
+
+    let s = hienThi(arr);
+    document.write(s + ' ' + s.length);
+
+
+    // function hienThi(arr) {
+    //     let dem = 0;
+    //     for (let i = 0; i < arr.length; i++) {
+    //         for (let j = 0; j < arr[i].length; j++) {
+    //             if (kiemTraSoNguyenTo(arr[i][j])) {
+    //                 document.write(arr[i][j] + " ");
+    //                 dem++
+    //             }
+    //         }
+    //         // document.write( "số lượng số nguyên tố là "+dem+'<br>');
+    //     }
+    //     document.write("số lượng số nguyên tố là " + dem + '<br>');
+    // }
+    //
+    // hienThi(arr)
+
+
+</script>
+</html>

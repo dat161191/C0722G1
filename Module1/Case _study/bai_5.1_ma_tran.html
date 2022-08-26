@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+</body>
+<script>
+    let arr = new Array(3);
+    for (let i = 0; i < 3; i++) {
+        arr[i] = new Array(5);
+    }
+    for (var row = 0; row < arr.length; row++) {
+        for (var column = 0; column < arr[row].length; column++) {
+            arr[row][column] = Math.floor((Math.random() * 100) + 1);
+        }
+    }
+    document.write(arr+'<br>');
+    document.write(arr[0]+'<br>');
+    document.write(arr[1]+'<br>');
+    document.write(arr[2]+'<br>');
+
+
+
+</script>
+</html>

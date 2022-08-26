@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<input type="text" id="oSo1" placeholder="Số mua">
+<input type="text" id="oSo2" placeholder="Số mua">
+<input type="text" id="oSo3" placeholder="Số mua">
+<input type="text" id="oSo4" placeholder="Số mua">
+<input type="text" id="oSo5" placeholder="Số mua">
+<input type="text" id="oSo6" placeholder="Số mua"><br>
+<input type="text" id="oSo7" placeholder="KQ">
+<input type="text" id="oSo8" placeholder="KQ">
+<input type="text" id="oSo9" placeholder="KQ">
+<input type="text" id="oSo10" placeholder="KQ">
+<input type="text" id="oSo11" placeholder="KQ">
+<input type="text" id="oSo12" placeholder="KQ"><br>
+
+<input type="button" value="Mua Vé" onclick="muaVe()">
+<input type="button" value="Xem Kết Quả" onclick="xemKq()">
+
+
+</body>
+<script>
+    // class Ticket {
+    //     constructor(num1, num2, num3, num4, num5, num6) {
+    //         this.num1 = num1;
+    //         this.num2 = num2;
+    //         this.num3 = num3;
+    //         this.num4 = num4;
+    //         this.num5 = num5;
+    //         this.num6 = num6;
+    //     }
+    // }
+
+    function muaVeTuNhap() {
+        let number1 = document.getElementById("oSo1").value;
+        let number2 = document.getElementById("oSo2").value;
+        let number3 = document.getElementById("oSo3").value;
+        let number4 = document.getElementById("oSo4").value;
+        let number5 = document.getElementById("oSo5").value;
+        let number6 = document.getElementById("oSo6").value;
+        let soTuNhap = [];
+        soTuNhap.push(number1, number2, number3, number4, number5, number6);
+         return soTuNhap
+
+    }
+
+    let soRandom = [];
+
+    function random() {
+        let random1 = Math.floor(Math.random() * 2);
+        let random2 = Math.floor(Math.random() * 2);
+        let random3 = Math.floor(Math.random() * 2);
+        let random4 = Math.floor(Math.random() * 2);
+        let random5 = Math.floor(Math.random() * 2);
+        let random6 = Math.floor(Math.random() * 2);
+        document.getElementById("oSo1").value = random1;
+        document.getElementById("oSo2").value = random2;
+        document.getElementById("oSo3").value = random3;
+        document.getElementById("oSo4").value = random4;
+        document.getElementById("oSo5").value = random5;
+        document.getElementById("oSo6").value = random6;
+        soRandom.push(random1, random2, random3, random4, random5, random6);
+    }
+
+    function xemKq() {
+        // let check1 = Math.floor(Math.random() * 2);
+        // let check2 = Math.floor(Math.random() * 2);
+        // let check3 = Math.floor(Math.random() * 2);
+        // let check4 = Math.floor(Math.random() * 2);
+        // let check5 = Math.floor(Math.random() * 2);
+        // let check6 = Math.floor(Math.random() * 2);
+        let check1 = 1;
+        let check2 = 1;
+        let check3 = 1;
+        let check4 = 1;
+        let check5 = 1;
+        let check6 = 1;
+
+        document.getElementById('oSo7').value = check1;
+        document.getElementById('oSo8').value = check2;
+        document.getElementById('oSo9').value = check3;
+        document.getElementById('oSo10').value = check4;
+        document.getElementById('oSo11').value = check5;
+        document.getElementById('oSo12').value = check6;
+        let checkKQ = [];
+        checkKQ.push(check1, check2, check3, check4, check5, check6);
+        if (c === 1) {
+            let dem = 0;
+            for (let i = 0; i < checkKQ.length; i++) {
+                if (checkKQ[i] == muaVeTuNhap()[i]) {
+                    dem++
+                }
+
+            }
+            switch (dem) {
+                case 6:
+                    alert("giải dặc biệt");
+                    break;
+                case 5:
+                    alert("Giải nhì");
+                    break;
+                case 4:
+                    alert("Giải 3")
+                    break;
+                case 3:
+                case 2:
+                case 1:
+                    alert("chúc bạn may mắn lần sau")
+            }
+        }
+
+        if (c === 2) {
+            let dem2 = 0;
+            for (let i = 0; i < checkKQ.length; i++) {
+                if (checkKQ[i] == soRandom[i]) {
+                    dem2++
+                }
+            }
+            switch (dem2) {
+                case 6:
+                case 5:
+                    alert("giải dặc biệt");
+                    break;
+                case 4:
+                    alert("Giải nhì");
+                    break;
+                case 3:
+                    alert("Giải 3")
+                    break;
+                case 2:
+                case 1:
+                    alert("chúc bạn may mắn lần sau")
+            }
+        }
+
+    }
+
+    let c;
+
+    function muaVe() {
+        let luaChon = +prompt("Bạn có 2 lựa chọn\n" + "Bấm số 1.Bạn tự động chọn số\n" + "Bấm số 2.Hệ thống tự chọn random");
+        switch (luaChon) {
+            case 1:
+                muaVeTuNhap();
+                c = 1;
+                break;
+            case 2:
+                random();
+                c = 2;
+                break;
+        }
+    }
+
+</script>
+</html>

@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+</body>
+<script>
+    let s1 = "aabcc";
+    let arrS1 = s1.split('')
+    let s2 = 'adcaa';
+    let arrS2 = s2.split('')
+    let arrS3 = [];
+    for (let i = 0; i < arrS1.length; i++) {
+        for (let j = 0; j < arrS2.length; j++) {
+            if (arrS2[j] == arrS1[i]) {
+                arrS3.push(arrS2[j]);
+                arrS1.splice(i, 1);
+                arrS2.splice(j, 1);
+            }
+        }
+    }
+
+    document.write("số ký tự chung: " + arrS3.length+' '+"ký tự chung là: "+arrS3);
+</script>
+</html>
