@@ -15,25 +15,25 @@
     do {
         soPhanTu = parseInt(prompt("nhập số phần tử"));
         for (let i = 0; i < soPhanTu; i++) {
-            mang[i] = parseInt((prompt("nhập phần tử")))
+            mang[i] = parseInt((prompt("nhập phần tử")));
 
         }
         alert(mang);
 
         for (let j = 0; j < mang.length; j++) {
             if (mang[j] % 5 == 0 && j % 3 == 0) {
-                mang2.push(mang[j])
+                mang2.push(mang[j]);
             }
 
         }
         alert(mang2);
         for (let i = 0; i < mang2.length; i++) {
-            tong = tong + mang2[i]
+            tong = tong + mang2[i];
 
         }
         alert("tổng số chia hết cho 5 vị trí chia hết cho 3 là: " + tong + " \n" +
-            "giá trị trung bình là: " + tong / mang2.length)
+            "giá trị trung bình là: " + tong / mang2.length);
     }
-    while (soPhanTu < 1 || soPhanTu > 50)
+    while (soPhanTu < 1 || soPhanTu > 50);
 </script>
 </html>
