@@ -8,7 +8,9 @@
 
 </body>
 <script>
-    let str = "object oriented programming";
+
+    let str = prompt("nhập chuỗi");
+    let str1= "objectorientedprogramming";
 
     function cumTuVietHoa(str) {
         if (str.indexOf(" ") == -1) {
@@ -25,6 +27,8 @@
     }
 
     let vietTat = cumTuVietHoa(str);
+    let khongVietTat=cumTuVietHoa(str1);
     alert(vietTat);
+    alert(khongVietTat);
 </script>
 </html>
