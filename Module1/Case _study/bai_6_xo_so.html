@@ -24,16 +24,21 @@
 
 </body>
 <script>
-    // class Ticket {
-    //     constructor(num1, num2, num3, num4, num5, num6) {
-    //         this.num1 = num1;
-    //         this.num2 = num2;
-    //         this.num3 = num3;
-    //         this.num4 = num4;
-    //         this.num5 = num5;
-    //         this.num6 = num6;
-    //     }
-    // }
+    let c;
+
+    function muaVe() {
+        let luaChon = +prompt("Bạn có 2 lựa chọn\n" + "Bấm số 1.Bạn tự động chọn số\n" + "Bấm số 2.Hệ thống tự chọn random");
+        switch (luaChon) {
+            case 1:
+                muaVeTuNhap();
+                c = 1;
+                break;
+            case 2:
+                random();
+                c = 2;
+                break;
+        }
+    }
 
     function muaVeTuNhap() {
         let number1 = document.getElementById("oSo1").value;
@@ -139,21 +144,7 @@
 
     }
 
-    let c;
 
-    function muaVe() {
-        let luaChon = +prompt("Bạn có 2 lựa chọn\n" + "Bấm số 1.Bạn tự động chọn số\n" + "Bấm số 2.Hệ thống tự chọn random");
-        switch (luaChon) {
-            case 1:
-                muaVeTuNhap();
-                c = 1;
-                break;
-            case 2:
-                random();
-                c = 2;
-                break;
-        }
-    }
 
 </script>
 </html>
