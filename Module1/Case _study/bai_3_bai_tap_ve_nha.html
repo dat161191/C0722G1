@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+</body>
+<script>
+
+    function kiemTraSoFiboTrongMang() {
+        let soLuong = +prompt("nhập số lượng phần tử trong mảng")
+        let mang = [];
+        for (let i = 0; i < soLuong; i++) {
+            mang[i] = +prompt("nhập giá trị phần tử ");
+        }
+        alert(mang);
+        let soLuongsoFiBo = +prompt("nhập số lượng số fiBo")
+        let mangFiBo = [];
+        let so1 = 0;
+        let so2 = 1;
+        let soFiBo;
+        for (let i = 0; i < soLuongsoFiBo; i++) {
+            mangFiBo.push(so1);
+            soFiBo = so1 + so2;
+            so1 = so2;
+            so2 = soFiBo;
+        }
+        alert("mảng FIBO là: " + mangFiBo)
+        let mangKiemTra = [];
+        for (let i = 0; i < mang.length; i++) {
+            if (mangFiBo.indexOf(mang[i]) != -1) {
+                mangKiemTra.push(mang[i]);
+            }
+        }
+        alert(mangKiemTra);
+    }
+
+    kiemTraSoFiboTrongMang();
+
+
+</script>
+</html>
