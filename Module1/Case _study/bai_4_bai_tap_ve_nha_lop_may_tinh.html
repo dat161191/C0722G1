@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<input type="text" id="MaMay" placeholder="Nhập mã máy">
+<input type="text" id="TenMay" placeholder="Nhập tên máy">
+<input type="text" id="HangSanXuat" placeholder="Nhập hãng sản xuất">
+<input type="number" id="GiaBan" placeholder="Nhập giá bán">
+<input type="button" onclick="them()" value="Nhap">
+<p id="hienThi"></p>
+
+<table>
+
+</table>
+</body>
+<script>
+    class MayTinh {
+        constructor(maMay, tenMay, hangSanXuat, giaBan) {
+            this.maMay = maMay;
+            this.tenMay = tenMay;
+            this.hangSanXuat = hangSanXuat;
+            this.giaBan = giaBan;
+        }
+
+        setMaMay(maMay) {
+            this.maMay = maMay;
+        }
+
+        setTenMay(tenMay) {
+            this.tenMay = tenMay;
+        }
+
+        setHangSanXuat(hangSanXuat) {
+            this.hangSanXuat = hangSanXuat;
+        }
+
+        setGiaBan(giaBan) {
+            this.giaBan = giaBan;
+        }
+
+        getMaMay() {
+            return this.maMay;
+        }
+
+        getTenMay() {
+            return this.tenMay;
+        }
+
+        getHangSanXuat() {
+            return this.hangSanXuat;
+        }
+
+        getGiaBan() {
+            return this.giaBan;
+        }
+    }
+
+    let mayTinh1 = new MayTinh('J84NJ1', 'DellVostro', 'Dell', 7000000);
+    let mayTinh2 = new MayTinh('ST33PA', 'HPProDesk', 'Dell', 7500000);
+    let danhSachMayTinh = [mayTinh1, mayTinh2];
+    hienThiDanhSach(danhSachMayTinh);
+
+    function hienThiDanhSach(list) {
+        let tableString = '<table border="1">\n' +
+            '    <tr>\n' +
+            '        <th>STT</th>\n' +
+            '        <th>MÃ Máy</th>\n' +
+            '        <th>Tên Máy</th>\n' +
+            '        <th>Hãng Sãn Xuất</th>\n' +
+            '        <th>Giá</th>\n' +
+            '        <th>Delete</th>\n' +
+            '        <th>Edit</th>\n' +
+            '    </tr>';
+        for (let i = 0; i < list.length; i++) {
+            tableString += '<tr>\n' +
+                '        <td>' + (i + 1) + '</td>\n' +
+                '        <td>' + list[i].getMaMay() + '</td>\n' +
+                '        <td>' + list[i].getTenMay() + '</td>\n' +
+                '        <td>' + list[i].getHangSanXuat() + '</td>\n' +
+                '        <td>' + list[i].getGiaBan() + '</td>\n' +
+                '        <td><input type="button" onclick="deleteMayTinhById(' + i + ')" value="Delete"></td>\n' +
+                '        <td><input type="button" onclick="editMayTinhById(' + i + ')" value="Edit"></td>\n' +
+                '    </tr>';
+        }
+
+        tableString += '</table>';
+        document.getElementById("hienThi").innerHTML = tableString;
+    }
+    function deleteMayTinhById(index) {
+        let conf = confirm("Bạn có muốn xoá sinh viên tên: " + danhSachMayTinh[index].getTenMay());
+        if (conf) {
+            danhSachMayTinh.splice(index, 1);
+        }
+        hienThiDanhSach(danhSachMayTinh);
+    }
+
+    function editMayTinhById(index) {
+        let editMaMay = prompt("Nhập mã máy mới:" );
+        let editTenMay = prompt("Nhập tên máy mới:");
+        let editHangSanXuat = prompt("Nhập hãng sản xuất mới:");
+        let editGiaBan = prompt("Nhập giá bán mới:");
+        danhSachMayTinh[index].setMaMay(editMaMay);
+        danhSachMayTinh[index].setTenMay(editTenMay);
+        danhSachMayTinh[index].setHangSanXuat(editHangSanXuat);
+        danhSachMayTinh[index].setGiaBan(editGiaBan);
+        hienThiDanhSach(danhSachMayTinh);
+
+    }
+
+    function them() {
+        let maMay = document.getElementById("MaMay").value;
+        let tenMay = document.getElementById("TenMay").value;
+        let hangSanXuat = document.getElementById("HangSanXuat").value;
+        let giaBan = document.getElementById("GiaBan").value;
+        let newMayTinh = new MayTinh(maMay, tenMay, hangSanXuat, giaBan);
+        danhSachMayTinh.push(newMayTinh);
+        hienThiDanhSach(danhSachMayTinh);
+    }
+
+
+
+
+</script>
+</html>

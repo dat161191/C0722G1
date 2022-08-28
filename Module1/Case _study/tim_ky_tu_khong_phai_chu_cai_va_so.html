@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+</body>
+<script>
+    // let sting = prompt("Nhập chuỗi");
+    // let alphabet = ["q", "w", "e", "r", "t", "y", "u", "i", "o", "p", "a", "s", "d", "f", "g", "h", "j", "k", "l", "z", "x", "c", "v", "b", "n", "m"]
+    // let upAlphabet = alphabet.toUpperCase();
+    // alert(upAlphabet)
+    // let number = ["0","1","2","3","4","5","6","7","8","9"];
+    // let emptyArr = []
+    // function display(sting) {
+    //     for (let i = 0; i < sting.length; i++) {
+    //         if (!alphabet.includes(sting[i]) && !upAlphabet.includes(sting[i]) && !number.includes(sting[i])) {
+    //
+    //
+    //             emptyArr.push(sting[i]);
+    //         }
+    //     }
+    //     alert(emptyArr);
+    // }
+    // display(sting)
+
+        // <!--Viết 1 hàm truyền vào 1 tham số(với tham số là 1 chuỗi),-->
+        // <!--(checkString(str)). Hàm trả về mảng các kí tự không phải là -->
+        // <!--số[0,...9] và không phải kí tự alphabe[a..z,A...Z].-->
+
+        function checkString(str) {
+            let chuoiKiTu = 'qwertyuiopasdfghjklzxcvbnmQWERTYUIOPASDFGHJKLZXCVBNM1234567980';
+            let mangKiTu = chuoiKiTu.split("");
+            let mangMoi = [];
+            let mangKiTuDauVao = str.split("");
+            for (let i = 0; i < mangKiTuDauVao.length; i++) {
+                if(mangKiTu.includes(mangKiTuDauVao[i])===false){
+                    mangMoi.push(mangKiTuDauVao[i]);
+                }
+            }
+            return document.write(mangMoi+"");
+        }
+    checkString(prompt("Nhập vào 1 chuỗi"))
+</script>
+</html>

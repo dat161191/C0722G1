@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<input type="text" id="id" placeholder="nhập id">
+<input type="text" id="name" placeholder="nhập tên">
+<input type="text" id="age" placeholder="nhập tuổi">
+<input type="button" onclick="addNewStudent()" value="Add new Student">
+<p id="display"></p>
+<script>
+    class Student {
+        constructor(id, name, age) {
+            this.id = id;
+            this.name = name;
+            this.age = age;
+        }
+
+        setId(id) {
+            this.id = id;
+        }
+
+        setName(name) {
+            this.name = name;
+        }
+
+        setAge(age) {
+            this.age = age;
+        }
+
+        getId() {
+            return this.id;
+        }
+
+        getName() {
+            return this.name;
+        }
+
+        getAge() {
+            return this.age;
+        }
+    }
+
+    let student1 = new Student(1, "chanh", 37);
+    let student2 = new Student(2, "chanh2", 372);
+    let student3 = new Student(3, "chanh3", 374);
+    let studentList = [student1, student2, student3];
+    display(studentList);
+
+    // hiện thị danh sách
+    function display(list) {
+        let tableString = '<table border="1">\n' +
+            '    <tr>\n' +
+            '        <th>STT</th>\n' +
+            '        <th>ID</th>\n' +
+            '        <th>Name</th>\n' +
+            '        <th>Age</th>\n' +
+            '        <th>Delete</th>\n' +
+            '        <th>Edit</th>\n' +
+            '    </tr>';
+        for (let i = 0; i < list.length; i++) {
+            tableString += '<tr>\n' +
+                '        <td>' + (i + 1) + '</td>\n' +
+                '        <td>' + list[i].getId() + '</td>\n' +
+                '        <td>' + list[i].getName() + '</td>\n' +
+                '        <td>' + list[i].getAge() + '</td>\n' +
+                '        <td><input type="button" onclick="deleteStudentById(' + i + ')" value="Delete"></td>\n' +
+                '        <td><input type="button" onclick="editStudentById(' + i + ')" value="Edit"></td>\n' +
+                '    </tr>';
+        }
+
+        tableString += '</table>';
+        document.getElementById("display").innerHTML = tableString;
+    }
+
+    function deleteStudentById(index) {
+        let conf = confirm("Bạn có muốn xoá sinh viên tên: " + studentList[index].getName());
+        if (conf) {
+            studentList.splice(index, 1);
+        }
+        display(studentList);
+    }
+    function editStudentById(index) {
+        let editId=prompt("nhập id mới:" + studentList[index].getId());
+        let editName=prompt("nhập tên mới:");
+        let editAge=prompt("nhập tuổi mới:");
+        studentList[index].setId(editId);
+        studentList[index].setName(editName);
+        studentList[index].setAge(editAge);
+        display(studentList);
+
+    }
+    function addNewStudent() {
+          let id = document.getElementById("id").value;
+          let name = document.getElementById("name").value;
+          let age = document.getElementById("age").value;
+          let newStudent = new Student(id,name,age);
+          studentList.push(newStudent);
+          display(studentList);
+          // document.getElementById("id").value="";
+          // document.getElementById("name").value="";
+          // document.getElementById("age").value="";
+
+    }
+</script>
+</body>
+</html>

@@ -5,15 +5,14 @@
     <title>Title</title>
 </head>
 <body>
-
 </body>
 <script>
-
     function kiemTraSoFiboTrongMang() {
         let soLuong = +prompt("nhập số lượng phần tử trong mảng")
         let mang = [];
         for (let i = 0; i < soLuong; i++) {
-            mang[i] = +prompt("nhập giá trị phần tử ");
+            // mang[i] = +prompt("nhập giá trị phần tử ");
+            mang[i]=parseInt(Math.random()*50);
         }
         alert(mang);
         let soLuongsoFiBo = +prompt("nhập số lượng số fiBo")
