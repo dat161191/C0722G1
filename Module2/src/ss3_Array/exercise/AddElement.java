@@ -2,8 +2,7 @@ package ss3_Array.exercise;
 
 import java.util.Arrays;
 import java.util.Scanner;
-
-public class AddElementToArray {
+public class AddElement {
     public static void main(String[] args) {
             Scanner input = new Scanner(System.in);
             System.out.println("Nhập độ dài của mảng: ");
