@@ -18,12 +18,10 @@ public class DeletedElement {
         System.out.print(Arrays.toString(array));
         System.out.println("Nhập phần tử cần xóa ");
         int X = Integer.parseInt(input.nextLine());
-//        int count = 0;
         boolean check=false;
         int index_del;
         for (int i = 0; i < array.length; i++) {
             if (array[i] == X) {
-//                count++;
                 check=true;
                 index_del = i;
                 for (int j = index_del; j < array.length - 1; j++) {
@@ -34,13 +32,11 @@ public class DeletedElement {
             }
         }
 
-//        if (count == 0) {
         if(check==false){
             System.out.println("Số có không trong mảng");
         } else {
             System.out.println("Số có trong mảng");
         }
-//            System.out.println("Vị trí cần xóa là " + index_del);
         System.out.println(Arrays.toString(array));
 
     }

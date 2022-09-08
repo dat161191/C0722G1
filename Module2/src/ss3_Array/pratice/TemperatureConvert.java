@@ -4,8 +4,9 @@ import java.util.Scanner;
 
 public class TemperatureConvert {
     public static void main(String[] args) {
-        double F, C;
-        int choice=-1;
+        double F;
+        double C;
+        int choice = -1;
         Scanner input = new Scanner(System.in);
         do {
             System.out.print("choice: \n" + "1.ConverFtoC \n" + "2.ConvertCtoF \n" + "0.Exit");
