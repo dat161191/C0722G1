@@ -23,10 +23,10 @@ public class TotalDiagonal {
             sum += array[i][i];
         }
         System.out.println("Độ dài đường chéo là " + sum);
-        for (int i = 0; i < array.length; i++) {
-            sum1 += array[i][array.length - 1 - i];
-        }
-        System.out.println("Độ dài đường chéo 2 là " + sum1);
+//        for (int i = 0; i < array.length; i++) {
+//            sum1 += array[i][array.length - 1 - i];
+//        }
+//        System.out.println("Độ dài đường chéo 2 là " + sum1);
     }
 
     static int inputSize() {

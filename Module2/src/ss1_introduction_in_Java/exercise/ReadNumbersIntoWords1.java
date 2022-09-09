@@ -2,7 +2,7 @@ package ss1_introduction_in_Java.exercise;
 
 import java.util.Scanner;
 
-public class Read_numbers_into_words {
+public class ReadNumbersIntoWords1 {
     public static void main(String[] args) {
         System.out.println("nhập số cần đọc");
         Scanner input = new Scanner(System.in);
