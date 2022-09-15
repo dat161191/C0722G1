@@ -1,6 +1,6 @@
-package ss7_abstrac_class_interface.exercise.interface_resizeable;
+package mcv.view;
 
-public class Circle extends Geomatix1 implements Resizeable {
+public class Circle extends Geometry implements Resizeable {
     private double radius = 10;
 
     public Circle() {

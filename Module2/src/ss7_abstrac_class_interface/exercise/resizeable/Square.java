@@ -1,6 +1,6 @@
-package ss7_abstrac_class_interface.exercise.interface_resizeable;
+package mcv.view;
 
-public class Square extends Geomatix1 implements Resizeable {
+public class Square extends Geometry implements Resizeable {
     private double squaredAngle = 10.5;
 
     public Square() {

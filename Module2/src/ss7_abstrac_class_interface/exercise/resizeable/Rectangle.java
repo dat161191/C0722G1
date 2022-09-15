@@ -1,6 +1,6 @@
-package ss7_abstrac_class_interface.exercise.interface_resizeable;
+package mcv.view;
 
-public class Rectangle extends Geomatix1 implements Resizeable {
+public class Rectangle extends Geometry implements Resizeable {
     private double width = 5;
     private double height = 10;
 
