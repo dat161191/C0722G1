@@ -1,17 +1,22 @@
 package transport.model;
 
-public class Motorcycle extends Transport {
+public class Motorbike extends Transport {
     private double wattage;
 
-    public Motorcycle(double wattage) {
+    public Motorbike(double wattage) {
         this.wattage = wattage;
     }
 
-    public Motorcycle() {
+    public Motorbike() {
     }
 
-    public Motorcycle(String licensePlate, String manufacturer, int yearManufacture, double wattage) {
-        super(licensePlate, manufacturer, yearManufacture);
+//    public Motorbike(String licensePlate, String manufacturer, int yearManufacture, String owner, double wattage) {
+//        super(licensePlate, manufacturer, yearManufacture, owner);
+//        this.wattage = wattage;
+//    }
+
+    public Motorbike(String licensePlate, Manufacturer manufacturer, int yearManufacture, String owner, double wattage) {
+        super(licensePlate, manufacturer, yearManufacture, owner);
         this.wattage = wattage;
     }
 
