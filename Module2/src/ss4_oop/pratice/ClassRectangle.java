@@ -1,6 +1,5 @@
-package ss4_OOP.pratice;
+package ss4_oop.pratice;
 
-import java.awt.*;
 import java.util.Scanner;
 
 public class ClassRectangle {

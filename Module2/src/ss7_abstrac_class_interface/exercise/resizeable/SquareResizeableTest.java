@@ -1,4 +1,4 @@
-package mcv.view;
+package ss7_abstrac_class_interface.exercise.resizeable;
 
 public class SquareResizeableTest {
     public static void main(String[] args) {

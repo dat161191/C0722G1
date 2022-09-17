@@ -1,42 +1,45 @@
-package exercise;
+package exercise_HotelManager;
 
 import java.util.Scanner;
-public class Nguoi {
-    private String hoTen;
-    private String soCMND;
+
+public class Human {
+    private String fullName;
+    private String idCard;
     private String queQuan;
 
-    public Nguoi() {
+    public Human() {
         super();
     }
 
-    public Nguoi(String hoTen, String queQuan, String soCMND) {
+    public Human(String fullName, String queQuan, String idCard) {
         super();
-        this.hoTen = hoTen;
+        this.fullName = fullName;
         this.queQuan = queQuan;
-        this.soCMND = soCMND;
+        this.idCard = idCard;
     }
 
-    public String getSoCMND() {
-        return soCMND;
-    }
-    public void setSoCMND(String soCMND) {
-        this.soCMND = soCMND;
+    public String getIdCard() {
+        return idCard;
     }
 
-    public void nhapThongTinKhachTro() {
+    public void setIdCard(String idCard) {
+        this.idCard = idCard;
+    }
+
+    public void inputCustomerInformation() {
         Scanner scanner = new Scanner(System.in);
         System.out.print("Nhập họ tên khách hàng: ");
-        hoTen = scanner.nextLine();
+        fullName = scanner.nextLine();
         System.out.print("Nhập quê quán: ");
         queQuan = scanner.nextLine();
         System.out.print("Nhập số chứng minh nhân dân: ");
-        soCMND = scanner.nextLine();
+        idCard = scanner.nextLine();
     }
 
-    public void hienThiThongTinKhachTro() {
-        System.out.println("Họ và tên khách hàng: " + hoTen);
+    public void displayCustomerInformation() {
+        System.out.println("Họ và tên khách hàng: " + fullName);
         System.out.println("Quê quán: " + queQuan);
-        System.out.println("Số chứng minh nhân dân: " + soCMND);
+        System.out.println("Số chứng minh nhân dân: " + idCard);
     }
+
 }

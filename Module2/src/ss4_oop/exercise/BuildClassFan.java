@@ -1,10 +1,10 @@
-package ss4_OOP.exercise;
+package ss4_oop.exercise;
 
 public class BuildClassFan {
-    static final int RUN = 0;
-    static final int SLOW = 1;
-    static final int MEDIUM = 2;
-    static final int FASST = 3;
+    final int RUN = 0;
+    final int SLOW = 1;
+    final int MEDIUM = 2;
+    public final int FAST = 3;
     private int speed = RUN;
     private boolean on = false;
     private double radius = 15;
@@ -23,7 +23,7 @@ public class BuildClassFan {
     }
 
     public int getFASST() {
-        return FASST;
+        return FAST;
     }
 
     public int getSpeed() {
@@ -61,7 +61,7 @@ public class BuildClassFan {
     public BuildClassFan() {
     }
 
-    public BuildClassFan(int speed, boolean on, double radius, String color) {
+    public BuildClassFan(int speed, double radius, boolean on, String color) {
         this.speed = speed;
         this.on = on;
         this.radius = radius;
@@ -77,13 +77,16 @@ public class BuildClassFan {
                 ", color='" + color + '\'' +
                 '}';
     }
+
     public static void main(String[] args) {
-        BuildClassFan fan1 = new BuildClassFan(MEDIUM, false, 10.0, "blue");
+        BuildClassFan fan1 = new BuildClassFan(0, 10, false, "blue");
         BuildClassFan fan2 = new BuildClassFan();
-        System.out.println(fan1.toString());
+        fan2.setOn(true);
+        fan2.speed = 3;
         System.out.println(fan2.toString());
         fan2.setOn(true);
-        fan2.setSpeed(MEDIUM);
-        System.out.println(fan2);
+        fan2.setSpeed(fan2.FAST);
+        System.out.println(fan1.toString());
+
     }
 }

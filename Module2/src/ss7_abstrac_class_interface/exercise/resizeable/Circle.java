@@ -1,4 +1,4 @@
-package mcv.view;
+package ss7_abstrac_class_interface.exercise.resizeable;
 
 public class Circle extends Geometry implements Resizeable {
     private double radius = 10;

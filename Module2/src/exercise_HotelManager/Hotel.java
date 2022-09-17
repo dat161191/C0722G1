@@ -2,19 +2,19 @@ package exercise_HotelManager;
 
 import java.util.Scanner;
 
-public class KhachSan {
-    private int soNgayTro;
-    private String loaiPhong;
-    private double giaPhong;
+public class Hotel {
+    private int numberOfRentalDays;
+    private String typeOfRoom;
+    private double roomRates;
     private Human human;
-    public KhachSan() {
+    public Hotel() {
         super();
     }
-    public KhachSan(int soNgayTro, String loaiPhong, double giaPhong, Human human) {
+    public Hotel(int numberOfRentalDays, String typeOfRoom, double roomRates, Human human) {
         super();
-        this.soNgayTro = soNgayTro;
-        this.loaiPhong = loaiPhong;
-        this.giaPhong = giaPhong;
+        this.numberOfRentalDays = numberOfRentalDays;
+        this.typeOfRoom = typeOfRoom;
+        this.roomRates = roomRates;
         this.human = human;
     }
 
@@ -24,28 +24,28 @@ public class KhachSan {
     public void setHuman(Human human) {
         this.human = human;
     }
-    public void nhapThongTinCanQuanLy() {
+    public void inputManagementInformation() {
         Scanner scanner = new Scanner(System.in);
 
         // nhập thông tin khách trọ
         human = new Human();
-        human.nhapThongTinKhachTro();
+        human.inputCustomerInformation();
 
         System.out.print("Nhập số ngày trọ: ");
-        soNgayTro = Integer.parseInt(scanner.nextLine());
+        numberOfRentalDays = Integer.parseInt(scanner.nextLine());
         System.out.print("Nhập loại phòng: ");
-        loaiPhong = scanner.nextLine();
+        typeOfRoom = scanner.nextLine();
         System.out.print("Nhập giá phòng: ");
-        giaPhong = scanner.nextDouble();
+        roomRates = scanner.nextDouble();
     }
 
-    public void hienThiThongTinCanQuanLy() {
-        human.hienThiThongTinKhachTro();
-        System.out.println("Số ngày trọ: " + soNgayTro);
-        System.out.println("Loại phòng: " + loaiPhong);
-        System.out.println("Giá phòng: " + giaPhong);
+    public void displayManagementInformation() {
+        human.displayCustomerInformation();
+        System.out.println("Số ngày trọ: " + numberOfRentalDays);
+        System.out.println("Loại phòng: " + typeOfRoom);
+        System.out.println("Giá phòng: " + roomRates);
     }
-    public double tinhTien() {
-        return soNgayTro * giaPhong;
+    public double totalMoney() {
+        return numberOfRentalDays * roomRates;
     }
 }

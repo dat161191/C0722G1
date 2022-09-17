@@ -1,6 +1,5 @@
-package ss3_Array.exercise;
+package ss3_array.exercise;
 
-import java.lang.reflect.Array;
 import java.util.Arrays;
 import java.util.Scanner;
 

@@ -1,6 +1,6 @@
-package ss10_list.pratice;
+package ss10_list.pratice.my_linked;
 
-import java.util.Arrays;
+import ss10_list.pratice.my_linked.MyLinkedList;
 
 public class TestMyLinkedList { public static void main(String[] args) {
     MyLinkedList myList = new MyLinkedList(10);

@@ -1,4 +1,4 @@
-package mcv.view;
+package ss7_abstrac_class_interface.exercise.resizeable;
 
 public class CircleResizeableTest {
     public static void main(String[] args) {

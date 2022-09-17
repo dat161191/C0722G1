@@ -1,4 +1,4 @@
-package case_study;
+package case_study.BillCaFe;
 
 import java.util.Scanner;
 

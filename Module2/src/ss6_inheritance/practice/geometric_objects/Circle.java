@@ -1,7 +1,7 @@
 package ss6_inheritance.practice.geometric_objects;
 
 public class Circle extends Shape {
-    private double radius=1.0;
+    private double radius=10.0;
 
     public Circle() {
     }

@@ -48,7 +48,7 @@ public class MyArrayList<E> {
         if (size == this.element.length) {
             ensureCapa();
         }
-        if (index < 0 || index > CAPACITY) {
+        if (index < 0 || index > size) {
             System.out.println("Vị trí này không chèn đc");
         }
         for (int i = size; i > index; i--) {
@@ -59,8 +59,8 @@ public class MyArrayList<E> {
     }
 
     public E remove(int index) {
-        if (index < 0 || index > CAPACITY) {
-            System.out.println("Vị trí này không chèn đc");
+        if (index < 0 || index > size) {
+            System.out.println("Vị trí này không xóa đc");
         }
         for (int i = index; i < size; i++) {
             element[i] = element[i + 1];
@@ -78,14 +78,15 @@ public class MyArrayList<E> {
     }
 
     public int size() {
-        int count = 0;
-        for (int i = 0; i < element.length; i++) {
-            if (element[i] == null) {
-                count++;
-            }
-
-        }
-        return size = (this.element.length) - count;
+//        int count = 0;
+//        for (int i = 0; i < element.length; i++) {
+//            if (element[i] == null) {
+//                count++;
+//            }
+//
+//        }
+//        return size = (this.element.length) - count;
+        return size;
     }
 
     public boolean contain(E e) {

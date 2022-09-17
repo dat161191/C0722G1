@@ -1,4 +1,4 @@
-package ss4_OOP.exercise;
+package ss4_oop.exercise;
 
 import java.util.Scanner;
 
@@ -8,9 +8,7 @@ public class StopWatch {
     private long endTime;
 
     public StopWatch() {
-        this.startTime = System.currentTimeMillis();
     }
-
     public long getStartTime() {
         return startTime;
     }
@@ -44,9 +42,6 @@ public class StopWatch {
                 case 1:
                     example.start();
                     break;
-//        for (int i = 0; i < 100000000; i++) {
-//            i++;
-//        }
                 case 2:
                     example.stop();
                     break;

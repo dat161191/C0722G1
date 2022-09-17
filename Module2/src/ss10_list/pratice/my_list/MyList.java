@@ -1,4 +1,4 @@
-package ss10_list.pratice;
+package ss10_list.pratice.my_list;
 
 import java.util.Arrays;
 

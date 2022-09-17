@@ -1,4 +1,4 @@
-package ss4_OOP.exercise;
+package ss4_oop.exercise;
 
 import java.util.Scanner;
 

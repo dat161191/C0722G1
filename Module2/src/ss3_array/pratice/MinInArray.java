@@ -1,4 +1,4 @@
-package ss3_Array.pratice;
+package ss3_array.pratice;
 
 public class MinInArray {
     public static void main(String[] args) {

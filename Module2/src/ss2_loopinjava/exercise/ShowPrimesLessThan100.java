@@ -1,6 +1,4 @@
-package ss2_LoopInJaVa.exercise;
-
-import java.util.Scanner;
+package ss2_loopinjava.exercise;
 
 public class ShowPrimesLessThan100 {
     public static void main(String[] args) {
