@@ -6,10 +6,10 @@ public class Controller {
     private static Scanner input = new Scanner(System.in);
 
     public static void manageMenuCodeGym() {
-        System.out.println("Nhập lựa chon chương trình của bạn:\n"
-                + " 1.Quản lý học sinh\n" + " 2.Quản lý Giáo viên\n"+" 3.Thoát chương trình");
-        int choice = Integer.parseInt(input.nextLine());
         while (true) {
+            System.out.println("Nhập lựa chon chương trình của bạn:\n"
+                    + " 1.Quản lý học sinh\n" + " 2.Quản lý Giáo viên\n" + " 3.Thoát chương trình");
+            int choice = Integer.parseInt(input.nextLine());
             switch (choice) {
                 case 1:
                     StudentController.manageMenuStudent();
