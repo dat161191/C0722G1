@@ -1,6 +1,7 @@
 package school_manager.model;
 
-public class Person { private String code;
+public class Person {
+    private String code;
     private String name;
     private String gender;
 

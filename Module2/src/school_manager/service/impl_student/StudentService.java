@@ -48,6 +48,22 @@ public class StudentService implements IStudentService {
         }
     }
 
+    @Override
+    public void findStudyName() {
+        System.out.println("Nhập tên muốn tìm");
+        String name = scanner.nextLine();
+        boolean flag = false;
+        for (int i = 0; i < studentList.size(); i++) {
+            if (studentList.get(i).getName().contains(name)) {
+                System.out.println(studentList.get(i));
+                flag = true;
+            }
+        }
+        if (flag == false) {
+            System.out.println("Không tìm thấy đối tượng cần tìm");
+        }
+    }
+
     public Student infoStudent() {
         System.out.print("Mời bạn nhập mã học sinh: ");
         String code = scanner.nextLine();

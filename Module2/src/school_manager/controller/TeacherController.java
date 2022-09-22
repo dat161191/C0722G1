@@ -16,8 +16,9 @@ public class TeacherController {
                     + " 1.Thêm mới giáo viên\n"
                     + " 2.Hiển thị danh sách giáo viên\n"
                     + " 3.Xóa giáo viên\n"
-                    + " 4.Quay lại chương trình quản lý CodeGym\n"
-                    + " 5.Thoát chương trình");
+                    + " 4.Tìm kiếm theo tên\n"
+                    + " 5.Quay lại chương trình quản lý CodeGym\n"
+                    + " 6.Thoát chương trình");
             int choice = Integer.parseInt(input.nextLine());
             switch (choice) {
                 case 1:
@@ -30,9 +31,12 @@ public class TeacherController {
                     isTeacherService.removeTeacher();
                     break;
                 case 4:
-                    Controller.manageMenuCodeGym();
+                    isTeacherService.findTeacherName();
                     break;
                 case 5:
+                    Controller.manageMenuCodeGym();
+                    break;
+                case 6:
                     System.exit(0);
                     return;
                 default:

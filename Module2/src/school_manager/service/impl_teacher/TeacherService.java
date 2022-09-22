@@ -49,6 +49,23 @@ public class TeacherService implements ISTeacherService {
         }
     }
 
+    @Override
+    public void findTeacherName() {
+        System.out.println("Nhập tên muốn tìm");
+        String name = input.nextLine();
+        boolean flag = false;
+        for (int i = 0; i < teacherList.size(); i++) {
+            if (teacherList.get(i).getName().contains(name)) {
+                System.out.println(teacherList.get(i));
+                flag = true;
+            }
+
+        }
+        if (flag == false) {
+            System.out.println("Không tìm thấy đối tượng cần tìm");
+        }
+    }
+
     public Teacher infoTeacher() {
         System.out.print("Mời bạn nhập mã Giáo Viên: ");
         String code = input.nextLine();
