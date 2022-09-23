@@ -4,14 +4,23 @@ public class Person {
     private String code;
     private String name;
     private String gender;
+    private String birth;
 
-    public Person(String code, String name, String gender) {
+    public Person(String code, String name, String gender, String birth) {
         this.code = code;
         this.name = name;
         this.gender = gender;
+        this.birth = birth;
     }
 
     public Person() {
+    }
+    public String getBirth() {
+        return birth;
+    }
+
+    public void setBirth(String birth) {
+        this.birth = birth;
     }
 
     public String getCode() {
@@ -43,7 +52,8 @@ public class Person {
         return "Person{" +
                 "code='" + code + '\'' +
                 ", name='" + name + '\'' +
-                ", gender=" + gender +
+                ", gender='" + gender + '\'' +
+                ", birth='" + birth + '\'' +
                 '}';
     }
 }

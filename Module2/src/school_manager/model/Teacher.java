@@ -10,8 +10,8 @@ public class Teacher extends Person {
     public Teacher() {
     }
 
-    public Teacher(String code, String name, String gender, String technique) {
-        super(code, name, gender);
+    public Teacher(String code, String name, String gender, String birth, String technique) {
+        super(code, name, gender, birth);
         this.technique = technique;
     }
 

@@ -5,4 +5,6 @@ public interface ISTeacherService {
     void displayTeacher();
     void removeTeacher();
     void findTeacherName();
+    void findTeacherCode();
+    void sortTeacher();
 }

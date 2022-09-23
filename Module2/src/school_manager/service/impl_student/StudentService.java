@@ -4,6 +4,7 @@ import school_manager.model.Student;
 import school_manager.service.IStudentService;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Scanner;
 
@@ -64,6 +65,51 @@ public class StudentService implements IStudentService {
         }
     }
 
+    @Override
+    public void findStudyCode() {
+        System.out.println("Nhập code muốn tìm");
+        String code = scanner.nextLine();
+        boolean flag = false;
+        for (int i = 0; i < studentList.size(); i++) {
+            if (studentList.get(i).getCode().equals(code)) {
+                System.out.println(studentList.get(i));
+                flag = true;
+            }
+        }
+        if (flag == false) {
+            System.out.println("Không tìm thấy đối tượng cần tìm");
+        }
+
+    }
+
+    @Override
+    public void sortStudy() {
+        for (int i = 0; i < studentList.size() - 1; i++) {
+            Student currentMin = studentList.get(i);
+            int currentMinIndex = i;
+            for (int j = i + 1; j < studentList.size(); j++) {
+                if (currentMin.getName().compareTo(studentList.get(j).getName()) > 0) {
+                    currentMin = studentList.get(j);
+                    currentMinIndex = j;
+                }
+                if (currentMin.getName().compareTo(studentList.get(j).getName()) == 0) {
+                    int compare = currentMin.getCode().compareTo(studentList.get(j).getCode());
+                    if (compare > 0) {
+                        currentMin = studentList.get(j);
+                        currentMinIndex = j;
+
+                    }
+                }
+
+            }
+            if (currentMinIndex != i) {
+                studentList.set(currentMinIndex, studentList.get(i));
+                studentList.set(i, currentMin);
+            }
+        }
+    }
+
+
     public Student infoStudent() {
         System.out.print("Mời bạn nhập mã học sinh: ");
         String code = scanner.nextLine();
@@ -83,7 +129,8 @@ public class StudentService implements IStudentService {
         String nameClass = scanner.nextLine();
         System.out.print("Mời bạn nhập điểm của học sinh: ");
         double score = Double.parseDouble(scanner.nextLine());
-        return new Student(code, name, gender, nameClass, score);
+        System.out.println("Mời bạn nhập ngày sinh Sinh Viên:");
+        String birth = scanner.nextLine();
+        return new Student(code, name, gender, birth, nameClass, score);
     }
-
 }

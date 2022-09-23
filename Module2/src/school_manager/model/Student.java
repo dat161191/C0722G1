@@ -2,11 +2,10 @@ package school_manager.model;
 
 public class Student extends Person {
     private String nameClass;
-    //wrapper class
     private double score;
 
-    public Student(String code, String name, String gender, String nameClass, double score) {
-        super(code, name, gender);
+    public Student(String code, String name, String gender, String birth, String nameClass, double score) {
+        super(code, name, gender, birth);
         this.nameClass = nameClass;
         this.score = score;
     }
@@ -40,6 +39,6 @@ public class Student extends Person {
         return "Student{" +
                 "nameClass='" + nameClass + '\'' +
                 ", score=" + score +
-                "} " + super.toString();
+                '}'+ super.toString();
     }
 }

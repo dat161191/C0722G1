@@ -1,5 +1,6 @@
 package school_manager.service.impl_teacher;
 
+import school_manager.model.Student;
 import school_manager.model.Teacher;
 import school_manager.service.ISTeacherService;
 
@@ -66,6 +67,50 @@ public class TeacherService implements ISTeacherService {
         }
     }
 
+    @Override
+    public void findTeacherCode() {
+        System.out.println("Nhập code muốn tìm");
+        String code = input.nextLine();
+        boolean flag = false;
+        for (int i = 0; i < teacherList.size(); i++) {
+            if (teacherList.get(i).getCode().contains(code)) {
+                System.out.println(teacherList.get(i));
+                flag = true;
+            }
+
+        }
+        if (flag == false) {
+            System.out.println("Không tìm thấy đối tượng cần tìm");
+        }
+
+    }
+
+    @Override
+    public void sortTeacher() {
+        for (int i = 0; i < teacherList.size() - 1; i++) {
+            Teacher currentMin = teacherList.get(i);
+            int currentMinIndex = i;
+            for (int j = i + 1; j < teacherList.size(); j++) {
+                if (currentMin.getName().compareTo(teacherList.get(j).getName()) > 0) {
+                    currentMin = teacherList.get(j);
+                    currentMinIndex = j;
+                }
+                if (currentMin.getName().compareTo(teacherList.get(j).getName()) == 0) {
+                    int compare = currentMin.getCode().compareTo(teacherList.get(j).getCode());
+                    if (compare > 0) {
+                        currentMin = teacherList.get(j);
+                        currentMinIndex = j;
+                    }
+                }
+
+            }
+            if (currentMinIndex != i) {
+                teacherList.set(currentMinIndex, teacherList.get(i));
+                teacherList.set(i, currentMin);
+            }
+        }
+    }
+
     public Teacher infoTeacher() {
         System.out.print("Mời bạn nhập mã Giáo Viên: ");
         String code = input.nextLine();
@@ -83,7 +128,9 @@ public class TeacherService implements ISTeacherService {
         }
         System.out.print("Mời bạn nhập chuyên môn Giáo Viên: ");
         String technique = input.nextLine();
+        System.out.println("Mời bạn nhập ngày sinh Giáo Viên:");
+        String birth = input.nextLine();
 
-        return new Teacher(code, name, gender, technique);
+        return new Teacher(code, name, gender, birth, technique);
     }
 }
