@@ -8,4 +8,9 @@ public interface ICarService {
     void removeCar(String LicensePlate);
 
     void findCar(String LicensePlate);
+    boolean findCar1(String LicensePlate);
+
+    void addManufacturer();
+
+    void testAddTruck();
 }

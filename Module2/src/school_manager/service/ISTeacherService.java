@@ -7,4 +7,5 @@ public interface ISTeacherService {
     void findTeacherName();
     void findTeacherCode();
     void sortTeacher();
+    void testTeacherList();
 }

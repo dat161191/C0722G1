@@ -1,7 +1,7 @@
 package ss12_library_java.exercise.PraticeUseFarmWord.controller;
 
 import ss12_library_java.exercise.PraticeUseFarmWord.service.IProductManagerService;
-import ss12_library_java.exercise.PraticeUseFarmWord.service.impl.ProductManagerService;
+import ss12_library_java.exercise.PraticeUseFrameWord.service.impl.ProductManagerService;
 
 import java.util.Scanner;
 

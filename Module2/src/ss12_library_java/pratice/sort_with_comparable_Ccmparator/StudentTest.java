@@ -1,2 +1,32 @@
-package ss12_library_java.pratice.sort_with_comparable_Ccmparator;public class StudentTest {
+package ss12_library_java.pratice.sort_with_comparable_Ccmparator;
+
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+
+public class StudentTest {
+    public static void main(String[] args) {
+        Student student = new Student("Kien", 30, "HT");
+        Student student1 = new Student("Nam", 26, "HN");
+        Student student2 = new Student("Thanh", 38, "HT" );
+        Student student3 = new Student("Dung", 38, "HT" );
+
+        List<Student> lists = new ArrayList<Student>();
+        lists.add(student);
+        lists.add(student1);
+        lists.add(student2);
+        lists.add(student3);
+
+        Collections.sort(lists);
+        for(Student st : lists){
+            System.out.println(st.toString());
+        }
+
+        AgeComparator ageComparator = new AgeComparator();
+        Collections.sort(lists,ageComparator);
+        System.out.println("So sanh theo tuoi, nếu bằng so sánh theo tên");
+        for(Student st : lists){
+            System.out.println(st.toString());
+        }
+    }
 }

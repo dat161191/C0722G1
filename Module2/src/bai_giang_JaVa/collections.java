@@ -2,7 +2,7 @@ package bai_giang_JaVa;
 
 import java.util.*;
 
-public class ly_thuyet_collections {
+public class collections {
    /* ++Collections trong java là một khuôn khổ cung cấp một kiến trúc để lưu trữ và thao tác tới nhóm các đối tượng.
         Tất cả các hoạt động mà bạn thực hiện trên một dữ liệu như tìm kiếm, phân loại, chèn, xóa,...
         có thể được thực hiện bởi Java Collections.

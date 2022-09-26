@@ -13,6 +13,7 @@ import java.util.Scanner;
 public class CarService implements ICarService {
     private static Scanner scanner = new Scanner(System.in);
     private static List<Car> cars = new ArrayList<>();
+    static List<Manufacturer> manufacturerCarList = new ArrayList<>();
 
     @Override
     public void addCar() {
@@ -67,30 +68,36 @@ public class CarService implements ICarService {
 
     }
 
+    @Override
+    public boolean findCar1(String LicensePlate) {
+        boolean flagDelete = false;
+        for (int i = 0; i < cars.size(); i++) {
+            if (cars.get(i).getLicensePlate().contains(LicensePlate)) {
+                System.out.println(cars.get(i));
+                flagDelete = true;
+            }
+        }
+        return flagDelete;
+    }
+
     public Car infoCar() {
         System.out.print("Mời bạn nhập biển kiểm soát: ");
         String licensePlate = scanner.nextLine();
         System.out.print("Mời bạn chọn hãng sãn xuất\n"
                 + "1.Toyota\n" + "2.Ford\n" + "3.BMW\n");
         int choice = Integer.parseInt(scanner.nextLine());
-        List<Manufacturer> carList = new ArrayList<>();
-        Manufacturer manufacturer1 = new Manufacturer("Toyota1611", "TOYOTA", "Nhật Bản");
-        Manufacturer manufacturer2 = new Manufacturer("Ford1611", "FORD", "Mỹ");
-        Manufacturer manufacturer3 = new Manufacturer("Bmw1611", "BMW", "Đức");
-        carList.add(manufacturer1);
-        carList.add(manufacturer2);
-        carList.add(manufacturer3);
+        addManufacturer();
         Manufacturer manufacturer = null;
         switch (choice) {
             case 1:
-                manufacturer = carList.get(0);
+                manufacturer = manufacturerCarList.get(0);
                 break;
             case 2:
-                manufacturer = carList.get(1);
+                manufacturer = manufacturerCarList.get(1);
 
                 break;
             case 3:
-                manufacturer = carList.get(2);
+                manufacturer = manufacturerCarList.get(2);
 
                 break;
             default:
@@ -106,5 +113,17 @@ public class CarService implements ICarService {
         System.out.print("Mời bạn nhập tên chủ sở hữu");
         String Owner = scanner.nextLine();
         return new Car(licensePlate, manufacturer, yearManufacture, Owner, numberSeats, vehcileType);
+    }
+
+    public void addManufacturer() {
+        manufacturerCarList.add(new Manufacturer("Toyota1611", "TOYOTA", "Nhật Bản"));
+        manufacturerCarList.add(new Manufacturer("Ford1611", "FORD", "Mỹ"));
+        manufacturerCarList.add(new Manufacturer("Bmw1611", "BMW", "Đức"));
+    }
+
+    public void testAddTruck() {
+        cars.add(new Car("06", manufacturerCarList.get(1), 1995, "Jonh", 30, "Thể thao"));
+        cars.add(new Car("05", manufacturerCarList.get(0), 1965, "June", 30, "Thể thao"));
+        cars.add(new Car("01", manufacturerCarList.get(2), 1985, "Adam", 30, "Thể thao"));
     }
 }

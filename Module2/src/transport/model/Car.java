@@ -23,7 +23,6 @@ public class Car extends Transport {
         this.numberSeats = numberSeats;
         this.vehicleType = vehicleType;
     }
-
     public int getNumberSeats() {
         return numberSeats;
     }

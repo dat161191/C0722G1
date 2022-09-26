@@ -3,7 +3,7 @@ package bai_giang_JaVa;
 import java.util.ArrayList;
 import java.util.Iterator;
 
-public class ly_thuyet_duyet_phan_tu_collection_trong_jva {
+public class duyet_phan_tu_collection_trong_jva {
     /*Có 3 cách để duyệt các phần tử của collection trong java.
         Sử dụng Iterator interface.
         Sử dụng vòng lặp for-each.

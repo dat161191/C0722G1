@@ -1,4 +1,4 @@
-package ss14_sort_algorithm.exercise.insertion_sort;
+package ss14_sort_algorithm.exercise.algorithm_insertion_sort;
 
 import java.util.Arrays;
 

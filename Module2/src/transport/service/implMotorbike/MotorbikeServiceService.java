@@ -12,6 +12,8 @@ import java.util.Scanner;
 public class MotorbikeServiceService implements IMotorbikeService {
     private static Scanner scanner = new Scanner(System.in);
     private static List<Motorbike> motorbikes = new ArrayList<>();
+    static List<Manufacturer> motorbikeManufacturerList = new ArrayList<>();
+
 
     @Override
     public void addMotorbike() {
@@ -50,6 +52,8 @@ public class MotorbikeServiceService implements IMotorbikeService {
 
     }
 
+
+
     @Override
     public void findMotorbike(String LicensePlate) {
         boolean flagDelete = false;
@@ -66,30 +70,51 @@ public class MotorbikeServiceService implements IMotorbikeService {
 
     }
 
+    @Override
+    public boolean findMotorbike1(String LicensePlate) {
+        boolean flag=false;
+        for (int i = 0; i < motorbikes.size(); i++) {
+            if (motorbikes.get(i).getLicensePlate().contains(LicensePlate)) {
+                System.out.println(motorbikes.get(i));
+                flag=true;
+            }
+        }
+        return flag;
+    }
+
+    @Override
+    public void addManufacturer() {
+        motorbikeManufacturerList.add(new Manufacturer("Honda1611", "HONDA", "Việt Nam"));
+        motorbikeManufacturerList.add(new Manufacturer("YaMaHa1611", "YAMAHA", "Nhật Bản"));
+        motorbikeManufacturerList.add(new Manufacturer("Bmw1611", "BMW", "Đức"));
+    }
+
+    @Override
+    public void testAddMotorbike() {
+        motorbikes.add(new Motorbike("02", motorbikeManufacturerList.get(0), 1905, "Hà", 10));
+        motorbikes.add(new Motorbike("01", motorbikeManufacturerList.get(0), 1905, "Hà", 10));
+        motorbikes.add(new Motorbike("04", motorbikeManufacturerList.get(1), 1970, "An", 15));
+        motorbikes.add(new Motorbike("03", motorbikeManufacturerList.get(2), 1965, "Bình", 8));
+    }
+
     public Motorbike infoMotorbike() {
         System.out.print("Mời bạn nhập biển kiểm soát: ");
         String licensePlate = scanner.nextLine();
         System.out.print("Mời bạn chọn hãng sãn xuất\n"
                 + "1.HONDA\n" + "2.YAMAHA\n" + "3.BMW\n");
         int choice = Integer.parseInt(scanner.nextLine());
-        List<Manufacturer> motorbikeList = new ArrayList<>();
-        Manufacturer manufacturer1 = new Manufacturer("Honda1611", "HONDA", "Việt Nam");
-        Manufacturer manufacturer2 = new Manufacturer("YaMaHa1611", "YAMAHA", "Nhật Bản");
-        Manufacturer manufacturer3 = new Manufacturer("Bmw1611", "BMW", "Đức");
-        motorbikeList.add(manufacturer1);
-        motorbikeList.add(manufacturer2);
-        motorbikeList.add(manufacturer3);
+        addManufacturer();
         Manufacturer manufacturer = null;
         switch (choice) {
             case 1:
-                manufacturer = motorbikeList.get(0);
+                manufacturer = motorbikeManufacturerList.get(0);
                 break;
             case 2:
-                manufacturer = motorbikeList.get(1);
+                manufacturer = motorbikeManufacturerList.get(1);
 
                 break;
             case 3:
-                manufacturer = motorbikeList.get(2);
+                manufacturer = motorbikeManufacturerList.get(2);
 
                 break;
             default:

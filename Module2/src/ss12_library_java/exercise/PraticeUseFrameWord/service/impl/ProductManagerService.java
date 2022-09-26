@@ -1,4 +1,4 @@
-package ss12_library_java.exercise.PraticeUseFarmWord.service.impl;
+package ss12_library_java.exercise.PraticeUseFrameWord.service.impl;
 
 import ss12_library_java.exercise.PraticeUseFarmWord.controller.Controller;
 import ss12_library_java.exercise.PraticeUseFrameWord.model.Product;
@@ -56,6 +56,7 @@ public class ProductManagerService implements IProductManagerService, Comparator
                 }
 
             }
+            flag = true;
 
         }
         if (flag = false) {

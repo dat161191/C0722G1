@@ -1,6 +1,5 @@
 package transport.service.implTruck;
 
-import school_manager.model.Student;
 import transport.model.Manufacturer;
 import transport.model.Truck;
 import transport.service.ITruckService;
@@ -12,6 +11,8 @@ import java.util.Scanner;
 public class TruckService implements ITruckService {
     private static Scanner scanner = new Scanner(System.in);
     private static List<Truck> trucks = new ArrayList<>();
+    static List<Manufacturer> manufacturerTruckList = new ArrayList<>();
+
 
     @Override
     public void addTruck() {
@@ -50,18 +51,30 @@ public class TruckService implements ITruckService {
 
     @Override
     public void findTruck(String LicensePlate) {
-        boolean flagDelete = false;
+//        boolean flagDelete = false;
         for (int i = 0; i < trucks.size(); i++) {
             if (trucks.get(i).getLicensePlate().contains(LicensePlate)) {
                 System.out.println(trucks.get(i));
             }
-            flagDelete = true;
-            break;
+//            flagDelete = true;
+//            break;
         }
-        if (!flagDelete) {
-            System.out.println("Truck: Không tìm thấy đối tượng cần tìm.");
-        }
+//        if (!flagDelete) {
+//            System.out.println("Truck: Không tìm thấy đối tượng cần tìm.");
+//        }
 
+    }
+
+    @Override
+    public boolean findTruck1(String LicensePlate) {
+        boolean flag = false;
+        for (int i = 0; i < trucks.size(); i++) {
+            if (trucks.get(i).getLicensePlate().contains(LicensePlate)) {
+                System.out.println(trucks.get(i));
+                flag = true;
+            }
+        }
+        return flag;
     }
 
     public Truck infoTruck() {
@@ -70,24 +83,18 @@ public class TruckService implements ITruckService {
         System.out.print("Mời bạn chọn hãng sãn xuất\n"
                 + "1.DAEWOO\n" + "2.ISUZU\n" + "3.TRƯỜNG HẢI\n");
         int choice = Integer.parseInt(scanner.nextLine());
-        List<Manufacturer> TruckList = new ArrayList<>();
-        Manufacturer manufacturer1 = new Manufacturer("DAEWOO1611", "DAEWOO", "Hàn Quốc");
-        Manufacturer manufacturer2 = new Manufacturer("ISUZU1611", "ISUZU", "Nhật Bản");
-        Manufacturer manufacturer3 = new Manufacturer("TRƯỜNG HẢI1611", "TRƯỜNG HẢI", "Việt Nam");
-        TruckList.add(manufacturer1);
-        TruckList.add(manufacturer2);
-        TruckList.add(manufacturer3);
+        addManufacturer();
         Manufacturer manufacturer = null;
         switch (choice) {
             case 1:
-                manufacturer = TruckList.get(0);
+                manufacturer = manufacturerTruckList.get(0);
                 break;
             case 2:
-                manufacturer = TruckList.get(1);
+                manufacturer = manufacturerTruckList.get(1);
 
                 break;
             case 3:
-                manufacturer = TruckList.get(2);
+                manufacturer = manufacturerTruckList.get(2);
 
                 break;
             default:
@@ -102,4 +109,19 @@ public class TruckService implements ITruckService {
         String Owner = scanner.nextLine();
         return new Truck(licensePlate, manufacturer, yearManufacture, Owner, tonnage);
     }
+
+    public void addManufacturer() {
+        manufacturerTruckList.add(new Manufacturer("DAEWOO1611", "DAEWOO", "Hàn Quốc"));
+        manufacturerTruckList.add(new Manufacturer("ISUZU1611", "ISUZU", "Nhật Bản"));
+        manufacturerTruckList.add(new Manufacturer("TRƯỜNG HẢI1611", "TRƯỜNG HẢI", "Việt Nam"));
+    }
+
+    public void testAddTruck() {
+        trucks.add(new Truck("01", manufacturerTruckList.get(1), 1995, "Jonh", 30));
+        trucks.add(new Truck("02", manufacturerTruckList.get(0), 1905, "June", 10.5));
+        trucks.add(new Truck("03", manufacturerTruckList.get(2), 1990, "Bill", 25));
+        trucks.add(new Truck("04", manufacturerTruckList.get(1), 1995, "Anna", 20));
+    }
+
+
 }

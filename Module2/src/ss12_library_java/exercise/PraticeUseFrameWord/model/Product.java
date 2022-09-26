@@ -1,4 +1,4 @@
-package ss12_library_java.exercise.PraticeUseFarmWord.model;
+package ss12_library_java.exercise.PraticeUseFrameWord.model;
 
 public class Product {
     String name;

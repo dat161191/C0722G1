@@ -5,4 +5,9 @@ public interface IMotorbikeService {
     void displayMotorbike();
     void removeMotorbike(String LicensePlate);
     void findMotorbike(String LicensePlate);
+    boolean findMotorbike1(String LicensePlate);
+
+    void addManufacturer();
+
+    void testAddMotorbike();
 }

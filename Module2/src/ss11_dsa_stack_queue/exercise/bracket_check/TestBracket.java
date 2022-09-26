@@ -1,9 +1,9 @@
-package ss11_dsa_stack_queue.exercise.bracket_chek;
+package ss11_dsa_stack_queue.exercise.bracket_check;
 
 import java.util.Scanner;
 import java.util.Stack;
 
-public class Test {
+public class TestBracket {
     public static void main(String[] args) {
         Scanner scanner=new Scanner(System.in);
         System.out.println("Nhập biểu thức");
@@ -22,7 +22,7 @@ public class Test {
                     break;
                 } else {
                     left = stack1.pop();
-                    if (!left.equals("(") || !strArr[i].equals(")")) {
+                    if (!left.equals("(") ) {
                         check = false;
                         break;
                     }
