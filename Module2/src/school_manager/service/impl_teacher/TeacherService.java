@@ -22,9 +22,10 @@ public class TeacherService implements ISTeacherService {
         teacherList = getTeacherFile();
         System.out.println("Thêm mới thành công");
     }
+
     private void writeFile(List<Teacher> teacherList) {
         try {
-            File file = new File("src/school_manager/data/student.csv");
+            File file = new File("src/school_manager/data/teacher.csv");
             FileWriter fileWriter = new FileWriter(file);
             BufferedWriter bufferedWriter = new BufferedWriter(fileWriter);
             for (Teacher i : teacherList) {
@@ -63,7 +64,7 @@ public class TeacherService implements ISTeacherService {
 
     @Override
     public void displayTeacher() {
-        teacherList = getTeacherFile();
+//        teacherList = getTeacherFile();
         for (Teacher teacher : teacherList) {
             System.out.println(teacher);
         }
@@ -71,6 +72,7 @@ public class TeacherService implements ISTeacherService {
 
     @Override
     public void removeTeacher() {
+        teacherList = getTeacherFile();
         System.out.print("Mời bạn nhập mã Giáo Viên cần xóa: ");
         String code = scanner.nextLine();
         boolean flagDelete = false;
@@ -90,10 +92,12 @@ public class TeacherService implements ISTeacherService {
         if (!flagDelete) {
             System.out.println("Không tìm thấy đối tượng cần xóa.");
         }
+        writeFile(teacherList);
     }
 
     @Override
     public void findTeacherName() {
+        teacherList = getTeacherFile();
         System.out.println("Nhập tên muốn tìm");
         String name = scanner.nextLine();
         boolean flag = false;
@@ -102,7 +106,6 @@ public class TeacherService implements ISTeacherService {
                 System.out.println(teacher);
                 flag = true;
             }
-
         }
         if (!flag) {
             System.out.println("Không tìm thấy đối tượng cần tìm");
@@ -111,6 +114,7 @@ public class TeacherService implements ISTeacherService {
 
     @Override
     public void findTeacherCode() {
+        teacherList = getTeacherFile();
         System.out.println("Nhập code muốn tìm");
         String code = scanner.nextLine();
         boolean flag = false;
@@ -129,6 +133,7 @@ public class TeacherService implements ISTeacherService {
 
     @Override
     public void sortTeacher() {
+        teacherList = getTeacherFile();
         for (int i = 0; i < teacherList.size() - 1; i++) {
             Teacher currentMin = teacherList.get(i);
             int currentMinIndex = i;
@@ -151,6 +156,7 @@ public class TeacherService implements ISTeacherService {
                 teacherList.set(i, currentMin);
             }
         }
+        writeFile(teacherList);
     }
 
     public Teacher infoTeacher() {

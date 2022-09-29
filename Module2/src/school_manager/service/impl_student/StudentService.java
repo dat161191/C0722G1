@@ -19,7 +19,6 @@ public class StudentService implements IStudentService {
     public void addStudent() {
         studentList = getAllStudentFile();
         System.out.println("Thêm mới thành công");
-        writeFile(studentList);
     }
 
     private void writeFile(List<Student> studentList) {
@@ -71,6 +70,7 @@ public class StudentService implements IStudentService {
 
     @Override
     public void removeStudent() {
+        studentList = getAllStudentFile();
         System.out.print("Mời bạn nhập mã học sinh cần xóa: ");
         String code = scanner.nextLine();
         boolean flagDelete = false;
@@ -89,10 +89,12 @@ public class StudentService implements IStudentService {
         if (!flagDelete) {
             System.out.println("Không tìm thấy đối tượng cần xóa.");
         }
+        writeFile(studentList);
     }
 
     @Override
     public void findStudyName() {
+        studentList = getAllStudentFile();
         System.out.println("Nhập tên muốn tìm");
         String name = scanner.nextLine();
         boolean flag = false;
@@ -109,6 +111,7 @@ public class StudentService implements IStudentService {
 
     @Override
     public void findStudyCode() {
+        studentList = getAllStudentFile();
         System.out.println("Nhập code muốn tìm");
         String code = scanner.nextLine();
         boolean flag = false;
@@ -126,6 +129,7 @@ public class StudentService implements IStudentService {
 
     @Override
     public void sortStudy() {
+        studentList = getAllStudentFile();
         for (int i = 0; i < studentList.size() - 1; i++) {
             Student currentMin = studentList.get(i);
             int currentMinIndex = i;
@@ -149,6 +153,7 @@ public class StudentService implements IStudentService {
                 studentList.set(i, currentMin);
             }
         }
+        writeFile(studentList);
     }
 
 
