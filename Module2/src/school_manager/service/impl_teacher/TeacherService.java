@@ -64,7 +64,7 @@ public class TeacherService implements ISTeacherService {
 
     @Override
     public void displayTeacher() {
-//        teacherList = getTeacherFile();
+        teacherList = getTeacherFile();
         for (Teacher teacher : teacherList) {
             System.out.println(teacher);
         }
