@@ -3,8 +3,10 @@ package transport.service.implTruck;
 import transport.model.Manufacturer;
 import transport.model.Truck;
 import transport.service.ITruckService;
+import transport.service.util.SortTruck;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Scanner;
 
@@ -33,14 +35,15 @@ public class TruckService implements ITruckService {
         boolean flagDelete = false;
         for (int i = 0; i < trucks.size(); i++) {
             if (trucks.get(i).getLicensePlate().equals(LicensePlate)) {
-                System.out.println("Bạn có chắc muốn xóa phương tiện này này không? Nhập Y: yes, N: no");
+                System.out.println("Bạn có chắc muốn xóa phương tiện (Truck) này không? Nhập Y: yes, N: no");
                 String choice = scanner.nextLine();
                 if (choice.equals("Y")) {
                     trucks.remove(i);
                     System.out.println("Xóa thành công");
+                    break;
                 }
                 flagDelete = true;
-                break;
+
             }
         }
         if (!flagDelete) {
@@ -49,21 +52,21 @@ public class TruckService implements ITruckService {
 
     }
 
-    @Override
+  /*  @Override
     public void findTruck(String LicensePlate) {
-//        boolean flagDelete = false;
+        boolean flagDelete = false;
         for (int i = 0; i < trucks.size(); i++) {
             if (trucks.get(i).getLicensePlate().contains(LicensePlate)) {
                 System.out.println(trucks.get(i));
             }
-//            flagDelete = true;
-//            break;
+            flagDelete = true;
+            break;
         }
-//        if (!flagDelete) {
-//            System.out.println("Truck: Không tìm thấy đối tượng cần tìm.");
-//        }
+        if (!flagDelete) {
+            System.out.println("Truck: Không tìm thấy đối tượng cần tìm.");
+        }
 
-    }
+    }*/
 
     @Override
     public boolean findTruck1(String LicensePlate) {
@@ -71,8 +74,9 @@ public class TruckService implements ITruckService {
         for (int i = 0; i < trucks.size(); i++) {
             if (trucks.get(i).getLicensePlate().contains(LicensePlate)) {
                 System.out.println(trucks.get(i));
-                flag = true;
             }
+            flag = true;
+
         }
         return flag;
     }
@@ -116,10 +120,39 @@ public class TruckService implements ITruckService {
         manufacturerTruckList.add(new Manufacturer("TRƯỜNG HẢI1611", "TRƯỜNG HẢI", "Việt Nam"));
     }
 
+    @Override
+    public void editTruck() {
+        boolean flagDelete = false;
+        System.out.println("Nhập bảng số xe cần sửa");
+        String lincensePlate = scanner.nextLine();
+        for (int i = 0; i < trucks.size(); i++) {
+            if (trucks.get(i).getLicensePlate().equals(lincensePlate)) {
+                System.out.println("Bạn có chắc muốn sửa bảng số xe này không? Nhập Y: yes, N: no");
+                String choice = scanner.nextLine();
+                if (choice.equals("Y")) {
+                    System.out.println("Nhập thông tin cần sửa ");
+                    String edit = scanner.nextLine();
+                    trucks.get(i).setLicensePlate(edit);
+                    System.out.println("Sửa thành công");
+                }
+                flagDelete = true;
+                break;
+            }
+        }
+        if (!flagDelete) {
+            System.out.println("Trucks: Không tìm thấy đối tượng cần tìm.");
+        }
+    }
+
+    @Override
+    public void sortTruck() {
+        Collections.sort(trucks,new SortTruck());
+    }
+
     public void testAddTruck() {
-        trucks.add(new Truck("01", manufacturerTruckList.get(1), 1995, "Jonh", 30));
+        trucks.add(new Truck("05", manufacturerTruckList.get(1), 1995, "Jonh", 30));
         trucks.add(new Truck("02", manufacturerTruckList.get(0), 1905, "June", 10.5));
-        trucks.add(new Truck("03", manufacturerTruckList.get(2), 1990, "Bill", 25));
+        trucks.add(new Truck("01", manufacturerTruckList.get(2), 1990, "Bill", 25));
         trucks.add(new Truck("04", manufacturerTruckList.get(1), 1995, "Anna", 20));
     }
 

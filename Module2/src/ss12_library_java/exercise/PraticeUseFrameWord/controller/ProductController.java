@@ -5,7 +5,7 @@ import ss12_library_java.exercise.PraticeUseFrameWord.service.impl.ProductManage
 
 import java.util.Scanner;
 
-public class Controller {
+public class ProductController {
     static Scanner scanner = new Scanner(System.in);
     static IProductManagerService product = new ProductManagerService();
 

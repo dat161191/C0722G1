@@ -2,13 +2,10 @@ package transport.service.implCar;
 
 import transport.model.Car;
 import transport.model.Manufacturer;
-import transport.model.Truck;
 import transport.service.ICarService;
+import transport.service.util.SortCar;
 
-import java.security.acl.Owner;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Scanner;
+import java.util.*;
 
 public class CarService implements ICarService {
     private static Scanner scanner = new Scanner(System.in);
@@ -36,14 +33,14 @@ public class CarService implements ICarService {
         boolean flagDelete = false;
         for (int i = 0; i < cars.size(); i++) {
             if (cars.get(i).getLicensePlate().equals(LicensePlate)) {
-                System.out.println("Bạn có chắc muốn xóa phương tiện này này không? Nhập Y: yes, N: no");
+                System.out.println("Bạn có chắc muốn xóa phương tiện (Car) này này không? Nhập Y: yes, N: no");
                 String choice = scanner.nextLine();
                 if (choice.equals("Y")) {
                     cars.remove(i);
                     System.out.println("Xóa thành công");
+                    break;
                 }
                 flagDelete = true;
-                break;
             }
         }
         if (!flagDelete) {
@@ -52,21 +49,21 @@ public class CarService implements ICarService {
 
     }
 
-    @Override
-    public void findCar(String LicensePlate) {
-        boolean flagDelete = false;
-        for (int i = 0; i < cars.size(); i++) {
-            if (cars.get(i).getLicensePlate().contains(LicensePlate)) {
-                System.out.println(cars.get(i));
-            }
-            flagDelete = true;
-            break;
-        }
-        if (!flagDelete) {
-            System.out.println("Car: Không tìm thấy đối tượng cần tìm.");
-        }
-
-    }
+//    @Override
+//    public void findCar(String LicensePlate) {
+//        boolean flagDelete = false;
+//        for (int i = 0; i < cars.size(); i++) {
+//            if (cars.get(i).getLicensePlate().contains(LicensePlate)) {
+//                System.out.println(cars.get(i));
+//            }
+//            flagDelete = true;
+//            break;
+//        }
+//        if (!flagDelete) {
+//            System.out.println("Car: Không tìm thấy đối tượng cần tìm.");
+//        }
+//
+//    }
 
     @Override
     public boolean findCar1(String LicensePlate) {
@@ -74,8 +71,9 @@ public class CarService implements ICarService {
         for (int i = 0; i < cars.size(); i++) {
             if (cars.get(i).getLicensePlate().contains(LicensePlate)) {
                 System.out.println(cars.get(i));
-                flagDelete = true;
             }
+            flagDelete = true;
+
         }
         return flagDelete;
     }
@@ -104,15 +102,28 @@ public class CarService implements ICarService {
                 System.out.println("Chưa có hãng sản xuất bạn muốn chọn");
 
         }
-        System.out.print("Mời bạn nhập năm sản xuất: ");
-        int yearManufacture = Integer.parseInt(scanner.nextLine());
+//        int yearManufacture;
+//        while (true) {
+//            try {
+//                System.out.print("Mời bạn nhập năm sản xuất: ");
+//                yearManufacture = Integer.parseInt(scanner.nextLine());
+//                MethodException.checkYearProduct(yearManufacture);
+//                break;
+//            } catch (TransportException e) {
+//                System.out.println(e.getMessage());
+//            } catch (Exception e) {
+//                System.out.println(e.getMessage() + " Bạn đã nhập sai ! Vui lòng nhập lại");
+//            }
+//        }
+
         System.out.print("Mời bạn nhập số ghế ngồi: ");
         int numberSeats = Integer.parseInt(scanner.nextLine());
         System.out.print("Mời bạn nhập kiểu xe");
         String vehcileType = scanner.nextLine();
         System.out.print("Mời bạn nhập tên chủ sở hữu");
         String Owner = scanner.nextLine();
-        return new Car(licensePlate, manufacturer, yearManufacture, Owner, numberSeats, vehcileType);
+//        return new Car(licensePlate, manufacturer, yearManufacture, Owner, numberSeats, vehcileType);
+        return new Car(licensePlate, manufacturer, CheckException.yearManufacturer(), Owner, numberSeats, vehcileType);
     }
 
     public void addManufacturer() {
@@ -125,5 +136,38 @@ public class CarService implements ICarService {
         cars.add(new Car("06", manufacturerCarList.get(1), 1995, "Jonh", 30, "Thể thao"));
         cars.add(new Car("05", manufacturerCarList.get(0), 1965, "June", 30, "Thể thao"));
         cars.add(new Car("01", manufacturerCarList.get(2), 1985, "Adam", 30, "Thể thao"));
+        cars.add(new Car("05", manufacturerCarList.get(2), 1985, "Ada", 30, "Thể thao"));
     }
+
+    @Override
+    public void editCar() {
+        boolean flagDelete = false;
+        System.out.println("Nhập bảng số xe cần sửa");
+        String lincensePlate = scanner.nextLine();
+        for (int i = 0; i < cars.size(); i++) {
+            if (cars.get(i).getLicensePlate().equals(lincensePlate)) {
+                System.out.println("Bạn có chắc muốn sửa bảng số xe này không? Nhập Y: yes, N: no");
+                String choice = scanner.nextLine();
+                if (choice.equals("Y")) {
+                    System.out.println("Nhập thông tin cần sửa ");
+                    String edit = scanner.nextLine();
+                    cars.get(i).setLicensePlate(edit);
+                    System.out.println("Sửa thành công");
+                }
+                flagDelete = true;
+                break;
+            }
+        }
+        if (!flagDelete) {
+            System.out.println("Car: Không tìm thấy đối tượng cần tìm.");
+        }
+
+    }
+
+    @Override
+    public void sortCar() {
+        Collections.sort(cars,new SortCar());
+    }
+
+
 }

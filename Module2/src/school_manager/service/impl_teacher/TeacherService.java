@@ -1,27 +1,69 @@
 package school_manager.service.impl_teacher;
 
+import school_manager.model.Student;
 import school_manager.model.Teacher;
 import school_manager.service.ISTeacherService;
 import school_manager.service.util.NameException;
 
+import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
 public class TeacherService implements ISTeacherService {
-    private static final Scanner scanner = new Scanner(System.in);
-    private static final List<Teacher> teacherList = new ArrayList<>();
+    private static Scanner scanner = new Scanner(System.in);
+    private static List<Teacher> teacherList = new ArrayList<>();
 
     @Override
     public void addTeacher() {
-        Teacher teacher = infoTeacher();
-        teacherList.add(teacher);
+//        Teacher teacher = infoTeacher();
+//        teacherList.add(teacher);
+//        System.out.println("Thêm mới thành công");
+        teacherList = getTeacherFile();
         System.out.println("Thêm mới thành công");
+    }
+    private void writeFile(List<Teacher> teacherList) {
+        try {
+            File file = new File("src/school_manager/data/student.csv");
+            FileWriter fileWriter = new FileWriter(file);
+            BufferedWriter bufferedWriter = new BufferedWriter(fileWriter);
+            for (Teacher i : teacherList) {
+                bufferedWriter.write(i.toString());
+                bufferedWriter.newLine();
+            }
+            bufferedWriter.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 
+    private List<Teacher> getTeacherFile() {
+        try {
+            File file = new File("src/school_manager/data/teacher.csv");
+            if (!file.exists()) {
+                throw new Exception();
+            }
+            FileReader fileReader = new FileReader(file);
+            BufferedReader bufferedReader = new BufferedReader(fileReader);
+            teacherList = new ArrayList<>();
+            String line;
+            String[] info;
+            Teacher teacher;
+            while ((line = bufferedReader.readLine()) != null) {
+                info = line.split(",");
+                teacher = new Teacher(info[0], info[1], info[2], info[3], info[4]);
+                teacherList.add(teacher);
+            }
+            bufferedReader.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return teacherList;
     }
 
     @Override
     public void displayTeacher() {
+        teacherList = getTeacherFile();
         for (Teacher teacher : teacherList) {
             System.out.println(teacher);
         }

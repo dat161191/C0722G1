@@ -1,6 +1,5 @@
 package ss12_library_java.exercise.PraticeUseFrameWord.service.impl;
 
-import ss12_library_java.exercise.PraticeUseFarmWord.controller.Controller;
 import ss12_library_java.exercise.PraticeUseFrameWord.model.Product;
 import ss12_library_java.exercise.PraticeUseFarmWord.service.IProductManagerService;
 
@@ -49,7 +48,7 @@ public class ProductManagerService implements IProductManagerService, Comparator
                             productList.get(i).setId(id1);
                             break;
                         case 3:
-                            Controller.menuProduct();
+                            ss12_library_java.exercise.PraticeUseFarmWord.controller.ProductController.menuProduct();
                         default:
                             System.out.println("Bạn chọn sai vui lòng chọn lại");
                     }

@@ -22,7 +22,7 @@ public class PersonController {
             System.out.println("4. Tìm kiếm theo tên hoặc mã sinh viên hoặc giáo viên");
             System.out.println("5. Sắp xếp theo tên,nếu giống nhau xếp theo mã");
             System.out.println("6. Thoát chương trình");
-            System.out.print("Mời bạn nhập lựa chọn");
+            System.out.println("Mời bạn nhập lựa chọn");
             int choice = Integer.parseInt(scanner.nextLine());
             switch (choice) {
                 case 1:

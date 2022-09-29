@@ -25,9 +25,7 @@ public class Teacher extends Person {
 
     @Override
     public String toString() {
-        return "Teacher{" +
-                "technique='" + technique + '\'' +
-                '}'+super.toString();
+        return String.format("%s,%s,%s,%s,%s", this.getCode(), this.getName(), this.getGender(), this.getBirth(), this.getTechnique());
     }
 
 }

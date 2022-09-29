@@ -4,25 +4,66 @@ import school_manager.model.Student;
 import school_manager.service.IStudentService;
 import school_manager.service.util.NameException;
 import school_manager.service.util.ScoreException;
+import ss16_io_text_file.exercise.read_file_cvs.controller.Country;
 
+import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
 public class StudentService implements IStudentService {
-    private static final Scanner scanner = new Scanner(System.in);
-    private static final List<Student> studentList = new ArrayList<>();
+    private static Scanner scanner = new Scanner(System.in);
+    private static List<Student> studentList = new ArrayList<>();
 
     @Override
     public void addStudent() {
-        Student student = infoStudent();
-
-        studentList.add(student);
+        studentList = getAllStudentFile();
         System.out.println("Thêm mới thành công");
+        writeFile(studentList);
+    }
+
+    private void writeFile(List<Student> studentList) {
+        try {
+            File file = new File("src/school_manager/data/student.csv");
+            FileWriter fileWriter = new FileWriter(file);
+            BufferedWriter bufferedWriter = new BufferedWriter(fileWriter);
+            for (Student i : studentList) {
+                bufferedWriter.write(i.toString());
+                bufferedWriter.newLine();
+            }
+            bufferedWriter.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private List<Student> getAllStudentFile() {
+        try {
+            File file = new File("src/school_manager/data/student.csv");
+            if (!file.exists()) {
+                throw new Exception();
+            }
+            FileReader fileReader = new FileReader(file);
+            BufferedReader bufferedReader = new BufferedReader(fileReader);
+            studentList = new ArrayList<>();
+            String line;
+            String[] info;
+            Student student;
+            while ((line = bufferedReader.readLine()) != null) {
+                info = line.split(",");
+                student = new Student(info[0], info[1], info[2], info[3], info[4], Double.parseDouble(info[5]));
+                studentList.add(student);
+            }
+            bufferedReader.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return studentList;
     }
 
     @Override
     public void displayAllStudent() {
+        studentList = getAllStudentFile();
         for (Student student : studentList) {
             System.out.println(student);
         }
