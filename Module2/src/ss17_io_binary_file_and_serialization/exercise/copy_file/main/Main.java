@@ -17,7 +17,7 @@ public class Main {
         try {
             FileInputStream input = new FileInputStream("src/ss17_io_binary_file_and_serialization/exercise/copy_file/data/input.csv");
             FileOutputStream coppy = new FileOutputStream("src/ss17_io_binary_file_and_serialization/exercise/copy_file/data/copy_input.csv");
-            byte[] bytes = new byte[1024];
+            byte[] bytes = new byte[200];
             int length;
             int count = 0;
 
