@@ -4,7 +4,6 @@ import school_manager.model.Student;
 import school_manager.service.IStudentService;
 import school_manager.service.util.NameException;
 import school_manager.service.util.ScoreException;
-import ss16_io_text_file.exercise.read_file_cvs.controller.Country;
 
 import java.io.*;
 import java.util.ArrayList;
@@ -18,7 +17,10 @@ public class StudentService implements IStudentService {
     @Override
     public void addStudent() {
         studentList = getAllStudentFile();
+        Student student = infoStudent();
+        studentList.add(student);
         System.out.println("Thêm mới thành công");
+        writeFile(studentList);
     }
 
     private void writeFile(List<Student> studentList) {
@@ -49,9 +51,13 @@ public class StudentService implements IStudentService {
             String[] info;
             Student student;
             while ((line = bufferedReader.readLine()) != null) {
-                info = line.split(",");
-                student = new Student(info[0], info[1], info[2], info[3], info[4], Double.parseDouble(info[5]));
-                studentList.add(student);
+                try {
+                    info = line.split(",");
+                    student = new Student(info[0], info[1], info[2], info[3], info[4], Double.parseDouble(info[5]));
+                    studentList.add(student);
+                } catch (NumberFormatException e) {
+//                    e.printStackTrace();
+                }
             }
             bufferedReader.close();
         } catch (Exception e) {

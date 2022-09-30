@@ -1,0 +1,50 @@
+1	JAVA là gì ?
+2	JDK, JRE, JVM
+3	Thông dịch, biên dịch khác nhau như thế nào ?
+4	JAVA là ngôn ngữ thông dịch hay biên dịch ?
+5	Java Platform là gì?
+6	Các kiểu dữ liệu trong java, và giá trị mặc định khi khai báo.
+7	Sự khác nhau giữa bộ nhớ heap và stack trong java?
+8	Trình bày các cách khởi tạo một mảng trong JAVA ?
+9	Phần tử của mảng có thể dùng kiểu dữ liệu nào, và có giá trị mặc định là gì ?
+10	OOP là gì ?
+11	Phân biệt class và object
+12	Constructor là gì
+13	Cách khai báo constructor và đặc điểm constructor trong JAVA
+14	Phân biệt constructor và method
+15	"Tính bao đóng là gì ? Làm sao để thu được tính bao đóng trong java ?"
+16	Tham trị, tham chiếu
+17	Từ khóa static dùng để làm gì ?
+18	Ràng buộc khi sử dụng static
+19	Các loại biến trong JAVA
+20	Trình bày các loại access modifier, và phạm vi truy cập.
+21	Kế thừa trong JAVA là gì ?
+22	Lớp con kế thừa được những tài sản nào(thuộc tính, phương thức) của lớp cha ?
+23	Lớp Object là gì
+24	Khái niệm đa hình
+25	Phân biệt Overloading và Overriding 
+26	ép kiểu là gì ? các loại ép kiểu
+27	Tính trừu tượng là gì ?
+28	Phân biệt abstract class và  interface
+29	So sánh Array và ArrayList
+30	So sánh ArrayList và LinkedList
+31	So sánh List, Set và Queue ?
+32	Set là gì, các lớp triển khai của Set
+33	Generic là gì
+34	Ưu điểm và hạn chế khi dùng generic ?
+35	Stack là gì, các phương thức của stack ?
+36	Queue là gì, các class triển khai của queue ?
+37	Phương thức cơ bản của queue ?
+38	So sánh Comparable và Comparator, khi nào dùng  cái nào ?
+39	Map là gì, các class triển khai
+40	Phương thức equals() và hashcode() trong Java là gì?
+41	Cây nhị phân là gì
+42	Trình bày các cách duyệt cây nhị phân.
+43	Ngoại lệ (Exception là gì) ?
+44	Phân loại Exception
+45	Phân biệt Error và Exception
+46	Có bao nhiêu cách để xử lý ngoại lệ (handle)
+47	Một số lưu ý khi dùng try-catch
+48	Serialization là gì ? lưu ý khí sử dụng Serialization 
+49      SOLID là gì? Phát biểu của từng nguyên lý
+50      Design pattern là gì? Chia làm bao nhiêu loại. Tổng số là bao nhiêu?

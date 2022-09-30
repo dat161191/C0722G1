@@ -16,11 +16,11 @@ public class TeacherService implements ISTeacherService {
 
     @Override
     public void addTeacher() {
-//        Teacher teacher = infoTeacher();
-//        teacherList.add(teacher);
-//        System.out.println("Thêm mới thành công");
         teacherList = getTeacherFile();
+        Teacher teacher = infoTeacher();
+        teacherList.add(teacher);
         System.out.println("Thêm mới thành công");
+        writeFile(teacherList);
     }
 
     private void writeFile(List<Teacher> teacherList) {
@@ -51,9 +51,12 @@ public class TeacherService implements ISTeacherService {
             String[] info;
             Teacher teacher;
             while ((line = bufferedReader.readLine()) != null) {
-                info = line.split(",");
-                teacher = new Teacher(info[0], info[1], info[2], info[3], info[4]);
-                teacherList.add(teacher);
+                try {
+                    info = line.split(",");
+                    teacher = new Teacher(info[0], info[1], info[2], info[3], info[4]);
+                    teacherList.add(teacher);
+                } catch (Exception e) {
+                }
             }
             bufferedReader.close();
         } catch (Exception e) {
