@@ -39,6 +39,7 @@ public class StudentService implements IStudentService {
     }
 
     private List<Student> getAllStudentFile() {
+        List<Student> studentList = new ArrayList<>();
         try {
             File file = new File("src/school_manager/data/student.csv");
             if (!file.exists()) {
@@ -46,7 +47,7 @@ public class StudentService implements IStudentService {
             }
             FileReader fileReader = new FileReader(file);
             BufferedReader bufferedReader = new BufferedReader(fileReader);
-            studentList = new ArrayList<>();
+
             String line;
             String[] info;
             Student student;
@@ -56,7 +57,6 @@ public class StudentService implements IStudentService {
                     student = new Student(info[0], info[1], info[2], info[3], info[4], Double.parseDouble(info[5]));
                     studentList.add(student);
                 } catch (NumberFormatException e) {
-//                    e.printStackTrace();
                 }
             }
             bufferedReader.close();
@@ -125,6 +125,7 @@ public class StudentService implements IStudentService {
             if (student.getCode().equals(code)) {
                 System.out.println(student);
                 flag = true;
+                break;
             }
         }
         if (!flag) {
@@ -167,10 +168,22 @@ public class StudentService implements IStudentService {
         String code;
         while (true) {
             try {
-                System.out.print("Mời bạn nhập mã học sinh: ");
+                System.out.println("Mời bạn nhập mã học sinh: \n"+
+                        "Mã bao gồm 1 chữ cái đầu viết hoa và 2 số");
                 code = scanner.nextLine();
                 PersonCheckException.checkCode(code);
-                break;
+                boolean flagCheck = false;
+                for (Student student : studentList) {
+                    if (student.getCode().equals(code)) {
+                        flagCheck = true;
+                        break;
+                    }
+                }
+                if (flagCheck) {
+                    System.out.println("Mã đã bị trùng,Vui lòng nhập lại");
+                } else {
+                    break;
+                }
             } catch (PersonException e) {
                 System.out.println(e.getMessage());
             }
@@ -178,7 +191,7 @@ public class StudentService implements IStudentService {
         String name;
         while (true) {
             try {
-                System.out.print("Mời bạn nhập tên học sinh: ");
+                System.out.println("Mời bạn nhập tên học sinh: ");
                 name = scanner.nextLine();
                 PersonCheckException.checkName(name);
                 break;
@@ -212,12 +225,12 @@ public class StudentService implements IStudentService {
         String nameClass;
         while (true) {
             try {
-                System.out.print("Mời bạn nhập tên lớp: ");
+                System.out.println("Mời bạn nhập tên lớp: \n"+"Định dạng lớp: 2 số + 1 chữ cái in hoa ");
                 nameClass = scanner.nextLine();
                 PersonCheckException.checkNameClass(nameClass);
                 break;
             } catch (PersonException e) {
-                e.printStackTrace();
+                System.out.println(e.getMessage());
             }
         }
         String birth;
@@ -234,7 +247,7 @@ public class StudentService implements IStudentService {
         double score;
         while (true) {
             try {
-                System.out.print("Mời bạn nhập điểm của học sinh: ");
+                System.out.println("Mời bạn nhập điểm của học sinh: ");
                 score = Double.parseDouble(scanner.nextLine());
                 PersonCheckException.checkScore(score);
                 break;

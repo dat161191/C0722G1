@@ -1,5 +1,6 @@
 package school_manager.service.impl_teacher;
 
+import school_manager.model.Student;
 import school_manager.model.Teacher;
 import school_manager.service.ISTeacherService;
 import school_manager.service.util.PersonCheckException;
@@ -166,10 +167,21 @@ public class TeacherService implements ISTeacherService {
         String code;
         while (true) {
             try {
-                System.out.print("Mời bạn nhập mã học sinh: ");
+                System.out.println("Mời bạn nhập mã Giáo Viên: \n"+"Định dạng mã: 1 chữ cái in hoa đầu tiên + 2 số");
                 code = scanner.nextLine();
                 PersonCheckException.checkCode(code);
-                break;
+                boolean flagCheck = false;
+                for (Teacher student : teacherList) {
+                    if (student.getCode().equals(code)) {
+                        flagCheck = true;
+                        break;
+                    }
+                }
+                if (flagCheck) {
+                    System.out.println("Mã đã bị trùng,Vui lòng nhập lại");
+                } else {
+                    break;
+                }
             } catch (PersonException e) {
                 System.out.println(e.getMessage());
             }
@@ -177,7 +189,7 @@ public class TeacherService implements ISTeacherService {
         String name;
         while (true) {
             try {
-                System.out.print("Mời bạn nhập tên Giáo Viên: ");
+                System.out.println("Mời bạn nhập tên Giáo Viên: ");
                 name = scanner.nextLine();
                 PersonCheckException.checkName(name);
                 break;
@@ -209,7 +221,7 @@ public class TeacherService implements ISTeacherService {
         String technique;
         while (true) {
             try {
-                System.out.print("Mời bạn nhập chuyên môn Giáo Viên: ");
+                System.out.println("Mời bạn nhập chuyên môn Giáo Viên: ");
                 technique = scanner.nextLine();
                 PersonCheckException.checkTenique(technique);
                 break;
