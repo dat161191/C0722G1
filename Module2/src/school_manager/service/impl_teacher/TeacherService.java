@@ -1,9 +1,9 @@
 package school_manager.service.impl_teacher;
 
-import school_manager.model.Student;
 import school_manager.model.Teacher;
 import school_manager.service.ISTeacherService;
-import school_manager.service.util.NameException;
+import school_manager.service.util.PersonCheckException;
+import school_manager.service.util.PersonException;
 
 import java.io.*;
 import java.util.ArrayList;
@@ -11,7 +11,7 @@ import java.util.List;
 import java.util.Scanner;
 
 public class TeacherService implements ISTeacherService {
-    private static Scanner scanner = new Scanner(System.in);
+    private static final Scanner scanner = new Scanner(System.in);
     private static List<Teacher> teacherList = new ArrayList<>();
 
     @Override
@@ -55,7 +55,7 @@ public class TeacherService implements ISTeacherService {
                     info = line.split(",");
                     teacher = new Teacher(info[0], info[1], info[2], info[3], info[4]);
                     teacherList.add(teacher);
-                } catch (Exception e) {
+                } catch (Exception ignored) {
                 }
             }
             bufferedReader.close();
@@ -163,33 +163,72 @@ public class TeacherService implements ISTeacherService {
     }
 
     public Teacher infoTeacher() {
-        System.out.print("Mời bạn nhập mã Giáo Viên: ");
-        String code = scanner.nextLine();
+        String code;
+        while (true) {
+            try {
+                System.out.print("Mời bạn nhập mã học sinh: ");
+                code = scanner.nextLine();
+                PersonCheckException.checkCode(code);
+                break;
+            } catch (PersonException e) {
+                System.out.println(e.getMessage());
+            }
+        }
         String name;
         while (true) {
             try {
                 System.out.print("Mời bạn nhập tên Giáo Viên: ");
                 name = scanner.nextLine();
-                checkName(name);
+                PersonCheckException.checkName(name);
                 break;
-            } catch (NameException e) {
+            } catch (PersonException e) {
+                e.printStackTrace();
+            }
+        }
+        String gender;
+        while (true) {
+            try {
+                System.out.println("Mời bạn nhập giới tính Giáo Viên: ");
+                System.out.println("Nhập 1 = Giới tính Nam ");
+                System.out.println("Nhập 2 = Giới tính Nữ ");
+                System.out.println("Nhập 3 = Giới tính Thứ 3 ");
+                String tempGender = scanner.nextLine();
+                PersonCheckException.checkGender(tempGender);
+                if (tempGender.equals("1")) {
+                    gender = "Nam";
+                } else if (tempGender.equals("2")) {
+                    gender = "Nữ";
+                } else {
+                    gender = "Giới tính thứ 3";
+                }
+                break;
+            } catch (PersonException e) {
+                System.out.println("Bạn đã nhập sai,vui lòng nhập lại!");
+            }
+        }
+        String technique;
+        while (true) {
+            try {
+                System.out.print("Mời bạn nhập chuyên môn Giáo Viên: ");
+                technique = scanner.nextLine();
+                PersonCheckException.checkTenique(technique);
+                break;
+            } catch (PersonException e) {
                 System.out.println(e.getMessage());
             }
         }
-        System.out.print("Mời bạn nhập giới tính Giáo Viên: ");
-        String tempGender = scanner.nextLine();
-        String gender;
-        if (tempGender.equals("Nam")) {
-            gender = "Nam";
-        } else if (tempGender.equals("Nữ")) {
-            gender = "Nữ";
-        } else {
-            gender = "Giới tính thứ 3";
+        String birth;
+        while (true) {
+            try {
+                System.out.println("Mời bạn nhập ngày tháng năm sinh theo định dạng dd/mm/yyyy");
+                birth = scanner.nextLine();
+                PersonCheckException.checkBirth(birth);
+                break;
+            } catch (PersonException e) {
+                System.out.println(e.getMessage());
+            }
         }
-        System.out.print("Mời bạn nhập chuyên môn Giáo Viên: ");
-        String technique = scanner.nextLine();
-        System.out.println("Mời bạn nhập ngày sinh Giáo Viên:");
-        String birth = scanner.nextLine();
+
 
         return new Teacher(code, name, gender, birth, technique);
     }
@@ -203,12 +242,5 @@ public class TeacherService implements ISTeacherService {
         System.out.println("thêm mới thành công");
     }
 
-    public static void checkName(String str) throws NameException {
-        for (int i = 0; i < str.length(); i++) {
-            if (str.charAt(0) == 32 || str.charAt(i) < 32 || str.charAt(i) > 32 && str.charAt(i) < 65 || str.charAt(i) > 90
-                    && str.charAt(i) < 97 || str.charAt(i) > 122) {
-                throw new NameException("Chuỗi này không đúng định dạng");
-            }
-        }
-    }
+
 }

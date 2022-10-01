@@ -13,7 +13,7 @@ public class Main {
         strings.add("World");
         strings.add("Alo ola alolo");
         writeFile(strings, linkInput);
-        readFile(strings,linkInput);
+        readFile(strings, linkInput);
         try {
             FileInputStream input = new FileInputStream("src/ss17_io_binary_file_and_serialization/exercise/copy_file/data/input.csv");
             FileOutputStream coppy = new FileOutputStream("src/ss17_io_binary_file_and_serialization/exercise/copy_file/data/copy_input.csv");
@@ -29,7 +29,7 @@ public class Main {
 //                System.out.println((char)length);
 //            }
             System.out.println("Tệp có số bytes là: " + count);
-            readFile(strings,linkCoppy);
+            readFile(strings, linkCoppy);
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         } catch (IOException e) {
@@ -43,6 +43,7 @@ public class Main {
             FileOutputStream outPut = new FileOutputStream(file);
             ObjectOutputStream oBoutPut = new ObjectOutputStream(outPut);
             oBoutPut.writeObject(strings);
+            oBoutPut.close();
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         } catch (IOException e) {
@@ -59,6 +60,7 @@ public class Main {
             for (String i : strings) {
                 System.out.println(i);
             }
+            oBinput.close();
         } catch (IOException | ClassNotFoundException e) {
             e.printStackTrace();
         }
