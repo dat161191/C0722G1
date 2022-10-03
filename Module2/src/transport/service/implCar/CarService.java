@@ -102,19 +102,7 @@ public class CarService implements ICarService {
                 System.out.println("Chưa có hãng sản xuất bạn muốn chọn");
 
         }
-//        int yearManufacture;
-//        while (true) {
-//            try {
-//                System.out.print("Mời bạn nhập năm sản xuất: ");
-//                yearManufacture = Integer.parseInt(scanner.nextLine());
-//                MethodException.checkYearProduct(yearManufacture);
-//                break;
-//            } catch (TransportException e) {
-//                System.out.println(e.getMessage());
-//            } catch (Exception e) {
-//                System.out.println(e.getMessage() + " Bạn đã nhập sai ! Vui lòng nhập lại");
-//            }
-//        }
+
 
         System.out.print("Mời bạn nhập số ghế ngồi: ");
         int numberSeats = Integer.parseInt(scanner.nextLine());
@@ -122,7 +110,6 @@ public class CarService implements ICarService {
         String vehcileType = scanner.nextLine();
         System.out.print("Mời bạn nhập tên chủ sở hữu");
         String Owner = scanner.nextLine();
-//        return new Car(licensePlate, manufacturer, yearManufacture, Owner, numberSeats, vehcileType);
         return new Car(licensePlate, manufacturer, CheckException.yearManufacturer(), Owner, numberSeats, vehcileType);
     }
 
@@ -166,7 +153,7 @@ public class CarService implements ICarService {
 
     @Override
     public void sortCar() {
-        Collections.sort(cars,new SortCar());
+        Collections.sort(cars, new SortCar());
     }
 
 

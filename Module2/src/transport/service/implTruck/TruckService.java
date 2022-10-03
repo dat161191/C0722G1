@@ -140,7 +140,7 @@ public class TruckService implements ITruckService {
             }
         }
         if (!flagDelete) {
-            System.out.println("Trucks: Không tìm thấy đối tượng cần tìm.");
+            System.out.println("Trucks: Không tìm thấy đối tượng cần sửa.");
         }
     }
 
