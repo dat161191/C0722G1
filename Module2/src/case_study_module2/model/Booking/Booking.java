@@ -1,4 +1,4 @@
-package case_study_module2.model;
+package case_study_module2.model.Booking;
 
 public class Booking {
     private String codeBooking;

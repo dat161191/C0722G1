@@ -1,9 +1,13 @@
 package case_study_module2.service.implEmployeeService;
 
-import case_study_module2.model.Customer;
-import case_study_module2.model.Employee;
+import case_study_module2.model.Person.Employee;
 import case_study_module2.service.IEmployeeService;
+import case_study_module2.util.FuramaCheckException;
+import case_study_module2.util.FuramaException;
 
+import java.io.*;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -11,165 +15,444 @@ import java.util.Scanner;
 public class EmployeeService implements IEmployeeService {
     private static final Scanner scanner = new Scanner(System.in);
     private static List<Employee> employeeList = new ArrayList<>();
+    private static final DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+
 
     @Override
     public void displayEmplyoee() {
+        employeeList = readfile();
+        if (employeeList.size() == 0) {
+            System.out.println("This list is empty!");
+        }
         for (Employee i : employeeList) {
             System.out.println(i);
+
         }
     }
 
     @Override
     public void addEmployee() {
+        employeeList = readfile();
         Employee employee = infoEmplyoee();
         employeeList.add(employee);
         System.out.println("Successfully added new!");
+        writeFile(employeeList);
     }
 
     private Employee infoEmplyoee() {
-        System.out.println("Enter code to be corrected!");
-        String code = scanner.nextLine();
-        System.out.println("Enter full name to be corrected!");
-        String name = scanner.nextLine();
-        System.out.println("3.Enter the date of birth to be corrected!");
-        String birtth = scanner.nextLine();
-        String gender = "";
-        System.out.println("Enter gender to be corrected!");
-        System.out.println("Enter 1 = male");
-        System.out.println("Enter 2 = female");
-        System.out.println("Enter 3 = 3rd sex");
-        String choice = (scanner.nextLine());
-        switch (choice) {
-            case "1":
-                gender = "fale";
-                break;
-            case "2":
-                gender = "female";
-                break;
-            case "3":
-                gender = "3rd sex";
-                break;
+        String code;
+        while (true) {
+            try {
+                System.out.println("Enter code to be corrected!");
+                code = scanner.nextLine();
+                FuramaCheckException.checkCode(code);
+                boolean flagCheck = false;
+                for (Employee employee : employeeList) {
+                    if (employee.getCode().equals(code)) {
+                        flagCheck = true;
+                        break;
+                    }
+                }
+                if (flagCheck) {
+                    System.out.println("Code has been duplicated, please re-enter it!");
+                } else {
+                    break;
+                }
+            } catch (FuramaException e) {
+                System.out.println(e.getMessage());
+            }
         }
-        System.out.println("Enter idcard to be corrected!");
-        int idCard = Integer.parseInt(scanner.nextLine());
-        System.out.println("Enter Phone Number to be corrected!");
-        int numPhone = Integer.parseInt(scanner.nextLine());
-        System.out.println("Enter email to be corrected!");
-        String email = scanner.nextLine();
-        String level = "";
-        System.out.println("Enter rank customer to be corrected!");
-        System.out.println("1=Postgraduate,2=University,3=college,4=Intermediate");
-        String choice1 = scanner.nextLine();
-        switch (choice1) {
-            case "1":
-                level = "Postgraduate";
+        String name;
+        while (true) {
+            try {
+                System.out.println("Enter full name to be corrected!");
+                name = scanner.nextLine();
+                FuramaCheckException.checkFullName(name);
                 break;
-            case "2":
-                level = "University";
-                break;
-            case "3":
-                level = "College";
-                break;
-            case "4":
-                level = "Intermediate";
-                break;
+            } catch (FuramaException e) {
+                e.printStackTrace();
+            }
         }
-        System.out.println("Enter address to be corrected!");
-        double wage = Double.parseDouble(scanner.nextLine());
-        return new Employee(code, name, birtth, gender, idCard, numPhone, email, level, wage);
+        LocalDate birtth;
+        while (true) {
+            try {
+                System.out.println("3.Enter the date of birth to be corrected!");
+                birtth = LocalDate.parse(scanner.nextLine(), dateTimeFormatter);
+                FuramaCheckException.checkBirth(birtth);
+                break;
+            } catch (FuramaException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+
+        String gender = null;
+        while (true) {
+            try {
+                System.out.println("Enter gender to be corrected!");
+                System.out.println("Enter 1 = male");
+                System.out.println("Enter 2 = female");
+                System.out.println("Enter 3 = 3rd sex");
+                String choice = (scanner.nextLine());
+                FuramaCheckException.checkGender(choice);
+                switch (choice) {
+                    case "1":
+                        gender = "fale";
+                        break;
+                    case "2":
+                        gender = "female";
+                        break;
+                    case "3":
+                        gender = "3rd sex";
+                        break;
+                }
+                break;
+            } catch (FuramaException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+        String idCard;
+        while (true) {
+            try {
+                System.out.println("Enter idcard to be corrected!");
+                idCard = (scanner.nextLine());
+                FuramaCheckException.checkIDCard(idCard);
+                break;
+            } catch (FuramaException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+        String numPhone;
+        while (true) {
+            try {
+                System.out.println("Enter Phone Number to be corrected!");
+                numPhone = (scanner.nextLine());
+                FuramaCheckException.checkPhoneNumber(numPhone);
+                break;
+            } catch (FuramaException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+        String email;
+        while (true) {
+            try {
+                System.out.println("Enter email to be corrected!");
+                email = scanner.nextLine();
+                FuramaCheckException.checkEmail(email);
+                break;
+            } catch (FuramaException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+        String level = "^:^";
+        while (true) {
+            try {
+                System.out.println("Enter choice rank Employee to be corrected!");
+                System.out.println("1=Postgraduate,2=University,3=college,4=Intermediate");
+                String choice1 = scanner.nextLine();
+                FuramaCheckException.checkLevel(choice1);
+                switch (choice1) {
+                    case "1":
+                        level = "Postgraduate";
+                        break;
+                    case "2":
+                        level = "University";
+                        break;
+                    case "3":
+                        level = "College";
+                        break;
+                    case "4":
+                        level = "Intermediate";
+                        break;
+                }
+                break;
+            } catch (FuramaException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+
+        String position = "^:^";
+        while (true) {
+            try {
+                System.out.println("Enter choice Position to be corrected");
+                System.out.println("1.Receptionist,2.Waiter,3.Specialist,4.Supervisor,5.Manager,6.Director.");
+                String choice2 = scanner.nextLine();
+                FuramaCheckException.checkPosition(choice2);
+                switch (choice2) {
+                    case "1":
+                        position = "Receptionist";
+                        break;
+                    case "2":
+                        position = "Waiter";
+                        break;
+                    case "3":
+                        position = "Specialist";
+                        break;
+                    case "4":
+                        position = "Supervisor";
+                        break;
+                    case "5":
+                        position = "Manager";
+                        break;
+                    case "6":
+                        position = "Director";
+                        break;
+                }
+                break;
+            } catch (FuramaException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+
+        int wage;
+        while (true) {
+            try {
+                System.out.println("Enter wage to be corrected!");
+                wage = Integer.parseInt(scanner.nextLine());
+                FuramaCheckException.checkWage(wage);
+                break;
+            } catch (FuramaException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+
+        return new Employee(code, name, birtth, gender, idCard, numPhone, email, level, position, wage);
+
     }
 
 
     @Override
     public void editEmployee() {
+        employeeList = readfile();
         boolean flagDelete = false;
-        System.out.println("Enter the employee code to be corrected!");
-        String code = (scanner.nextLine());
+        String code;
+        while (true) {
+            try {
+                System.out.println("Enter the employee code to be corrected!");
+                code = (scanner.nextLine());
+                FuramaCheckException.checkCode(code);
+                break;
+            } catch (FuramaException e) {
+                System.out.println(e.getMessage());
+            }
+        }
         for (Employee employee : employeeList) {
             if (employee.getCode().equals(code)) {
                 System.out.println("Are you sure you want to edit this employee information? Enter Y= yes, N= no!");
                 String choice = scanner.nextLine();
                 if (choice.equals("Y")) {
+                    int choice1 = 0;
                     loop:
                     while (true) {
-                        System.out.println("1.Edit code Customer!");
-                        System.out.println("2.Edit Full Name Customer!");
-                        System.out.println("3.Edit birth Customer!");
+                        System.out.println("1.Edit code (String) Employee!");
+                        System.out.println("2.Edit Full Name (String) Employee!");
+                        System.out.println("3.Edit birth (String) Employee!");
                         System.out.println("4.Edit gender!");
-                        System.out.println("5.Edit ID Card");
-                        System.out.println("6.Edit Phone Number");
-                        System.out.println("7.Edit Email");
-                        System.out.println("8.Edit Rank Customer");
-                        System.out.println("9.Edit Address Customer");
-                        System.out.println("10.Back to Menu!");
-                        System.out.println("Please enter your selection");
-                        int choice1 = Integer.parseInt(scanner.nextLine());
+                        System.out.println("5.Edit ID Card (Int)");
+                        System.out.println("6.Edit Phone Number(Int)");
+                        System.out.println("7.Edit Email(String)");
+                        System.out.println("8.Edit Level Employee");
+                        System.out.println("9.Edit Wage Employee (Double)");
+                        System.out.println("10.Edit Positon Employee (Double)");
+                        System.out.println("11.Back to Menu!");
+                        try {
+                            System.out.println("Please enter your selection");
+                            choice1 = Integer.parseInt(scanner.nextLine());
+                        } catch (NumberFormatException e) {
+                            e.printStackTrace();
+                        }
                         switch (choice1) {
                             case 1:
-                                System.out.println("Enter code to be corrected!");
-                                String code1 = scanner.nextLine();
+                                String code1;
+                                while (true) {
+                                    try {
+                                        System.out.println("Enter code (String) to be corrected!");
+                                        code1 = scanner.nextLine();
+                                        FuramaCheckException.checkCode(code1);
+                                        break;
+                                    } catch (FuramaException e) {
+                                        System.out.println(e.getMessage());
+                                    }
+                                }
                                 employee.setCode(code1);
                                 break;
                             case 2:
-                                System.out.println("Enter full name to be corrected!");
-                                String name = scanner.nextLine();
+                                String name;
+                                while (true) {
+                                    try {
+                                        System.out.println("Enter full name (String) to be corrected!");
+                                        name = scanner.nextLine();
+                                        FuramaCheckException.checkFullName(name);
+                                        break;
+                                    } catch (FuramaException e) {
+                                        System.out.println(e.getMessage());
+                                    }
+                                }
                                 employee.setFullName(name);
                                 break;
                             case 3:
-                                System.out.println("3.Enter the date of birth to be corrected!");
-                                String birtth = scanner.nextLine();
+                                LocalDate birtth;
+                                while (true) {
+                                    try {
+                                        System.out.println("3.Enter the date of birth (String) to be corrected!");
+                                        birtth = LocalDate.parse(scanner.nextLine(), dateTimeFormatter);
+                                        FuramaCheckException.checkBirth(birtth);
+                                        break;
+                                    } catch (FuramaException e) {
+                                        System.out.println(e.getMessage());
+                                    }
+                                }
                                 employee.setBirth(birtth);
                                 break;
                             case 4:
-                                System.out.println("Enter gender to be corrected!");
-                                System.out.println("Enter 1 = male");
-                                System.out.println("Enter 2 = female");
-                                System.out.println("Enter 3 = 3rd sex");
-                                String choice2 = (scanner.nextLine());
-                                switch (choice2) {
-                                    case "1": {
-                                        String gender = "fale";
-                                        employee.setGender(gender);
+                                String choice2;
+                                while (true) {
+                                    try {
+                                        System.out.println("Enter gender to be corrected!");
+                                        System.out.println("Enter 1 = male");
+                                        System.out.println("Enter 2 = female");
+                                        System.out.println("Enter 3 = 3rd sex");
+                                        choice2 = (scanner.nextLine());
+                                        FuramaCheckException.checkGender(choice2);
                                         break;
-                                    }
-                                    case "2": {
-                                        String gender = "female";
-                                        employee.setGender(gender);
-                                        break;
-                                    }
-                                    case "3": {
-                                        String gender = "3rd sex";
-                                        employee.setGender(gender);
-                                        break;
+                                    } catch (FuramaException e) {
+                                        System.out.println(e.getMessage());
                                     }
                                 }
-                                break;
+                                if (choice2.equals("1")) {
+                                    String gender = "fale";
+                                    employee.setGender(gender);
+                                    break;
+                                } else if (choice2.equals("2")) {
+                                    String gender = "female";
+                                    employee.setGender(gender);
+                                    break;
+                                } else if (choice2.equals("3")) {
+                                    String gender = "3rd sex";
+                                    employee.setGender(gender);
+                                    break;
+                                }
                             case 5:
-                                System.out.println("Enter idcard to be corrected!");
-                                int idCard = Integer.parseInt(scanner.nextLine());
+                                String idCard;
+                                while (true) {
+                                    try {
+                                        System.out.println("Enter idcard (Int) to be corrected!");
+                                        idCard = (scanner.nextLine());
+                                        FuramaCheckException.checkIDCard(idCard);
+                                        break;
+                                    } catch (FuramaException e) {
+                                        System.out.println(e.getMessage());
+                                    }
+                                }
                                 employee.setIdCard(idCard);
                                 break;
                             case 6:
-                                System.out.println("Enter Phone Number to be corrected!");
-                                int numPhone = Integer.parseInt(scanner.nextLine());
+                                String numPhone;
+                                while (true) {
+                                    try {
+                                        System.out.println("Enter Phone Number (Int) to be corrected!");
+                                        numPhone = (scanner.nextLine());
+                                        FuramaCheckException.checkPhoneNumber(numPhone);
+                                        break;
+                                    } catch (FuramaException e) {
+                                        System.out.println(e.getMessage());
+                                    }
+                                }
                                 employee.setNumberPhone(numPhone);
                                 break;
                             case 7:
-                                System.out.println("Enter email to be corrected!");
-                                String email = scanner.nextLine();
+                                String email;
+                                while (true) {
+                                    try {
+                                        System.out.println("Enter email (String) to be corrected!");
+                                        email = scanner.nextLine();
+                                        FuramaCheckException.checkEmail(email);
+                                        break;
+                                    } catch (FuramaException e) {
+                                        System.out.println(e.getMessage());
+                                    }
+                                }
                                 employee.setEmail(email);
                                 break;
                             case 8:
-                                System.out.println("Enter rank customer to be corrected!");
-                                String level = scanner.nextLine();
-                                employee.setLevel(level);
-                                break;
+                                String templevel;
+                                while (true) {
+                                    try {
+                                        System.out.println("Enter level Employee to be corrected!");
+                                        System.out.println("1=Postgraduate,2=University,3=College,4=Intermediate");
+                                        templevel = scanner.nextLine();
+                                        FuramaCheckException.checkLevel(templevel);
+                                        break;
+                                    } catch (FuramaException e) {
+                                        System.out.println(e.getMessage());
+                                    }
+                                }
+
+                                if (templevel.equals("1")) {
+                                    String level = "Postgraduate";
+                                    employee.setLevel(level);
+                                    break;
+                                } else if (templevel.equals("2")) {
+                                    String level = "University";
+                                    break;
+                                } else if (templevel.equals("3")) {
+                                    String level = "College";
+                                } else if (templevel.equals("4")) {
+                                    String level = "Intermediate";
+                                    break;
+                                }
                             case 9:
-                                System.out.println("9.Enter address to be corrected!");
-                                double wage = Double.parseDouble(scanner.nextLine());
+                                int wage;
+                                while (true) {
+                                    try {
+                                        System.out.println("9.Enter wage (double) to be corrected!");
+                                        wage = Integer.parseInt(scanner.nextLine());
+                                        FuramaCheckException.checkWage(wage);
+                                        break;
+                                    } catch (FuramaException e) {
+                                        System.out.println(e.getMessage());
+                                    }
+                                }
                                 employee.setWage(wage);
                                 break;
                             case 10:
+                                String choicePosition;
+                                while (true) {
+                                    try {
+                                        System.out.println("9.Enter Position (String) to be corrected!");
+                                        System.out.println("1.Receptionist,2.Waiter,3.Specialist,4.Supervisor,5.Manager,6.Director.");
+                                        choicePosition = (scanner.nextLine());
+                                        FuramaCheckException.checkPosition(choicePosition);
+                                        break;
+                                    } catch (FuramaException e) {
+                                        System.out.println(e.getMessage());
+                                    }
+                                }
+                                if (choicePosition.equals("1")) {
+                                    String position = "Receptionist";
+                                    employee.setPosition(position);
+                                    break;
+                                } else if (choicePosition.equals("2")) {
+                                    String position = "Waiter";
+                                    employee.setPosition(position);
+                                    break;
+                                } else if (choicePosition.equals("3")) {
+                                    String position = "Specialist";
+                                    employee.setPosition(position);
+                                    break;
+                                } else if (choicePosition.equals("4")) {
+                                    String position = "Supervisor";
+                                    employee.setPosition(position);
+                                    break;
+                                } else if (choicePosition.equals("5")) {
+                                    String position = "Manager";
+                                    employee.setPosition(position);
+                                    break;
+                                } else if (choicePosition.equals("6")) {
+                                    String position = "Director";
+                                    employee.setPosition(position);
+                                    break;
+                                }
+                            case 11:
                                 break loop;
                             default:
                                 System.out.println("You have entered false! please re-enter");
@@ -183,6 +466,55 @@ public class EmployeeService implements IEmployeeService {
         if (!flagDelete) {
             System.out.println("The object to be edited could not be found!");
         }
+        writeFile(employeeList);
+    }
 
+    public String getInfo(Employee employee) {
+        return String.format("%s,%s,%s,%s,%s,%s,%s,%s,%s,%s", employee.getCode(), employee.getFullName(),
+                employee.getBirth().format(DateTimeFormatter.ofPattern("dd/MM/yyyy")),
+                employee.getGender(), employee.getIdCard(), employee.getNumberPhone(), employee.getEmail(), employee.getLevel(), employee.getPosition(), employee.getWage());
+    }
+
+    private List<Employee> readfile() {
+        List<Employee> employeeList = new ArrayList<>();
+        try {
+            File file = new File("src/case_study_module2/data/Employee.csv");
+            if (!file.exists()) {
+                throw new Exception();
+            }
+            FileReader fileReader = new FileReader(file);
+            BufferedReader bufferedReader = new BufferedReader(fileReader);
+            String line;
+            String[] info;
+            Employee employee;
+            while ((line = bufferedReader.readLine()) != null) {
+                try {
+                    info = line.split(",");
+                    employee = new Employee(info[0], info[1], LocalDate.parse(info[2], DateTimeFormatter.ofPattern("dd/MM/yyyy")),
+                            info[3], info[4], info[5], info[6], info[7], info[8], Integer.parseInt(info[9]));
+                    employeeList.add(employee);
+                } catch (NumberFormatException e) {
+                }
+            }
+            bufferedReader.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return employeeList;
+    }
+
+    private void writeFile(List<Employee> employeeList) {
+        try {
+            File file = new File("src/case_study_module2/data/Employee.csv");
+            FileWriter fileWriter = new FileWriter(file);
+            BufferedWriter bufferedWriter = new BufferedWriter(fileWriter);
+            for (Employee i : employeeList) {
+                bufferedWriter.write(getInfo(i));
+                bufferedWriter.newLine();
+            }
+            bufferedWriter.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }

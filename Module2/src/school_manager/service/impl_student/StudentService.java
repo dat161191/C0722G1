@@ -201,7 +201,7 @@ public class StudentService implements IStudentService {
                 System.out.println("Tên Này sai định dạng vui lòng nhập lại");
             }
         }
-        String gender;
+        String gender = null;
         while (true) {
             try {
                 System.out.println("Mời bạn nhập giới tính học sinh: ");
@@ -214,7 +214,7 @@ public class StudentService implements IStudentService {
                     gender = "Nam";
                 } else if (tempGender.equals("2")) {
                     gender = "Nữ";
-                } else {
+                } else if (tempGender.equals("3")){
                     gender = "Giới tính thứ 3";
                 }
                 break;

@@ -1,4 +1,4 @@
-package case_study_module2.model;
+package case_study_module2.model.Contract;
 
 public class Contract {
     private String codeContract;

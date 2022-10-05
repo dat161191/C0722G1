@@ -1,18 +1,21 @@
-package case_study_module2.model;
+package case_study_module2.model.Person;
+
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 
 public abstract class Person {
     private String code;
     private String fullName;
-    private String birth;
+    private LocalDate birth;
     private String gender;
-    private int idCard;
-    private int numberPhone;
+    private String idCard;
+    private String numberPhone;
     private String email;
 
     public Person() {
     }
 
-    public Person(String Code, String fullName, String birth, String gender, int idCard, int numberPhone, String email) {
+    public Person(String Code, String fullName, LocalDate birth, String gender, String idCard, String numberPhone, String email) {
         this.code = Code;
         this.fullName = fullName;
         this.birth = birth;
@@ -38,11 +41,11 @@ public abstract class Person {
         this.fullName = fullName;
     }
 
-    public String getBirth() {
+    public LocalDate getBirth() {
         return birth;
     }
 
-    public void setBirth(String birth) {
+    public void setBirth(LocalDate birth) {
         this.birth = birth;
     }
 
@@ -54,19 +57,19 @@ public abstract class Person {
         this.gender = gender;
     }
 
-    public int getIdCard() {
+    public String getIdCard() {
         return idCard;
     }
 
-    public void setIdCard(int idCard) {
+    public void setIdCard(String idCard) {
         this.idCard = idCard;
     }
 
-    public int getNumberPhone() {
+    public String getNumberPhone() {
         return numberPhone;
     }
 
-    public void setNumberPhone(int numberPhone) {
+    public void setNumberPhone(String numberPhone) {
         this.numberPhone = numberPhone;
     }
 
@@ -81,14 +84,13 @@ public abstract class Person {
     @Override
     public String toString() {
         return "Person{" +
-                "employeeCode='" + code + '\'' +
+                "code='" + code + '\'' +
                 ", fullName='" + fullName + '\'' +
-                ", birth='" + birth + '\'' +
+                ", birth=" + birth.format((DateTimeFormatter.ofPattern("dd/MM/yyyy"))) +
                 ", gender='" + gender + '\'' +
-                ", idCard=" + idCard +
-                ", numberPhone=" + numberPhone +
+                ", idCard='" + idCard + '\'' +
+                ", numberPhone='" + numberPhone + '\'' +
                 ", email='" + email + '\'' +
                 '}';
     }
-
 }

@@ -1,8 +1,8 @@
-package case_study_module2.model;
+package case_study_module2.model.Facility;
 
-public class House extends Facility{
-      private String roomStandard;
-      private int numberFloor;
+public class House extends Facility {
+    private String roomStandard;
+    private int numberFloor;
 
     public House(String roomStandard, int numberFloor) {
         this.roomStandard = roomStandard;
@@ -12,14 +12,10 @@ public class House extends Facility{
     public House() {
     }
 
-    public House(String serviceName, double usableArea, double rentalCosts, int maximumPeople, String rentalType, String roomStandard, int numberFloor) {
-        super(serviceName, usableArea, rentalCosts, maximumPeople, rentalType);
+    public House(String serviceName, double usableArea, double rentalCosts, int maximumPeople, String rentalType, String serviceCode, String roomStandard, int numberFloor) {
+        super(serviceName, usableArea, rentalCosts, maximumPeople, rentalType, serviceCode);
         this.roomStandard = roomStandard;
         this.numberFloor = numberFloor;
-    }
-
-    public House(String serviceName, double usableArea, double rentalCosts, int maximumPeople, String rentalType) {
-        super(serviceName, usableArea, rentalCosts, maximumPeople, rentalType);
     }
 
     public String getRoomStandard() {
@@ -40,9 +36,9 @@ public class House extends Facility{
 
     @Override
     public String toString() {
-        return "House{" +
+        return super.toString() + " " + "House{" +
                 "roomStandard='" + roomStandard + '\'' +
                 ", numberFloor=" + numberFloor +
-                '}'+super.toString();
+                '}';
     }
 }

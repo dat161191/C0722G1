@@ -4,7 +4,7 @@ import java.util.Objects;
 
 public class PersonCheckException {
     public static void checkName(String name) throws PersonException {
-        if (!name.matches("([\\p{L}\\s]+)")) {
+        if (!name.matches("([{L}\\s]+)")) {
             throw new PersonException("Tên này không đúng định dạng");
         }
     }

@@ -1,21 +1,31 @@
-package case_study_module2.model;
+package case_study_module2.model.Facility;
 
 public abstract class Facility {
-    private  String serviceName;
+    private String serviceName;
     private double usableArea;
     private double rentalCosts;
     private int maximumPeople;
     private String rentalType;
+    private String serviceCode;
 
     public Facility() {
     }
 
-    public Facility(String serviceName, double usableArea, double rentalCosts, int maximumPeople, String rentalType) {
+    public Facility(String serviceName, double usableArea, double rentalCosts, int maximumPeople, String rentalType, String serviceCode) {
         this.serviceName = serviceName;
         this.usableArea = usableArea;
         this.rentalCosts = rentalCosts;
         this.maximumPeople = maximumPeople;
         this.rentalType = rentalType;
+        this.serviceCode = serviceCode;
+    }
+
+    public String getServiceCode() {
+        return serviceCode;
+    }
+
+    public void setServiceCode(String serviceCode) {
+        this.serviceCode = serviceCode;
     }
 
     public String getServiceName() {
@@ -66,6 +76,7 @@ public abstract class Facility {
                 ", rentalCosts=" + rentalCosts +
                 ", maximumPeople=" + maximumPeople +
                 ", rentalType='" + rentalType + '\'' +
+                ", serviceCode='" + serviceCode + '\'' +
                 '}';
     }
 }
