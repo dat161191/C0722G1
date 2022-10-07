@@ -11,7 +11,6 @@ public abstract class Person {
     private String idCard;
     private String numberPhone;
     private String email;
-
     public Person() {
     }
 
@@ -83,6 +82,7 @@ public abstract class Person {
 
     @Override
     public String toString() {
+        DateTimeFormatter formatter=DateTimeFormatter.ofPattern("dd/MM/yyy");
         return "Person{" +
                 "code='" + code + '\'' +
                 ", fullName='" + fullName + '\'' +

@@ -1,4 +1,4 @@
-package case_study_module2.service.implCustomerService;
+package case_study_module2.service.impl_customer_service;
 
 import case_study_module2.model.Person.Customer;
 import case_study_module2.service.ICustomerService;
@@ -68,13 +68,15 @@ public class CustomerService implements ICustomerService {
                 FuramaCheckException.checkFullName(name);
                 break;
             } catch (FuramaException e) {
-                e.printStackTrace();
+                System.out.println(e.getMessage());
             }
         }
         LocalDate birtth;
         while (true) {
             try {
-                System.out.println("3.Enter the date of birth to be corrected!");
+                System.out.println("Enter the date of birth to be corrected!");
+                String date = scanner.nextLine();
+                FuramaCheckException.checkDate(date);
                 birtth = LocalDate.parse(scanner.nextLine(), dateTimeFormatter);
                 FuramaCheckException.checkBirth(birtth);
                 break;
@@ -82,6 +84,7 @@ public class CustomerService implements ICustomerService {
                 System.out.println(e.getMessage());
             }
         }
+
 
         String gender = null;
         while (true) {
@@ -417,7 +420,7 @@ public class CustomerService implements ICustomerService {
                 customer.getGender(), customer.getIdCard(), customer.getNumberPhone(), customer.getEmail(), customer.getRankCustomer(), customer.getAddress());
     }
 
-    private List<Customer> readFile() {
+    public List<Customer> readFile() {
         List<Customer> customerList = new ArrayList<>();
         try {
             File file = new File("src/case_study_module2/data/Customer.csv");
@@ -439,12 +442,12 @@ public class CustomerService implements ICustomerService {
             }
             bufferedReader.close();
         } catch (Exception e) {
-            e.printStackTrace();
+            System.out.println(e.getMessage());
         }
         return customerList;
     }
 
-    private void writeFile(List<Customer> customerList) {
+    public void writeFile(List<Customer> customerList) {
         try {
             File file = new File("src/case_study_module2/data/Customer.csv");
             FileWriter fileWriter = new FileWriter(file);

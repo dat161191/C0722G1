@@ -1,4 +1,4 @@
-package case_study_module2.service.implFacilityService;
+package case_study_module2.service.impl_facility_service;
 
 import case_study_module2.model.Facility.Facility;
 import case_study_module2.model.Facility.House;
@@ -14,14 +14,17 @@ import java.util.*;
 public class FacilityService implements IFacilityService {
     private static final Scanner scanner = new Scanner(System.in);
     private static Map<Facility, Integer> facilityMap = new LinkedHashMap<>();
+    private static Map<Facility, Integer> facilityMaintenance = new LinkedHashMap<>();
     private static final List<Facility> facilityList = new ArrayList<>();
     private static final List<Room> roomList = new ArrayList<>();
     private static final List<Villa> villaList = new ArrayList<>();
     private static final List<House> houseList = new ArrayList<>();
+    private static final String linkFacility = "src/case_study_module2/data/FacilityInput.csv";
+    private static final String linkFacilityMaintenace = "src/case_study_module2/data/FacilityMaintenace.csv";
 
     @Override
     public void displayFacility() {
-        facilityMap = readFile();
+        facilityMap = readFile(linkFacility);
         Set<Facility> keys = facilityMap.keySet();
         for (Facility key : keys) {
             System.out.println("Key: " + key + "," + facilityMap.get(key));
@@ -35,29 +38,47 @@ public class FacilityService implements IFacilityService {
     }
 
     @Override
+    public void addFacilityMaintenance() {
+        facilityMap = readFile(linkFacility);
+        Set<Facility> key = facilityMap.keySet();
+        for (Facility i : key) {
+            if (facilityMap.get(i) >=5) {
+                facilityMaintenance.put(i, facilityMap.get(i));
+            }
+        }
+        writeFile(facilityMaintenance, linkFacilityMaintenace);
+    }
+
+    @Override
     public void displayFacilityMaintenance() {
+        addFacilityMaintenance();
+        facilityMaintenance = readFile(linkFacilityMaintenace);
+        Set<Facility> keys = facilityMaintenance.keySet();
+        for (Facility i : keys) {
+            System.out.println("Key: " + i + "," + facilityMaintenance.get(i));
+        }
 
     }
 
     @Override
     public void addHouse() {
-        facilityMap = readFile();
+        facilityMap = readFile(linkFacility);
         facilityMap.put(infoHouse(), 0);
-        writeFile(facilityMap);
+        writeFile(facilityMap, linkFacility);
     }
 
     @Override
     public void addRoom() {
-        facilityMap = readFile();
+        facilityMap = readFile(linkFacility);
         facilityMap.put(infoRoom(), 0);
-        writeFile(facilityMap);
+        writeFile(facilityMap, linkFacility);
     }
 
     @Override
     public void addVilla() {
-        facilityMap = readFile();
+        facilityMap = readFile(linkFacility);
         facilityMap.put(infoVilla(), 0);
-        writeFile(facilityMap);
+        writeFile(facilityMap, linkFacility);
     }
 
     private Villa infoVilla() {
@@ -337,10 +358,10 @@ public class FacilityService implements IFacilityService {
         return new House(serviceName, usableArea, rentalCosts, maximumPeople, rentalType, serviceCode, roomStandard, numberFloor);
     }
 
-    private Map<Facility, Integer> readFile() {
+    public Map<Facility, Integer> readFile(String link) {
         Map<Facility, Integer> facilityMap = new LinkedHashMap<>();
         try {
-            File file = new File("src/case_study_module2/data/FacilityInput.csv");
+            File file = new File(link);
             if (!file.exists()) {
                 throw new Exception();
             }
@@ -376,9 +397,9 @@ public class FacilityService implements IFacilityService {
         return facilityMap;
     }
 
-    private void writeFile(Map<Facility, Integer> facilityMap) {
+    public void writeFile(Map<Facility, Integer> facilityMap, String link) {
         try {
-            File file = new File("src/case_study_module2/data/FacilityInput.csv");
+            File file = new File(link);
             FileWriter fileWriter = new FileWriter(file);
             BufferedWriter bufferedWriter = new BufferedWriter(fileWriter);
             Set<Facility> facilitySet = facilityMap.keySet();
@@ -404,6 +425,8 @@ public class FacilityService implements IFacilityService {
         }
         return null;
     }
+
+
 }
 
 

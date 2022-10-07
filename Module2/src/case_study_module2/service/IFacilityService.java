@@ -4,6 +4,7 @@ public interface IFacilityService extends Service{
     void displayFacility();
 
     void addFacility();
+    void addFacilityMaintenance();
 
     void displayFacilityMaintenance();
 

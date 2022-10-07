@@ -1,14 +1,26 @@
 package case_study_module2.model.Booking;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+
 public class Booking {
     private String codeBooking;
-    private String startDay;
-    private String endDay;
+    private LocalDate startDay;
+    private LocalDate endDay;
     private String codeCustomer;
-    private String serviceName;
+    private String serviceCode;
     private String serviceType;
 
     public Booking() {
+    }
+
+    public Booking(String codeBooking, LocalDate startDay, LocalDate endDay, String codeCustomer, String serviceCode, String serviceType) {
+        this.codeBooking = codeBooking;
+        this.startDay = startDay;
+        this.endDay = endDay;
+        this.codeCustomer = codeCustomer;
+        this.serviceCode = serviceCode;
+        this.serviceType = serviceType;
     }
 
     public String getCodeBooking() {
@@ -19,19 +31,19 @@ public class Booking {
         this.codeBooking = codeBooking;
     }
 
-    public String getStartDay() {
+    public LocalDate getStartDay() {
         return startDay;
     }
 
-    public void setStartDay(String startDay) {
+    public void setStartDay(LocalDate startDay) {
         this.startDay = startDay;
     }
 
-    public String getEndDay() {
+    public LocalDate getEndDay() {
         return endDay;
     }
 
-    public void setEndDay(String endDay) {
+    public void setEndDay(LocalDate endDay) {
         this.endDay = endDay;
     }
 
@@ -43,12 +55,12 @@ public class Booking {
         this.codeCustomer = codeCustomer;
     }
 
-    public String getServiceName() {
-        return serviceName;
+    public  String getServiceCode() {
+        return serviceCode;
     }
 
-    public void setServiceName(String serviceName) {
-        this.serviceName = serviceName;
+    public void setServiceCode(String serviceCode) {
+        this.serviceCode = serviceCode;
     }
 
     public String getServiceType() {
@@ -59,23 +71,14 @@ public class Booking {
         this.serviceType = serviceType;
     }
 
-    public Booking(String codeBooking, String startDay, String endDay, String codeCustomer, String serviceName, String serviceType) {
-        this.codeBooking = codeBooking;
-        this.startDay = startDay;
-        this.endDay = endDay;
-        this.codeCustomer = codeCustomer;
-        this.serviceName = serviceName;
-        this.serviceType = serviceType;
-    }
-
     @Override
     public String toString() {
         return "Booking{" +
                 "codeBooking='" + codeBooking + '\'' +
-                ", startDay='" + startDay + '\'' +
-                ", endDay='" + endDay + '\'' +
+                ", startDay=" + startDay.format(DateTimeFormatter.ofPattern("dd/MM/yyyy")) +
+                ", endDay=" + endDay.format(DateTimeFormatter.ofPattern("dd/MM/yyyy")) +
                 ", codeCustomer='" + codeCustomer + '\'' +
-                ", serviceName='" + serviceName + '\'' +
+                ", serviceName='" + serviceCode + '\'' +
                 ", serviceType='" + serviceType + '\'' +
                 '}';
     }

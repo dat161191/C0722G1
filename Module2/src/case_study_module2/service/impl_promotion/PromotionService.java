@@ -1,4 +1,4 @@
-package case_study_module2.service.implPromotion;
+package case_study_module2.service.impl_promotion;
 
 import case_study_module2.service.IPromotionService;
 

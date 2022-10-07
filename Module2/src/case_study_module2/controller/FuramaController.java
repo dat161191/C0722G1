@@ -1,11 +1,12 @@
 package case_study_module2.controller;
 
 import case_study_module2.service.*;
-import case_study_module2.service.implBookingService.BookingService;
-import case_study_module2.service.implCustomerService.CustomerService;
-import case_study_module2.service.implEmployeeService.EmployeeService;
-import case_study_module2.service.implFacilityService.FacilityService;
-import case_study_module2.service.implPromotion.PromotionService;
+import case_study_module2.service.impl_booking_service.BookingService;
+import case_study_module2.service.impl_contracts.ContractsService;
+import case_study_module2.service.impl_customer_service.CustomerService;
+import case_study_module2.service.impl_employee_service.EmployeeService;
+import case_study_module2.service.impl_facility_service.FacilityService;
+import case_study_module2.service.impl_promotion.PromotionService;
 
 import java.util.Scanner;
 
@@ -16,6 +17,7 @@ public class FuramaController {
     private static final IFacilityService iFacilityService = new FacilityService();
     private static final ICustomerService iCustomerService = new CustomerService();
     private static final IEmployeeService iEmployeeService = new EmployeeService();
+    private static final IContractsService iContractsService = new ContractsService();
 
     public static void displayMainMenu() {
         while (true) {
@@ -111,13 +113,13 @@ public class FuramaController {
                     iBookingService.addBooking();
                     break;
                 case 3:
-                    iBookingService.createNewConstracts();
+                    iContractsService.createNewContracts();
                     break;
                 case 4:
-                    iBookingService.displayListConstracts();
+                    iContractsService.displayListContracts();
                     break;
                 case 5:
-                    iBookingService.editConstracts();
+                    iContractsService.editContracts();
                     break;
                 case 6:
                     break loop;

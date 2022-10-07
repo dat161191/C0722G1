@@ -1,9 +1,16 @@
 package case_study_module2.util;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.time.DateTimeException;
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.Objects;
+import java.util.Scanner;
 
 public class FuramaCheckException {
+    private static Scanner scanner = new Scanner(System.in);
+
     public static void checkCode(String code) throws FuramaException {
         if (!code.matches("[0-9]+")) {
             throw new FuramaException("Code is wrong format! Please re-enter!");
@@ -75,7 +82,7 @@ public class FuramaCheckException {
     public static void checkServiceName(String name) throws FuramaException {
         if (!name.matches("^(([A-ZĐ][a-záàảãạăâắằấầặẵẫêậéèẻẽẹếềểễệóòỏõọôốồổỗộơớờởỡợíìỉĩịđùúủũụưứửữựỷỹ]+[ ])*)+[A-ZĐ][a-záàảãạăâắằấầặẵẫậéèẻẽẹếềểễệóòêỏõọôốồổỗộơớờởỡợíìỉĩịđùúủũụưứửữựỷỹ]+[0-9]*$")) {
 
-                throw new FuramaException("ServiceName is wrong format! Please re-enter!");
+            throw new FuramaException("ServiceName is wrong format! Please re-enter!");
         }
     }
 
@@ -130,27 +137,76 @@ public class FuramaCheckException {
     }
 
     public static void checkRentalType(String rentalType) throws FuramaException {
-        if (!rentalType.matches("^(([A-ZĐ][a-záàảãạăâắằấầặẵẫêậéèẻẽẹếềểễệóòỏõọôốồổỗộơớờởỡợíìỉĩịđùúủũụưứửữựỷỹ]+[ ])*)+[A-ZĐ][a-záàảãạăâắằấầặẵẫậéèẻẽẹếềểễệóòêỏõọôốồổỗộơớờởỡợíìỉĩịđùúủũụưứửữựỷỹ]+$")) {
+        if (!rentalType.matches("^(([A-ZĐ][a-záàảãạăâắằấầặẵẫêậéèẻẽẹếềểễệóòỏõọôốồổỗộơớờởỡợíìỉĩịđùúủũụưứửữựỷỹ]+[ ])*)+[A-ZĐ][a-záàảãạăâắằấầặẵẫậéèẻẽẹếềểễệóòêỏõọôốồổỗộơớờởỡợíìỉĩịđùúủũụưứửữựỷỹ]+[0-9]*$")) {
             throw new FuramaException("RentalType is false! Please re-enter!");
         }
     }
 
     public static void checkServiceCodeHouse(String serviceCode) throws FuramaException {
-        if (!serviceCode.matches("[S][V][H][O][0-9]{4}")) {
+        if (!serviceCode.matches("[S][V][H][O][-][0-9]{4}")) {
             throw new FuramaException("ServiceCodeHouse is false! Please re-enter!");
         }
     }
 
     public static void checkServiceCodeVilla(String serviceCode) throws FuramaException {
-        if (!serviceCode.matches("[S][V][V][L][0-9]{4}")) {
+        if (!serviceCode.matches("[S][V][V][L][-][0-9]{4}")) {
             throw new FuramaException("ServiceCodeVilla is false! Please re-enter!");
         }
     }
 
     public static void checkServiceCodeRoom(String serviceCode) throws FuramaException {
-        if (!serviceCode.matches("[S][V][R][O][0-9]{4}")) {
+        if (!serviceCode.matches("[S][V][R][O][-][0-9]{4}")) {
             throw new FuramaException("ServiceCodeRoom is false! Please re-enter!");
         }
+    }
+
+    public static void checkServiceCode(String serviceCode) throws FuramaException {
+        if (!serviceCode.matches("[S][V][R][O][-][0-9]{4}|[S][V][V][L][-][0-9]{4}|[S][V][H][O][-][0-9]{4}")) {
+            throw new FuramaException("ServiceCode is false! Please re-enter!");
+        }
+    }
+
+    public static void checkEndDay(LocalDate endDay, LocalDate startday) throws FuramaException {
+        if (!endDay.isAfter(startday) && !endDay.equals(startday)) {
+            throw new FuramaException("This date is incorrect!Please re-enter!");
+
+        }
+    }
+
+    public static void checkStartDay(LocalDate starDay) throws FuramaException {
+        if (!starDay.isAfter(LocalDate.now()) && !starDay.equals(LocalDate.now())) {
+            throw new FuramaException("This date is incorrect!Please re-enter!");
+        }
+    }
+
+    public static void checkDate(String str) throws FuramaException {
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd/MM/yyyy");
+        simpleDateFormat.setLenient(false);
+
+        try {
+            simpleDateFormat.parse(str);
+        } catch (ParseException e) {
+            throw new FuramaException("Date Format Exception");
+        }
+
+    }
+
+    public static LocalDate getLocalDate() {
+        LocalDate birtth;
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+        while (true) {
+            try {
+                System.out.println("3.Enter the date of birth to be corrected!");
+                String date = scanner.nextLine();
+                FuramaCheckException.checkDate(date);
+                birtth = LocalDate.parse(date, formatter);
+                FuramaCheckException.checkBirth(birtth);
+                break;
+            } catch (DateTimeException | FuramaException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+        return birtth;
     }
 }
 

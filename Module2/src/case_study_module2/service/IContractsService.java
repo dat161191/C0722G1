@@ -1,10 +1,6 @@
 package case_study_module2.service;
 
-public interface IBookingService extends Service{
-    void displayBooking();
-
-    void addBooking();
-
+public interface IContractsService {
     void createNewContracts();
 
     void displayListContracts();
