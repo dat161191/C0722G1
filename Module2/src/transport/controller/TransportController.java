@@ -153,9 +153,9 @@ public class TransportController {
                 int choice1 = Integer.parseInt(scanner.nextLine());
                 switch (choice1) {
                     case 1:
-                        iCarService.addCar();
-//                    iCarService.addManufacturer();
-//                    iCarService.testAddTruck();
+//                        iCarService.addCar();
+                    iCarService.addManufacturer();
+                    iCarService.testAddCar();
                         break;
                     case 2:
                         iTruckService.addManufacturer();

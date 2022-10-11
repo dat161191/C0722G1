@@ -1,10 +1,14 @@
 package school_manager.model;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+
 public class Student extends Person {
     private String nameClass;
     private double score;
+    private DateTimeFormatter fm = DateTimeFormatter.ofPattern("dd/MM/yyyy");
 
-    public Student(String code, String name, String gender, String birth, String nameClass, double score) {
+    public Student(String code, String name, String gender, LocalDate birth, String nameClass, double score) {
         super(code, name, gender, birth);
         this.nameClass = nameClass;
         this.score = score;
@@ -16,6 +20,11 @@ public class Student extends Person {
     }
 
     public Student() {
+    }
+
+    @Override
+    public String getIntroduce() {
+        return "Tôi là Học Sinh";
     }
 
     public String getNameClass() {
@@ -36,6 +45,6 @@ public class Student extends Person {
 
     @Override
     public String toString() {
-        return String.format("%s,%s,%s,%s,%s,%s",this.getCode(),this.getName(),this.getGender(),this.getBirth(),this.getNameClass(),this.getScore());
+        return this.getIntroduce() + ": " + String.format("%s,%s,%s,%s,%s,%s", this.getCode(), this.getName(), this.getGender(), this.getBirth().format(fm), this.getNameClass(), this.getScore());
     }
 }

@@ -220,16 +220,7 @@ public class EmployeeService implements IEmployeeService {
                 System.out.println("Enter code to be corrected!");
                 code = scanner.nextLine();
                 FuramaCheckException.checkCode(code);
-                boolean flagCheck = false;
-                for (Employee employee : employeeList) {
-                    if (employee.getCode().equals(code)) {
-                        flagCheck = true;
-                        break;
-                    }
-                }
-                if (flagCheck) {
-                    System.out.println("Code has been duplicated, please re-enter it!");
-                } else {
+                if (FuramaCheckException.checkDuplicatedCode(code,employeeList)) {
                     break;
                 }
             } catch (FuramaException e) {
@@ -238,6 +229,7 @@ public class EmployeeService implements IEmployeeService {
         }
         return code;
     }
+
 
     @Override
     public void editEmployee() {
@@ -351,25 +343,30 @@ public class EmployeeService implements IEmployeeService {
                                     }
                                 }
 
-                                if (templevel.equals("1")) {
-                                    String level = "Postgraduate";
-                                    employee.setLevel(level);
-                                    break;
-                                } else if (templevel.equals("2")) {
-                                    String level = "University";
-                                    employee.setLevel(level);
-                                    break;
-                                } else if (templevel.equals("3")) {
-                                    String level = "College";
-                                    employee.setLevel(level);
-                                    break;
-                                } else if (templevel.equals("4")) {
-                                    String level = "Intermediate";
-                                    employee.setLevel(level);
-                                    break;
+                                switch (templevel) {
+                                    case "1": {
+                                        String level = "Postgraduate";
+                                        employee.setLevel(level);
+                                        break label;
+                                    }
+                                    case "2": {
+                                        String level = "University";
+                                        employee.setLevel(level);
+                                        break label;
+                                    }
+                                    case "3": {
+                                        String level = "College";
+                                        employee.setLevel(level);
+                                        break label;
+                                    }
+                                    case "4": {
+                                        String level = "Intermediate";
+                                        employee.setLevel(level);
+                                        break label;
+                                    }
                                 }
                             case 9:
-                                int wage=this.getWage();
+                                int wage = this.getWage();
                                 employee.setWage(wage);
                                 break;
                             case 10:
@@ -473,7 +470,7 @@ public class EmployeeService implements IEmployeeService {
                     employee = new Employee(info[0], info[1], LocalDate.parse(info[2], DateTimeFormatter.ofPattern("dd/MM/yyyy")),
                             info[3], info[4], info[5], info[6], info[7], info[8], Integer.parseInt(info[9]));
                     employeeList.add(employee);
-                } catch (NumberFormatException e) {
+                } catch (NumberFormatException ignored) {
                 }
             }
             bufferedReader.close();

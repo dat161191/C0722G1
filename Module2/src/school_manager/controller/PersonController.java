@@ -23,7 +23,12 @@ public class PersonController {
             System.out.println("5. Sắp xếp theo tên,nếu giống nhau xếp theo mã");
             System.out.println("6. Thoát chương trình");
             System.out.println("Mời bạn nhập lựa chọn");
-            int choice = Integer.parseInt(scanner.nextLine());
+            int choice = 0;
+            try {
+                choice = Integer.parseInt(scanner.nextLine());
+            } catch (NumberFormatException e) {
+                System.out.println(e.getMessage());
+            }
             switch (choice) {
                 case 1:
                     PersonController.addMenu();
@@ -56,7 +61,12 @@ public class PersonController {
             System.out.println("1.Thêm mới học sinh");
             System.out.println("2.Thêm mới giáo viên");
             System.out.println("3.Thoát");
-            int choice1 = Integer.parseInt(scanner.nextLine());
+            int choice1 = 0;
+            try {
+                choice1 = Integer.parseInt(scanner.nextLine());
+            } catch (NumberFormatException e) {
+                System.out.println(e.getMessage());
+            }
             switch (choice1) {
                 case 1:
                     iStudentService.addStudent();
@@ -79,7 +89,12 @@ public class PersonController {
             System.out.println("1.Hiển thị danh sách học sinh");
             System.out.println("2.Hiển thị danh sách giáo viên");
             System.out.println("3.Thoát");
-            int choice = Integer.parseInt(scanner.nextLine());
+            int choice = 0;
+            try {
+                choice = Integer.parseInt(scanner.nextLine());
+            } catch (NumberFormatException e) {
+                System.out.println(e.getMessage());
+            }
             switch (choice) {
                 case 1:
                     iStudentService.displayAllStudent();
@@ -102,7 +117,12 @@ public class PersonController {
             System.out.println("1.Xóa học sinh");
             System.out.println("2.Xóa giáo viên");
             System.out.println("3.Thoát");
-            int choice = Integer.parseInt(scanner.nextLine());
+            int choice = 0;
+            try {
+                choice = Integer.parseInt(scanner.nextLine());
+            } catch (NumberFormatException e) {
+                System.out.println(e.getMessage());
+            }
             switch (choice) {
                 case 1:
                     iStudentService.removeStudent();
@@ -124,7 +144,12 @@ public class PersonController {
             System.out.println("1.Tìm học sinh");
             System.out.println("2.Tìm giáo viên");
             System.out.println("3.Thoát");
-            int choice = Integer.parseInt(scanner.nextLine());
+            int choice = 0;
+            try {
+                choice = Integer.parseInt(scanner.nextLine());
+            } catch (NumberFormatException e) {
+                System.out.println(e.getMessage());
+            }
             switch (choice) {
                 case 1:
                     loop1:
@@ -133,7 +158,12 @@ public class PersonController {
                         System.out.println("1.Tìm theo tên");
                         System.out.println("2.Tìm theo mã sinh viên");
                         System.out.println("3.Thoát");
-                        int choice1 = Integer.parseInt(scanner.nextLine());
+                        int choice1 = 0;
+                        try {
+                            choice1 = Integer.parseInt(scanner.nextLine());
+                        } catch (NumberFormatException e) {
+                            e.printStackTrace();
+                        }
                         switch (choice1) {
                             case 1:
                                 iStudentService.findStudyName();
@@ -154,7 +184,12 @@ public class PersonController {
                         System.out.println("1.Tìm theo tên");
                         System.out.println("2.Tìm theo mã giáo viên");
                         System.out.println("3.Thoát");
-                        int choice1 = Integer.parseInt(scanner.nextLine());
+                        int choice1 = 0;
+                        try {
+                            choice1 = Integer.parseInt(scanner.nextLine());
+                        } catch (NumberFormatException e) {
+                            e.printStackTrace();
+                        }
                         switch (choice1) {
                             case 1:
                                 isTeacherService.findTeacherName();
@@ -179,10 +214,15 @@ public class PersonController {
     public static void sortMeNu() {
         while (true) {
             System.out.println("Mời bạn nhập lựa chọn");
-            System.out.println("1.Sắp xếp theo tên học sinh,nếu tên trùng nhau sắp xếp theo mã");
-            System.out.println("2.Sắp xếp theo tên giáo viên,nếu tên trùng nhau sắp xếp theo mã");
+            System.out.println("1.Sắp xếp tăng dần theo tên học sinh,nếu tên trùng nhau sắp xếp tăng dần theo mã");
+            System.out.println("2.Sắp xếp tăng dần theo tên giáo viên,nếu tên trùng nhau sắp xếp tăng dần theo mã");
             System.out.println("3.Thoát");
-            int choice = Integer.parseInt(scanner.nextLine());
+            int choice = 0;
+            try {
+                choice = Integer.parseInt(scanner.nextLine());
+            } catch (NumberFormatException e) {
+                e.printStackTrace();
+            }
             switch (choice) {
                 case 1:
                     iStudentService.sortStudy();

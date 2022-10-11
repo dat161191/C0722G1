@@ -8,8 +8,8 @@ import transport.service.util.SortCar;
 import java.util.*;
 
 public class CarService implements ICarService {
-    private static Scanner scanner = new Scanner(System.in);
-    private static List<Car> cars = new ArrayList<>();
+    private static final Scanner scanner = new Scanner(System.in);
+    private static final List<Car> cars = new ArrayList<>();
     static List<Manufacturer> manufacturerCarList = new ArrayList<>();
 
     @Override
@@ -119,7 +119,7 @@ public class CarService implements ICarService {
         manufacturerCarList.add(new Manufacturer("Bmw1611", "BMW", "Đức"));
     }
 
-    public void testAddTruck() {
+    public void testAddCar() {
         cars.add(new Car("06", manufacturerCarList.get(1), 1995, "Jonh", 30, "Thể thao"));
         cars.add(new Car("05", manufacturerCarList.get(0), 1965, "June", 30, "Thể thao"));
         cars.add(new Car("01", manufacturerCarList.get(2), 1985, "Adam", 30, "Thể thao"));
@@ -155,6 +155,4 @@ public class CarService implements ICarService {
     public void sortCar() {
         Collections.sort(cars, new SortCar());
     }
-
-
 }

@@ -44,18 +44,10 @@ public class CustomerService implements ICustomerService {
                 System.out.println("Enter code to be corrected! Format: 0-9");
                 code = scanner.nextLine();
                 FuramaCheckException.checkCode(code);
-                boolean flagCheck = false;
-                for (Customer customer : customerList) {
-                    if (customer.getCode().equals(code)) {
-                        flagCheck = true;
-                        break;
-                    }
+                if ((FuramaCheckException.checkDuplicatedCode(code, customerList))) {
+                    throw new FuramaException("");
                 }
-                if (flagCheck) {
-                    System.out.println("Code has been duplicated, please re-enter it!");
-                } else {
-                    break;
-                }
+                break;
             } catch (FuramaException e) {
                 System.out.println(e.getMessage());
             }

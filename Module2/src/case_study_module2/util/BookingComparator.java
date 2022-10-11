@@ -4,18 +4,13 @@ import case_study_module2.model.Booking.Booking;
 
 import java.util.Comparator;
 
-public class BookingComparator implements Comparable, Comparator<Booking> {
-    @Override
-    public int compareTo(Object o) {
-        return 0;
-    }
-
+public class BookingComparator implements Comparator<Booking> {
     @Override
     public int compare(Booking o1, Booking o2) {
-        if (o2.getStartDay().compareTo(o1.getStartDay()) != 0) {
-            return o2.getStartDay().compareTo(o1.getStartDay());
+        if (o1.getStartDay().compareTo(o2.getStartDay()) != 0) {
+            return o1.getStartDay().compareTo(o2.getStartDay());
         } else {
-            return o2.getEndDay().compareTo(o1.getEndDay());
+            return o1.getEndDay().compareTo(o2.getEndDay());
         }
 
     }

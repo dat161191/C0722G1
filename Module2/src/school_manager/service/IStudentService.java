@@ -8,5 +8,4 @@ public interface IStudentService {
     void findStudyName();
     void findStudyCode();
     void sortStudy();
-    void testStudentList();
 }

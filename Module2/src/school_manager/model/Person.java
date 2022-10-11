@@ -1,12 +1,16 @@
 package school_manager.model;
 
-public class Person {
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+
+public abstract class Person {
     private String code;
     private String name;
     private String gender;
-    private String birth;
+    private LocalDate birth;
+    private final DateTimeFormatter fm = DateTimeFormatter.ofPattern("dd/MM/yyyy");
 
-    public Person(String code, String name, String gender, String birth) {
+    public Person(String code, String name, String gender, LocalDate birth) {
         this.code = code;
         this.name = name;
         this.gender = gender;
@@ -15,11 +19,14 @@ public class Person {
 
     public Person() {
     }
-    public String getBirth() {
+
+    public abstract String getIntroduce();
+
+    public LocalDate getBirth() {
         return birth;
     }
 
-    public void setBirth(String birth) {
+    public void setBirth(LocalDate birth) {
         this.birth = birth;
     }
 
@@ -53,7 +60,7 @@ public class Person {
                 "code='" + code + '\'' +
                 ", name='" + name + '\'' +
                 ", gender='" + gender + '\'' +
-                ", birth='" + birth + '\'' +
+                ", birth='" + birth.format(fm) + '\'' +
                 '}';
     }
 }

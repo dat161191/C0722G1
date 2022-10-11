@@ -12,7 +12,7 @@ public interface ICarService {
 
     void addManufacturer();
 
-    void testAddTruck();
+    void testAddCar();
 
     void editCar();
 

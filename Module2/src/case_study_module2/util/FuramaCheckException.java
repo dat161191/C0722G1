@@ -1,10 +1,14 @@
 package case_study_module2.util;
 
+import case_study_module2.model.Person.Employee;
+import case_study_module2.model.Person.Person;
+
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.DateTimeException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.List;
 import java.util.Objects;
 import java.util.Scanner;
 
@@ -143,7 +147,7 @@ public class FuramaCheckException {
     }
 
     public static void checkServiceCodeHouse(String serviceCode) throws FuramaException {
-        if (!serviceCode.matches("[S][V][H][O][-][0-9]{4}")) {
+        if (!(serviceCode.matches("[S][V][H][O][-][0-9]{4}"))) {
             throw new FuramaException("ServiceCodeHouse is false! Please re-enter!");
         }
     }
@@ -167,14 +171,14 @@ public class FuramaCheckException {
     }
 
     public static void checkEndDay(LocalDate endDay, LocalDate startday) throws FuramaException {
-        if (!endDay.isAfter(startday) && !endDay.equals(startday)) {
+        if (!(endDay.compareTo(startday) >= 0)) {
             throw new FuramaException("This date is incorrect!Please re-enter!");
 
         }
     }
 
     public static void checkStartDay(LocalDate starDay) throws FuramaException {
-        if (!starDay.isAfter(LocalDate.now()) && !starDay.equals(LocalDate.now())) {
+        if (!starDay.isAfter(LocalDate.now()) && starDay.compareTo(LocalDate.now()) != 0) {
             throw new FuramaException("This date is incorrect!Please re-enter!");
         }
     }
@@ -190,13 +194,20 @@ public class FuramaCheckException {
         }
 
     }
-
+    public static <E extends Person> boolean checkDuplicatedCode(String code, List<E> employeeList) {
+        for (E e : employeeList) {
+            if (e.getCode().equals(code)) {
+                return true;
+            }
+        }
+        return false;
+    }
     public static LocalDate getLocalDate() {
         LocalDate birtth;
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
         while (true) {
             try {
-                System.out.println("3.Enter the date of birth to be corrected!");
+                System.out.println("Enter the date of birth to be corrected!");
                 String date = scanner.nextLine();
                 FuramaCheckException.checkDate(date);
                 birtth = LocalDate.parse(date, formatter);

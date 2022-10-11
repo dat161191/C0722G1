@@ -22,8 +22,8 @@ public class BookingService implements IBookingService {
     private static FacilityService facilityService = new FacilityService();
     private static CustomerService customerService = new CustomerService();
     private static DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-    private static String linkFacility = "src/case_study_module2/data/FacilityInput.csv";
-    private static String linkFacilityMaintenace = "src/case_study_module2/data/FacilityMaintenace.csv";
+    private static final String linkFacility = "src/case_study_module2/data/FacilityInput.csv";
+    private static final String linkFacilityMaintenace = "src/case_study_module2/data/FacilityMaintenace.csv";
 
 
     @Override
@@ -206,7 +206,6 @@ public class BookingService implements IBookingService {
             e.printStackTrace();
         }
         try {
-            assert bufferedReader != null;
             bufferedReader.close();
         } catch (IOException e) {
             e.printStackTrace();

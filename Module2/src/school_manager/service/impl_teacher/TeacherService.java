@@ -1,28 +1,25 @@
 package school_manager.service.impl_teacher;
 
+import school_manager.controller.PersonController;
 import school_manager.model.Student;
 import school_manager.model.Teacher;
 import school_manager.service.ISTeacherService;
-import school_manager.service.util.PersonCheckException;
-import school_manager.service.util.PersonException;
+import until.PersonCheckException;
+import until.PersonException;
+import until.SortNameTeacher;
 
 import java.io.*;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Scanner;
+import java.text.ParseException;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
+import java.util.*;
 
 public class TeacherService implements ISTeacherService {
     private static final Scanner scanner = new Scanner(System.in);
     private static List<Teacher> teacherList = new ArrayList<>();
+    private final DateTimeFormatter fm = DateTimeFormatter.ofPattern("dd/MM/yyyy");
 
-    @Override
-    public void addTeacher() {
-        teacherList = getTeacherFile();
-        Teacher teacher = infoTeacher();
-        teacherList.add(teacher);
-        System.out.println("Thêm mới thành công");
-        writeFile(teacherList);
-    }
 
     private void writeFile(List<Teacher> teacherList) {
         try {
@@ -30,7 +27,7 @@ public class TeacherService implements ISTeacherService {
             FileWriter fileWriter = new FileWriter(file);
             BufferedWriter bufferedWriter = new BufferedWriter(fileWriter);
             for (Teacher i : teacherList) {
-                bufferedWriter.write(i.toString());
+                bufferedWriter.write(getinfo(i));
                 bufferedWriter.newLine();
             }
             bufferedWriter.close();
@@ -40,13 +37,15 @@ public class TeacherService implements ISTeacherService {
     }
 
     private List<Teacher> getTeacherFile() {
+        File file = new File("src/school_manager/data/teacher.csv");
+        if (!file.exists()) {
+            System.out.println("File này không tồn tại");
+        }
+        FileReader fileReader;
+        BufferedReader bufferedReader = null;
         try {
-            File file = new File("src/school_manager/data/teacher.csv");
-            if (!file.exists()) {
-                throw new Exception();
-            }
-            FileReader fileReader = new FileReader(file);
-            BufferedReader bufferedReader = new BufferedReader(fileReader);
+            fileReader = new FileReader(file);
+            bufferedReader = new BufferedReader(fileReader);
             teacherList = new ArrayList<>();
             String line;
             String[] info;
@@ -54,21 +53,43 @@ public class TeacherService implements ISTeacherService {
             while ((line = bufferedReader.readLine()) != null) {
                 try {
                     info = line.split(",");
-                    teacher = new Teacher(info[0], info[1], info[2], info[3], info[4]);
+                    teacher = new Teacher(info[0], info[1], info[2], LocalDate.parse(info[3], fm), info[4]);
                     teacherList.add(teacher);
-                } catch (Exception ignored) {
+                } catch (NumberFormatException e) {
+                    e.printStackTrace();
                 }
             }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        try {
+            assert bufferedReader != null;
             bufferedReader.close();
-        } catch (Exception e) {
+        } catch (IOException e) {
             e.printStackTrace();
         }
         return teacherList;
     }
 
     @Override
+    public void addTeacher() {
+        teacherList = getTeacherFile();
+        if (teacherList.size() == 0) {
+            System.out.println("File này đang rỗng");
+        }
+        Teacher teacher = infoTeacher();
+        teacherList.add(teacher);
+        System.out.println("Thêm mới thành công");
+        writeFile(teacherList);
+    }
+
+    @Override
     public void displayTeacher() {
         teacherList = getTeacherFile();
+        if (teacherList.size() == 0) {
+            System.out.println("File này đang rỗng không có danh sách hiển thị");
+            PersonController.personMenu();
+        }
         for (Teacher teacher : teacherList) {
             System.out.println(teacher);
         }
@@ -77,14 +98,36 @@ public class TeacherService implements ISTeacherService {
     @Override
     public void removeTeacher() {
         teacherList = getTeacherFile();
-        System.out.print("Mời bạn nhập mã Giáo Viên cần xóa: ");
-        String code = scanner.nextLine();
+        if (teacherList.size() == 0) {
+            System.out.println("File này đang rỗng không thể tìm");
+            PersonController.personMenu();
+        }
+        String code;
+        while (true) {
+            try {
+                System.out.println("Mời bạn nhập mã Giáo Viên muốn Xóa");
+                code = scanner.nextLine();
+                PersonCheckException.checkCode(code);
+                break;
+            } catch (PersonException e) {
+                System.out.println(e.getMessage());
+            }
+        }
         boolean flagDelete = false;
         for (int i = 0; i < teacherList.size(); i++) {
             if (teacherList.get(i).getCode().equals(code)) {
                 System.out.println("Bạn có chác muốn xóa Giáo Viên này không?" +
                         "Nhập Y:xóa ,N:không ");
-                String choice = scanner.nextLine();
+                String choice;
+                while (true) {
+                    try {
+                        choice = scanner.nextLine();
+                        PersonCheckException.checkYesNo(choice);
+                        break;
+                    } catch (PersonException e) {
+                        System.out.println(e.getMessage());
+                    }
+                }
                 if (choice.equals("Y")) {
                     teacherList.remove(i);
                     System.out.println("Xóa thành công");
@@ -102,8 +145,23 @@ public class TeacherService implements ISTeacherService {
     @Override
     public void findTeacherName() {
         teacherList = getTeacherFile();
-        System.out.println("Nhập tên muốn tìm");
-        String name = scanner.nextLine();
+        if (teacherList.size() == 0) {
+            System.out.println("File này đang rỗng không thể tìm kiếm");
+            PersonController.personMenu();
+        }
+        String name;
+        while (true) {
+            try {
+                System.out.println("Mời bạn nhập tên Giáo viêm cần tìm: ");
+                name = scanner.nextLine();
+                PersonCheckException.checkName(name);
+                break;
+            } catch (PersonException e) {
+                System.out.println(e.getMessage());
+            } catch (Exception e) {
+                System.out.println("Tên Này sai định dạng vui lòng nhập lại");
+            }
+        }
         boolean flag = false;
         for (Teacher teacher : teacherList) {
             if (teacher.getName().contains(name)) {
@@ -119,8 +177,21 @@ public class TeacherService implements ISTeacherService {
     @Override
     public void findTeacherCode() {
         teacherList = getTeacherFile();
-        System.out.println("Nhập code muốn tìm");
-        String code = scanner.nextLine();
+        if (teacherList.size() == 0) {
+            System.out.println("File này đang rỗng không thể tìm kiếm");
+            PersonController.personMenu();
+        }
+        String code;
+        while (true) {
+            try {
+                System.out.println("Mời bạn nhập mã Học Sinh muốn tìm");
+                code = scanner.nextLine();
+                PersonCheckException.checkCode(code);
+                break;
+            } catch (PersonException e) {
+                System.out.println(e.getMessage());
+            }
+        }
         boolean flag = false;
         for (Teacher teacher : teacherList) {
             if (teacher.getCode().contains(code)) {
@@ -138,28 +209,13 @@ public class TeacherService implements ISTeacherService {
     @Override
     public void sortTeacher() {
         teacherList = getTeacherFile();
-        for (int i = 0; i < teacherList.size() - 1; i++) {
-            Teacher currentMin = teacherList.get(i);
-            int currentMinIndex = i;
-            for (int j = i + 1; j < teacherList.size(); j++) {
-                if (currentMin.getName().compareTo(teacherList.get(j).getName()) > 0) {
-                    currentMin = teacherList.get(j);
-                    currentMinIndex = j;
-                }
-                if (currentMin.getName().compareTo(teacherList.get(j).getName()) == 0) {
-                    int compare = currentMin.getCode().compareTo(teacherList.get(j).getCode());
-                    if (compare > 0) {
-                        currentMin = teacherList.get(j);
-                        currentMinIndex = j;
-                    }
-                }
+        if (teacherList.size() == 0) {
+            System.out.println("File này đang rỗng không thể sắp xếp");
+            PersonController.personMenu();
 
-            }
-            if (currentMinIndex != i) {
-                teacherList.set(currentMinIndex, teacherList.get(i));
-                teacherList.set(i, currentMin);
-            }
         }
+        teacherList.sort(new SortNameTeacher());
+        teacherList.sort(new SortNameTeacher().reversed());
         writeFile(teacherList);
     }
 
@@ -167,21 +223,11 @@ public class TeacherService implements ISTeacherService {
         String code;
         while (true) {
             try {
-                System.out.println("Mời bạn nhập mã Giáo Viên: \n"+"Định dạng mã: 1 chữ cái in hoa đầu tiên + 2 số");
+                System.out.println("Mời bạn nhập mã Giáo Viên: \n" + "Định dạng mã: 1 chữ cái in hoa đầu tiên + 2 số");
                 code = scanner.nextLine();
                 PersonCheckException.checkCode(code);
-                boolean flagCheck = false;
-                for (Teacher student : teacherList) {
-                    if (student.getCode().equals(code)) {
-                        flagCheck = true;
-                        break;
-                    }
-                }
-                if (flagCheck) {
-                    System.out.println("Mã đã bị trùng,Vui lòng nhập lại");
-                } else {
-                    break;
-                }
+                PersonCheckException.checkDuplicatedCode(code, teacherList);
+                break;
             } catch (PersonException e) {
                 System.out.println(e.getMessage());
             }
@@ -194,10 +240,10 @@ public class TeacherService implements ISTeacherService {
                 PersonCheckException.checkName(name);
                 break;
             } catch (PersonException e) {
-                e.printStackTrace();
+                System.out.println(e.getMessage());
             }
         }
-        String gender;
+        String gender = "^:^";
         while (true) {
             try {
                 System.out.println("Mời bạn nhập giới tính Giáo Viên: ");
@@ -206,12 +252,16 @@ public class TeacherService implements ISTeacherService {
                 System.out.println("Nhập 3 = Giới tính Thứ 3 ");
                 String tempGender = scanner.nextLine();
                 PersonCheckException.checkGender(tempGender);
-                if (tempGender.equals("1")) {
-                    gender = "Nam";
-                } else if (tempGender.equals("2")) {
-                    gender = "Nữ";
-                } else {
-                    gender = "Giới tính thứ 3";
+                switch (tempGender) {
+                    case "1":
+                        gender = "Nam";
+                        break;
+                    case "2":
+                        gender = "Nữ";
+                        break;
+                    case "3":
+                        gender = "Giới tính thứ 3";
+                        break;
                 }
                 break;
             } catch (PersonException e) {
@@ -229,30 +279,27 @@ public class TeacherService implements ISTeacherService {
                 System.out.println(e.getMessage());
             }
         }
-        String birth;
+        LocalDate birth;
         while (true) {
             try {
                 System.out.println("Mời bạn nhập ngày tháng năm sinh theo định dạng dd/mm/yyyy");
-                birth = scanner.nextLine();
+                String date = scanner.nextLine();
+                PersonCheckException.checkDate(date);
+                birth = LocalDate.parse(date, fm);
                 PersonCheckException.checkBirth(birth);
                 break;
+            } catch (DateTimeParseException | ParseException e) {
+                System.out.println(e.getMessage() + "Bạn nhập sai định dạng!Vui lòng nhập lại");
             } catch (PersonException e) {
                 System.out.println(e.getMessage());
             }
         }
 
-
         return new Teacher(code, name, gender, birth, technique);
     }
 
-    public void testTeacherList() {
-        teacherList.add(new Teacher("5", "Thành", "1", "10/9/1982", "Toán"));
-        teacherList.add(new Teacher("1", "Thành", "1", "26/9/1982", "Lý"));
-        teacherList.add(new Teacher("2", "Đức", "1", "10/9/1982", "Thể Dục"));
-        teacherList.add(new Teacher("4", "Hà", "2", "10/9/1989", "Hóa"));
-        teacherList.add(new Teacher("3", "Hà", "2", "10/9/1988", "Lý"));
-        System.out.println("thêm mới thành công");
+    private String getinfo(Teacher teacher) {
+        return String.format("%s,%s,%s,%s,%s", teacher.getCode(), teacher.getName()
+                , teacher.getGender(), teacher.getBirth().format(fm), teacher.getTechnique());
     }
-
-
 }
