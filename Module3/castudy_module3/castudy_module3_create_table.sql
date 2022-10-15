@@ -70,7 +70,7 @@ CONSTRAINT fk_kieu_thue FOREIGN KEY (ma_kieu_thue) REFERENCES kieu_thue(ma_kieu_
 CONSTRAINT fk_loai_dich_vu FOREIGN KEY (ma_loai_dich_vu) REFERENCES loai_dich_vu(ma_loai_dich_vu));
 
 -- Table hop_dong--  
-create table hop_dong(
+CREATE TABLE hop_dong(
 ma_hop_dong INT PRIMARY KEY AUTO_INCREMENT,
 ngay_lam_hop_dong DATETIME NOT NULL,
 ngay_ket_thuc DATETIME NOT NULL,
@@ -83,7 +83,7 @@ CONSTRAINT fk_khach_hang FOREIGN KEY (ma_khach_hang) REFERENCES khach_hang(ma_kh
 CONSTRAINT fk_dich_vu FOREIGN KEY (ma_dich_vu) REFERENCES dich_vu(ma_dich_vu));
 
 -- Table dich_vu_di_kem--   
-create table dich_vu_di_kem(
+CREATE TABLE dich_vu_di_kem(
 ma_dich_vu_di_kem INT PRIMARY KEY AUTO_INCREMENT,
 ten_dich_vu_di_kem VARCHAR(45) NOT NULL,
 gia DOUBLE,
@@ -91,7 +91,7 @@ don_vi VARCHAR(10) DEFAULT("0"),
 trang_thai VARCHAR(45) DEFAULT("..."));
 
 -- Table hop_dong_di_kem--  
-create table hop_dong_chi_tiet (
+CREATE TABLE hop_dong_chi_tiet (
 ma_hop_dong_chi_tiet INT PRIMARY KEY AUTO_INCREMENT,
 ma_hop_dong INT NOT NULL,
 ma_dich_vu_di_kem INT NOT NULL,
