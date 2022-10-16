@@ -1,5 +1,5 @@
 DROP DATABASE IF EXISTS castudty_module3;
-CREATE DATABASE castudty_module3;
+CREATE DATABASE IF NOT EXISTS castudty_module3;
 USE castudty_module3;
 
 -- Table vi_tri--  
@@ -98,7 +98,3 @@ ma_dich_vu_di_kem INT NOT NULL,
 CONSTRAINT fk_dich_vu_di_kem FOREIGN KEY (ma_dich_vu_di_kem) REFERENCES dich_vu_di_kem(ma_dich_vu_di_kem),
 CONSTRAINT fk_hop_dong FOREIGN KEY (ma_hop_dong) REFERENCES hop_dong(ma_hop_dong),
 so_luong INT DEFAULT("0"));
-
-
-
-  

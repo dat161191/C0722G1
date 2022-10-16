@@ -1,4 +1,5 @@
 USE castudty_module3;
+
 INSERT INTO vi_tri (ten_vi_tri)
 VALUE ("Quản lý"),("Nhân viên");
 
