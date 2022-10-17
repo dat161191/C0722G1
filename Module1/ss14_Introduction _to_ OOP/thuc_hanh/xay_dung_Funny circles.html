@@ -27,13 +27,8 @@
             let blue = this.getRandomHex();
             return "rgb(" + red + "," + blue + "," + green + ")";
         }
-        createCircle() {
-            let ctx = document.getElementById("myCanvas").getContext("2d");
-            ctx.arc(this.x, this.y, this.radius, 0, 2 * Math.PI);
-            ctx.beginPath()
-            ctx.fillStyle = this.getRandomColor();
-            ctx.fill();
-        }
+
+
     }
 
     // let radius = Math.floor(Math.random() * 100);
@@ -43,7 +38,11 @@
     let x = +prompt("tọa độ x")
     let y = +prompt('tọa độ y')
     let circle = new Circle(x, y, radius);
-    circle.createCircle();
+    let ctx = document.getElementById("myCanvas").getContext("2d");
+    ctx.arc(x, y,radius, 0, 2 * Math.PI);
+    ctx.beginPath()
+    ctx.fillStyle = circle.getRandomColor();
+    ctx.fill();
 
 
 </script>

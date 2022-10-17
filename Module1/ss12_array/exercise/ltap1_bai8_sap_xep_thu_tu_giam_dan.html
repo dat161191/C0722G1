@@ -8,14 +8,39 @@
 
 </body>
 <script>
-    let soLuong = parseInt(prompt('Số lượng phần tử  trong mảng 1'));
-    let array = [];
-    for (let i = 0; i < soLuong; i++) {
-        let so1 = parseInt(prompt('Nhập phần tử trong mảng 1'));
-        array.push(so1);
+    // let soLuong = parseInt(prompt('Số lượng phần tử  trong mảng 1'));
+    // let array = [];
+    // for (let i = 0; i < soLuong; i++) {
+    //     let so1 = parseInt(prompt('Nhập phần tử trong mảng 1'));
+    //     array.push(so1);
+    // }
+    // array.sort();
+    // array.reverse();
+    // document.write(array);
+    //sắp xếp tăng dần
+    let num = [1, 2, 3, 4, 5, 6, 9, 8, 7, 10, 13, 12, 11, 15];
+    for (let i = 0; i < num.length; i++) {
+        for (let j = 0; j < num.length - i; j++) {
+            if (num[j] >= num[j + 1]) {
+                let b = num[j];
+                num[j] = num[j + 1];
+                num[j + 1] = b;
+            }
+        }
     }
-    array.sort();
-    array.reverse();
-    document.write(array);
+    document.write(num);
+    // sắp xếp giảm dần
+
+    let num1 = [1, 2, 3, 4, 5, 6, 9, 8, 7, 10];
+    for (let i = 0; i < num.length; i++) {
+        for (let j = 0; j < num.length - i; j++) {
+            if (num[j] <= num[j + 1]) {
+                let b = num[j];
+                num[j] = num[j + 1];
+                num[j + 1] = b;
+            }
+        }
+    }
+    document.write(num);
 </script>
 </html>

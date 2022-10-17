@@ -1,11 +1,11 @@
 package school_manager.service.impl_student;
 
 import school_manager.controller.PersonController;
-import school_manager.model.Student;
+import school_manager.model.AccountBank;
 import school_manager.service.IStudentService;
-import until.PersonCheckException;
-import until.PersonException;
-import until.SortNameStudent;
+import school_manager.until.PersonCheckException;
+import school_manager.until.PersonException;
+import school_manager.until.SortNameStudent;
 
 import java.io.*;
 import java.text.ParseException;
@@ -16,11 +16,11 @@ import java.util.*;
 
 public class StudentService implements IStudentService {
     private static final Scanner scanner = new Scanner(System.in);
-    private static List<Student> studentList = new ArrayList<>();
+    private static List<AccountBank> accountBankList = new ArrayList<>();
     private final DateTimeFormatter fm = DateTimeFormatter.ofPattern("dd/MM/yyyy");
 
 
-    private void writeFile(List<Student> studentList) {
+    private void writeFile(List<AccountBank> accountBankList) {
         File file = new File("src/school_manager/data/student.csv");
         if (!file.exists()) {
             System.out.println("File không tồn tại");
@@ -30,7 +30,7 @@ public class StudentService implements IStudentService {
         try {
             fileWriter = new FileWriter(file);
             bufferedWriter = new BufferedWriter(fileWriter);
-            for (Student i : studentList) {
+            for (AccountBank i : accountBankList) {
                 bufferedWriter.write(getinfo(i));
                 bufferedWriter.newLine();
             }
@@ -46,8 +46,8 @@ public class StudentService implements IStudentService {
 
     }
 
-    private List<Student> getAllStudentFile() {
-        List<Student> studentList = new ArrayList<>();
+    private List<AccountBank> getAllStudentFile() {
+        List<AccountBank> accountBankList = new ArrayList<>();
         File file = new File("src/school_manager/data/student.csv");
         if (!file.exists()) {
             System.out.println("File này không tồn tại");
@@ -59,12 +59,12 @@ public class StudentService implements IStudentService {
             bufferedReader = new BufferedReader(fileReader);
             String line;
             String[] info;
-            Student student;
+            AccountBank accountBank;
             while ((line = bufferedReader.readLine()) != null) {
                 try {
                     info = line.split(",");
-                    student = new Student(info[0], info[1], info[2], LocalDate.parse(info[3], fm), info[4], Double.parseDouble(info[5]));
-                    studentList.add(student);
+                    accountBank = new AccountBank(info[0], info[1], info[2], LocalDate.parse(info[3], fm), info[4], Double.parseDouble(info[5]));
+                    accountBankList.add(accountBank);
                 } catch (NumberFormatException e) {
                     e.printStackTrace();
                 }
@@ -78,37 +78,37 @@ public class StudentService implements IStudentService {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        return studentList;
+        return accountBankList;
     }
 
     @Override
     public void addStudent() {
-        studentList = getAllStudentFile();
-        if (studentList.size() == 0) {
+        accountBankList = getAllStudentFile();
+        if (accountBankList.size() == 0) {
             System.out.println("File này rỗng");
         }
-        Student student = infoStudent();
-        studentList.add(student);
+        AccountBank accountBank = infoStudent();
+        accountBankList.add(accountBank);
         System.out.println("Thêm mới thành công");
-        writeFile(studentList);
+        writeFile(accountBankList);
     }
 
     @Override
     public void displayAllStudent() {
-        studentList = getAllStudentFile();
-        if (studentList.size() == 0) {
+        accountBankList = getAllStudentFile();
+        if (accountBankList.size() == 0) {
             System.out.println("File này rỗng không có danh sách hiển thị");
             PersonController.personMenu();
         }
-        for (Student student : studentList) {
-            System.out.println(student);
+        for (AccountBank accountBank : accountBankList) {
+            System.out.println(accountBank);
         }
     }
 
     @Override
     public void removeStudent() {
-        studentList = getAllStudentFile();
-        if (studentList.size() == 0) {
+        accountBankList = getAllStudentFile();
+        if (accountBankList.size() == 0) {
             System.out.println("File này rỗng không có đối tượng để xóa");
             PersonController.personMenu();
         }
@@ -124,8 +124,8 @@ public class StudentService implements IStudentService {
             }
         }
         boolean flagDelete = false;
-        for (int i = 0; i < studentList.size(); i++) {
-            if (studentList.get(i).getCode().equals(code)) {
+        for (int i = 0; i < accountBankList.size(); i++) {
+            if (accountBankList.get(i).getCode().equals(code)) {
                 System.out.println("Bạn có chắc muốn xóa học sinh này không? Nhập Y: yes, N: no");
                 String choice;
                 while (true) {
@@ -138,7 +138,7 @@ public class StudentService implements IStudentService {
                     }
                 }
                 if (choice.equals("Y")) {
-                    studentList.remove(i);
+                    accountBankList.remove(i);
                     System.out.println("Xóa thành công");
                 }
                 flagDelete = true;
@@ -148,13 +148,13 @@ public class StudentService implements IStudentService {
         if (!flagDelete) {
             System.out.println("Không tìm thấy đối tượng cần xóa.");
         }
-        writeFile(studentList);
+        writeFile(accountBankList);
     }
 
     @Override
     public void findStudyName() {
-        studentList = getAllStudentFile();
-        if (studentList.size() == 0) {
+        accountBankList = getAllStudentFile();
+        if (accountBankList.size() == 0) {
             System.out.println("File này rỗng không thể tìm kiếm");
             PersonController.personMenu();
         }
@@ -172,9 +172,9 @@ public class StudentService implements IStudentService {
             }
         }
         boolean flag = false;
-        for (Student student : studentList) {
-            if (student.getName().contains(name)) {
-                System.out.println(student);
+        for (AccountBank accountBank : accountBankList) {
+            if (accountBank.getName().contains(name)) {
+                System.out.println(accountBank);
                 flag = true;
             }
         }
@@ -185,8 +185,8 @@ public class StudentService implements IStudentService {
 
     @Override
     public void findStudyCode() {
-        studentList = getAllStudentFile();
-        if (studentList.size() == 0) {
+        accountBankList = getAllStudentFile();
+        if (accountBankList.size() == 0) {
             System.out.println("File này rỗng không thể tìm kiếm");
             PersonController.personMenu();
         }
@@ -202,9 +202,9 @@ public class StudentService implements IStudentService {
             }
         }
         boolean flag = false;
-        for (Student student : studentList) {
-            if (student.getCode().equals(code)) {
-                System.out.println(student);
+        for (AccountBank accountBank : accountBankList) {
+            if (accountBank.getCode().equals(code)) {
+                System.out.println(accountBank);
                 flag = true;
                 break;
             }
@@ -217,18 +217,18 @@ public class StudentService implements IStudentService {
 
     @Override
     public void sortStudy() {
-        studentList = getAllStudentFile();
-        if (studentList.size() == 0) {
+        accountBankList = getAllStudentFile();
+        if (accountBankList.size() == 0) {
             System.out.println("File này đang rỗng,không thể sắp xếp");
             PersonController.personMenu();
         }
-        studentList.sort(new SortNameStudent());
+        accountBankList.sort(new SortNameStudent());
 //        studentList.sort(new SortNameStudent().reversed());
-        writeFile(studentList);
+        writeFile(accountBankList);
     }
 
 
-    public Student infoStudent() {
+    public AccountBank infoStudent() {
         String code;
         while (true) {
             try {
@@ -236,7 +236,7 @@ public class StudentService implements IStudentService {
                         "Mã bao gồm 1 chữ cái đầu viết hoa và 2 số");
                 code = scanner.nextLine();
                 PersonCheckException.checkCode(code);
-                PersonCheckException.checkDuplicatedCode(code, studentList);
+                PersonCheckException.checkDuplicatedCode(code, accountBankList);
                 break;
             } catch (PersonException e) {
                 System.out.println(e.getMessage());
@@ -301,7 +301,7 @@ public class StudentService implements IStudentService {
             } catch (DateTimeParseException e) {
                 System.out.println("Bạn đã nhập sai!Vui lòng nhập lại");
             } catch (ParseException e) {
-                System.out.println(e.getMessage() + "Năm không nhuận không có ngày này");
+                System.out.println(e.getMessage()+"Bạn nhập sai vui lòng nhập lại");
             } catch (PersonException e) {
                 System.out.println(e.getMessage());
             }
@@ -318,11 +318,36 @@ public class StudentService implements IStudentService {
             }
         }
 
-        return new Student(code, name, gender, birth, nameClass, score);
+        return new AccountBank(code, name, gender, birth, nameClass, score);
     }
 
-    private String getinfo(Student student) {
-        return String.format("%s,%s,%s,%s,%s,%s", student.getCode(), student.getName()
-                , student.getGender(), student.getBirth().format(fm), student.getNameClass(), student.getScore());
+    private String getinfo(AccountBank accountBank) {
+        return String.format("%s,%s,%s,%s,%s,%s", accountBank.getCode(), accountBank.getName()
+                , accountBank.getGender(), accountBank.getBirth().format(fm), accountBank.getNameClass(), accountBank.getScore());
+    }
+
+    @Override
+    public void add() {
+
+    }
+
+    @Override
+    public void display() {
+
+    }
+
+    @Override
+    public void remove() {
+
+    }
+
+    @Override
+    public void sort() {
+
+    }
+
+    @Override
+    public void find() {
+
     }
 }

@@ -1,6 +1,6 @@
 package school_manager.service;
 
-public interface IStudentService {
+public interface IStudentService extends IPerson {
     void addStudent();
 
     void displayAllStudent();

@@ -1,5 +1,6 @@
 package school_manager.controller;
 
+import school_manager.service.IPerson;
 import school_manager.service.ISTeacherService;
 import school_manager.service.IStudentService;
 import school_manager.service.impl_student.StudentService;
@@ -10,6 +11,8 @@ import java.util.Scanner;
 public class PersonController {
     private static final IStudentService iStudentService = new StudentService();
     private static final ISTeacherService isTeacherService = new TeacherService();
+    private static final IPerson istudent=new StudentService();
+    private static final IPerson iteacher=new TeacherService();
     static Scanner scanner = new Scanner(System.in);
 
     public static void personMenu() {
@@ -152,57 +155,58 @@ public class PersonController {
             }
             switch (choice) {
                 case 1:
-                    loop1:
-                    while (true) {
-                        System.out.println("Mời bạn lựa chọn tìm kiếm");
-                        System.out.println("1.Tìm theo tên");
-                        System.out.println("2.Tìm theo mã sinh viên");
-                        System.out.println("3.Thoát");
-                        int choice1 = 0;
-                        try {
-                            choice1 = Integer.parseInt(scanner.nextLine());
-                        } catch (NumberFormatException e) {
-                            e.printStackTrace();
-                        }
-                        switch (choice1) {
-                            case 1:
-                                iStudentService.findStudyName();
-                                break;
-                            case 2:
+//                    loop1:
+//                    while (true) {
+//                        System.out.println("Mời bạn lựa chọn tìm kiếm");
+//                        System.out.println("1.Tìm theo tên");
+//                        System.out.println("2.Tìm theo mã sinh viên");
+//                        System.out.println("3.Thoát");
+//                        int choice1 = 0;
+//                        try {
+//                            choice1 = Integer.parseInt(scanner.nextLine());
+//                        } catch (NumberFormatException e) {
+//                            e.printStackTrace();
+//                        }
+//                        switch (choice1) {
+//                            case 1:
+//                                iStudentService.findStudyName();
+//                                break;
+//                            case 2:
                                 iStudentService.findStudyCode();
                                 break;
-                            case 3:
-                                break loop1;
-                        }
-
-                    }
-                    break;
+//                            case 3:
+//                                break loop1;
+//                        }
+//
+//                    }
+//                    break;
                 case 2:
-                    loop2:
-                    while (true) {
-                        System.out.println("Mời bạn lựa chọn tìm kiếm");
-                        System.out.println("1.Tìm theo tên");
-                        System.out.println("2.Tìm theo mã giáo viên");
-                        System.out.println("3.Thoát");
-                        int choice1 = 0;
-                        try {
-                            choice1 = Integer.parseInt(scanner.nextLine());
-                        } catch (NumberFormatException e) {
-                            e.printStackTrace();
-                        }
-                        switch (choice1) {
-                            case 1:
-                                isTeacherService.findTeacherName();
-                                break;
-                            case 2:
+//                    loop2:
+//                    while (true) {
+//                        System.out.println("Mời bạn lựa chọn tìm kiếm");
+//                        System.out.println("1.Tìm theo tên");
+//                        System.out.println("2.Tìm theo mã giáo viên");
+//                        System.out.println("3.Thoát");
+//                        int choice1 = 0;
+//                        try {
+//                            choice1 = Integer.parseInt(scanner.nextLine());
+//                        } catch (NumberFormatException e) {
+//                            e.printStackTrace();
+//                        }
+//                        switch (choice1) {
+//                            case 1:
+//                                isTeacherService.findTeacherName();
+//                                break;
+//                            case 2:
                                 isTeacherService.findTeacherCode();
                                 break;
-                            case 3:
-                                break loop2;
-                            default:
-                        }
-                    }
-                    break;
+//                            case 3:
+//                                break loop2;
+//                            default:
+//                                System.out.println("Bạn đã nhập sai vui lòng nhập lại");
+//                        }
+//                    }
+//                    break;
                 case 3:
                     return;
                 default:

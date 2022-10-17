@@ -12,16 +12,24 @@
     for (let i = 0; i < 3; i++) {
         arr[i] = new Array(5);
     }
-    for (var row = 0; row < arr.length; row++) {
-        for (var column = 0; column < arr[row].length; column++) {
-            arr[row][column] = Math.floor((Math.random() * 100) + 1);
+    for (let i = 0; i < arr.length; i++) {
+        for (let j = 0; j < arr[i].length; j++) {
+            arr[i][j] = Math.floor((Math.random() * 100) + 1);
         }
     }
-    document.write(arr+'<br>');
-    document.write(arr[0]+'<br>');
-    document.write(arr[1]+'<br>');
-    document.write(arr[2]+'<br>');
-
+    let sum = 0;
+    for (let i = 0; i < arr.length; i++) {
+        for (let j = 0; j < arr[i].length; j++) {
+            if (arr[i][j] % 2 == 0) {
+                sum += arr[i][j];
+            }
+        }
+    }
+    document.write(arr + '<br>');
+    document.write(arr[0] + '<br>');
+    document.write(arr[1] + '<br>');
+    document.write(arr[2] + '<br>');
+    document.write(sum);
 
 
 </script>

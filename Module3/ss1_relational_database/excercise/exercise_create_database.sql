@@ -1,3 +1,4 @@
+DROP DATABASE IF EXISTS student_management_ex;
 create database if not exists student_management_ex;
 use student_management_ex;
 

@@ -10,7 +10,9 @@
 <input type="text" id="HangSanXuat" placeholder="Nhập hãng sản xuất">
 <input type="number" id="GiaBan" placeholder="Nhập giá bán">
 <input type="button" onclick="them()" value="Nhap">
+<input type="button" onclick="timKiem()" value="Tìm Kiếm">
 <p id="hienThi"></p>
+<h1 id="Ab">result</h1>
 
 <table>
 
@@ -60,8 +62,9 @@
 
     let mayTinh1 = new MayTinh('J84NJ1', 'DellVostro', 'Dell', 7000000);
     let mayTinh2 = new MayTinh('ST33PA', 'HPProDesk', 'Dell', 7500000);
-    let danhSachMayTinh = [mayTinh1, mayTinh2];
-    hienThiDanhSach(danhSachMayTinh);
+    let danhSachBenhNhan = [mayTinh1, mayTinh2];
+    sapXep();
+    hienThiDanhSach(danhSachBenhNhan);
 
     function hienThiDanhSach(list) {
         let tableString = '<table border="1">\n' +
@@ -89,25 +92,25 @@
         tableString += '</table>';
         document.getElementById("hienThi").innerHTML = tableString;
     }
+
     function deleteMayTinhById(index) {
-        let conf = confirm("Bạn có muốn xoá sinh viên tên: " + danhSachMayTinh[index].getTenMay());
+        let conf = confirm("Bạn có muốn xoá sinh viên tên: " + danhSachBenhNhan[index].getTenMay());
         if (conf) {
-            danhSachMayTinh.splice(index, 1);
+            danhSachBenhNhan.splice(index, 1);
         }
-        hienThiDanhSach(danhSachMayTinh);
+        hienThiDanhSach(danhSachBenhNhan);
     }
 
     function editMayTinhById(index) {
-        let editMaMay = prompt("Nhập mã máy mới:" );
+        let editMaMay = prompt("Nhập mã máy mới:");
         let editTenMay = prompt("Nhập tên máy mới:");
         let editHangSanXuat = prompt("Nhập hãng sản xuất mới:");
         let editGiaBan = prompt("Nhập giá bán mới:");
-        danhSachMayTinh[index].setMaMay(editMaMay);
-        danhSachMayTinh[index].setTenMay(editTenMay);
-        danhSachMayTinh[index].setHangSanXuat(editHangSanXuat);
-        danhSachMayTinh[index].setGiaBan(editGiaBan);
-        hienThiDanhSach(danhSachMayTinh);
-
+        danhSachBenhNhan[index].setMaMay(editMaMay);
+        danhSachBenhNhan[index].setTenMay(editTenMay);
+        danhSachBenhNhan[index].setHangSanXuat(editHangSanXuat);
+        danhSachBenhNhan[index].setGiaBan(editGiaBan);
+        hienThiDanhSach(danhSachBenhNhan);
     }
 
     function them() {
@@ -116,12 +119,58 @@
         let hangSanXuat = document.getElementById("HangSanXuat").value;
         let giaBan = document.getElementById("GiaBan").value;
         let newMayTinh = new MayTinh(maMay, tenMay, hangSanXuat, giaBan);
-        danhSachMayTinh.push(newMayTinh);
-        hienThiDanhSach(danhSachMayTinh);
+        danhSachBenhNhan.push(newMayTinh);
+        sapXep();
+        hienThiDanhSach(danhSachBenhNhan);
+        document.getElementById("MaMay").value = "";
+        document.getElementById("TenMay").value = "";
+        document.getElementById("HangSanXuat").value = "";
+        document.getElementById("GiaBan").value = "";
+
     }
 
+    function sapXep() {
+        for (let i = 0; i < danhSachBenhNhan.length; i++) {
+            let max = 0;
+            let index = 0;
+            for (let j = i; j < danhSachBenhNhan.length; j++) {
+                if (max <= danhSachBenhNhan[j].giaBan) {
+                    max = danhSachBenhNhan[j].giaBan;
+                    index = j;
+                }
+            }
+            let temp = danhSachBenhNhan[i];
+            danhSachBenhNhan[i] = danhSachBenhNhan[index];
+            danhSachBenhNhan[index] = temp;
+        }
+    }
 
+    function timKiem() {
+        let a = +prompt("Chọn tiêu chí bạn muốn tìm kiếm\n" +
+            "1. Theo Hãng sãn xuất\n" +
+            "2. Theo mã máy");
+        switch (a) {
+            case 1:
+                let b = prompt("Xin moi nhap ten");
+                for (let i = 0; i < danhSachBenhNhan.length; i++) {
+                    if (danhSachBenhNhan[i].getHangSanXuat() === b) {
+                        document.getElementById("Ab").innerHTML += danhSachBenhNhan[i].getTenMay() + ' ' + danhSachBenhNhan[i].getGiaBan();
+                    }
+                }
+                break;
+            case 2:
+                let c = prompt("Nhap ma may");
+                for (let i = 0; i < danhSachBenhNhan.length; i++) {
+                    if (danhSachBenhNhan[i].getMaMay() === c) {
+                        document.getElementById("Ab").innerHTML += danhSachBenhNhan[i].getTenMay() + ' ' + danhSachBenhNhan[i].getGiaBan();
+                    }
+                }
+                break;
+            default:
+                alert("Nhap sai");
+        }
 
+    }
 
 </script>
 </html>

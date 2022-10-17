@@ -1,7 +1,7 @@
-package school_manager.until;
+package thi_module2.util;
 
-public class PersonException extends Exception {
-    public PersonException(String message) {
+public class AccountException extends Exception {
+    public AccountException(String message) {
         super(message);
     }
 }

@@ -11,17 +11,17 @@
     function minNumber(number1, number2, number3) {
         if (number1 < number2) {
             if (number1 < number3) {
-                min = number1;
+                soNhoNhat = number1;
                 return min;
             } else {
-                min = number3;
+                soNhoNhat = number3;
                 return min;
             }
         } else if (number2 > number3) {
-            min = number3;
+            soNhoNhat = number3;
             return min;
         } else {
-            min = number2;
+            soNhoNhat = number2;
             return min;
         }
     }

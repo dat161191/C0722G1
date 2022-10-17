@@ -1,12 +1,11 @@
 package school_manager.service.impl_teacher;
 
 import school_manager.controller.PersonController;
-import school_manager.model.Student;
 import school_manager.model.Teacher;
 import school_manager.service.ISTeacherService;
-import until.PersonCheckException;
-import until.PersonException;
-import until.SortNameTeacher;
+import school_manager.until.PersonCheckException;
+import school_manager.until.PersonException;
+import school_manager.until.SortNameTeacher;
 
 import java.io.*;
 import java.text.ParseException;
@@ -184,7 +183,7 @@ public class TeacherService implements ISTeacherService {
         String code;
         while (true) {
             try {
-                System.out.println("Mời bạn nhập mã Học Sinh muốn tìm");
+                System.out.println("Mời bạn nhập mã Giáo Viên muốn tìm");
                 code = scanner.nextLine();
                 PersonCheckException.checkCode(code);
                 break;
@@ -301,5 +300,30 @@ public class TeacherService implements ISTeacherService {
     private String getinfo(Teacher teacher) {
         return String.format("%s,%s,%s,%s,%s", teacher.getCode(), teacher.getName()
                 , teacher.getGender(), teacher.getBirth().format(fm), teacher.getTechnique());
+    }
+
+    @Override
+    public void add() {
+
+    }
+
+    @Override
+    public void display() {
+
+    }
+
+    @Override
+    public void remove() {
+
+    }
+
+    @Override
+    public void sort() {
+
+    }
+
+    @Override
+    public void find() {
+
     }
 }

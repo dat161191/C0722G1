@@ -3,46 +3,68 @@
 <head>
     <meta charset="UTF-8">
     <title>TRẦN QUỐC ĐẠT</title>
+    <style>
+        form {
+            margin-top: 100px;
+            margin-left: 500px;
+            margin-right: 500px;
+        }
+    </style>
 </head>
 <body>
 <form action="https://james.codegym.vn/my/" method="post">
-    <h1 style="background: red">SỞ THÍCH CỦA BẠN</h1>
-    <table>
+    <table style="background: #ff09b0" border="1px solid black">
         <tr>
-            <td><label>Họ Và Tên</label></td>
-            <td><input type="text" name="name" value="Trần Quốc Đạt"></td>
-        </tr>
-        <tr><td><label>Email</label>
-            <td><input type="text" name="email" value="@gmail"></td>
-        </tr>
-    </table>
+            <td style="background: aquamarine">
+            <h1 style="background: red;text-align: center">SỞ THÍCH CỦA BẠN</h1>
+            <table>
+                <tr>
+                    <td><label>Họ Và Tên</label></td>
+                    <td><input type="text" name="name" value="Trần Quốc Đạt"></td>
+                </tr>
+                <tr>
+                    <td><label>Email</label>
+                    <td><input type="text" name="email" value="@gmail"></td>
+                </tr>
+            </table>
+            <table>
+                <tr>
+                    <td>Sở thích</td>
+                    <td><label style="color: orangered"><input type="checkbox" name="thể thao" value="sport"> Thể
+                        Thao</label>
+                    </td>
+                    <td><label style="color: orangered"><input type="checkbox" name="âm nhạc" value="music"> Âm
+                        Nhạc</label>
+                    </td>
+                    <td><label style="color: orangered"><input type="checkbox" name="Reading" value="sport"> Đọc
+                        Sách</label>
+                    </td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td><label style="color: orangered"><input type="checkbox" name="thể thao" value="surf the web">Lướt
+                        web</label></td>
+                    <td><label style="color: orangered"><input type="checkbox" name="âm nhạc" value="Play game">Chơi
+                        Game</label></td>
+                    <td><label style="color: orangered"><input type="checkbox" name="đọc sách" value="Film">Điện
+                        Ảnh</label>
+                    </td>
 
-
-
-    <table>
-        <tr>
-            <td >Sở thích</td>
-            <td><label style="color: orangered"><input type="checkbox" name="thể thao" value="sport"> Thể Thao</label></td>
-            <td><label style="color: orangered"><input type="checkbox" name="âm nhạc" value="music"> Âm Nhạc</label></td>
-            <td><label style="color: orangered"><input type="checkbox" name="Reading" value="sport"> Đọc Sách</label></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td><label style="color: orangered"><input type="checkbox" name="đọc sách" value="Travel">Du
+                        Lịch</label>
+                    </td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <th><label><input type="submit" value="Gởi thông tin">
+                    <th><label><input type="reset" value="Nhập Lại"></label></th>
+                </tr>
+            </table>
+            </td>
         </tr>
-        <tr>
-            <td></td>
-            <td><label style="color: orangered"><input type="checkbox" name="thể thao" value="surf the web">Lướt web</label></td>
-            <td><label style="color: orangered"><input type="checkbox" name="âm nhạc" value="Play game">Chơi Game</label></td>
-            <td><label style="color: orangered"><input type="checkbox" name="đọc sách" value="Film">Điện Ảnh</label></td>
-
-        </tr>
-        <tr>
-            <td></td>
-            <td><label style="color: orangered"><input type="checkbox" name="đọc sách" value="Travel">Du Lịch</label></td>
-        </tr>
-        <tr>
-            <td></td>
-            <th><label><input type="submit" value="Gởi thông tin">
-            <th><label><input type="reset" value="Nhập Lại"></label></th>
-        </tr>
-
     </table>
 </form>
 </body>

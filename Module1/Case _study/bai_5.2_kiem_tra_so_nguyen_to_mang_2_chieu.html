@@ -8,16 +8,16 @@
 
 </body>
 <script>
-    let arr = new Array(3);
+    let mang = new Array(3);
     for (let i = 0; i < 3; i++) {
-        arr[i] = new Array(3);
+        mang[i] = new Array(3);
     }
-    for (var row = 0; row < arr.length; row++) {
-        for (var column = 0; column < arr[row].length; column++) {
-            arr[row][column] = Math.floor((Math.random() * 100) + 1);
+    for (var row = 0; row < mang.length; row++) {
+        for (var column = 0; column < mang[row].length; column++) {
+            mang[row][column] = Math.floor((Math.random() * 100) + 1);
         }
     }
-    document.write(arr + '<br>')
+    document.write(mang + '<br>')
 
     function kiemTraSoNguyenTo(so) {
         let dem = 0;
@@ -46,7 +46,7 @@
         return arr1;
     }
 
-    let s = hienThi(arr);
+    let s = hienThi(mang);
     document.write(s + ' ' + s.length);
 
 

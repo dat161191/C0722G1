@@ -1,13 +1,12 @@
-package until;
+package school_manager.until;
 
-import school_manager.model.Student;
+import school_manager.model.AccountBank;
 
-import java.time.LocalDate;
 import java.util.Comparator;
 
-public class SortNameStudent implements Comparator<Student> {
+public class SortNameStudent implements Comparator<AccountBank> {
     @Override
-    public int compare(Student o1, Student o2) {
+    public int compare(AccountBank o1, AccountBank o2) {
         if (o1.getName().compareTo(o2.getName()) != 0) {
             return o1.getName().compareTo(o2.getName());
         } else {

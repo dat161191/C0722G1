@@ -16,7 +16,29 @@
         }
         return giaiThua1;
     }
+
     let num = +prompt("nhập số");
     alert(giaiThua(num));
+
+    //giai thừa số chẵn
+    function giaiThuaSoChan(number) {
+        let giaiThua = 1;
+        for (let i = 2; i < number; i = i + 2) {
+            giaiThua = giaiThua * i;
+        }
+        return giaiThua;
+    }
+
+    // giai thừa số lẻ
+    function giaiThuaSoLe(number) {
+        let giaiThua = 1;
+        for (let i = 1; i < number; i = i + 2) {
+            giaiThua = giaiThua * i;
+        }
+        return giaiThua;
+    }
+
+    alert(giaiThuaSoLe(num));
+    alert(giaiThuaSoChan(num));
 </script>
 </html>

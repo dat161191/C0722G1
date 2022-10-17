@@ -1,6 +1,5 @@
-package until;
+package school_manager.until;
 
-import case_study_module2.util.FuramaException;
 import school_manager.model.Person;
 
 import java.text.ParseException;
@@ -67,10 +66,9 @@ public class PersonCheckException {
     }
 
     public static void checkBirth(LocalDate birth) throws PersonException {
-//        LocalDate presentDate = LocalDate.now().plusYears(-18);
+        LocalDate presentDate = LocalDate.now().plusYears(-7);
         LocalDate maxDate = LocalDate.now().plusYears(-100);
-//        if (!birth.isBefore(presentDate) || !birth.isAfter(maxDate)) {
-        if (!birth.isAfter(maxDate)) {
+        if (!birth.isBefore(presentDate) || !birth.isAfter(maxDate)) {
             throw new PersonException("Tuổi bạn nhập quá giới hạn!Vui lòng nhập lại");
         }
     }

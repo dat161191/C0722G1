@@ -7,7 +7,7 @@
 <body>
 
 </body>
-<script >
+<script>
     let input = +prompt("Nhập vào 1 số nguyên");
     let arrFibonacci = [];
     let arrSoNguyenTo = [];
@@ -18,10 +18,11 @@
         let fibonacci2 = 1;
         let fibonacciN;
         for (let i = 0; i < soNguyen; i++) {
+            arrFibonacci.push(fibonacci1);
+// if (fibonacci1 <= soNguyen) {//add số fibo nào nhỏ hơn or bằng số nguyên// }
             fibonacciN = fibonacci1 + fibonacci2;
-            // if (fibonacciN <= soNguyen) {
-                arrFibonacci.push(fibonacciN);//add số fibo nào nhỏ hơn or bằng số nguyên
-            // }
+
+
             fibonacci1 = fibonacci2
             fibonacci2 = fibonacciN;
             // arrFibonacci.push(fibonacciN); add số lượng số fiBo bằng số nguyên

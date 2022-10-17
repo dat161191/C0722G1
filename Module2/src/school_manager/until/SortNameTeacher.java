@@ -1,4 +1,4 @@
-package until;
+package school_manager.until;
 
 import school_manager.model.Teacher;
 

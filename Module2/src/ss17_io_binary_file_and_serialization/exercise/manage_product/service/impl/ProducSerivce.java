@@ -1,6 +1,5 @@
 package ss17_io_binary_file_and_serialization.exercise.manage_product.service.impl;
 
-import school_manager.model.Student;
 import ss17_io_binary_file_and_serialization.exercise.manage_product.model.Product;
 import ss17_io_binary_file_and_serialization.exercise.manage_product.service.IProductService;
 

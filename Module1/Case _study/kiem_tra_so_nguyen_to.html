@@ -8,8 +8,8 @@
 <script>
 
     let so1 = +prompt("nhập vào 1 số")
-    document.write(kiemTraSoNguyenTo(so1)+ " ");
-    hienThi(so1);
+    document.write(kiemTraSoNguyenTo(so1) + " ");
+    alert(hienThi(so1));
 
     function kiemTraSoNguyenTo(so) {
         let dem = 0;
@@ -24,12 +24,18 @@
             return false;
         }
     }
+
     function hienThi(so) {
-        for (let i = 0; i <= so; i++) {
-            if (kiemTraSoNguyenTo(i) === true) {
-                document.write(  i + ", ");
-            }
+        if (kiemTraSoNguyenTo(so)) {
+            return true;
+        } else {
+            return false;
         }
+        // for (let i = 0; i <= so; i++) {
+        //     if (kiemTraSoNguyenTo(i) === true) {
+        //         document.write(  i + ", ");
+        //     }
+        // }
     }
 
 

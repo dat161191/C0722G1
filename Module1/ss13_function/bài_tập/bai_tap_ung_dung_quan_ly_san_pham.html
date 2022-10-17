@@ -3,28 +3,76 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    <style>
+        table {
+            border-collapse: collapse;
+            box-shadow: 5px 5px 5px 5px lightblue;
+        }
+
+        button {
+            border-radius: 10px;
+            cursor: pointer;
+        }
+
+        tr:hover {
+            background-color: #cccccc;
+        }
+    </style>
 </head>
 <body>
-<form>
-    <h1>Add New Product</h1>
-    <input type="text" id="Enterproduct">
-    <input type="button" id="Addname" value="Add" onclick="addProduct()">
-</form>
-<table>
-    <tr>
-        <th>STT</th>
-        <th>Name of Product</th>
-        <th></th>
-        <th></th>
-    </tr>
-</table>
-
+<input type="text" placeholder="Nhập tên sản phẩm" id="input">
+<button onclick="add()">Thêm mới</button>
+<p id="display"></p>
 </body>
 <script>
-    function addProduct(array) {
-        let name=document.getElementById("Enterproduct").value;
-        array.push(name)
+    // "C0722G1"
+    // 1 A
+    // 2 B
+    // 3 C
+
+    // let sth = prompt("1 A \n 2 B \n 3 C")
+    let array = ["iphone", "nokia"];
+    function view(array) {
+        let str = '<table >\n' +
+            '    <tr>\n' +
+            '        <th>Tên</th>\n' +
+            '        <th colspan="2">Hành Động</th>\n' +
+            '    </tr>';
+        for (let i = 0; i < array.length; i++) {
+            str += "<tr>" +
+                "<td>" + array[i] + "</td>" +
+                "<td><button onclick='edit(" + i + ")'>Sửa</button></td>" +
+                "<td><button onclick='remove(" + i + ")'>xóa</button></td>" +
+                "</tr>"
+        }
+        str += "</table>";
+        document.getElementById("display").innerHTML = str;
     }
 
+    view(array);
+
+    function add() {
+        let ele = document.getElementById("input").value;
+        array.push(ele);
+        alert("Thêm mới thành công");
+        view(array)
+    }
+
+    function edit(index) {
+        array[index] = prompt("Nhập tên sản phẩm");
+        alert("Sửa thành công");
+        view(array)
+    }
+
+    function remove(index) {
+        let choice = confirm("Bạn có chắc xóa sản phẩm có tên: " + array[index]);
+        if (choice) {
+            array.splice(index, 1);
+            alert("Xóa thành công");
+        } else {
+            alert("Sợ hay sao ?")
+        }
+        view(array)
+    }
 </script>
 </html>

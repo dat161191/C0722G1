@@ -3,23 +3,23 @@ package school_manager.model;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
-public class Student extends Person {
+public class AccountBank extends Person {
     private String nameClass;
     private double score;
     private DateTimeFormatter fm = DateTimeFormatter.ofPattern("dd/MM/yyyy");
 
-    public Student(String code, String name, String gender, LocalDate birth, String nameClass, double score) {
+    public AccountBank(String code, String name, String gender, LocalDate birth, String nameClass, double score) {
         super(code, name, gender, birth);
         this.nameClass = nameClass;
         this.score = score;
     }
 
-    public Student(String nameClass, double score) {
+    public AccountBank(String nameClass, double score) {
         this.nameClass = nameClass;
         this.score = score;
     }
 
-    public Student() {
+    public AccountBank() {
     }
 
     @Override
