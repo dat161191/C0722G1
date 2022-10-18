@@ -1,35 +1,35 @@
-DROP DATABASE IF EXISTS QuanLySinhVien;
-CREATE DATABASE IF NOT EXISTS QuanLySinhVien;
-USE QuanLySinhVien;
-CREATE TABLE Class(
-    ClassID   INT         NOT NULL AUTO_INCREMENT PRIMARY KEY,
-    ClassName VARCHAR(60) NOT NULL,
-    StartDate DATETIME    NOT NULL,
-    Status    BIT
+DROP DATABASE IF EXISTS ss2_quan_ly_sinh_vien;
+CREATE DATABASE IF NOT EXISTS ss2_quan_ly_sinh_vien;
+USE ss2_quan_ly_sinh_vien;
+CREATE TABLE class(
+    class_iD INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    class_name VARCHAR(60) NOT NULL,
+    start_date DATETIME NOT NULL,
+    `status` BIT
 );
-CREATE TABLE Student(
-    StudentId   INT         NOT NULL AUTO_INCREMENT PRIMARY KEY,
-    StudentName VARCHAR(30) NOT NULL,
-    Address     VARCHAR(50),
-    Phone       VARCHAR(20),
-    Status      BIT,
-    ClassId     INT         NOT NULL,
-    FOREIGN KEY (ClassId) REFERENCES Class (ClassID)
+CREATE TABLE student(
+    student_id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    student_name VARCHAR(30) NOT NULL,
+    address     VARCHAR(50),
+    phone       VARCHAR(20),
+    `status`      BIT,
+    class_id     INT  NOT NULL,
+    FOREIGN KEY (class_id) REFERENCES class (class_id)
 );
-CREATE TABLE `Subject`(
-    SubId   INT         NOT NULL AUTO_INCREMENT PRIMARY KEY,
-    SubName VARCHAR(30) NOT NULL,
-    Credit  TINYINT     NOT NULL DEFAULT 1 CHECK ( Credit >= 1 ),
-    Status  BIT                  DEFAULT 1
+CREATE TABLE `subject`(
+    sub_id   INT         NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    sub_name VARCHAR(30) NOT NULL,
+    credit  TINYINT NOT NULL DEFAULT 1 CHECK ( Credit >= 1 ),
+    `status`  BIT DEFAULT 1
 );
 
-CREATE TABLE Mark(
-    MarkId    INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
-    SubId     INT NOT NULL,
-    StudentId INT NOT NULL,
-    Mark      FLOAT   DEFAULT 0 CHECK ( Mark BETWEEN 0 AND 100),
-    ExamTimes TINYINT DEFAULT 1,
-    UNIQUE (SubId, StudentId),
-    FOREIGN KEY (SubId) REFERENCES `Subject` (SubId),
-    FOREIGN KEY (StudentId) REFERENCES Student (StudentId)
+CREATE TABLE mark(
+    mark_id    INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    sub_id     INT NOT NULL,
+    student_id INT NOT NULL,
+    mark      FLOAT   DEFAULT 0 CHECK ( Mark BETWEEN 0 AND 100),
+    exam_times TINYINT DEFAULT 1,
+    UNIQUE (sub_id, student_id),
+    FOREIGN KEY (sub_id) REFERENCES `subject` (sub_id),
+    FOREIGN KEY (student_id) REFERENCES Student (student_id)
 );

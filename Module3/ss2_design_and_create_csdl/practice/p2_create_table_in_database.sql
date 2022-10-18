@@ -1,5 +1,6 @@
-CREATE DATABASE QuanLyDiemThi;
-USE QuanLyDiemThi;
+DROP DATABASE IF EXISTS ss2_quan_ly_diem_thi;
+CREATE DATABASE ss2_quan_ly_diem_thi;
+USE ss2_quan_ly_diem_thi;
 CREATE TABLE HocSinh(
     MaHS VARCHAR(20) PRIMARY KEY,
     TenHS VARCHAR(50),

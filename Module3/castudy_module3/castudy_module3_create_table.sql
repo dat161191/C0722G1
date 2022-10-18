@@ -3,55 +3,75 @@ CREATE DATABASE IF NOT EXISTS castudty_module3;
 USE castudty_module3;
 
 -- Table vi_tri--  
-CREATE TABLE vi_tri(ma_vi_tri INT PRIMARY KEY AUTO_INCREMENT,
-ten_vi_tri VARCHAR(45) NULL);
+CREATE TABLE vi_tri (
+    ma_vi_tri INT PRIMARY KEY AUTO_INCREMENT,
+    ten_vi_tri VARCHAR(45) NULL
+);
 
 -- Table trinh_do--
-CREATE TABLE trinh_do ( ma_trinh_do INT PRIMARY KEY AUTO_INCREMENT,
-ten_trinh_do VARCHAR (45) NULL);
+CREATE TABLE trinh_do (
+    ma_trinh_do INT PRIMARY KEY AUTO_INCREMENT,
+    ten_trinh_do VARCHAR(45) NULL
+);
 
 -- Table bo_phan-- 
-CREATE TABLE bo_phan (ma_bo_phan INT PRIMARY KEY AUTO_INCREMENT,
-ten_bo_phan VARCHAR (45) NULL);
+CREATE TABLE bo_phan (
+    ma_bo_phan INT PRIMARY KEY AUTO_INCREMENT,
+    ten_bo_phan VARCHAR(45) NULL
+);
 
 -- Table nhan_vien-- 
-CREATE TABLE nhan_vien (ma_nhan_vien INT PRIMARY KEY AUTO_INCREMENT,
-ho_ten VARCHAR (45) NOT NULL,
-ngay_sinh DATE NOT NULL,
-so_cmnd VARCHAR (45) NOT NULL UNIQUE,
-luong DOUBLE,
-so_dien_thoai VARCHAR (45) NOT NULL UNIQUE,
-email VARCHAR (45) UNIQUE,
-dia_chi VARCHAR (45) NOT NULL UNIQUE,
-ma_vi_tri INT NOT NULL,
-ma_trinh_do INT NOT NULL,
-ma_bo_phan INT NOT NULL,
-CONSTRAINT fk_vi_tri FOREIGN KEY(ma_vi_tri) REFERENCES vi_tri(ma_vi_tri),
-CONSTRAINT fk_trinh_do FOREIGN KEY(ma_vi_tri) REFERENCES trinh_do(ma_trinh_do),
-CONSTRAINT fk_bo_phan FOREIGN KEY(ma_bo_phan) REFERENCES bo_phan(ma_bo_phan));
+CREATE TABLE nhan_vien (
+    ma_nhan_vien INT PRIMARY KEY AUTO_INCREMENT,
+    ho_ten VARCHAR(45) NOT NULL,
+    ngay_sinh DATE NOT NULL,
+    so_cmnd VARCHAR(45) NOT NULL UNIQUE,
+    luong DOUBLE,
+    so_dien_thoai VARCHAR(45) NOT NULL UNIQUE,
+    email VARCHAR(45) UNIQUE,
+    dia_chi VARCHAR(45) NOT NULL UNIQUE,
+    ma_vi_tri INT NOT NULL,
+    ma_trinh_do INT NOT NULL,
+    ma_bo_phan INT NOT NULL,
+    CONSTRAINT fk_vi_tri FOREIGN KEY (ma_vi_tri)
+        REFERENCES vi_tri (ma_vi_tri),
+    CONSTRAINT fk_trinh_do FOREIGN KEY (ma_vi_tri)
+        REFERENCES trinh_do (ma_trinh_do),
+    CONSTRAINT fk_bo_phan FOREIGN KEY (ma_bo_phan)
+        REFERENCES bo_phan (ma_bo_phan)
+);
 
 -- Tabel loai_khach--  
-CREATE TABLE loai_khach (ma_loai_khach INT PRIMARY KEY AUTO_INCREMENT,
-ten_loai_khach VARCHAR (45) NULL);
+CREATE TABLE loai_khach (
+    ma_loai_khach INT PRIMARY KEY AUTO_INCREMENT,
+    ten_loai_khach VARCHAR(45) NULL
+);
 -- Table khach_hang--  
-CREATE TABLE khach_hang (ma_khach_hang INT PRIMARY KEY AUTO_INCREMENT,
-ma_loai_khach INT NOT NULL,
-ho_ten VARCHAR (45) NOT NULL,
-ngay_sinh DATE NOT NULL,
-gioi_tinh BIT(1),
-so_cmnd VARCHAR (45) NOT NULL UNIQUE,
-so_dien_thoai VARCHAR (45) NOT NULL UNIQUE,
-email VARCHAR (45) UNIQUE,
-dia_chi VARCHAR (45) NOT NULL UNIQUE,
-CONSTRAINT fk_loai_khach FOREIGN KEY(ma_loai_khach) REFERENCES loai_khach(ma_loai_khach));
+CREATE TABLE khach_hang (
+    ma_khach_hang INT PRIMARY KEY AUTO_INCREMENT,
+    ma_loai_khach INT NOT NULL,
+    ho_ten VARCHAR(45) NOT NULL,
+    ngay_sinh DATE NOT NULL,
+    gioi_tinh BIT(1),
+    so_cmnd VARCHAR(45) NOT NULL UNIQUE,
+    so_dien_thoai VARCHAR(45) NOT NULL UNIQUE,
+    email VARCHAR(45) UNIQUE,
+    dia_chi VARCHAR(45) NOT NULL UNIQUE,
+    CONSTRAINT fk_loai_khach FOREIGN KEY (ma_loai_khach)
+        REFERENCES loai_khach (ma_loai_khach)
+);
 
 -- Table loai_dich_vu--  
-CREATE TABLE loai_dich_vu (ma_loai_dich_vu INT PRIMARY KEY AUTO_INCREMENT,
-ten_loai_dich_vu VARCHAR (45) NULL);
+CREATE TABLE loai_dich_vu (
+    ma_loai_dich_vu INT PRIMARY KEY AUTO_INCREMENT,
+    ten_loai_dich_vu VARCHAR(45) NULL
+);
 
 -- Table kieu_thue--  
-CREATE TABLE kieu_thue (ma_kieu_thue INT PRIMARY KEY AUTO_INCREMENT,
-ten_kieu_thue VARCHAR (45) NULL);
+CREATE TABLE kieu_thue (
+    ma_kieu_thue INT PRIMARY KEY AUTO_INCREMENT,
+    ten_kieu_thue VARCHAR(45) NULL
+);
 
 -- Table dich_vu--
 CREATE TABLE dich_vu (ma_dich_vu INT PRIMARY KEY AUTO_INCREMENT,

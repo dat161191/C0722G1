@@ -70,7 +70,7 @@ JOIN so_dien_thoai AS sdt ON ncc.ma_nha_cung_cap = sdt.ma_nha_cung_cap;
 
 SELECT ncc.ma_nha_cung_cap, ncc.ten_nha_cung_cap, sdt.so_dien_thoai
 FROM nha_cung_cap AS ncc
-LEFT JOIN so_dien_thoai AS sdt ON ncc.ma_nha_cung_cap = sdt.ma_nha_cung_cap;
+RIGHT JOIN so_dien_thoai AS sdt ON ncc.ma_nha_cung_cap = sdt.ma_nha_cung_cap;
 
 
 
