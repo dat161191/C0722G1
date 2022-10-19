@@ -278,8 +278,11 @@ FROM
     trinh_do ON nhan_vien.ma_trinh_do = trinh_do.ma_trinh_do
         JOIN
     bo_phan ON nhan_vien.ma_bo_phan = bo_phan.ma_bo_phan
-    JOIN hop_dong ON nhan_vien.ma_nhan_vien=hop_dong.ma_nhan_vien
-    GROUP BY hop_dong.ma_nhan_vien
-    HAVING COUNT(hop_dong.ma_nhan_vien)<=3;
+        JOIN
+    hop_dong ON nhan_vien.ma_nhan_vien = hop_dong.ma_nhan_vien
+WHERE
+    YEAR(hop_dong.ngay_lam_hop_dong) IN (2020 , 2021)
+GROUP BY hop_dong.ma_nhan_vien
+HAVING COUNT(hop_dong.ma_nhan_vien) <= 3;
 
 	
