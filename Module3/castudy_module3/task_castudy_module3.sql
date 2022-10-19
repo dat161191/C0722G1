@@ -194,21 +194,20 @@ SELECT
     dich_vu.ten_dich_vu,
     hop_dong.tien_dat_coc,
     dich_vu_di_kem.ten_dich_vu_di_kem,
-        hop_dong.ngay_lam_hop_dong,
+    hop_dong.ngay_lam_hop_dong,
     SUM(IFNULL(hop_dong_chi_tiet.so_luong, 0)) AS so_luong_dich_vu_di_kem
 FROM
     dich_vu
         JOIN
-    hop_dong ON dich_vu.ma_dich_vu=hop_dong.ma_dich_vu
-       LEFT JOIN
+    hop_dong ON dich_vu.ma_dich_vu = hop_dong.ma_dich_vu
+        LEFT JOIN
     khach_hang ON khach_hang.ma_khach_hang = hop_dong.ma_khach_hang
-       LEFT JOIN
+        LEFT JOIN
     nhan_vien ON hop_dong.ma_nhan_vien = nhan_vien.ma_nhan_vien
-       LEFT JOIN
+        LEFT JOIN
     hop_dong_chi_tiet ON hop_dong_chi_tiet.ma_hop_dong = hop_dong.ma_hop_dong
         LEFT JOIN
     dich_vu_di_kem ON hop_dong_chi_tiet.ma_dich_vu_di_kem = dich_vu_di_kem.ma_dich_vu_di_kem
-    
 WHERE
     YEAR(hop_dong.ngay_lam_hop_dong) = '2020'
         AND MONTH(hop_dong.ngay_lam_hop_dong) IN (10 , 11, 12)
@@ -219,7 +218,7 @@ WHERE
         WHERE
             MONTH(ngay_lam_hop_dong) IN (1 , 2, 3, 4, 5, 6)
                 AND YEAR(ngay_lam_hop_dong) = '2021')
-GROUP BY ma_hop_dong ;
+GROUP BY ma_hop_dong;
 
 -- Task 6 CÂU 13 --
 -- Hiển thị thông tin các Dịch vụ đi kèm được sử dụng nhiều nhất bởi các Khách hàng đã đặt phòng. (Lưu ý là có thể có nhiều dịch vụ có số lần sử dụng nhiều như nhau).
@@ -239,5 +238,48 @@ HAVING SUM(IFNULL(hop_dong_chi_tiet.so_luong, 0)) >= ALL (SELECT
         hop_dong_chi_tiet
     GROUP BY hop_dong_chi_tiet.ma_dich_vu_di_kem);
   
+  -- Task 6 CÂU 14 --
+#Hiển thị thông tin tất cả các Dịch vụ đi kèm chỉ mới được sử dụng một lần duy nhất.
+#Thông tin hiển thị bao gồm ma_hop_dong, ten_loai_dich_vu, ten_dich_vu_di_kem, so_lan_su_dung (được tính dựa trên việc count các ma_dich_vu_di_kem).
+SELECT 
+    dich_vu_di_kem.ma_dich_vu_di_kem,
+    dich_vu_di_kem.ten_dich_vu_di_kem,
+    hop_dong_chi_tiet.ma_hop_dong,
+    loai_dich_vu.ten_loai_dich_vu,
+    COUNT(hop_dong_chi_tiet.ma_dich_vu_di_kem) AS so_lan_su_dung
+FROM
+    dich_vu
+        JOIN
+    loai_dich_vu ON dich_vu.ma_loai_dich_vu = loai_dich_vu.ma_loai_dich_vu
+        JOIN
+    hop_dong ON dich_vu.ma_dich_vu = hop_dong.ma_dich_vu
+        JOIN
+    hop_dong_chi_tiet ON hop_dong.ma_hop_dong = hop_dong_chi_tiet.ma_hop_dong
+        JOIN
+    dich_vu_di_kem ON hop_dong_chi_tiet.ma_dich_vu_di_kem = dich_vu_di_kem.ma_dich_vu_di_kem
+GROUP BY dich_vu_di_kem.ma_dich_vu_di_kem
+HAVING so_lan_su_dung = 1;
+
+  -- Task 6 CÂU 15 --
+  #Hiển thi thông tin của tất cả nhân viên bao gồm ma_nhan_vien, ho_ten, ten_trinh_do, ten_bo_phan,
+  #so_dien_thoai, dia_chi mới chỉ lập được tối đa 3 hợp đồng từ năm 2020 đến 2021.
+SELECT 
+    nhan_vien.ma_nhan_vien,
+    nhan_vien.ho_ten,
+    trinh_do.ten_trinh_do,
+    bo_phan.ten_bo_phan,
+    nhan_vien.so_dien_thoai,
+    nhan_vien.dia_chi
+FROM
+    nhan_vien
+        JOIN
+    vi_tri ON nhan_vien.ma_vi_tri = vi_tri.ma_vi_tri
+        JOIN
+    trinh_do ON nhan_vien.ma_trinh_do = trinh_do.ma_trinh_do
+        JOIN
+    bo_phan ON nhan_vien.ma_bo_phan = bo_phan.ma_bo_phan
+    JOIN hop_dong ON nhan_vien.ma_nhan_vien=hop_dong.ma_nhan_vien
+    GROUP BY hop_dong.ma_nhan_vien
+    HAVING COUNT(hop_dong.ma_nhan_vien)<=3;
 
 	
