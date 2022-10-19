@@ -121,8 +121,13 @@ GROUP BY dich_vu.ma_dich_vu
 ORDER BY ten_dich_vu DESC;
 
 -- Task 5 CÂU 8 --
--- Hiển thị thông tin ho_ten khách hàng có trong hệ thống, với yêu cầu ho_ten không trùng nhau.
+-- Hiển thị thông tin ho_ten khách hàng có trong hệ thống, với yêu cầu ho_ten không trùng nhau. (3 cách)
 SELECT DISTINCT  khach_hang.ho_ten FROM khach_hang;
+SELECT khach_hang.ho_ten FROM khach_hang
+GROUP BY khach_hang.ho_ten;
+SELECT khach_hang.ho_ten FROM khach_hang
+UNION
+SELECT khach_hang.ho_ten FROM khach_hang;
 
 -- Task 5 CÂU 9 --
 -- Thực hiện thống kê doanh thu theo tháng, 
