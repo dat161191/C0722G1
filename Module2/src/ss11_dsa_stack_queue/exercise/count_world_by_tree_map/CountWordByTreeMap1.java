@@ -4,7 +4,7 @@ import java.util.*;
 
 public class CountWordByTreeMap1 {
     public static void main(String[] args) {
-        String str = "Hello Hello hello";
+        String str = "Hello Hello hello aa";
         String[] str1 = str.toLowerCase().split("");
         Map<String, Integer> map = new TreeMap<>();
         for (String i : str1) {

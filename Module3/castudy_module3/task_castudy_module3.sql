@@ -233,7 +233,8 @@ FROM
     dich_vu_di_kem ON hop_dong_chi_tiet.ma_dich_vu_di_kem = dich_vu_di_kem.ma_dich_vu_di_kem
 GROUP BY dich_vu_di_kem.ten_dich_vu_di_kem
 HAVING SUM(IFNULL(hop_dong_chi_tiet.so_luong, 0)) >= ALL (SELECT 
-        SUM(IFNULL(hop_dong_chi_tiet.so_luong, 0))
+        #SUM(IFNULL(hop_dong_chi_tiet.so_luong, 0))
+        MAX(hop_dong_chi_tiet.so_luong)
     FROM
         hop_dong_chi_tiet
     GROUP BY hop_dong_chi_tiet.ma_dich_vu_di_kem);
@@ -285,4 +286,47 @@ WHERE
 GROUP BY hop_dong.ma_nhan_vien
 HAVING COUNT(hop_dong.ma_nhan_vien) <= 3;
 
-	
+-- Task 7 CÂU 16 --
+#Xóa những Nhân viên chưa từng lập được hợp đồng nào từ năm 2019 đến năm 2021.	
+SET SQL_SAFE_UPDATES = 0;
+DELETE FROM nhan_vien 
+WHERE
+    nhan_vien.ma_nhan_vien NOT IN (SELECT * FROM (SELECT 
+        nhan_vien.ma_nhan_vien
+    FROM
+        nhan_vien
+            LEFT JOIN
+        hop_dong ON nhan_vien.ma_nhan_vien = hop_dong.ma_nhan_vien
+    WHERE
+        hop_dong.ngay_lam_hop_dong BETWEEN '2019-01-01' AND '2021-12-31') as x);
+SELECT * FROM nhan_vien;
+SET SQL_SAFE_UPDATES = 1;
+
+-- Task 7 CÂU 17 --
+# Cập nhật thông tin những khách hàng có ten_loai_khach từ Platinum lên Diamond,
+# chỉ cập nhật những khách hàng đã từng đặt phòng với Tổng Tiền thanh toán trong năm 2021 là lớn hơn 10.000.000 VNĐ.
+# Tổng Tiền thanh toán = Chi Phí Thuê + Số Lượng * Giá
+SET SQL_SAFE_UPDATES = 0;
+UPDATE khach_hang 
+SET 
+    khach_hang.ma_loai_khach = 1
+WHERE
+    khach_hang.ma_khach_hang IN (SELECT khach_hang.ma_khach_hang FROM (SELECT 
+                hop_dong.ma_khach_hang,
+				IFNULL(dich_vu.chi_phi_thue, 0) + SUM(IFNULL(dich_vu_di_kem.gia, 0) * IFNULL(hop_dong_chi_tiet.so_luong, 0)) AS tong_tien
+            FROM
+                khach_hang
+            JOIN loai_khach ON khach_hang.ma_loai_khach = loai_khach.ma_loai_khach
+            JOIN hop_dong ON khach_hang.ma_khach_hang = hop_dong.ma_khach_hang
+            LEFT JOIN dich_vu ON hop_dong.ma_dich_vu = dich_vu.ma_dich_vu
+            LEFT JOIN hop_dong_chi_tiet ON hop_dong.ma_hop_dong = hop_dong_chi_tiet.ma_hop_dong
+            LEFT JOIN dich_vu_di_kem ON hop_dong_chi_tiet.ma_dich_vu_di_kem = dich_vu_di_kem.ma_dich_vu_di_kem
+            WHERE
+                loai_khach.ten_loai_khach REGEXP ('Platinium')
+                    AND YEAR(hop_dong.ngay_lam_hop_dong) = 2021
+            GROUP BY hop_dong.ma_hop_dong) AS view_table);
+SELECT * FROM khach_hang;
+SET SQL_SAFE_UPDATES = 1;
+
+
+
