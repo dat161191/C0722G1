@@ -8,10 +8,7 @@ FROM
 WHERE
     (ho_ten LIKE 'h%' OR ho_ten LIKE 'K%'
         OR ho_ten LIKE 'Tòng%')
-        AND CHAR_LENGTH(ho_ten) < 16;
-
--- Task 4 CÂU 3--  
--- Hiển thị thông tin của tất cả khách hàng có độ tuổi từ 18 đến 50 tuổi và có địa chỉ ở “Đà Nẵng” hoặc “Quảng Trị”.
+        AND CHAR_LENGTH(ho_ten) < 16khách hàng có độ tuổi từ 18 đến 50 tuổi và có địa chỉ ở “Đà Nẵng” hoặc “Quảng Trị”.
 SELECT * FROM khach_hang
 -- WHERE 18 <= datediff(curdate(),ngay_sinh)/365.25 and datediff(curdate(),ngay_sinh)/365.25 <=50 
 -- AND dia_chi LIKE "%Đà Nẵng%" OR dia_chi LIKE "%Quảng Trị%";
@@ -291,42 +288,107 @@ HAVING COUNT(hop_dong.ma_nhan_vien) <= 3;
 SET SQL_SAFE_UPDATES = 0;
 DELETE FROM nhan_vien 
 WHERE
-    nhan_vien.ma_nhan_vien NOT IN (SELECT * FROM (SELECT 
-        nhan_vien.ma_nhan_vien
+    nhan_vien.ma_nhan_vien NOT IN (SELECT 
+        *
     FROM
-        nhan_vien
-            LEFT JOIN
-        hop_dong ON nhan_vien.ma_nhan_vien = hop_dong.ma_nhan_vien
-    WHERE
-        hop_dong.ngay_lam_hop_dong BETWEEN '2019-01-01' AND '2021-12-31') as x);
+        (SELECT 
+            nhan_vien.ma_nhan_vien
+        FROM
+            nhan_vien
+        LEFT JOIN hop_dong ON nhan_vien.ma_nhan_vien = hop_dong.ma_nhan_vien
+        
+        WHERE
+            hop_dong.ngay_lam_hop_dong BETWEEN '2019-01-01' AND '2021-12-31') AS x);
 SELECT * FROM nhan_vien;
 SET SQL_SAFE_UPDATES = 1;
+
+-- SET SQL_SAFE_UPDATES = 0;
+-- DELETE FROM nhan_vien
+-- WHERE ma_nhan_vien NOT IN (
+-- SELECT hd.ma_nhan_vien
+-- FROM hop_dong hd
+-- GROUP BY hd.ma_nhan_vien
+-- );
+-- SET SQL_SAFE_UPDATES = 1;
+-- SELECT * FROM nhan_vien;
 
 -- Task 7 CÂU 17 --
 # Cập nhật thông tin những khách hàng có ten_loai_khach từ Platinum lên Diamond,
 # chỉ cập nhật những khách hàng đã từng đặt phòng với Tổng Tiền thanh toán trong năm 2021 là lớn hơn 10.000.000 VNĐ.
 # Tổng Tiền thanh toán = Chi Phí Thuê + Số Lượng * Giá
+
+CREATE VIEW w_abc AS
+    (SELECT 
+        mkh, ht, SUM(view_table.tong_tien) AS tong_chi_phi
+    FROM
+        (SELECT 
+            khach_hang.ma_khach_hang mkh,
+                khach_hang.ho_ten ht,
+                IFNULL(dich_vu.chi_phi_thue, 0) + SUM(IFNULL(dich_vu_di_kem.gia, 0) * IFNULL(hop_dong_chi_tiet.so_luong, 0)) AS tong_tien
+        FROM
+            khach_hang
+        JOIN loai_khach ON khach_hang.ma_loai_khach = loai_khach.ma_loai_khach
+        JOIN hop_dong ON khach_hang.ma_khach_hang = hop_dong.ma_khach_hang
+        LEFT JOIN dich_vu ON hop_dong.ma_dich_vu = dich_vu.ma_dich_vu
+        LEFT JOIN hop_dong_chi_tiet ON hop_dong.ma_hop_dong = hop_dong_chi_tiet.ma_hop_dong
+        LEFT JOIN dich_vu_di_kem ON hop_dong_chi_tiet.ma_dich_vu_di_kem = dich_vu_di_kem.ma_dich_vu_di_kem
+        WHERE
+            loai_khach.ten_loai_khach REGEXP ('Platinium')
+                AND YEAR(hop_dong.ngay_lam_hop_dong) = 2021
+        GROUP BY hop_dong.ma_hop_dong , khach_hang.ma_loai_khach
+        HAVING tong_tien > 1000000) AS view_table
+    GROUP BY mkh);
 SET SQL_SAFE_UPDATES = 0;
 UPDATE khach_hang 
 SET 
     khach_hang.ma_loai_khach = 1
 WHERE
-    khach_hang.ma_khach_hang IN (SELECT khach_hang.ma_khach_hang FROM (SELECT 
-                hop_dong.ma_khach_hang,
-				IFNULL(dich_vu.chi_phi_thue, 0) + SUM(IFNULL(dich_vu_di_kem.gia, 0) * IFNULL(hop_dong_chi_tiet.so_luong, 0)) AS tong_tien
-            FROM
-                khach_hang
-            JOIN loai_khach ON khach_hang.ma_loai_khach = loai_khach.ma_loai_khach
-            JOIN hop_dong ON khach_hang.ma_khach_hang = hop_dong.ma_khach_hang
-            LEFT JOIN dich_vu ON hop_dong.ma_dich_vu = dich_vu.ma_dich_vu
-            LEFT JOIN hop_dong_chi_tiet ON hop_dong.ma_hop_dong = hop_dong_chi_tiet.ma_hop_dong
-            LEFT JOIN dich_vu_di_kem ON hop_dong_chi_tiet.ma_dich_vu_di_kem = dich_vu_di_kem.ma_dich_vu_di_kem
-            WHERE
-                loai_khach.ten_loai_khach REGEXP ('Platinium')
-                    AND YEAR(hop_dong.ngay_lam_hop_dong) = 2021
-            GROUP BY hop_dong.ma_hop_dong) AS view_table);
+    khach_hang.ma_khach_hang IN (SELECT 
+            *
+        FROM
+            (SELECT mkh FROM w_abc) AS w);
 SELECT * FROM khach_hang;
 SET SQL_SAFE_UPDATES = 1;
 
+SELECT mkh FROM w_abc;
 
+-- Task 7 CÂU 19 --
+#Cập nhật giá cho các dịch vụ đi kèm được sử dụng trên 10 lần trong năm 2020 lên gấp đôi.
+SET SQL_SAFE_UPDATES = 0;
+SELECT * FROM dich_vu_di_kem;
+UPDATE dich_vu_di_kem 
+SET 
+    dich_vu_di_kem.gia = dich_vu_di_kem.gia * 2
+WHERE
+    dich_vu_di_kem.ma_dich_vu_di_kem IN (SELECT 
+            tb_view.ma_dich_vu_di_kem
+        FROM
+            (SELECT 
+                hop_dong_chi_tiet.ma_hop_dong,
+				dich_vu_di_kem.ten_dich_vu_di_kem,
+				hop_dong_chi_tiet.so_luong,
+				dich_vu_di_kem.gia,
+				hop_dong.ngay_lam_hop_dong,
+				dich_vu_di_kem.ma_dich_vu_di_kem,
+				SUM(IFNULL(hop_dong_chi_tiet.so_luong, 0)) AS tsl
+            FROM
+                dich_vu_di_kem
+            JOIN hop_dong_chi_tiet ON dich_vu_di_kem.ma_dich_vu_di_kem = hop_dong_chi_tiet.ma_dich_vu_di_kem
+            JOIN hop_dong ON hop_dong_chi_tiet.ma_hop_dong = hop_dong.ma_hop_dong
+            WHERE
+                YEAR(hop_dong.ngay_lam_hop_dong) = 2020
+            GROUP BY hop_dong_chi_tiet.ma_dich_vu_di_kem
+            HAVING tsl > 10) AS tb_view);
+SELECT 
+    *
+FROM
+    dich_vu_di_kem;
+SET SQL_SAFE_UPDATES = 1;
 
+-- Task 7 CÂU 20 --
+#Hiển thị thông tin của tất cả các nhân viên và khách hàng có trong hệ thống,
+#thông tin hiển thị bao gồm id (ma_nhan_vien, ma_khach_hang),
+#ho_ten, email, so_dien_thoai, ngay_sinh, dia_chi.
+SELECT nhan_vien.ho_ten,nhan_vien.email,nhan_vien.so_dien_thoai,nhan_vien.ngay_sinh,nhan_vien.dia_chi FROM nhan_vien 
+UNION
+SELECT khach_hang.ho_ten,khach_hang.email,khach_hang.so_dien_thoai,khach_hang.ngay_sinh,khach_hang.dia_chi FROM khach_hang;
