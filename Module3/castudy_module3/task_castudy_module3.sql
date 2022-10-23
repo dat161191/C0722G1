@@ -490,25 +490,40 @@ SELECT COUNT(*) FROM hop_dong;
 END//
 DELIMITER ;
 SET SQL_SAFE_UPDATES = 0;
- SET FOREIGN_KEY_CHECKS = 0; 
-DELETE FROM hop_dong WHERE hop_dong.ma_hop_dong=1;
-DELETE FROM hop_dong WHERE hop_dong.ma_hop_dong=2;
-SELECT * FROM so_luong_ban_ghi;
+SET FOREIGN_KEY_CHECKS = 0; 
+DELETE FROM hop_dong 
+WHERE
+    hop_dong.ma_hop_dong = 1;
+DELETE FROM hop_dong 
+WHERE
+    hop_dong.ma_hop_dong = 2;
+SELECT 
+    *
+FROM
+    so_luong_ban_ghi;
 DROP TRIGGER xoa_hop_dong;
 #======================== Task 8 CÂU 26=====================#
 #==Tạo Trigger có tên tr_cap_nhat_hop_dong khi cập nhật ngày kết thúc hợp đồng, cần kiểm tra xem thời gian cập nhật có phù hợp hay không, 
 #==với quy tắc sau: Ngày kết thúc hợp đồng phải lớn hơn ngày làm hợp đồng ít nhất là 2 ngày.
 #==Nếu dữ liệu hợp lệ thì cho phép cập nhật, nếu dữ liệu không hợp lệ thì in ra thông báo “Ngày kết thúc hợp đồng phải lớn hơn ngày làm hợp đồng ít nhất là 2 ngày” trên console của database.
--- DELIMITER //
--- CREATE TRIGGER tr_cap_nhat_hop_dong
--- BEFORE UPDATE ON hop_dong
--- FOR EACH ROW
--- BEGIN
--- IF datediff(NEW.ngay_ket_thuc,ngay_lam_hop_dong) > 1 then
--- SET ngay_ket_thuc = NEW.ngay_ket_thuc;
--- ELSE SELECT "Ngày kết thúc hợp đồng phải lớn hơn ngày làm hợp đồng ít nhất là 2 ngày" AS output;
--- END IF;
--- END//
--- DELIMITER ;
-
+DELIMITER //
+CREATE TRIGGER tr_cap_nhat_hop_dong
+BEFORE UPDATE ON hop_dong
+FOR EACH ROW
+BEGIN
+DECLARE error_message VARCHAR(225);
+IF datediff(NEW.ngay_ket_thuc,OLD.ngay_lam_hop_dong) <2 THEN
+SET error_message="Ngày kết thúc hợp đồng phải lớn hơn ngày làm hợp đồng ít nhất là 2 ngày";
+SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = error_message;
+END IF;
+END//
+DELIMITER ;
+SET SQL_SAFE_UPDATES = 0;
+UPDATE hop_dong
+SET ngay_ket_thuc ="20210319"
+WHERE ma_hop_dong= 3;
+UPDATE hop_dong
+SET ngay_ket_thuc ="20210316"
+WHERE ma_hop_dong= 3;
+DROP TRIGGER tr_cap_nhat_hop_dong;
 
