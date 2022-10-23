@@ -8,7 +8,11 @@ FROM
 WHERE
     (ho_ten LIKE 'h%' OR ho_ten LIKE 'K%'
         OR ho_ten LIKE 'Tòng%')
-        AND CHAR_LENGTH(ho_ten) < 16khách hàng có độ tuổi từ 18 đến 50 tuổi và có địa chỉ ở “Đà Nẵng” hoặc “Quảng Trị”.
+        AND CHAR_LENGTH(ho_ten) < 16;
+        
+        
+#=====Task 4 CÂU 2        
+#  Hiển thị thông tinkhách hàng có độ tuổi từ 18 đến 50 tuổi và có địa chỉ ở “Đà Nẵng” hoặc “Quảng Trị”.
 SELECT * FROM khach_hang
 -- WHERE 18 <= datediff(curdate(),ngay_sinh)/365.25 and datediff(curdate(),ngay_sinh)/365.25 <=50 
 -- AND dia_chi LIKE "%Đà Nẵng%" OR dia_chi LIKE "%Quảng Trị%";
@@ -349,8 +353,26 @@ WHERE
             (SELECT mkh FROM w_abc) AS w);
 SELECT * FROM khach_hang;
 SET SQL_SAFE_UPDATES = 1;
-
 SELECT mkh FROM w_abc;
+
+-- Task 7 CÂU 18 --
+# Xóa những khách hàng có hợp đồng trước năm 2021 (chú ý ràng buộc giữa các bảng).
+SET SQL_SAFE_UPDATES = 0;
+SET FOREIGN_KEY_CHECKS = 0; 
+DELETE FROM khach_hang 
+WHERE
+    khach_hang.ma_khach_hang IN (SELECT 
+        *
+    FROM
+        (SELECT 
+            khach_hang.ma_khach_hang
+        FROM
+            khach_hang
+        JOIN hop_dong ON khach_hang.ma_khach_hang = hop_dong.ma_khach_hang
+        WHERE
+            YEAR(hop_dong.ngay_lam_hop_dong) <2021) AS u);
+SELECT * FROM nhan_vien;
+SET SQL_SAFE_UPDATES = 1;
 
 -- Task 7 CÂU 19 --
 #Cập nhật giá cho các dịch vụ đi kèm được sử dụng trên 10 lần trong năm 2020 lên gấp đôi.
@@ -385,10 +407,108 @@ FROM
     dich_vu_di_kem;
 SET SQL_SAFE_UPDATES = 1;
 
--- Task 7 CÂU 20 --
+-- Task 8 CÂU 20 --
 #Hiển thị thông tin của tất cả các nhân viên và khách hàng có trong hệ thống,
 #thông tin hiển thị bao gồm id (ma_nhan_vien, ma_khach_hang),
 #ho_ten, email, so_dien_thoai, ngay_sinh, dia_chi.
 SELECT nhan_vien.ho_ten,nhan_vien.email,nhan_vien.so_dien_thoai,nhan_vien.ngay_sinh,nhan_vien.dia_chi FROM nhan_vien 
 UNION
 SELECT khach_hang.ho_ten,khach_hang.email,khach_hang.so_dien_thoai,khach_hang.ngay_sinh,khach_hang.dia_chi FROM khach_hang;
+
+-- Task 8 CÂU 21 --
+#Tạo khung nhìn có tên là v_nhan_vien để lấy được thông tin của tất cả các nhân viên có địa chỉ là “Gia Lai” 
+#Và đã từng lập hợp đồng cho một hoặc nhiều khách hàng bất kì với ngày lập hợp đồng là “2020-11-19”.
+CREATE VIEW v_nhan_vien AS
+    (SELECT 
+        nhan_vien.*, hop_dong.ngay_lam_hop_dong
+    FROM
+        nhan_vien
+            JOIN
+        hop_dong ON nhan_vien.ma_nhan_vien = hop_dong.ma_nhan_vien
+    WHERE
+        nhan_vien.dia_chi REGEXP ('Gia Lai')
+            AND hop_dong.ngay_lam_hop_dong = "2020-11-19");
+         
+-- Task 8 CÂU 22 --
+#Thông qua khung nhìn v_nhan_vien thực hiện cập nhật địa chỉ thành “Việt Nam” đối với tất cả các nhân viên được nhìn thấy bởi khung nhìn này.
+SET SQL_SAFE_UPDATES = 0;
+UPDATE nhan_vien
+SET nhan_vien.dia_chi="Việt Nam"
+WHERE nhan_vien.ma_nhan_vien in (
+SELECT * FROM (
+SELECT ma_nhan_vien FROM v_nhan_vien) AS set_dia_chi);
+SET SQL_SAFE_UPDATES = 1;
+SELECT * FROM nhan_vien; 
+
+-- Task 8 CÂU 23 --
+#Tạo Stored Procedure sp_xoa_khach_hang dùng để xóa thông tin của một khách hàng nào đó với ma_khach_hang được truyền vào như là 1 tham số của sp_xoa_khach_hang. 
+SET FOREIGN_KEY_CHECKS = 0; 
+delimiter //
+CREATE PROCEDURE sp_xoa_khach_hang(IN sp_mkh INT)
+BEGIN
+DELETE FROM khach_hang WHERE khach_hang.ma_khach_hang = sp_mkh;
+END //
+delimiter ;
+ CALL sp_xoa_khach_hang(4);
+ SET FOREIGN_KEY_CHECKS = 1; 
+
+-- Task 8 CÂU 24 --
+#Tạo Stored Procedure sp_them_moi_hop_dong dùng để thêm mới vào bảng hop_dong
+#với yêu cầu sp_them_moi_hop_dong phải thực hiện kiểm tra tính hợp lệ của dữ liệu bổ sung,
+#với nguyên tắc không được trùng khóa chính và đảm bảo toàn vẹn tham chiếu đến các bảng liên quan.
+delimiter //
+CREATE PROCEDURE sp_them_moi_hop_dong(in sp_ngay_lam_hop_dong DATETIME,
+sp_ngay_ket_thuc DATETIME,
+sp_tien_dat_coc DOUBLE,
+sp_ma_nhan_vien INT,
+sp_ma_khach_hang INT,
+sp_ma_dich_vu INT)
+BEGIN
+ INSERT INTO hop_dong(ngay_lam_hop_dong, ngay_ket_thuc, tien_dat_coc, ma_nhan_vien, ma_khach_hang, ma_dich_vu) 
+ VALUE (sp_ngay_lam_hop_dong,sp_ngay_ket_thuc,sp_tien_dat_coc,sp_ma_nhan_vien,sp_ma_khach_hang,sp_ma_dich_vu);
+END//
+DELIMITER ;
+CALL sp_them_moi_hop_dong('2021-05-29','2021-06-11',0,7,9,1);
+SELECT * FROM hop_dong;
+
+#=======================Task 8 CÂU 25=================================#
+#Tạo Trigger có tên tr_xoa_hop_dong khi xóa bản ghi trong bảng hop_dong 
+#thì hiển thị tổng số lượng bản ghi còn lại có trong bảng hop_dong ra giao diện console của database.
+CREATE TABLE so_luong_ban_ghi(
+so_luong_ban_ghi INT,
+-- tong_id INT,
+delete_day DATETIME DEFAULT NOW()); 
+DELIMITER //
+CREATE TRIGGER xoa_hop_dong
+AFTER DELETE ON hop_dong
+FOR EACH ROW
+BEGIN
+INSERT INTO so_luong_ban_ghi(so_luong_ban_ghi)
+SELECT COUNT(*) FROM hop_dong;
+-- INSERT INTO so_luong_ban_ghi(tong_id)
+-- SELECT SUM(ma_hop_dong) FROM hop_dong;
+END//
+DELIMITER ;
+SET SQL_SAFE_UPDATES = 0;
+ SET FOREIGN_KEY_CHECKS = 0; 
+DELETE FROM hop_dong WHERE hop_dong.ma_hop_dong=1;
+DELETE FROM hop_dong WHERE hop_dong.ma_hop_dong=2;
+SELECT * FROM so_luong_ban_ghi;
+DROP TRIGGER xoa_hop_dong;
+#======================== Task 8 CÂU 26=====================#
+#==Tạo Trigger có tên tr_cap_nhat_hop_dong khi cập nhật ngày kết thúc hợp đồng, cần kiểm tra xem thời gian cập nhật có phù hợp hay không, 
+#==với quy tắc sau: Ngày kết thúc hợp đồng phải lớn hơn ngày làm hợp đồng ít nhất là 2 ngày.
+#==Nếu dữ liệu hợp lệ thì cho phép cập nhật, nếu dữ liệu không hợp lệ thì in ra thông báo “Ngày kết thúc hợp đồng phải lớn hơn ngày làm hợp đồng ít nhất là 2 ngày” trên console của database.
+-- DELIMITER //
+-- CREATE TRIGGER tr_cap_nhat_hop_dong
+-- BEFORE UPDATE ON hop_dong
+-- FOR EACH ROW
+-- BEGIN
+-- IF datediff(NEW.ngay_ket_thuc,ngay_lam_hop_dong) > 1 then
+-- SET ngay_ket_thuc = NEW.ngay_ket_thuc;
+-- ELSE SELECT "Ngày kết thúc hợp đồng phải lớn hơn ngày làm hợp đồng ít nhất là 2 ngày" AS output;
+-- END IF;
+-- END//
+-- DELIMITER ;
+
+

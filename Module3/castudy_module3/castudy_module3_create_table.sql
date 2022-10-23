@@ -46,6 +46,7 @@ CREATE TABLE loai_khach (
     ma_loai_khach INT PRIMARY KEY AUTO_INCREMENT,
     ten_loai_khach VARCHAR(45) NULL
 );
+
 -- Table khach_hang--  
 CREATE TABLE khach_hang (
     ma_khach_hang INT PRIMARY KEY AUTO_INCREMENT,
@@ -94,7 +95,7 @@ CREATE TABLE hop_dong(
 ma_hop_dong INT PRIMARY KEY AUTO_INCREMENT,
 ngay_lam_hop_dong DATETIME NOT NULL,
 ngay_ket_thuc DATETIME NOT NULL,
-tien_dat_coc DOUBLE DEFAULT("0"),
+tien_dat_coc DOUBLE,
 ma_nhan_vien INT NOT NULL,
 ma_khach_hang INT NOT NULL,
 ma_dich_vu INT NOT NULL,
