@@ -540,7 +540,7 @@ SELECT  FUNC_DEM_DICH_VU();
 #== MÀ KHÁCH HÀNG ĐÃ THỰC HIỆN THUÊ DỊCH VỤ (LƯU Ý CHỈ XÉT CÁC KHOẢNG THỜI GIAN DỰA VÀO TỪNG LẦN LÀM HỢP ĐỒNG THUÊ DỊCH VỤ, KHÔNG XÉT TRÊN TOÀN BỘ CÁC LẦN LÀM HỢP ĐỒNG)
 #== MÃ CỦA KHÁCH HÀNG ĐƯỢC TRUYỀN VÀO NHƯ LÀ 1 THAM SỐ CỦA FUNCTION NÀY.
 DELIMITER //
-CREATE FUNCTION FUNC_DEM_DICH_VU (F_MA_KHACH_HANG INT)
+CREATE FUNCTION FUNC_TINH_THOI_GIAN_HOP_DONG (F_MA_KHACH_HANG INT)
 RETURNS INT
 DETERMINISTIC
 BEGIN
@@ -548,10 +548,14 @@ RETURN (SELECT MAX(DATEDIFF(NGAY_KET_THUC,NGAY_LAM_HOP_DONG)) AS THOI_GIAN_THUE_
 WHERE MA_KHACH_HANG=F_MA_KHACH_HANG);
 END//
 DELIMITER ;
-SELECT FUNC_DEM_DICH_VU(4);
+SELECT FUNC_TINH_THOI_GIAN_HOP_DONG(2);
 
 
-
+#======================== TASK 8 CÂU 28=====================#
+#====Tạo Stored Procedure sp_xoa_dich_vu_va_hd_room để tìm các dịch vụ được thuê bởi khách hàng với loại dịch vụ là “Room” ===
+#====từ đầu năm 2015 đến hết năm 2019 để xóa thông tin của các dịch vụ đó ===
+#===(tức là xóa các bảng ghi trong bảng dich_vu) và xóa những hop_dong sử dụng dịch vụ liên quan===
+#=== (tức là phải xóa những bản gi trong bảng hop_dong) và những bản liên quan khác====
 CREATE VIEW v_sp_xoa_dich_vu_va_hd_room AS
 (SELECT 
             HOP_DONG.MA_HOP_DONG,
@@ -577,8 +581,8 @@ WHERE
 DELETE FROM DICH_VU 
 WHERE
     DICH_VU.MA_DICH_VU IN (SELECT 
-        MA_DICH_VU
-    FROM (SELECT MA_DICH_VU FROM v_sp_xoa_dich_vu_va_hd_room ) as B);      
+        MA_HOP_DONG
+    FROM (SELECT MA_HOP_DONG FROM v_sp_xoa_dich_vu_va_hd_room ) as B) ;      
 END//
 DELIMITER ;
 SET FOREIGN_KEY_CHECKS = 0; 
