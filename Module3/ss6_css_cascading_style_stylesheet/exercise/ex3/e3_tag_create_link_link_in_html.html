@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Trần Gia Gia</title>
+    <link rel="stylesheet" href="e3_css.css">
+</head>
+<body>
+<div id="A">
+    <div id="B">
+        <h1>Thẻ liên kết &lt; a &gt;</h1>
+        <h4><b>Nội dung bài viết</b></h4>
+        <ul>
+            <li><a href="#one">Cấu trúc của thẻ a trong HTML</a></li>
+            <li><a href="#two">Cấu trúc thẻ a nhảy tới vị trí nào đó trên trang</a></li>
+            <li><a href="#three">Cấu trúc thẻ a tạo liên kết mail</a></li>
+            <li><a href="#four">Cấu trúc thẻ a tạo liên kết tới số điện thoại</a></li>
+            <li><a href="#five">4 trạng thái của thẻ a</a></li>
+            <li><a href="#six">Lời kết</a></li>
+
+        </ul>
+        <!--1-->
+        <h5 id="one">1.Cấu trúc của thẻ &lt; a &gt; trong HTML</h5>
+        <pre class="the_a">&lt;a href="https://nguyenhung.net" title="Học HTML Online" target="_blank"&gt;NguyenHung.Net&lt;/a&gt;</pre>
+        <ul>
+            <li>href là thuộc tính khai báo đường dẫn tới trang đích</li>
+            <li>title là thuộc tính khai báo tiêu đề cho liên kết</li>
+            <li>target là thuộc tính với các tùy chọn đích đến ở dưới (nếu không khai báo thuộc tính target thì giá trị
+                mặc
+                định
+                là _self)
+            </li>
+            <ul>
+                <li>_self tùy chọn này sẽ mở link trên tab hiện tại</li>
+                <li>_blank tùy chọn này sẽ mở link trên tab mới</li>
+                <li>_parent tùy chọn này sẽ mở link trong tab cha của tab hiện tại</li>
+                <li>_top tùy chọn này sẽ mở link trong cửa sổ toàn màn hình</li>
+            </ul>
+            <li>NguyenHung.Net là thành phần hiển thị cho người dùng nhìn thấy. Nó có thể là text link hoặc image
+                link.
+            </li>
+        </ul>
+        <!--2-->
+        <h5 id="two">2.Cấu trúc thẻ a nhảy tới vị trí nào đó trên trang</h5>
+        <p>Ngoài việc đặt link dẫn đến 1 trang khác trong web hoặc dẫn đến 1 trang web khác thì bạn còn có thể đặt link
+            nhảy
+            đến 1 vị trí nào đó ngay trong trang mà không bị load lại trang.</p>
+        <p>Để làm việc này bạn hãy thêm vào thẻ HTML ở vị trí cần nhảy tới id=”ten_id” sau đó trong thuộc tính href của
+            thẻ
+            a bạn để link ở dạng href=”#ten_id”. Nói vậy có vẻ bạn sẽ thấy mở hồ, bạn hãy xem ví dụ dưới đây để hiểu
+            nhé.</p>
+        <p><b>Ví Dụ</b></p>
+        <p>Đầu tiên là thêm id cho đoạn cần nhảy tới. Ở đây mình sẽ thêm id cho thẻ h1 như sau:</p>
+        <p>
+        <pre>&lt;h1 id="den_day"&gt; Học HTML Online &lt;/h1&gt;</pre>
+        </p>
+        <p>Bây giờ chúng ta viết thẻ a với cấu trúc như sau:</p>
+        <p>
+        <pre>&lt;a href="#den_day" title="Học HTML Online"&gt; NguyenHung.Net &lt;/a&gt;</pre>
+        </p>
+        <p>Bậy giờ khi click vào thẻ a nó sẽ nhảy tới thẻ h1 có id=”den_day” ngay trong trang hiện tại mà không cần load
+            lại
+            trang.</p>
+        <p>Demo rõ nhất là bạn có thể xem mục lục của bài viết này ở bên tay phải màn hình, sau đó bạn click vào các
+            link nó
+            sẽ nhảy đến vị trí bạn cần tới.</p>
+        <p>Ngoài ra, với hình thức tạo link như này nó còn hiển thị trực tiếp trên kết quả tìm kiếm Google khá là hay,
+            bạn
+            có thể tìm hiểu thêm trong lĩnh vực SEO nhé.</p>
+        <!--3-->
+        <h5 id="three">3.Cấu trúc thẻ a tạo liên kết mail</h5>
+        <p>Bạn có thể dùng thẻ a để tạo liên kết giúp người dùng click vào liên kết đó sẽ mở ứng dụng gửi mail và tự
+            điền
+            email mà bạn đã nhập sẵn ở đó. Cấu trúc thẻ a như sau:</p>
+        <p>
+        <pre>&lt;a href="mailto:shmily1611@gmail.com"&gt;shmily1611@gmail.com &lt;a/&gt;</pre>
+        </p>
+        <p>Và nó hiện trên trình duyệt như sau <a href="mailto:quocdat.tran453@gmail.com">quocdat.tran453@gmail.com</a>
+        </p>
+        <!--4-->
+        <h5 id="four">4.Cấu trúc thẻ a tạo liên kết tới số điện thoại</h5>
+        <!--5-->
+        <h5 id="five">5. 4 trạng thái của thẻ a</h5>
+        <!--6-->
+        <h5 id="six">Lời kết</h5>
+    </div>
+</div>
+</body>
+</html>
