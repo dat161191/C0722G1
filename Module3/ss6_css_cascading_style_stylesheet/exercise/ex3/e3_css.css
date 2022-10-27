@@ -6,16 +6,19 @@
     margin-right: 25%;
     text-align: justify;
     text-indent: 20px;
-    background-color: bisque;
+    background-color: blue;
     border: 5px solid;
 }
 
 #B {
-    width: 90%;
-    height: 90%;
-    background-color: rebeccapurple;
+    width: 95%;
+    height: 95%;
+    background-color: blanchedalmond;
+    margin-left: 2.5%;
 }
 
-.the_a {
+.the-a {
     border: 1px solid red;
+    text-align: justify;
+    font-size: 10px;
 }

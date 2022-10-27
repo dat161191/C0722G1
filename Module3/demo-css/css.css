@@ -1,0 +1,50 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-image: url(2.jpg);
+    background-size: cover;
+    font-family: "Palatino Linotype";
+}
+
+.menu-header {
+    background: rgb(115, 73, 238);
+    text-align: center;
+}
+
+.menu-header ul {
+    display: inline-flex;
+    list-style: none;
+    color: #ffffff;
+}
+
+.menu-header ul li {
+    width: 150px;
+    margin: 5px;
+    padding: 5px;
+}
+
+.menu-header ul li a {
+    text-decoration: none;
+    color: white;
+}
+
+.one, .menu-header ul li :hover {
+    background: red;
+    border-radius: 2px;
+}
+
+.menu-header .fa {
+    margin-right: 8px;
+}
+
+.sub-html {
+    display: none;
+}
+
+.menu-header ul li :hover .sub-html {
+
+}

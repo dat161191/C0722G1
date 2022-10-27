@@ -1,0 +1,103 @@
+body {
+    margin: 0;
+}
+
+#header {
+    background-color: black;
+    width: 100%;
+    height: 50px;
+    position: fixed;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    align-items: center;
+}
+
+#header ul, #header li {
+    margin: 0;
+    padding: 0;
+}
+
+#header li {
+    position: relative;
+    float: left;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+#header li a {
+    width: 200px;
+    height: 50px;
+    display: block;
+    text-decoration: none;
+    text-align: center;
+    line-height: 50px;
+    background-color: #000305;
+    color: #ee0707;
+}
+
+#header ul ul li a {
+    width: 198px;
+    border: 1px solid white;
+    text-align: center;
+}
+
+#header li a:hover {
+    background-color: red;
+}
+
+#header ul ul {
+    position: absolute;
+    top: 50px;
+    left: 0;
+    visibility: hidden;
+}
+
+#header ul li:hover ul {
+    visibility: visible;
+}
+
+#side-bar-left {
+    background-color: whitesmoke;
+    width: 15%;
+    height: 650px;
+    float: left;
+    margin-top: 50px;
+}
+
+#main {
+    background-color: white;
+    width: 70%;
+    height: 650px;
+    float: left;
+    margin-top: 50px;
+    text-align: center;
+}
+
+#side-bar-right {
+    background-color: whitesmoke;
+    width: 15%;
+    height: 650px;
+    float: left;
+    margin-top: 50px;
+}
+
+#footer {
+    background-color: black;
+    width: 100%;
+    height: 50px;
+    clear: both;
+    color: white;
+    text-align: center;
+}
+
+.log-in {
+    margin-left: auto;
+}
+
+#header i {
+    color: red;
+}
+
+
