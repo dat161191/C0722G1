@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        /*Cách 1*/
+        /*        .box{*/
+        /*            height: 200px;*/
+        /*            background-color: orange;*/
+        /*            width: 100%;*/
+        /*            text-align: center; !*Đưa item ra giữa trang theo chiều ngang*!*/
+        /*            line-height: 200px; !*xét = height thì canh item ra giữa theo chiều dọc*!*/
+        /*        }*/
+
+        /*Cách 2 CSS cho thẻ cha display-flex;CSS thẻ con margin:auto*/
+        /*.box {*/
+        /*    width: 100%;*/
+        /*    height: 200px;*/
+        /*    background-color: red;*/
+        /*    display: flex*/
+        /*}*/
+        /*h3 {*/
+        /*    margin: auto*/
+        /*}*/
+
+        /*Cách 3: CSS cho thẻ cha display-flex; thêm 2 thuộc tính đi kèm
+                align-items: center => canh item ra giữa theo chiều dọc trang
+                justify-content: center => canh item ra giữa theo chiều ngang trang             */
+        /*.box {*/
+        /*    width: 100%;*/
+        /*    height: 200px;*/
+        /*    background-color: red;*/
+        /*    display: flex;*/
+        /*    align-items: center;*/
+        /*justify-content: center;*/
+
+        /*justify-content: space-between; */
+        /* Đối với nhiều item thì tự chia đều khoảng cách theo chiều ngang màn hình,item đầu tiên và cuối cùng
+        sẽ nằm sát mép màn hình*/
+
+        /*justify-content: space-around;*/
+        /*Đối với nhiều item thì tự chia đều khoảng cách theo chiều ngang màn hình}*/
+        /*Cách 4: sử dụng biến*/
+
+        /*.box {*/
+        /*    background-color: greenyellow;*/
+        /*    --height: 100px;*/
+        /*    height: var(--height);*/
+        /*    text-align: center;*/
+        /*    line-height: var(--height);*/
+        /*}*/
+        .box {
+            background-color: greenyellow;
+            height: 200px;
+            display: flex;
+        }
+
+        h2 {
+            margin: auto;
+            position: relative;
+        }
+
+        h2::after {
+            position: absolute;
+            content: "";
+            border: 5px solid red;
+        }
+    </style>
+</head>
+<body>
+<div class="box">
+    <h2>Center Me</h2>
+    <!--    <h3>Center Me</h3>-->
+    <!--    <h3>Center Me</h3>-->
+</div>
+</body>
+</html>

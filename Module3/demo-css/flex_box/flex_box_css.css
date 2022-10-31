@@ -1,0 +1,80 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+/*Css cho flex cha(container)*/
+.container {
+    width: 100vw;
+    height: 600px;
+    border: 5px solid grey;
+    /*hiển thị các element con thành các flexitem nằm liên tiếp nhau
+     -Mặc định các element con nằm ngang liên tiếp nhau trên cùng 1 row*/
+    display: flex;
+
+    /* sắp xếp các element con theo chiều ngang*/
+    /*flex-direction: row;*/
+
+    /* sắp xếp các element con theo chiều dọc*/
+    /*flex-direction: column;*/
+
+    /*Không cho các element con rớt xuống hàng nếu quá nhiều element con cộng lại hơn tổng chiều ngang màn hình*/
+    /*flex-wrap: nowrap;*/
+
+    /*Đưa các elemnt con xuống hàng nếu tổng chiều ngang lớn hơn chiều ngang container*/
+    /*flex-wrap: wrap;*/
+
+    /*Gộp chung 2 thuộc tính direction và wrap*/
+    flex-flow: row wrap;
+
+    /*Canh chỉnh các element con theo chiều ngang*/
+    justify-content: flex-start;
+
+    /*Canh chỉnh các element con theo chiều dọc*/
+    align-items: flex-start;
+}
+
+/*CSS cho flexitem (element con)*/
+.box {
+    height: 150px;
+    padding: 10px;
+    /*Available space: không gian khả dụng(chưa có element con ở khoảng trắng đó)*/
+    /*Xét chiều rộng element theo width đã được khai báo(auto)
+    -Nếu chưa khai báo width thì auto = kích thước nội dung của element con*/
+    /*flex-basis: auto;*/
+
+    /*flex-grow:chia kích thước các element con sao cho lấp hết khoảng không gian khả dụng của container
+    -Chia đều các element con nếu đặt ở element cha*/
+    /*flex-grow: 1; !*chia đều container ra làm các phần = số element con *!*/
+
+    /*flex-shrink: nếu kích thước tổng các elment con> container thì giúp chũng vẫn nằm trong container
+    không bị tràn ra ngoài*/
+    /*flex-shrink: 1;*/
+
+    /*Cú pháp gộp chung 3 thuộc tính basic-grow-shrink*/
+    flex: 1 1 auto;
+
+}
+
+.box p {
+    font-size: 30px;
+    color: white;
+}
+ /*thay đổi thứ tự xuất hiện của element con = order.Mặc định element con đầu tiên ở vị trí 0*/
+.box-1 {
+    background-color: black;
+    order: 2;
+}
+
+.box-2 {
+    background-color: #4d0101;
+    /*Chia container ra làm 5 phân với box1=box3=1/5 ; box2=3/5*/
+    flex-grow: 3;
+    order: 0;
+}
+
+.box-3 {
+    background-color: #da0606;
+    order: 1;
+}

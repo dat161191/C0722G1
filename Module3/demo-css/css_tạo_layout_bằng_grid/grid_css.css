@@ -1,0 +1,77 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    padding: 20px;
+}
+
+.item {
+    background-color: gold;
+    border: 1px solid grey;
+    /*Xét chiều cao 1 dòng= chiều cao của colum dài nhất trong 1 dòng*/
+    min-height: 40px;
+}
+
+.container {
+    display: grid;
+    height: 100vh;
+    /* xét giá trị tuyệt đối*/
+    /*grid-template-columns: 100px 100px; */
+
+    /*xét giá trị tương đối cho chiều ngang cột*/
+    /*grid-template-columns: 1fr 1fr 1fr;   !*cách 1 xét tay từng cột*!  */
+
+    grid-template-columns: repeat(3, 1fr) 2fr; /* cách 2: dùng repeat để lặp lại số cột*/
+
+    grid-auto-rows: minmax(50px, auto); /* min:giá trị chiều cao nhỏ nhất của 1 dòng, max: giá trị chiều cao cao nhất của 1 dòng*/
+
+    grid-template-rows: 100px 1fr 1fr 100px;
+    /*tạo layout theo area*/
+    grid-template-areas:
+            "header header header header header"
+            "sidebar content content content content"
+            "sidebar comment comment comment comment"
+            "footer footer footer footer footer";
+    gap: 5px;
+}
+
+.item1 {
+    grid-area: header;
+}
+
+.item2 {
+    grid-area: sidebar
+}
+
+.item3 {
+    grid-area: content
+}
+
+.item4 {
+    grid-area: comment
+}
+
+.item5 {
+    grid-area: footer
+}
+
+/* tạo kích thước iteam theo từng nhóm riêng*/
+/*.item5 {*/
+/*    !* tạo chiều ngang iteam từ line 2 đến line 4*!*/
+/*    !*grid-column-start: 2;*!*/
+/*    !*grid-column-end: 4;*!*/
+
+/*    !* tạo chiều dọc iteam từ line 2 đến line 4*!*/
+/*    !*grid-row-start: 2;*!*/
+/*    !*grid-row-end: 4;*!*/
+
+/*    !*Viết nhanh*!*/
+/*    grid-column: 2/4;*/
+/*    grid-row: 2/4;*/
+/*}*/
+
+/*.item4 {*/
+/*    grid-row: 2/5;*/
+/*}*/
