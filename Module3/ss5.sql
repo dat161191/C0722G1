@@ -411,7 +411,7 @@ delimiter ;
 -- sử dụng function
 select f_xep_loai(9);
 
-   select *, f_xep_loai(point) as xep_loai from student ;
+select *, f_xep_loai(point) as xep_loai from student ;
 -- 5 tạo trigger tự động tạo tài khoản jame trước khi thêm mới một học viên
  select * from student;
  select * from jame;
