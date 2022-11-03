@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Add Customer</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+            crossorigin="anonymous"></script>
+    <style>
+
+        * {
+            font-family: "Palatino Linotype";
+            box-sizing: border-box;
+        }
+
+        .header-3-icon, .header-4-icon {
+            min-width: 40px;
+        }
+
+        p {
+            margin: 0;
+            text-indent: 20px;
+        }
+
+        .header-1 {
+            justify-content: center;
+        }
+
+        .place-table {
+            width: 100%;
+            font-size: 15px;
+            line-height: 22px;
+        }
+
+        .place-table tr {
+            border-bottom: 1px solid #0d6efd
+        }
+
+        a {
+            text-decoration: none;
+        }
+
+        table {
+            border-collapse: collapse;
+            text-indent: initial;
+        }
+
+        .row2 {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .footer-2 {
+            background-color: rgba(224, 199, 204, 0.5);
+            padding: 20px;
+        }
+
+        li {
+            list-style: none;
+        }
+
+        .head {
+            background-color: rgba(137, 243, 114, 0.2);
+            padding-top: 10px;
+        }
+    </style>
+</head>
+<body>
+<div class="row head" style="font-size: 25px;">
+    <div class="col col-sm-6 col-md-6 col-lg-6 col-xl-3 d-flex align-items-center header-1">
+        <a href="https://furamavietnam.com/vi/" class="header-1-logo"><img
+                src="https://furamavietnam.com/wp-content/uploads/2018/08/logo@2x.png" alt="logo" width="63"
+                height="100"></a>
+    </div>
+    <div class="col col-sm-6 col-md-6 col-lg-6 col-xl-3 d-flex align-items-center header-2">
+        <a href="https://www.tripadvisor.com/Hotel_Review-g298085-d302750-Reviews-Furama_Resort_Danang-Da_Nang.html"
+           target="_blank"><img
+                src="https://smartdata.tonytemplates.com/bestel/wp-content/uploads/2018/05/widget-tripadvisor-logo.png"
+                alt="logo"></a>
+    </div>
+    <div class="col col-sm-6 col-md-6 col-lg-6 col-xl-3 header-3 d-flex">
+        <div class="header-3-icon">
+            <i class='fas fa-car' style="font-size:30px;color:#055d05"></i>
+        </div>
+        <div class="header-3-text">
+            <p style="color:red;">ĐC: 103 – 105 Đường Võ Nguyên Giáp, Phường Khuê Mỹ, Quận Ngũ hành Sơn, Tp. Đà
+                Nẵng, Việt Nam </p>
+            <p style="color: red">7km từ sân bay quốc tế đà nẵng</p>
+        </div>
+    </div>
+    <div class="col col-sm-6 col-md-6 col-lg-6 col-xl-3 header-4">
+        <div class="d-flex">
+            <div class="header-4-icon">
+                <i class='fas fa-phone-volume' style="font-size:30px;color:#055d05"></i>
+            </div>
+            <div class="header-4-text">
+                <p style="color:red;">038-542-5443</p>
+            </div>
+        </div>
+        <div class="d-flex">
+            <div class="header-4-icon">
+                <i class="fa fa-envelope" style="font-size:30px;color:#055d05"></i>
+            </div>
+            <div class="header-4-text">
+                <p style="color:red;">quocdat.tran453@gmail.com</p>
+            </div>
+        </div>
+        <div class="d-flex">
+            <div class="header-4-icon">
+                <i class="fas fa-user-check" style="font-size:30px;color:#055d05"></i>
+            </div>
+            <div class="header-4-text">
+                <p style="color:red; font-size: larger"><b>Trần Quốc Đạt-C0722G1</b></p>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-success" style="font-size: 25px;">
+        <div class="container-fluid">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page"
+                       href="http://localhost:63342/Module3/castudy_module3/task_1.1/castudy_furama_web.html?_ijt=14lb68g1bona255ovippf0bl8n&_ij_reload=RELOAD_ON_SAVE">Home</a>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" role="button"
+                       data-bs-toggle="dropdown" aria-expanded="false">
+                        Employee </a>
+                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <li><a class="dropdown-item"
+                               href="http://localhost:63342/Module3/castudy_module3/task_1.4/display_and_delete_employee.html?_ijt=gsuvriud6t3d87cn0k2i6mvhv3&_ij_reload=RELOAD_ON_SAVE">DisPlayAndDelete</a>
+                        </li>
+                        <li><a class="dropdown-item"
+                               href="http://localhost:63342/Module3/castudy_module3/task_1.4/add_employee.html?_ijt=gsuvriud6t3d87cn0k2i6mvhv3&_ij_reload=RELOAD_ON_SAVE">Add</a>
+                        </li>
+                        <li><a class="dropdown-item"
+                               href="http://localhost:63342/Module3/castudy_module3/task_1.4/edit_employee.html?_ijt=c3mdeea616i7fjci8h567b52lk&_ij_reload=RELOAD_ON_SAVE">Edit</a>
+                        </li>
+
+                    </ul>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#"
+                       role="button" data-bs-toggle="dropdown" aria-expanded="false">Service</a>
+                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <li><a class="dropdown-item"
+                               href="http://localhost:63342/Module3/castudy_module3/task%20_1.2/display%20_and%20_delete_facility.html?_ijt=74s68t66725pr89b1dr9gslu1r&_ij_reload=RELOAD_ON_SAVE">DisplayAndDelete</a>
+                        </li>
+                        <li><a class="dropdown-item"
+                               href="http://localhost:63342/Module3/castudy_module3/task%20_1.2/add_facility.html?_ijt=2t4h1tegj85ufejj3qdm0en53q&_ij_reload=RELOAD_ON_SAVE">Add</a>
+                        </li>
+                        <li><a class="dropdown-item"
+                               href="http://localhost:63342/Module3/castudy_module3/task%20_1.2/edit_facility.html?_ijt=9tst2b57ep7j3edj7bb2p5nous&_ij_reload=RELOAD_ON_SAVE">Edit</a>
+                        </li>
+                    </ul>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" role="button"
+                       data-bs-toggle="dropdown" aria-expanded="false"> Customer </a>
+                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <li><a class="dropdown-item" href="http://localhost:63342/Module3/castudy_module3/task_1.3/display_customer.html?_ijt=mhre3l91r2jmsg1o1b2m2m09n5&_ij_reload=RELOAD_ON_SAVE">DisPlayAndDelete</a></li>
+                        <li><a class="dropdown-item"
+                               href="http://localhost:63342/Module3/castudy_module3/task_1.3/add_customer.html?_ijt=mhre3l91r2jmsg1o1b2m2m09n5&_ij_reload=RELOAD_ON_SAVE">AddCustomer</a>
+                        </li>
+                        <li><a class="dropdown-item" href="http://localhost:63342/Module3/castudy_module3/task_1.3/edit_customer.html?_ijt=mhre3l91r2jmsg1o1b2m2m09n5&_ij_reload=RELOAD_ON_SAVE">EditCustomer</a></li>
+                    </ul>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page"
+                       href="http://localhost:63342/Module3/castudy_module3/task_1.5/list_contract.html?_ijt=14lb68g1bona255ovippf0bl8n&_ij_reload=RELOAD_ON_SAVE">Contract</a>
+                </li>
+            </ul>
+            <form class="d-flex">
+                <input class="form-control me-2" type="search" placeholder="TrầnGiaGia" aria-label="Search">
+                <button class="btn btn-outline-light" type="submit">Search</button>
+            </form>
+        </div>
+    </nav>
+</div>
+<div class="content">
+    <section>
+        <div class="container py-5 h-100 bg-danger">
+            <div class="row d-flex justify-content-center align-items-center h-100">
+                <div class="col">
+                    <div class="card card-registration my-4">
+                        <div class="row g-0">
+                            <div class="col-xl-6 d-none d-xl-block">
+                                <img src="https://luhanhvietnam.com.vn/du-lich/vnt_upload/news/07_2019/mua-he.jpg"
+                                     alt="Sample photo" class="img-fluid"
+                                     style="width: 100%; height: 750px"/>
+                            </div>
+                            <div class="col-xl-6">
+                                <div class="card-body p-md-5 text-primary">
+                                    <h3 class="mb-5 text-uppercase text-center" >Add Info Customer</h3>
+
+                                    <div class="row">
+                                        <div class="col-md-6 mb-4">
+                                            <div class="form-outline">
+                                                <input type="text" id="form3Example1m"
+                                                       class="form-control form-control-lg"/>
+                                                <label class="form-label" for="form3Example1m">Customer Name</label>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6 mb-4">
+                                            <div class="form-outline">
+                                                <input type="text" id="form3Example1n"
+                                                       class="form-control form-control-lg"/>
+                                                <label class="form-label" for="form3Example1n">Date of Birth</label>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="d-md-flex justify-content-start align-items-center mb-4 py-2">
+
+                                        <h6 class="mb-0 me-4">Gender: </h6>
+
+                                        <div class="form-check form-check-inline mb-0 me-4">
+                                            <input class="form-check-input" type="radio" name="inlineRadioOptions"
+                                                   id="femaleGender"
+                                                   value="option1"/>
+                                            <label class="form-check-label" for="femaleGender">Female</label>
+                                        </div>
+
+                                        <div class="form-check form-check-inline mb-0 me-4">
+                                            <input class="form-check-input" type="radio" name="inlineRadioOptions"
+                                                   id="maleGender"
+                                                   value="option2"/>
+                                            <label class="form-check-label" for="maleGender">Male</label>
+                                        </div>
+
+                                        <div class="form-check form-check-inline mb-0">
+                                            <input class="form-check-input" type="radio" name="inlineRadioOptions"
+                                                   id="otherGender"
+                                                   value="option3"/>
+                                            <label class="form-check-label" for="otherGender">Other</label>
+                                        </div>
+
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-6 mb-3">
+                                            <div class="form-outline">
+                                                <input type="text" id="form3Example1m1"
+                                                       class="form-control form-control-lg"/>
+                                                <label class="form-label" for="form3Example1m1">ID Number</label>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6 mb-3">
+                                            <div class="form-outline">
+                                                <input type="text" id="form3Example1n1"
+                                                       class="form-control form-control-lg"/>
+                                                <label class="form-label" for="form3Example1n1">Phone Number</label>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-outline mb-3">
+                                        <input type="text" id="form3Example97"
+                                               class="form-control form-control-lg"/>
+                                        <label class="form-label" for="form3Example97">Email ID</label>
+                                    </div>
+
+                                    <div class="form-outline mb-3">
+                                        <input type="text" id="form3Example8" class="form-control form-control-lg"/>
+                                        <label class="form-label" for="form3Example8">Address</label>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-md-12 mb-3">
+                                            <label class="form-label col-xl-3" for="form3Example8">Customer
+                                                Type </label>
+                                            <select class="select col-xl-8 text-primary">
+                                                <option value="1">Dimond</option>
+                                                <option value="2">Platinium</option>
+                                                <option value="3">Gold</option>
+                                                <option value="4">Silver</option>
+                                                <option value="4">Member</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="d-flex justify-content-center pt-3">
+                                        <button type="button" class="btn btn-primary btn-lg text-light">Reset all
+                                        </button>
+                                        <button type="button" class="btn btn-primary btn-lg ms-2 text-light">
+                                            Submit form
+                                        </button>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+<div class="row footer bg-success">
+    <div class="container" style="padding-top: 15px">
+        <div class="row row1">
+            <div class="col col-xl-1"></div>
+            <div class="col col-sm-12 col-md-12 col-lg-12 col-xl-4 footer-2">
+                <p style="font-size: 30px;padding-bottom: 5px;color: gold"><b>Hướng dẫn chuyến đi</b></p>
+                <p style="font-size: 20px;padding-bottom: 5px;">"Khu nghỉ dưỡng Furama là cơ sở hàng đầu để khám
+                    phá một
+                    trong những điểm đến hấp dẫn nhất Châu
+                    Á. Chỉ cách Đà Nẵng một quãng lái xe ngắn là bốn Di sản Văn hóa Thế giới được UNESCO công
+                    nhận:"
+                </p>
+                <p style="font-size: 30px;padding-bottom: 5px;color: gold"><b>Địa điểm</b></p>
+                <table class="place-table">
+                    <tbody>
+                    <tr>
+                        <td>1.</td>
+                        <td>Cố Đô Huế</td>
+                        <td style="text-align: right"><span>2 tiếng</span></td>
+                    </tr>
+                    <tr>
+                        <td>2.</td>
+                        <td>Phố Cổ Hội An</td>
+                        <td style="text-align: right"><span>30 phút</span></td>
+                    </tr>
+                    <tr>
+                        <td>3.</td>
+                        <td>Thánh Địa Mỹ Sơn</td>
+                        <td style="text-align: right"><span>90 phút</span></td>
+                    </tr>
+                    <tr>
+                        <td>4.</td>
+                        <td>Động Phong Nha</td>
+                        <td style="text-align: right"><span>3 tiếng</span></td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="col col-xl-1"></div>
+            <div class="col col-sm-12 col-md-12 col-lg-12 col-xl-6">
+                <div class="row">
+                    <div class="col col-xl-5" style="color: gold">
+                        <ul>
+                            <li><a style="color: gold;font-size: 20px;"
+                                   href="https://furamavietnam.com/vi/furama-resort-danang-rack-rate/">1.Giá
+                                Công bố</a>
+                            </li>
+                            <li><a style="color: gold;font-size: 20px;"
+                                   href="https://furamavietnam.com/vi/lifestyle-blog/">2.Lifestyle
+                                Blog</a></li>
+                            <li><a style="color: gold;font-size: 20px"
+                                   href="https://furamavietnam.com/vi/work-with-us/">3.Tuyển
+                                Dụng</a></li>
+                            <li><a style="color: gold;font-size: 20px"
+                                   href="https://furamavietnam.com/vi/contact/">4.Liên
+                                Hệ</a></li>
+                        </ul>
+                    </div>
+                    <div class="col col-xl-7">
+                        <img style="width: 80%; "
+                             src="https://phulong.com/UploadFiles/Images/FURAMA%2020%20NAM.jpg"
+                             alt="">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row row2">
+            <div class="col col-sm-12 col-md-12 col-lg-12 col-xl-8 ">
+                <img style="width: 80%"
+                     src="https://furamavietnam.com/wp-content/uploads/2019/02/Ariyana-Tourism-Complex-02-2.png"
+                     alt="">
+            </div>
+            <div class="col col-xl-4"><p> © 2018 Furama Resort Danang. </p></div>
+        </div>
+    </div>
+</div>
+</body>
+</html>
