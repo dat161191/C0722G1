@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="93e9c4bb-ecd8-430e-9142-061617a9651a" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/../castudy_module3/CG-DN Case Study for JSP_Servlet_v1.1.docx" beforeDir="false" afterPath="$PROJECT_DIR$/../castudy_module3/CG-DN Case Study for JSP_Servlet_v1.1.docx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../castudy_module3/task _1.2/add_facility.html" beforeDir="false" afterPath="$PROJECT_DIR$/../castudy_module3/task _1.2/add_facility.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../castudy_module3/task _1.2/display _and _delete_facility.html" beforeDir="false" afterPath="$PROJECT_DIR$/../castudy_module3/task _1.2/display _and _delete_facility.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../castudy_module3/task _1.2/edit_facility.html" beforeDir="false" afterPath="$PROJECT_DIR$/../castudy_module3/task _1.2/edit_facility.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../castudy_module3/task_1.1/castudy_furama_web.html" beforeDir="false" afterPath="$PROJECT_DIR$/../castudy_module3/task_1.1/castudy_furama_web.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../castudy_module3/task_1.3/display_customer.html" beforeDir="false" afterPath="$PROJECT_DIR$/../castudy_module3/task_1.3/display_customer.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../castudy_module3/task_1.4/add_employee.html" beforeDir="false" afterPath="$PROJECT_DIR$/../castudy_module3/task_1.4/add_employee.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../castudy_module3/task_1.4/display_and_delete_employee.html" beforeDir="false" afterPath="$PROJECT_DIR$/../castudy_module3/task_1.4/display_and_delete_employee.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../castudy_module3/task_1.5/list_contract.html" beforeDir="false" afterPath="$PROJECT_DIR$/../castudy_module3/task_1.5/list_contract.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../castudy_module3/~$-DN Case Study for JSP_Servlet_v1.1.docx" beforeDir="false" afterPath="$PROJECT_DIR$/../castudy_module3/~$-DN Case Study for JSP_Servlet_v1.1.docx" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../.." />
+  </component>
+  <component name="ProjectId" id="2H4o3u7dG0tqjlBGmoEhNA1TjCm" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/mvc_management_product" />
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="93e9c4bb-ecd8-430e-9142-061617a9651a" name="Changes" comment="" />
+      <created>1667553520903</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1667553520903</updated>
+      <workItem from="1667553522225" duration="61000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+</project>
