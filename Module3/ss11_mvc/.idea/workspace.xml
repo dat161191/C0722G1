@@ -2,16 +2,22 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="93e9c4bb-ecd8-430e-9142-061617a9651a" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/../castudy_module3/CG-DN Case Study for JSP_Servlet_v1.1.docx" beforeDir="false" afterPath="$PROJECT_DIR$/../castudy_module3/CG-DN Case Study for JSP_Servlet_v1.1.docx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../castudy_module3/task _1.2/add_facility.html" beforeDir="false" afterPath="$PROJECT_DIR$/../castudy_module3/task _1.2/add_facility.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../castudy_module3/task _1.2/display _and _delete_facility.html" beforeDir="false" afterPath="$PROJECT_DIR$/../castudy_module3/task _1.2/display _and _delete_facility.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../castudy_module3/task _1.2/edit_facility.html" beforeDir="false" afterPath="$PROJECT_DIR$/../castudy_module3/task _1.2/edit_facility.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../castudy_module3/task_1.1/castudy_furama_web.html" beforeDir="false" afterPath="$PROJECT_DIR$/../castudy_module3/task_1.1/castudy_furama_web.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../castudy_module3/task_1.3/display_customer.html" beforeDir="false" afterPath="$PROJECT_DIR$/../castudy_module3/task_1.3/display_customer.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../castudy_module3/task_1.4/add_employee.html" beforeDir="false" afterPath="$PROJECT_DIR$/../castudy_module3/task_1.4/add_employee.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../castudy_module3/task_1.4/display_and_delete_employee.html" beforeDir="false" afterPath="$PROJECT_DIR$/../castudy_module3/task_1.4/display_and_delete_employee.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../castudy_module3/task_1.5/list_contract.html" beforeDir="false" afterPath="$PROJECT_DIR$/../castudy_module3/task_1.5/list_contract.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../castudy_module3/~$-DN Case Study for JSP_Servlet_v1.1.docx" beforeDir="false" afterPath="$PROJECT_DIR$/../castudy_module3/~$-DN Case Study for JSP_Servlet_v1.1.docx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mvc_management_product/.gradle/7.1/executionHistory/executionHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/mvc_management_product/.gradle/7.1/executionHistory/executionHistory.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mvc_management_product/.gradle/7.1/executionHistory/executionHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/mvc_management_product/.gradle/7.1/executionHistory/executionHistory.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mvc_management_product/.gradle/7.1/fileHashes/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/mvc_management_product/.gradle/7.1/fileHashes/fileHashes.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mvc_management_product/.gradle/7.1/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/mvc_management_product/.gradle/7.1/fileHashes/fileHashes.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mvc_management_product/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/mvc_management_product/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mvc_management_product/build/classes/java/main/reponsitory/IProductRepository.class" beforeDir="false" afterPath="$PROJECT_DIR$/mvc_management_product/build/classes/java/main/reponsitory/IProductRepository.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mvc_management_product/build/classes/java/main/reponsitory/impl/ProductRepository.class" beforeDir="false" afterPath="$PROJECT_DIR$/mvc_management_product/build/classes/java/main/reponsitory/impl/ProductRepository.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mvc_management_product/build/libs/mvc_management_product-1.0-SNAPSHOT.war" beforeDir="false" afterPath="$PROJECT_DIR$/mvc_management_product/build/libs/mvc_management_product-1.0-SNAPSHOT.war" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mvc_management_product/build/tmp/compileJava/previous-compilation-data.bin" beforeDir="false" afterPath="$PROJECT_DIR$/mvc_management_product/build/tmp/compileJava/previous-compilation-data.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mvc_management_product/src/main/java/controller/ProductServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/mvc_management_product/src/main/java/controller/ProductServlet.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mvc_management_product/src/main/java/reponsitory/IProductRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/mvc_management_product/src/main/java/reponsitory/IProductRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mvc_management_product/src/main/java/reponsitory/impl/ProductRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/mvc_management_product/src/main/java/reponsitory/impl/ProductRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mvc_management_product/src/main/webapp/view/product/create.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/mvc_management_product/src/main/webapp/view/product/create.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mvc_management_product/src/main/webapp/view/product/list.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/mvc_management_product/src/main/webapp/view/product/list.jsp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -31,7 +37,10 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/mvc_management_product" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="project.structure.last.edited" value="Artifacts" />
+    <property name="project.structure.proportion" value="0.15" />
+    <property name="project.structure.side.proportion" value="0.2" />
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
@@ -42,6 +51,7 @@
       <option name="presentableId" value="Default" />
       <updated>1667553520903</updated>
       <workItem from="1667553522225" duration="61000" />
+      <workItem from="1667621643014" duration="395000" />
     </task>
     <servers />
   </component>
