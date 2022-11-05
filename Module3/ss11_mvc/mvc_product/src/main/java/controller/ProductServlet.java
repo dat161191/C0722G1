@@ -1,23 +1,24 @@
 package controller;
 
-import com.oracle.jrockit.jfr.Producer;
 import model.Product;
 import service.IProductService;
 import service.impl.ProductService;
 
-import javax.servlet.*;
-import javax.servlet.http.*;
-import javax.servlet.annotation.*;
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.List;
 
 @WebServlet(name = "ProductServlet", value = "/product")
 
 public class ProductServlet extends HttpServlet {
-    private IProductService productService = new ProductService();
+    private final IProductService productService = new ProductService();
 
     @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) {
         String action = request.getParameter("action");
         if (action == null) {
             action = "";
@@ -46,9 +47,7 @@ public class ProductServlet extends HttpServlet {
         request.setAttribute("product", product);
         try {
             request.getRequestDispatcher("view/product/detail.jsp").forward(request,response);
-        } catch (ServletException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
+        } catch (ServletException | IOException e) {
             e.printStackTrace();
         }
     }
@@ -59,9 +58,7 @@ public class ProductServlet extends HttpServlet {
         request.setAttribute("product", product);
         try {
             request.getRequestDispatcher("view/product/remove.jsp").forward(request, response);
-        } catch (ServletException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
+        } catch (ServletException | IOException e) {
             e.printStackTrace();
         }
     }
@@ -73,18 +70,14 @@ public class ProductServlet extends HttpServlet {
         if (product == null) {
             try {
                 request.getRequestDispatcher("view/product/error-404.jsp").forward(request, response);
-            } catch (ServletException e) {
-                e.printStackTrace();
-            } catch (IOException e) {
+            } catch (ServletException | IOException e) {
                 e.printStackTrace();
             }
         } else {
             request.setAttribute("product", product);
             try {
                 request.getRequestDispatcher("view/product/edit.jsp").forward(request, response);
-            } catch (ServletException e) {
-                e.printStackTrace();
-            } catch (IOException e) {
+            } catch (ServletException | IOException e) {
                 e.printStackTrace();
             }
         }
@@ -93,9 +86,7 @@ public class ProductServlet extends HttpServlet {
     private void showAddProduct(HttpServletRequest request, HttpServletResponse response) {
         try {
             request.getRequestDispatcher("view/product/create.jsp").forward(request, response);
-        } catch (ServletException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
+        } catch (ServletException | IOException e) {
             e.printStackTrace();
         }
     }
@@ -105,9 +96,7 @@ public class ProductServlet extends HttpServlet {
         request.setAttribute("productList", productList);
         try {
             request.getRequestDispatcher("view/product/list.jsp").forward(request, response);
-        } catch (ServletException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
+        } catch (ServletException | IOException e) {
             e.printStackTrace();
         }
     }
@@ -136,7 +125,6 @@ public class ProductServlet extends HttpServlet {
 
     private void removeProduct(HttpServletRequest request, HttpServletResponse response) {
         int id = Integer.parseInt(request.getParameter("id"));
-        Product customer = productService.findByID(id);
         productService.remove(id);
         try {
             response.sendRedirect("/product");
@@ -157,9 +145,7 @@ public class ProductServlet extends HttpServlet {
         request.setAttribute("message", "Sửa thành công");
         try {
             request.getRequestDispatcher("view/product/edit.jsp").forward(request, response);
-        } catch (ServletException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
+        } catch (ServletException | IOException e) {
             e.printStackTrace();
         }
     }
@@ -173,9 +159,7 @@ public class ProductServlet extends HttpServlet {
         request.setAttribute("message", "Thêm mới thành công");
         try {
             request.getRequestDispatcher("view/product/create.jsp").forward(request, response);
-        } catch (ServletException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
+        } catch (ServletException | IOException e) {
             e.printStackTrace();
         }
     }

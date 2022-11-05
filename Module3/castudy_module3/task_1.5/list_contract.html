@@ -218,12 +218,12 @@
                     <td>5000000</td>
                     <td>
                         <button class="btn btn-primary" type="button" data-bs-toggle="modal"
-                                data-bs-target="#exampleModalEdit"> +
+                                data-bs-target="#createContract"> +
                         </button>
                     </td>
                     <td>
                         <button type="button" class="btn btn-primary" data-bs-toggle="modal"
-                                data-bs-target="#exampleModal">Danh sách các dịch vụ đi kèm
+                                data-bs-target="#attachFacility">Danh sách các dịch vụ đi kèm
                         </button>
                     </td>
                 <tr>
@@ -237,12 +237,12 @@
                     <td>3000000</td>
                     <td>
                         <button class="btn btn-primary" type="button" data-bs-toggle="modal"
-                                data-bs-target="#exampleModalEdit"> +
+                                data-bs-target="#createContract"> +
                         </button>
                     </td>
                     <td>
                         <button type="button" class="btn btn-primary" data-bs-toggle="modal"
-                                data-bs-target="#exampleModal">Danh sách các dịch vụ đi kèm
+                                data-bs-target="#attachFacility">Danh sách các dịch vụ đi kèm
                         </button>
                     </td>
                 <tr>
@@ -255,13 +255,13 @@
                     <td>10000</td>
                     <td>4500000</td>
                     <td>
-                        <button class="btn btn-primary" type="button" data-bs-toggle="modal"
-                                data-bs-target="#exampleModalEdit"> +
+                        <button class="btn btn-primary"  type="button" data-bs-toggle="modal"
+                                data-bs-target="#createContract"> +
                         </button>
                     </td>
                     <td>
                         <button type="button" class="btn btn-primary" data-bs-toggle="modal"
-                                data-bs-target="#exampleModal">Danh sách các dịch vụ đi kèm
+                                data-bs-target="#attachFacility">Danh sách các dịch vụ đi kèm
                         </button>
                     </td>
                 <tr>
@@ -349,31 +349,31 @@
     </div>
 </div>
 </body>
-<div class="modal fade" style="text-align: center;font-size: 20px;color: green;" id="exampleModalEdit" tabindex="-1"
+<div class="modal fade" style="font-size: 20px;color: green;" id="createContract" tabindex="-1"
      aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h1 class="modal-title fs-5" id="exampleModalLabel">Hợp Đồng</h1>
+                <h1 class="modal-title fs-5" id="contract">Hợp Đồng</h1>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
                 <table class="table table-primary" style="width: 100%;">
                     <tr>
-                        <th>Ngày Bắt Đầu</th>
-                        <th><input type="date" style="width: 100%"></th>
+                        <td>Ngày Bắt Đầu</td>
+                        <td><input type="date" style="width: 100%"></td>
                     </tr>
                     <tr>
-                        <th>Ngày Bắt Đầu</th>
-                        <th><input type="date" style="width: 100%"></th>
+                        <td>Ngày Bắt Đầu</td>
+                        <td><input type="date" style="width: 100%"></td>
                     </tr>
                     <tr>
-                        <th>Tiền Gởi</th>
-                        <th><input type="text" style="width: 100%"></th>
+                        <td>Tiền Gởi</td>
+                        <td><input type="text" style="width: 100%"></td>
                     </tr>
                     <tr>
-                        <th>Khách Hàng Thuê Dịch Vụ</th>
-                        <th><select style="width: 100%" class="form-select form-control-sm"
+                        <td>Khách Hàng Thuê Dịch Vụ</td>
+                        <td><select style="width: 100%" class="form-select form-control-sm"
                                     aria-label="Default select example">
                             <option selected>-- Chọn Khách Hàng --</option>
                             <option value="1">Diamond</option>
@@ -381,7 +381,138 @@
                             <option value="3">Gold</option>
                             <option value="4">Silver</option>
                             <option value="4">Member</option>
-                        </select></th>
+                        </select></td>
+                    </tr>
+                    <tr>
+                        <td>Dịch Vụ</td>
+                        <td><select style="width: 100%" class="form-select form-control-sm"
+                                    aria-label="Default select example">
+                            <option selected>-- Chọn Dịch Vụ</option>
+                            <option value="2">House Princess 01</option>
+                            <option value="3">Room Twin 01</option>
+                            <option value="4">Villa No Beach Front</option>
+                            <option value="5">House Princess 02</option>
+                            <option value="6">Room Twin 02</option>
+                        </select></td>
+                    </tr>
+                    <tr>
+                        <td>Dịch vụ đi kèm</td>
+                        <td>
+                            <button class="btn btn-primary" type="button" data-bs-toggle="modal"
+                                    data-bs-target="#addAttachFacility"> +
+                            </button>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                <button type="button" class="btn btn-primary">Confirm</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" style="font-size: 20px;color: green;" id="attachFacility" tabindex="-1"
+     aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="exampleModalLabel">Dịch vụ đi kèm</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <table class="table table-primary" style="width: 100%;">
+                    <tr>
+                        <th>Mã</th>
+                        <th>Tên Dịch Vụ</th>
+                        <th>Giá</th>
+                        <th>Đơn vị</th>
+                        <th>Trạng thái</th>
+                    </tr>
+                    <tr>
+                        <td>1</td>
+                        <td>Karaoke</td>
+                        <td>10000</td>
+                        <td>Giờ</td>
+                        <td>Tiện nghi, hiện tại</td>
+                    </tr>
+                    <tr>
+                        <td>2</td>
+                        <td>Thuê xe máy</td>
+                        <td>10000</td>
+                        <td>Chiếc</td>
+                        <td>Hỏng 1 xe</td>
+                    </tr>
+                    <tr>
+                        <td>3</td>
+                        <td>Thuê Xe Đạp</td>
+                        <td>20000</td>
+                        <td>Chiếc</td>
+                        <td>Tốt</td>
+                    </tr>
+                    <tr>
+                        <td>4</td>
+                        <td>Buffet buổi sáng</td>
+                        <td>15000</td>
+                        <td>Suất</td>
+                        <td>Đồ ăn đầy đủ</td>
+                    </tr>
+                    <tr>
+                        <td>5</td>
+                        <td>Buffet buổi trưa</td>
+                        <td>90000</td>
+                        <td>Suất</td>
+                        <td>Đồ ăn đầy đủ</td>
+                    </tr>
+                    <tr>
+                        <td>6</td>
+                        <td>Buffet buổi tối</td>
+                        <td>20000</td>
+                        <td>Suất</td>
+                        <td>Đồ ăn đầy đủ</td>
+                    </tr>
+                </table>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                <button type="button" class="btn btn-primary">Confirm</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" style="font-size: 20px;color: green;" id="addAttachFacility" tabindex="-1"
+     aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="addAttachFacility2">Hợp Đồng</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <table class="table table-primary" style="width: 100%;">
+                    <tr>
+                        <td>Ngày Bắt Đầu</td>
+                        <td><input type="date" style="width: 100%"></td>
+                    </tr>
+                    <tr>
+                        <td>Ngày Bắt Đầu</td>
+                        <td><input type="date" style="width: 100%"></td>
+                    </tr>
+                    <tr>
+                        <td>Tiền Gởi</td>
+                        <td><input type="text" style="width: 100%"></td>
+                    </tr>
+                    <tr>
+                        <td>Khách Hàng Thuê Dịch Vụ</td>
+                        <td><select style="width: 100%" class="form-select form-control-sm"
+                                    aria-label="Default select example">
+                            <option selected>-- Chọn Khách Hàng --</option>
+                            <option value="1">Diamond</option>
+                            <option value="2">Platinium</option>
+                            <option value="3">Gold</option>
+                            <option value="4">Silver</option>
+                            <option value="4">Member</option>
+                        </select></td>
                     </tr>
                     <tr>
                         <td>Dịch Vụ</td>
@@ -396,6 +527,14 @@
                             <option value="6">Room Twin 02</option>
                         </select></td>
                     </tr>
+                    <tr>
+                        <td>Dịch vụ đi kèm</td>
+                        <td>
+                            <button class="btn btn-primary" type="button" data-bs-toggle="modal"
+                                    data-bs-target="#createContract"> +
+                            </button>
+                        </td>
+                    </tr>
                 </table>
             </div>
             <div class="modal-footer">
@@ -405,4 +544,6 @@
         </div>
     </div>
 </div>
+
+
 </html>

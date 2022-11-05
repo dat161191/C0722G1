@@ -21,24 +21,33 @@
 <body>
 <h1 style="text-align: center">Product List</h1>
 <a href="/product?action=add">
-    <button style="float: right" class="btn btn-primary">Thêm mới Sản Phẩm</button></a>
+    <button style="float: right" class="btn btn-primary">Thêm mới Sản Phẩm</button>
+</a>
 <table class="table table-success">
     <tr>
-        <th>ID</th>
+        <th>STT</th>
+        <th hidden>ID</th>
         <th>Tên</th>
         <th>Giá</th>
         <th>Update</th>
         <th>Delete</th>
         <th>View</th>
     </tr>
-    <c:forEach var="product" items="${productList}">
+    <c:forEach var="product" items="${productList}" varStatus="stt">
         <tr>
-            <td>${product.getId()}</td>
+            <td>${stt.count}</td>
+            <td hidden>${product.getId()}</td>
             <td>${product.getName()}</td>
             <td>${product.getPrice()}</td>
-            <td><a href="/product?action=edit&id=${product.getId()}"><button class="btn btn-success">Edit</button></a></td>
-            <td><a href="/product?action=remove&id=${product.getId()}"><button class="btn btn-danger">Remove</button></a></td>
-            <td><a href="/product?action=detail&id=${product.getId()}"><button class="btn btn-secondary">View</button></a></td>
+            <td><a href="/product?action=edit&id=${product.getId()}">
+                <button class="btn btn-success">Edit</button>
+            </a></td>
+            <td><a href="/product?action=remove&id=${product.getId()}">
+                <button class="btn btn-danger">Remove</button>
+            </a></td>
+            <td><a href="/product?action=detail&id=${product.getId()}">
+                <button class="btn btn-secondary">Detail</button>
+            </a></td>
         </tr>
     </c:forEach>
 </table>

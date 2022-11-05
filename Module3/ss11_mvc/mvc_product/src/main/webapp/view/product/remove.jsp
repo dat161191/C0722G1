@@ -29,9 +29,15 @@
             <td>Giá</td>
         </tr>
         <tr>
-            <td hidden><input type="text" name="id" value="${product.getId()}"></td>
-            <td><input type="text" name="name" value="${product.getName()}" readonly></td>
-            <td><input type="text" name="price" value="${product.getPrice()}" readonly></td>
+            <td hidden><label>
+                <input type="text" name="id" value="${product.getId()}">
+            </label></td>
+            <td><label>
+                <input type="text" name="name" value="${product.getName()}" readonly>
+            </label></td>
+            <td><label>
+                <input type="text" name="price" value="${product.getPrice()}" readonly>
+            </label></td>
         </tr>
     </table>
     <button>Xóa</button>
