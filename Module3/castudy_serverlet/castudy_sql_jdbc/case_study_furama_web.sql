@@ -78,7 +78,7 @@ CREATE TABLE customer (
     gender BIT(1) NOT NULL,
     id_card VARCHAR(45) UNIQUE NOT NULL,
     phone_number VARCHAR(45) UNIQUE NOT NULL,
-    email VARCHAR(45) UNIQUE,
+    email VARCHAR(45),
     address VARCHAR(45),
     customer_type_id INT,
     FOREIGN KEY (customer_type_id)

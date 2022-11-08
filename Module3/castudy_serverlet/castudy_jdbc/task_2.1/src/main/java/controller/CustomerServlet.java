@@ -24,9 +24,9 @@ public class CustomerServlet extends HttpServlet {
             case "add":
                 showAddCustomer(request, response);
                 break;
-//            case "edit":
-//                showEditProduct(request, response);
-//                break;
+            case "edit":
+                showEditCustomer(request, response);
+                break;
 //            case "remove":
 //                showRemoveUser(request, response);
 //                break;
@@ -34,6 +34,17 @@ public class CustomerServlet extends HttpServlet {
                 showCustomerList(request, response);
         }
 
+    }
+
+    private void showEditCustomer(HttpServletRequest request, HttpServletResponse response) {
+        int id = Integer.parseInt(request.getParameter("id"));
+        Customer customer = customerService.findByID(id);
+        request.setAttribute("customer", customer);
+        try {
+            request.getRequestDispatcher("view/customer/edit.jsp").forward(request, response);
+        } catch (ServletException | IOException e) {
+            e.printStackTrace();
+        }
     }
 
     private void showAddCustomer(HttpServletRequest request, HttpServletResponse response) {
@@ -49,9 +60,7 @@ public class CustomerServlet extends HttpServlet {
         request.setAttribute("customerList", customerList);
         try {
             request.getRequestDispatcher("view/customer/list.jsp").forward(request, response);
-        } catch (ServletException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
+        } catch (ServletException | IOException e) {
             e.printStackTrace();
         }
     }
@@ -69,10 +78,21 @@ public class CustomerServlet extends HttpServlet {
 //            case "edit":
 //                showEditProduct(request, response);
 //                break;
-//            case "remove":
-//                showRemoveUser(request, response);
-//                break;
+            case "remove":
+                showRemoveCustomer(request, response);
+                break;
         }
+    }
+
+    private void showRemoveCustomer(HttpServletRequest request, HttpServletResponse response) {
+        int id = Integer.parseInt(request.getParameter("id"));
+        boolean check = customerService.removeCustomer(id);
+        String mess = "Xóa không thành công";
+        if (check) {
+            mess = "Xóa thành công";
+        }
+        request.setAttribute("mess", mess);
+        showCustomerList(request, response);
     }
 
     private void addCustomer(HttpServletRequest request, HttpServletResponse response) {
@@ -85,17 +105,17 @@ public class CustomerServlet extends HttpServlet {
         String address = request.getParameter("address");
         int customerTypeId = Integer.parseInt(request.getParameter("customerTypeId"));
         Customer customer = new Customer(name, birthday, gender, idCard, phoneNumber, email, address, customerTypeId);
-        boolean check=customerService.addCustomer(customer);
-        String mess="Thêm mới không thành công";
-        if (check){
-            mess="Thêm mới thành công";
-            try {
-                request.getRequestDispatcher("view/customer/create.jsp").forward(request,response);
-            } catch (ServletException e) {
-                e.printStackTrace();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
+        boolean check = customerService.addCustomer(customer);
+        String mess = "Thêm mới không thành công";
+        if (check) {
+            mess = "Thêm mới thành công";
+        }
+        request.setAttribute("mess", mess);
+        try {
+            request.getRequestDispatcher("view/customer/create.jsp").forward(request, response);
+        } catch (ServletException | IOException e) {
+            e.printStackTrace();
         }
     }
+
 }

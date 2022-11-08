@@ -138,23 +138,27 @@
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <li class="nav-item">
                         <a class="nav-link active" aria-current="page"
-                           href="http://localhost:63342/Module3/castudy_module3/task_1.1/castudy_furama_web.html?_ijt=14lb68g1bona255ovippf0bl8n&_ij_reload=RELOAD_ON_SAVE"><i class="fa fa-home"></i></a>
+                           href="http://localhost:63342/Module3/castudy_module3/task_1.1/castudy_furama_web.html?_ijt=14lb68g1bona255ovippf0bl8n&_ij_reload=RELOAD_ON_SAVE"><i
+                                class="fa fa-home"></i></a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link active" aria-current="page"
-                           href="http://localhost:63342/castudy_module3/task_1.5/list_contract.html?_ijt=ickg1dpcvc3c2c5hs6q7430acu&_ij_reload=RELOAD_ON_SAVE">Employee</a>
+                           href="http://localhost:63342/castudy_module3/task_1.5/list_contract.html?_ijt=ickg1dpcvc3c2c5hs6q7430acu&_ij_reload=RELOAD_ON_SAVE">Nhân
+                            Viên</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link active" aria-current="page"
-                           href="/customer">Customer</a>
+                           href="/customer">Khách Hàng</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link active" aria-current="page"
-                           href="http://localhost:63342/castudy_module3/task_1.5/list_contract.html?_ijt=ickg1dpcvc3c2c5hs6q7430acu&_ij_reload=RELOAD_ON_SAVE">Facility</a>
+                           href="http://localhost:63342/castudy_module3/task_1.5/list_contract.html?_ijt=ickg1dpcvc3c2c5hs6q7430acu&_ij_reload=RELOAD_ON_SAVE">Dịch
+                            Vụ</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link active" aria-current="page"
-                           href="http://localhost:63342/castudy_module3/task_1.5/list_contract.html?_ijt=ickg1dpcvc3c2c5hs6q7430acu&_ij_reload=RELOAD_ON_SAVE">Contract</a>
+                           href="http://localhost:63342/castudy_module3/task_1.5/list_contract.html?_ijt=ickg1dpcvc3c2c5hs6q7430acu&_ij_reload=RELOAD_ON_SAVE">Hợp
+                            Đồng</a>
                     </li>
                 </ul>
                 <form class="d-flex">
@@ -167,6 +171,9 @@
     <div class="row content text-center"
          style="background-image: url(https://furamavietnam.com/wp-content/uploads/2018/07/Vietnam_Danang_Furama_Resort_Exterior-Furama-girl-with-pink-hat.jpg)">
         <p style="font-size: 70px;color: rgb(245,5,5)">List Customer</p>
+        <h2 style="text-align: center;color: red"><c:if test="${mess!=null}">
+            <span>${mess}</span>
+        </c:if></h2>
         <div class="row table-content">
             <div class="col col-lg-1 col-xl-1"></div>
             <div class="col col-lg-10 col-xl-10">
@@ -200,13 +207,16 @@
                             <td>${customer.getAddress()}</td>
                             <td>${customer.getCustomerTypeId()}</td>
                             <td>
-                                <button class="btn btn-primary" type="button" data-bs-toggle="modal"
-                                        data-bs-target="#exampleModalEdit"> Cập Nhật
-                                </button>
+                                <a href="/customer?action=edit&id=${customer.id}" class="btn btn-primary btn-lg ms-2 text-light">Cập nhật</a>
+
+<%--                                <button class="btn btn-primary" type="button" data-bs-toggle="modal"--%>
+<%--                                        data-bs-target="#exampleModalEdit"> Cập Nhật--%>
+<%--                                </button>--%>
                             </td>
                             <td>
-                                <button type="button" class="btn btn-primary" data-bs-toggle="modal"
-                                        data-bs-target="#exampleModal">Xóa
+                                <button type="button" onclick="idRemove('${customer.getId()}','${customer.getName()}')" class="btn btn-danger" data-bs-toggle="modal"
+                                        data-bs-target="#exampleRemove">
+                                    Xóa
                                 </button>
                             </td>
                         </tr>
@@ -214,8 +224,7 @@
                 </table>
             </div>
             <div class="col col-xl-1">
-                <a href="/customer?action=add"><button class="btn btn-primary" type="button" data-bs-toggle="modal"
-                        data-bs-target="#exampleModalEdit"> Thêm mới khách hàng
+                <a href="/customer?action=add"><button class="btn btn-primary" type="button"> Thêm mới khách hàng
                 </button></a>
             </div>
         </div>
@@ -297,5 +306,33 @@
         </div>
     </div>
 </div>
+<div class="modal fade" id="exampleRemove" tabindex="-1" aria-labelledby="exampleModalLabel"
+     aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">DELETE</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                        aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                Bạn có chắc muốn xóa khách hàng này???
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel
+                </button>
+                <form action="/customer?action=remove" method="post">
+                    <input type="hidden" name="id" id="idInput">
+                    <button class="btn btn-primary">Xóa</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    function idRemove(id,name) {
+        document.getElementById("idInput").value=id;
+    }
+</script>
 </body>
 </html>
