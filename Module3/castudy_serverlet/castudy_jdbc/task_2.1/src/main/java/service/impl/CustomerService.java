@@ -26,12 +26,17 @@ public class CustomerService implements ICustomerService {
     }
 
     @Override
-    public boolean editCustomer(Customer customer) {
-        return customerRepository.editCustomer(customer);
+    public boolean editCustomer(int id,Customer customer) {
+        return customerRepository.editCustomer(id,customer);
     }
 
     @Override
     public Customer findByID(int id) {
         return customerRepository.findByID(id);
+    }
+
+    @Override
+    public List<Customer> searchByName(String name) {
+        return customerRepository.searchByName(name);
     }
 }

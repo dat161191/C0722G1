@@ -169,114 +169,132 @@
     <section>
         <div class="container py-5 h-100 bg-danger">
             <div class="row d-flex justify-content-center align-items-center h-100">
-                <div class="col">
-                    <div class="card card-registration my-4">
-                        <div class="row g-0">
-                            <div class="col-xl-6 d-none d-xl-block">
-                                <img src="https://luhanhvietnam.com.vn/du-lich/vnt_upload/news/07_2019/mua-he.jpg"
-                                     alt="Sample photo" class="img-fluid"
-                                     style="width: 100%; height: 800px"/>
-                            </div>
-                            <div class="col-xl-6">
-                                <div class="card-body p-md-5 text-primary" style="font-size: 20px">
-                                    <h3 class="mb-5 text-uppercase text-center">Cập nhật thông tin</h3>
-                                    <div>
-                                        <div class="col-md-6 mb-3">
-                                            <div class="form-outline">
-                                                <input type="text" hidden id="form3Example1m100" value="${customer.getId()}"
-                                                       name="name" class="form-control form-control-lg"/>
-                                                <label hidden class="form-label" for="form3Example1m100">ID </label>
-                                            </div>
-                                        </div>
+                <div class="row">
+                    <h2 style="text-align: center;color: white"><c:if test="${mess!=null}">
+                        <span>${mess}</span>
+                    </c:if></h2>
+                </div>
+                <div class="row">
+                    <form action="/customer?action=edit" method="post">
+                        <div class="col">
+                            <div class="card card-registration my-4">
+                                <div class="row g-0">
+                                    <div class="col-xl-6 d-none d-xl-block">
+                                        <img src="https://luhanhvietnam.com.vn/du-lich/vnt_upload/news/07_2019/mua-he.jpg"
+                                             alt="Sample photo" class="img-fluid"
+                                             style="width: 100%; height: 800px"/>
                                     </div>
-                                    <div class="row">
-                                        <div class="col-md-6 mb-4">
-                                            <div class="form-outline">
-                                                <input type="text" name="name" id="form3Example1m" value="${customer.getName()}"
+                                    <div class="col-xl-6">
+                                        <div class="card-body p-md-5 text-primary" style="font-size: 20px">
+                                            <h3 class="mb-5 text-uppercase text-center">Cập nhật thông tin</h3>
+                                            <div>
+                                                <div class="col-md-6 mb-3">
+                                                    <div class="form-outline">
+                                                        <input type="text" hidden id="form3Example1m100"
+                                                               value="${customer.getId()}"
+                                                               name="id" class="form-control form-control-lg"/>
+                                                        <label hidden class="form-label"
+                                                               for="form3Example1m100">ID </label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-6 mb-4">
+                                                    <div class="form-outline">
+                                                        <input type="text" name="name" id="form3Example1m"
+                                                               value="${customer.getName()}"
+                                                               class="form-control form-control-lg"/>
+                                                        <label class="form-label" for="form3Example1m">Tên</label>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6 mb-4">
+                                                    <div class="form-outline">
+                                                        <input type="date" id="form3Example1n"
+                                                               name="birthday" value="${customer.getBirthday()}"
+                                                               class="form-control  form-control-lg text-primary"/>
+                                                        <label class="form-label" for="form3Example1n">Ngày Sinh</label>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="d-md-flex justify-content-start align-items-center mb-4 py-2">
+
+                                                <h6 class="mb-0 me-4">Giới Tính: </h6>
+                                                <div class="form-check form-check-inline mb-0 me-4">
+                                                    <input class="form-check-input" type="radio" value="true"
+                                                           name="gender"
+                                                           id="maleGender"
+                                                    />
+                                                    <label class="form-check-label" for="maleGender">Nam</label>
+                                                </div>
+                                                <div class="form-check form-check-inline mb-0 me-4">
+                                                    <input class="form-check-input" type="radio" value="false"
+                                                           name="gender"
+                                                           id="femaleGender"
+                                                    />
+                                                    <label class="form-check-label" for="femaleGender">Nữ</label>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-6 mb-3">
+                                                    <div class="form-outline">
+                                                        <input type="text" id="form3Example1m1"
+                                                               value="${customer.getIdCard()}"
+                                                               name="idCard" class="form-control form-control-lg"/>
+                                                        <label class="form-label" for="form3Example1m1">Số CMND </label>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6 mb-3">
+                                                    <div class="form-outline">
+                                                        <input type="text" id="form3Example1n1"
+                                                               value="${customer.getPhoneNumber()}"
+                                                               name="phoneNumber" class="form-control form-control-lg"/>
+                                                        <label class="form-label" for="form3Example1n1">Số ĐT</label>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="form-outline mb-3">
+                                                <input type="text" id="form3Example97" value="${customer.getEmail()}"
+                                                       name="email" class="form-control form-control-lg"/>
+                                                <label class="form-label" for="form3Example97">Email </label>
+                                            </div>
+
+                                            <div class="form-outline mb-3">
+                                                <input type="text" id="form3Example8" name="address"
+                                                       value="${customer.getAddress()}"
                                                        class="form-control form-control-lg"/>
-                                                <label class="form-label" for="form3Example1m">Tên</label>
+                                                <label class="form-label" for="form3Example8">Địa Chỉ</label>
                                             </div>
-                                        </div>
-                                        <div class="col-md-6 mb-4">
-                                            <div class="form-outline">
-                                                <input type="date" id="form3Example1n"
-                                                       name="birthday" value="${customer.getBirthday()}"
-                                                       class="form-control  form-control-lg text-primary"/>
-                                                <label class="form-label" for="form3Example1n">Ngày Sinh</label>
-                                            </div>
-                                        </div>
-                                    </div>
 
-                                    <div class="d-md-flex justify-content-start align-items-center mb-4 py-2">
-
-                                        <h6 class="mb-0 me-4">Giới Tính: </h6>
-                                        <div class="form-check form-check-inline mb-0 me-4">
-                                            <input class="form-check-input" type="radio" value="true" name="gender"
-                                                   id="maleGender"
-                                            />
-                                            <label class="form-check-label" for="maleGender">Nam</label>
-                                        </div>
-                                        <div class="form-check form-check-inline mb-0 me-4">
-                                            <input class="form-check-input" type="radio" value="false" name="gender"
-                                                   id="femaleGender"
-                                            />
-                                            <label class="form-check-label" for="femaleGender">Nữ</label>
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-md-6 mb-3">
-                                            <div class="form-outline">
-                                                <input type="text" id="form3Example1m1"  value="${customer.getIdCard()}"
-                                                       name="idCard" class="form-control form-control-lg"/>
-                                                <label class="form-label" for="form3Example1m1">Số CMND </label>
+                                            <div class="row">
+                                                <div class="col-md-12 mb-3">
+                                                    <label class="form-label col-xl-3" for="form3Example8">Loại
+                                                        Khách </label>
+                                                    <select name="customerTypeId"
+                                                            class="form-select-lg col-xl-8 text-primary">
+                                                        <option selected>------ Loại Khách------</option>
+                                                        <option value="1">Dimond</option>
+                                                        <option value="2">Platinium</option>
+                                                        <option value="3">Gold</option>
+                                                        <option value="4">Silver</option>
+                                                        <option value="4">Member</option>
+                                                    </select>
+                                                </div>
                                             </div>
-                                        </div>
-                                        <div class="col-md-6 mb-3">
-                                            <div class="form-outline">
-                                                <input type="text" id="form3Example1n1" value="${customer.getPhoneNumber()}"
-                                                       name="phoneNumber" class="form-control form-control-lg"/>
-                                                <label class="form-label" for="form3Example1n1">Số ĐT</label>
+                                            <div class="d-flex justify-content-center pt-3">
+                                                <a href="/customer" class="btn btn-primary btn-lg ms-2 text-light">
+                                                    Quay về </a>
+                                                <button type="submit" class="btn btn-primary btn-lg ms-2 text-light">
+                                                    Cập nhật
+                                                </button>
                                             </div>
                                         </div>
                                     </div>
-
-                                    <div class="form-outline mb-3">
-                                        <input type="text" id="form3Example97" value="${customer.getEmail()}"
-                                               name="email" class="form-control form-control-lg"/>
-                                        <label class="form-label" for="form3Example97">Email </label>
-                                    </div>
-
-                                    <div class="form-outline mb-3">
-                                        <input type="text" id="form3Example8" name="address" value="${customer.getAddress()}"
-                                               class="form-control form-control-lg"/>
-                                        <label class="form-label" for="form3Example8">Địa Chỉ</label>
-                                    </div>
-
-                                    <div class="row">
-                                        <div class="col-md-12 mb-3">
-                                            <label class="form-label col-xl-3" for="form3Example8">Loại Khách </label>
-                                            <select name="customerTypeId" class="form-select-lg col-xl-8 text-primary">
-                                                <option selected>------ Loại Khách------</option>
-                                                <option value="1">Dimond</option>
-                                                <option value="2">Platinium</option>
-                                                <option value="3">Gold</option>
-                                                <option value="4">Silver</option>
-                                                <option value="4">Member</option>
-                                            </select>
-                                        </div>
-                                    </div>
-                                    <div class="d-flex justify-content-center pt-3">
-                                        <a href="/customer" class="btn btn-primary btn-lg ms-2 text-light">
-                                            Quay về </a>
-                                        <button type="button" class="btn btn-primary btn-lg ms-2 text-light">
-                                            Cập nhật
-                                        </button>
-                                    </div>
-
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    </form>
                 </div>
             </div>
         </div>

@@ -13,13 +13,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet"
-          integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
-
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"
             integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3"
             crossorigin="anonymous"></script>
-
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+    <link rel="stylesheet" href="bootstrap520/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="datatables/css/dataTables.bootstrap5.min.css"/>
     <title>List</title>
     <style>
         * {
@@ -161,7 +161,7 @@
                             Đồng</a>
                     </li>
                 </ul>
-                <form class="d-flex">
+                <form class="d-flex" action="/customer?action=search" method="post">
                     <input class="form-control me-2" type="search" placeholder="TrầnGiaGia" aria-label="Search">
                     <button class="btn btn-outline-light" type="submit">Search</button>
                 </form>
@@ -169,7 +169,7 @@
         </nav>
     </div>
     <div class="row content text-center"
-         style="background-image: url(https://furamavietnam.com/wp-content/uploads/2018/07/Vietnam_Danang_Furama_Resort_Exterior-Furama-girl-with-pink-hat.jpg)">
+         style="background-image: url(https://furamavietnam.com/wp-content/uploads/2018/07/Vietnam_Danang_Furama_Resort_Exterior-Furama-girl-with-pink-hat.jpg);">
         <p style="font-size: 70px;color: rgb(245,5,5)">List Customer</p>
         <h2 style="text-align: center;color: red"><c:if test="${mess!=null}">
             <span>${mess}</span>
@@ -177,23 +177,24 @@
         <div class="row table-content">
             <div class="col col-lg-1 col-xl-1"></div>
             <div class="col col-lg-10 col-xl-10">
-                <table class="table table-hover table-success table-striped">
-
-                    <tr>
-                        <th>STT</th>
-                        <th hidden>ID</th>
-                        <th>Tên</th>
-                        <th>Ngày sinh</th>
-                        <th>Giới tính</th>
-                        <th >Số CMND</th>
-                        <th>Số điện thoại</th>
-                        <th>Email</th>
-                        <th >Địa chỉ</th>
-                        <th>Loại khách</th>
-                        <th>Cập nhật</th>
-                        <th>Xóa</th>
-                    </tr>
-
+                <table id="tableStudent" class="table table-striped table-bordered table-primary" style="width:100%">
+                    <thread>
+                        <tr>
+                            <th>STT</th>
+                            <th hidden>ID</th>
+                            <th>Tên</th>
+                            <th>Ngày sinh</th>
+                            <th>Giới tính</th>
+                            <th>Số CMND</th>
+                            <th>Số điện thoại</th>
+                            <th>Email</th>
+                            <th>Địa chỉ</th>
+                            <th>Loại khách</th>
+                            <th>Cập nhật</th>
+                            <th>Xóa</th>
+                        </tr>
+                    </thread>
+                    <tbody>
                     <c:forEach var="customer" items="${customerList}" varStatus="stt">
                         <tr>
                             <th scope="row">${stt.count}</th>
@@ -207,25 +208,30 @@
                             <td>${customer.getAddress()}</td>
                             <td>${customer.getCustomerTypeId()}</td>
                             <td>
-                                <a href="/customer?action=edit&id=${customer.id}" class="btn btn-primary btn-lg ms-2 text-light">Cập nhật</a>
+                                <a href="/customer?action=edit&id=${customer.id}"
+                                   class="btn btn-primary btn-lg ms-2 text-light">Cập nhật</a>
 
-<%--                                <button class="btn btn-primary" type="button" data-bs-toggle="modal"--%>
-<%--                                        data-bs-target="#exampleModalEdit"> Cập Nhật--%>
-<%--                                </button>--%>
+                                    <%--                                <button class="btn btn-primary" type="button" data-bs-toggle="modal"--%>
+                                    <%--                                        data-bs-target="#exampleModalEdit"> Cập Nhật--%>
+                                    <%--                                </button>--%>
                             </td>
                             <td>
-                                <button type="button" onclick="idRemove('${customer.getId()}','${customer.getName()}')" class="btn btn-danger" data-bs-toggle="modal"
+                                <button type="button" onclick="idRemove('${customer.getId()}','${customer.getName()}')"
+                                        class="btn btn-danger" data-bs-toggle="modal"
                                         data-bs-target="#exampleRemove">
                                     Xóa
                                 </button>
                             </td>
                         </tr>
                     </c:forEach>
+                    </tbody>
                 </table>
             </div>
             <div class="col col-xl-1">
-                <a href="/customer?action=add"><button class="btn btn-primary" type="button"> Thêm mới khách hàng
-                </button></a>
+                <a href="/customer?action=add">
+                    <button class="btn btn-primary" type="button"> Thêm mới khách hàng
+                    </button>
+                </a>
             </div>
         </div>
     </div>
@@ -306,6 +312,9 @@
         </div>
     </div>
 </div>
+
+
+<%--Modal REMOVE--%>
 <div class="modal fade" id="exampleRemove" tabindex="-1" aria-labelledby="exampleModalLabel"
      aria-hidden="true">
     <div class="modal-dialog">
@@ -330,9 +339,23 @@
     </div>
 </div>
 <script>
-    function idRemove(id,name) {
-        document.getElementById("idInput").value=id;
+    function idRemove(id, name) {
+        document.getElementById("idInput").value = id;
     }
+</script>
+
+
+<script src="jquery/jquery-3.5.1.min.js"></script>
+<script src="datatables/js/jquery.dataTables.min.js"></script>
+<script src="datatables/js/dataTables.bootstrap5.min.js"></script>
+<script>
+    $(document).ready(function() {
+        $('#tableStudent').dataTable( {
+            "dom": 'lrtip',
+            "lengthChange": false,
+            "pageLength": 5
+        } );
+    } );
 </script>
 </body>
 </html>
