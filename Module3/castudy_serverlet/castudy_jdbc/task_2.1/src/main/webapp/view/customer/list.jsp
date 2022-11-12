@@ -18,8 +18,6 @@
             crossorigin="anonymous"></script>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet"
           integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
-    <link rel="stylesheet" href="bootstrap520/css/bootstrap.min.css"/>
-    <link rel="stylesheet" href="datatables/css/dataTables.bootstrap5.min.css"/>
     <title>List</title>
     <style>
         * {
@@ -138,12 +136,12 @@
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <li class="nav-item">
                         <a class="nav-link active" aria-current="page"
-                           href="http://localhost:63342/Module3/castudy_module3/task_1.1/castudy_furama_web.html?_ijt=14lb68g1bona255ovippf0bl8n&_ij_reload=RELOAD_ON_SAVE"><i
+                           href="/view/home.jsp"><i
                                 class="fa fa-home"></i></a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link active" aria-current="page"
-                           href="http://localhost:63342/castudy_module3/task_1.5/list_contract.html?_ijt=ickg1dpcvc3c2c5hs6q7430acu&_ij_reload=RELOAD_ON_SAVE">Nhân
+                           href="/employee">Nhân
                             Viên</a>
                     </li>
                     <li class="nav-item">
@@ -152,18 +150,18 @@
                     </li>
                     <li class="nav-item">
                         <a class="nav-link active" aria-current="page"
-                           href="http://localhost:63342/castudy_module3/task_1.5/list_contract.html?_ijt=ickg1dpcvc3c2c5hs6q7430acu&_ij_reload=RELOAD_ON_SAVE">Dịch
+                           href="/facility">Dịch
                             Vụ</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link active" aria-current="page"
-                           href="http://localhost:63342/castudy_module3/task_1.5/list_contract.html?_ijt=ickg1dpcvc3c2c5hs6q7430acu&_ij_reload=RELOAD_ON_SAVE">Hợp
+                           href="/contract">Hợp
                             Đồng</a>
                     </li>
                 </ul>
                 <form class="d-flex" action="/customer?action=search" method="post">
-                    <input class="form-control me-2" type="search" placeholder="TrầnGiaGia" aria-label="Search">
-                    <button class="btn btn-outline-light" type="submit">Search</button>
+                    <input class="form-control me-2" type="search" name="search" placeholder="TrầnGiaGia" aria-label="Search">
+                    <button class="btn btn-outline-light" type="submit">Tìm Kiếm</button>
                 </form>
             </div>
         </nav>
@@ -177,28 +175,26 @@
         <div class="row table-content">
             <div class="col col-lg-1 col-xl-1"></div>
             <div class="col col-lg-10 col-xl-10">
-                <table id="tableStudent" class="table table-striped table-bordered table-primary" style="width:100%">
-                    <thread>
-                        <tr>
-                            <th>STT</th>
-                            <th hidden>ID</th>
-                            <th>Tên</th>
-                            <th>Ngày sinh</th>
-                            <th>Giới tính</th>
-                            <th>Số CMND</th>
-                            <th>Số điện thoại</th>
-                            <th>Email</th>
-                            <th>Địa chỉ</th>
-                            <th>Loại khách</th>
-                            <th>Cập nhật</th>
-                            <th>Xóa</th>
-                        </tr>
-                    </thread>
+                <table id="tableCustomer" class="table table-striped table-bordered table-primary" style="width:100%">
+                    <thead>
+                    <tr>
+                        <th>STT</th>
+                        <th>Tên</th>
+                        <th>Ngày sinh</th>
+                        <th>Giới tính</th>
+                        <th>Số CMND</th>
+                        <th>Số điện thoại</th>
+                        <th>Email</th>
+                        <th>Địa chỉ</th>
+                        <th>Loại khách</th>
+                        <th>Cập nhật</th>
+                        <th>Xóa</th>
+                    </tr>
+                    </thead>
                     <tbody>
                     <c:forEach var="customer" items="${customerList}" varStatus="stt">
                         <tr>
                             <th scope="row">${stt.count}</th>
-                            <td hidden>${customer.getId()}</td>
                             <td>${customer.getName()}</td>
                             <td>${customer.getBirthday()}</td>
                             <td>${customer.isGender() == true ? "Nam" : "Nữ"}</td>
@@ -206,20 +202,15 @@
                             <td>${customer.getPhoneNumber()}</td>
                             <td>${customer.getEmail()}</td>
                             <td>${customer.getAddress()}</td>
-                            <td>${customer.getCustomerTypeId()}</td>
+                            <td>${customer.getCustomerTypeName()}</td>
                             <td>
-                                <a href="/customer?action=edit&id=${customer.id}"
+                                <a href="/customer?action=edit&id=${customer.getId()}"
                                    class="btn btn-primary btn-lg ms-2 text-light">Cập nhật</a>
-
-                                    <%--                                <button class="btn btn-primary" type="button" data-bs-toggle="modal"--%>
-                                    <%--                                        data-bs-target="#exampleModalEdit"> Cập Nhật--%>
-                                    <%--                                </button>--%>
                             </td>
                             <td>
                                 <button type="button" onclick="idRemove('${customer.getId()}','${customer.getName()}')"
-                                        class="btn btn-danger" data-bs-toggle="modal"
-                                        data-bs-target="#exampleRemove">
-                                    Xóa
+                                        class="btn btn-lg btn-danger" data-bs-toggle="modal"
+                                        data-bs-target="#exampleRemove"> Xóa
                                 </button>
                             </td>
                         </tr>
@@ -319,13 +310,10 @@
      aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">DELETE</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal"
-                        aria-label="Close"></button>
-            </div>
             <div class="modal-body">
-                Bạn có chắc muốn xóa khách hàng này???
+                <p style="font-size: 15px;color: blue;text-align: center">Bạn có chắc muốn xóa khách hàng này???</p>
+                <P id="name" style="font-size: 25px;color: red;text-align: center"></P>
+
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel
@@ -338,24 +326,35 @@
         </div>
     </div>
 </div>
+
 <script>
     function idRemove(id, name) {
         document.getElementById("idInput").value = id;
+        document.getElementById("name").innerText = name;
     }
 </script>
 
 
+</body>
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+        crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js"
+        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+        crossorigin="anonymous"></script>
 <script src="jquery/jquery-3.5.1.min.js"></script>
 <script src="datatables/js/jquery.dataTables.min.js"></script>
 <script src="datatables/js/dataTables.bootstrap5.min.js"></script>
 <script>
-    $(document).ready(function() {
-        $('#tableStudent').dataTable( {
+    $(document).ready(function () {
+        $('#tableCustomer').dataTable({
             "dom": 'lrtip',
             "lengthChange": false,
             "pageLength": 5
-        } );
-    } );
+        });
+    });
 </script>
-</body>
 </html>

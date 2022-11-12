@@ -9,12 +9,16 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class CustomerRepository implements ICustomerRepository {
-    private static final String INSERT_CUSTOMER_SQL = "INSERT INTO customer (name, day_of_birth, gender, id_card, phone_number, email, address, customer_type_id) VALUES (?, ?, ?, ?, ?, ?, ?, ?);";
-    private static final String SELECT_CUSTOMER_SQL = "SELECT * FROM customer";
-    private static final String DELETE_USERS_SQL = "DELETE FROM customer WHERE id = ?;";
-    private static final String UPDATE_CUSTOMER_SQL = "UPDATE CUSTOMER SET name = ? ,day_of_birth = ?, gender = ?, id_card = ?, phone_number = ?, email = ?, address = ?, customer_type_id = ? WHERE id = ?;";
-    private static final String SELECT_CUSTOMER_BY_ID = "SELECT * FROM customer WHERE id = ?";
-    private static final String SEARCH_CUSTOMER_BY_NAME = "SELECT * FROM customer WHERE name LIKE ?;";
+    private final String INSERT_CUSTOMER_SQL =
+            "INSERT INTO customer (name, day_of_birth, gender, id_card, phone_number, email, address, customer_type_id) VALUES ( ?, ?, ?, ?, ?, ?, ?,?);";
+
+    private final String SELECT_CUSTOMER_SQL = "CALL select_customers();";
+
+    private final String DELETE_USERS_SQL = "UPDATE customer SET is_delete =1 WHERE id = ?;";
+    private final String UPDATE_CUSTOMER_SQL =
+            "UPDATE CUSTOMER SET name = ? ,day_of_birth = ?, gender = ?, id_card = ?, phone_number = ?, email = ?, address = ?, customer_type_id = ? WHERE id = ?;";
+    private final String SELECT_CUSTOMER_BY_ID = "SELECT * FROM customer WHERE is_delete =0 and id = ?";
+    private final String SEARCH_CUSTOMER_BY_NAME = "SELECT * FROM customer WHERE is_delete =0 and (name LIKE ? OR  address like ? );";
 
 
     @Override
@@ -36,7 +40,9 @@ public class CustomerRepository implements ICustomerRepository {
                 String email = resultSet.getString("email");
                 String address = resultSet.getString("address");
                 int customerTypeId = resultSet.getInt("customer_type_id");
-                Customer customer = new Customer(id, name, birthday, gender, idCard, phoneNumber, email, address, customerTypeId);
+                boolean isDelete = resultSet.getBoolean("is_delete");
+                String customerTypeName =resultSet.getString("customer_type_name");
+                Customer customer = new Customer(id, name, birthday, gender, idCard, phoneNumber, email, address, customerTypeId, isDelete,customerTypeName);
                 customerList.add(customer);
             }
         } catch (SQLException e) {
@@ -46,6 +52,8 @@ public class CustomerRepository implements ICustomerRepository {
         return customerList;
     }
 
+
+    /*========== ADD CUSTOMER==========*/
     @Override
     public boolean addCustomer(Customer customer) {
         Connection connection = BaseRepository.getConnectDB();
@@ -66,6 +74,7 @@ public class CustomerRepository implements ICustomerRepository {
         return false;
     }
 
+    /*===========REMOVE============*/
     @Override
     public boolean removeCustomer(int id) {
         Connection connection = BaseRepository.getConnectDB();
@@ -79,8 +88,9 @@ public class CustomerRepository implements ICustomerRepository {
         return false;
     }
 
+    /*=========== EDIT BY ID===========*/
     @Override
-    public boolean editCustomer(int id,Customer customer) {
+    public boolean editCustomer(int id, Customer customer) {
         Connection connection = BaseRepository.getConnectDB();
         PreparedStatement preparedStatement = null;
         try {
@@ -101,6 +111,8 @@ public class CustomerRepository implements ICustomerRepository {
         return false;
     }
 
+
+    /*========= FIND BY ID==========*/
     @Override
     public Customer findByID(int id) {
         Customer customer = null;
@@ -129,13 +141,14 @@ public class CustomerRepository implements ICustomerRepository {
 
     /*----------SEARCH----------------*/
     @Override
-    public List<Customer> searchByName(String name) {
+    public List<Customer> searchByNameAndAdrress(String name) {
         List<Customer> customerList = new ArrayList<>();
 
         Connection connection = BaseRepository.getConnectDB();
         try {
             PreparedStatement preparedStatement = connection.prepareStatement(SEARCH_CUSTOMER_BY_NAME);
-            preparedStatement.setString(1, name);
+            preparedStatement.setString(1, "%" + name + "%");
+            preparedStatement.setString(2, "%" + name + "%");
             ResultSet resultSet = preparedStatement.executeQuery();
 
             while (resultSet.next()) {

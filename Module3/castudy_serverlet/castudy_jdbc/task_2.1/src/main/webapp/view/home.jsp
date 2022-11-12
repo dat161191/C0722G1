@@ -137,12 +137,12 @@
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <li class="nav-item">
                         <a class="nav-link active" aria-current="page"
-                           href="http://localhost:63342/Module3/castudy_module3/task_1.1/castudy_furama_web.html?_ijt=14lb68g1bona255ovippf0bl8n&_ij_reload=RELOAD_ON_SAVE"><i
+                           href="/view/home.jsp"><i
                                 class="fa fa-home"></i></a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link active" aria-current="page"
-                           href="http://localhost:63342/castudy_module3/task_1.5/list_contract.html?_ijt=ickg1dpcvc3c2c5hs6q7430acu&_ij_reload=RELOAD_ON_SAVE">Nhân
+                           href="/employee">Nhân
                             Viên</a>
                     </li>
                     <li class="nav-item">
@@ -151,12 +151,12 @@
                     </li>
                     <li class="nav-item">
                         <a class="nav-link active" aria-current="page"
-                           href="http://localhost:63342/castudy_module3/task_1.5/list_contract.html?_ijt=ickg1dpcvc3c2c5hs6q7430acu&_ij_reload=RELOAD_ON_SAVE">Dịch
+                           href="/facility">Dịch
                             Vụ</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link active" aria-current="page"
-                           href="http://localhost:63342/castudy_module3/task_1.5/list_contract.html?_ijt=ickg1dpcvc3c2c5hs6q7430acu&_ij_reload=RELOAD_ON_SAVE">Hợp
+                           href="/contract">Hợp
                             Đồng</a>
                     </li>
                 </ul>

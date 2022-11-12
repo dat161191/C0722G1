@@ -263,13 +263,13 @@
                                                     <option value="2">Platinium</option>
                                                     <option value="3">Gold</option>
                                                     <option value="4">Silver</option>
-                                                    <option value="4">Member</option>
+                                                    <option value="5">Member</option>
                                                 </select>
                                             </div>
                                         </div>
                                         <div class="d-flex justify-content-center pt-3">
                                             <button type="submit" class="btn btn-primary btn-lg ms-2 text-light">
-                                                Cập nhật
+                                                Thêm mới
                                             </button>
                                             <a href="/customer" class="btn btn-primary btn-lg ms-2 text-light">
                                                 Quay về </a>

@@ -135,12 +135,12 @@
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                 <li class="nav-item">
                     <a class="nav-link active" aria-current="page"
-                       href="http://localhost:63342/Module3/castudy_module3/task_1.1/castudy_furama_web.html?_ijt=14lb68g1bona255ovippf0bl8n&_ij_reload=RELOAD_ON_SAVE"><i
+                       href="/view/home.jsp"><i
                             class="fa fa-home"></i></a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link active" aria-current="page"
-                       href="http://localhost:63342/castudy_module3/task_1.5/list_contract.html?_ijt=ickg1dpcvc3c2c5hs6q7430acu&_ij_reload=RELOAD_ON_SAVE">Nhân
+                       href="/employee">Nhân
                         Viên</a>
                 </li>
                 <li class="nav-item">
@@ -149,19 +149,15 @@
                 </li>
                 <li class="nav-item">
                     <a class="nav-link active" aria-current="page"
-                       href="http://localhost:63342/castudy_module3/task_1.5/list_contract.html?_ijt=ickg1dpcvc3c2c5hs6q7430acu&_ij_reload=RELOAD_ON_SAVE">Dịch
+                       href="/facility">Dịch
                         Vụ</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link active" aria-current="page"
-                       href="http://localhost:63342/castudy_module3/task_1.5/list_contract.html?_ijt=ickg1dpcvc3c2c5hs6q7430acu&_ij_reload=RELOAD_ON_SAVE">Hợp
+                       href="/contract">Hợp
                         Đồng</a>
                 </li>
             </ul>
-            <form class="d-flex">
-                <input class="form-control me-2" type="search" placeholder="TrầnGiaGia" aria-label="Search">
-                <button class="btn btn-outline-light" type="submit">Search</button>
-            </form>
         </div>
     </nav>
 </div>
@@ -222,16 +218,14 @@
                                                 <h6 class="mb-0 me-4">Giới Tính: </h6>
                                                 <div class="form-check form-check-inline mb-0 me-4">
                                                     <input class="form-check-input" type="radio" value="true"
-                                                           name="gender"
-                                                           id="maleGender"
-                                                    />
+                                                    ${customer.isGender() == true ? "checked" : ""} name="gender"
+                                                           id="maleGender"/>
                                                     <label class="form-check-label" for="maleGender">Nam</label>
                                                 </div>
                                                 <div class="form-check form-check-inline mb-0 me-4">
                                                     <input class="form-check-input" type="radio" value="false"
-                                                           name="gender"
-                                                           id="femaleGender"
-                                                    />
+                                                    ${customer.isGender() == false ? "checked" : ""} name="gender"
+                                                           id="femaleGender"/>
                                                     <label class="form-check-label" for="femaleGender">Nữ</label>
                                                 </div>
                                             </div>
@@ -273,12 +267,21 @@
                                                         Khách </label>
                                                     <select name="customerTypeId"
                                                             class="form-select-lg col-xl-8 text-primary">
-                                                        <option selected>------ Loại Khách------</option>
-                                                        <option value="1">Dimond</option>
-                                                        <option value="2">Platinium</option>
-                                                        <option value="3">Gold</option>
-                                                        <option value="4">Silver</option>
-                                                        <option value="4">Member</option>
+                                                        <option value="1" ${customer.getCustomerTypeId() == 1?"selected":""}>
+                                                            Dimond
+                                                        </option>
+                                                        <option value="2" ${customer.getCustomerTypeId() == 2?"selected":""}>
+                                                            Platinium
+                                                        </option>
+                                                        <option value="3" ${customer.getCustomerTypeId() == 3?"selected":""}>
+                                                            Gold
+                                                        </option>
+                                                        <option value="4" ${customer.getCustomerTypeId() == 4?"selected":""}>
+                                                            Silver
+                                                        </option>
+                                                        <option value="4" ${customer.getCustomerTypeId() == 5?"selected":""}>
+                                                            Member
+                                                        </option>
                                                     </select>
                                                 </div>
                                             </div>
