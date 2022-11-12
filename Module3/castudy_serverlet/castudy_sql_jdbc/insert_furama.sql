@@ -54,10 +54,10 @@ INSERT INTO case_study_furama_web.facility_type (name)
        ('Room');     
       
 INSERT INTO case_study_furama_web.rent_type (name)
-VALUE ('year'),
-	  ('month'),
-      ('day'),
-      ('hour');
+VALUE ('Năm'),
+	  ('Tháng'),
+      ('Ngày'),
+      ('Giờ');
       
 INSERT INTO case_study_furama_web.facility (name, area, cost, max_people, standard_room, description_other_convenience, pool_area, number_of_floors, facility_free, rent_type_id, facility_type_id)
 VALUE

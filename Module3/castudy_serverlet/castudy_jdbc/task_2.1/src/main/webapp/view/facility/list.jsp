@@ -162,7 +162,8 @@
                     </li>
                 </ul>
                 <form class="d-flex" action="/facility?action=search" method="post">
-                    <input class="form-control me-2" type="search" name="search" placeholder="TrầnGiaGia" aria-label="Search">
+                    <input class="form-control me-2" type="search" name="search" placeholder="TrầnGiaGia"
+                           aria-label="Search">
                     <button class="btn btn-outline-light" type="submit">Tìm Kiếm</button>
                 </form>
             </div>
@@ -243,13 +244,18 @@
                                 <td>${facility.getFacilityTyeName()}</td>
 
                                 <td>
-                                    <a href="/facility?action=edit&id=${facility.id}"
-                                       class="btn btn-primary btn-lg ms-2 text-light">Cập nhật</a>
+                                    <button type="button"
+                                            onclick="idEdit('${facility.getId()}','${facility.getName()}','${facility.getArea()}','${facility.getCost()}','${facility.getMaxPeople()}','${facility.getStandardRoom()}','${facility.getDescriptionOtherConvenience()}','${facility.getPoolArea()}','${facility.getNumberOfFloors()}','${facility.getFacilityFree()}','${facility.getRentTypeId()}','${facility.getFacilityTypeId()}')"
+                                            class="btn btn-lg btn-primary" data-bs-toggle="modal"
+                                            data-bs-target="#edit"> Cập Nhật
+                                    </button>
                                 </td>
                                 <td>
-                                    <button type="button" onclick="idRemove('${facility.getId()}','${facility.getName()}')"
+                                    <button type="button"
+                                            onclick="idRemove('${facility.getId()}','${facility.getName()}')"
                                             class="btn btn-lg btn-danger" data-bs-toggle="modal"
-                                            data-bs-target="#exampleRemove"> Xóa </button>
+                                            data-bs-target="#exampleRemove"> Xóa
+                                    </button>
                                 </td>
                             </tr>
                         </c:forEach>
@@ -600,6 +606,132 @@
         document.getElementById("name").innerText = name;
     }
 </script>
+
+<%----------------MODAL EDIT-----------%>
+
+<div class="modal fade" id="edit" tabindex="-1"
+     aria-labelledby="exampleModalLabel" aria-hidden="true"
+     data-bs-backdrop="static">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header-xl">
+                <h1 style="text-align: center;color: blue; padding-top: 5px" class="modal-title fs-5">CẬP NHẬT
+                    FACILITY</h1>
+            </div>
+            <form action="/facility?action=edit" method="post">
+                <div class="modal-body-xl">
+                    <div class="container">
+                        <table class="table table-primary" style="width: 100%;">
+                            <tr>
+                                <td hidden><label for="update_id">ID</label></td>
+                                <td hidden><input name="id" type="text" style="width: 100%" id="update_id" value=""></td>
+                            </tr>
+                            <tr>
+                                <td><label for="update_tdv">Tên Dịch vụ</label></td>
+                                <td><input name="name" type="text" style="width: 100%" id="update_tdv" value=""></td>
+                            </tr>
+                            <tr>
+                                <td><label for="update_dtsd">Diện tích sử dụng</label></td>
+                                <td><input name="area" type="text" style="width: 100%" id="update_dtsd" value=""></td>
+                            </tr>
+                            <tr>
+                                <td><label for="update_cpt">Chi Phí Thuê</label></td>
+                                <td><input name="cost" type="text" style="width: 100%" id="update_cpt" value=""></td>
+                            </tr>
+                            <tr>
+                                <td><label for="update_slntd">Số lượng người tối đa</label></td>
+                                <td><input name="maxPeople" type="text" style="width: 100%" id="update_slntd" value="">
+                                </td>
+                            </tr>
+<%--                            <c:if test="${facility.facilityTypeId() == 1 || facility.facilityTypeId() == 2}">--%>
+                                <tr>
+                                    <td><label for="update_tcp">Tiêu chuẩn phòng</label></td>
+                                    <td><input name="standardRoom" type="text" style="width: 100%" id="update_tcp"
+                                               value="">
+                                    </td>
+                                </tr>
+<%--                            </c:if>--%>
+<%--                            <c:if test="${facility.facilityTypeId() == 1 || facility.facilityTypeId() == 2}}">--%>
+                                <tr>
+                                    <td><label for="update_tnk">Tiện nghi khác</label></td>
+                                    <td><input name="descriptionOtherConvenience" type="text" style="width: 100%"
+                                               id="update_tnk" value="">
+                                    </td>
+                                </tr>
+<%--                            </c:if>--%>
+<%--                            <c:if test="${facility.facilityTypeId() == 1 }">--%>
+                                <tr>
+                                    <td><label for="update_dthb">Diện tích hồ bơi</label></td>
+                                    <td>
+                                        <input name="poolArea" type="text" style="width: 100%" id="update_dthb"
+                                               value="">
+                                    </td>
+                                </tr>
+<%--                            </c:if>--%>
+<%--                            <c:if test="${facility.facilityTypeId() != 1 && facility.facilityTypeId() != 2}">--%>
+                                <tr>
+                                    <td ><label for="update_st">Số tầng</label></td>
+                                    <td ><input name="numberOfFloors" type="text" style="width: 100%" id="update_st"
+                                               value=""></td>
+                                </tr>
+<%--                            </c:if>--%>
+<%--                            <c:if test="${facility.facilityTypeId() != 1 && facility.facilityTypeId() != 2}">--%>
+                                <tr>
+                                    <td><label for="update_dvmpdk">Dịch vụ miễn phí đi kèm</label></td>
+                                    <td><input name="facilityFree" type="text" style="width: 100%" id="update_dvmpdk"
+                                               value=""></td>
+                                </tr>
+<%--                            </c:if>--%>
+                            <tr>
+                                <td><label for="update_kt">Kiểu thuê</label></td>
+                                <td><select name="rentTypeId" id="update_kt">
+                                    <option value="1">-----†------ Năm -----†----</option>
+                                    <option value="2">-----†------ Tháng -----†----</option>
+                                    <option value="3">-----†------ Ngày -----†----</option>
+                                    <option value="4">-----†------ Giờ -----†----</option>
+                                </select></td>
+                            </tr>
+                            <tr>
+                                <td><label for="update_ldv">Loại dịch vụ</label></td>
+                                <td><select name="facilityTypeId" id="update_ldv">
+                                    <option value="1">-----†------ Villa -----†----</option>
+                                    <option value="2">-----†------ House -----†----</option>
+                                    <option value="3">-----†------ Room -----†----</option>
+                                </select></td>
+                            </tr>
+                        </table>
+                    </div>
+                    <div class="modal-footer">
+                        <a href="/facility" class="btn btn-primary btn-lg ms-2 text-light">
+                            Quay về </a>
+                        </button>
+                        <button type="submit" class="btn btn-primary btn-lg ms-2 text-light">Cập nhật </button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<%----------------MODAL EDIT (SỬA)--------------%>
+>
+<script>
+    function idEdit(id, name, area, cost, maxPeople, standardRoom, descriptionOtherConvenience, poolArea, numberOfFloors, facilityFree, rentTypeId, facilityTypeId) {
+        document.getElementById("update_id").value = id;
+        document.getElementById("update_tdv").value = name;
+        document.getElementById("update_dtsd").value = area;
+        document.getElementById("update_cpt").value = cost;
+        document.getElementById("update_slntd").value = maxPeople;
+        document.getElementById("update_tcp").value = standardRoom;
+        document.getElementById("update_tnk").value = descriptionOtherConvenience;
+        document.getElementById("update_dthb").value = poolArea;
+        document.getElementById("update_st").value = numberOfFloors;
+        document.getElementById("update_dvmpdk").value = facilityFree;
+        document.getElementById("update_kt").value = rentTypeId;
+        document.getElementById("update_ldv").value = facilityTypeId;
+    }
+
+</script>
+
 
 <%--MODAL DELETE--%>
 <div class="modal fade" id="exampleRemove" tabindex="-1" aria-labelledby="exampleModalLabel"

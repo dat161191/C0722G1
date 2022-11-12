@@ -15,6 +15,7 @@ public class CustomerRepository implements ICustomerRepository {
     private final String SELECT_CUSTOMER_SQL = "CALL select_customers();";
 
     private final String DELETE_USERS_SQL = "UPDATE customer SET is_delete =1 WHERE id = ?;";
+
     private final String UPDATE_CUSTOMER_SQL =
             "UPDATE CUSTOMER SET name = ? ,day_of_birth = ?, gender = ?, id_card = ?, phone_number = ?, email = ?, address = ?, customer_type_id = ? WHERE id = ?;";
     private final String SELECT_CUSTOMER_BY_ID = "SELECT * FROM customer WHERE is_delete =0 and id = ?";

@@ -20,7 +20,9 @@ public class FacilityRepository implements IFacilityRepository {
             "SELECT facility.*, rent_type.name AS rent_type_name, facility_type.name AS facility_type_name FROM facility JOIN rent_type ON facility.rent_type_id = rent_type.id JOIN facility_type ON facility.facility_type_id = facility_type.id WHERE facility.is_delete = 0;";
     private final String DELETE_FACILITY_SQL = "UPDATE facility SET is_delete =1 WHERE id = ?;";
 
-    private final String SEARCH_CUSTOMER_BY_NAME = "SELECT * FROM facility WHERE is_delete =0 and name LIKE ? ;";
+    private final String SEARCH_FACILITY_BY_NAME = "SELECT * FROM facility WHERE is_delete =0 and name LIKE ? ;";
+    private final String UPDATE_FACILITY_SQL =
+            "UPDATE facility SET name = ? ,area = ?, cost = ?, max_people = ?, standard_room = ?, description_other_convenience = ?, pool_area = ?, number_of_floors = ?,facility_free =?,rent_type_id =?,facility_type_id=? WHERE is_delete=0 AND id = ?;";
 
 
     @Override
@@ -36,7 +38,7 @@ public class FacilityRepository implements IFacilityRepository {
                 int id = resultSet.getInt("id");
                 String name = resultSet.getString("name");
                 int area = resultSet.getInt("area");
-                double cost = resultSet.getDouble("cost");
+                double cost = resultSet.getDouble("cost");/// sao thèn đây hiển thị k ra tiền đc
                 int maxPeople = resultSet.getInt("max_people");
                 String standardRoom = resultSet.getString("standard_room");
                 String descriptionOtherConvenience = resultSet.getString("description_other_convenience");
@@ -98,8 +100,30 @@ public class FacilityRepository implements IFacilityRepository {
         return false;
     }
 
+    /*===========EDIT=============*/
     @Override
     public boolean editFacility(int id, Facility facility) {
+        Connection connection = BaseRepository.getConnectDB();
+        PreparedStatement preparedStatement = null;
+        try {
+            preparedStatement = connection.prepareStatement(UPDATE_FACILITY_SQL);
+            preparedStatement.setString(1, facility.getName());
+            preparedStatement.setInt(2, facility.getArea());
+            preparedStatement.setDouble(3, facility.getCost());
+            preparedStatement.setInt(4, facility.getMaxPeople());
+            preparedStatement.setString(5, facility.getStandardRoom());
+            preparedStatement.setString(6, facility.getDescriptionOtherConvenience());
+            preparedStatement.setDouble(7, facility.getPoolArea());
+            preparedStatement.setInt(8, facility.getNumberOfFloors());
+            preparedStatement.setString(9, facility.getFacilityFree());
+            preparedStatement.setInt(10, facility.getRentTypeId());
+            preparedStatement.setInt(11, facility.getFacilityTypeId());
+            preparedStatement.setInt(12, facility.getId());
+            return preparedStatement.executeUpdate() > 0;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
         return false;
     }
 
@@ -115,7 +139,7 @@ public class FacilityRepository implements IFacilityRepository {
 
         Connection connection = BaseRepository.getConnectDB();
         try {
-            PreparedStatement preparedStatement = connection.prepareStatement(SEARCH_CUSTOMER_BY_NAME);
+            PreparedStatement preparedStatement = connection.prepareStatement(SEARCH_FACILITY_BY_NAME);
             preparedStatement.setString(1, "%" + name + "%");
             ResultSet resultSet = preparedStatement.executeQuery();
 

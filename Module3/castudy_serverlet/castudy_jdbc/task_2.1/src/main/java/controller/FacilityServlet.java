@@ -47,10 +47,11 @@ public class FacilityServlet extends HttpServlet {
                 removeFacility(request, response);
                 break;
             case "search":
-                searchFacility(request,response);
+                searchFacility(request, response);
                 break;
         }
     }
+
     /*=============SEARCH========================*/
     private void searchFacility(HttpServletRequest request, HttpServletResponse response) {
         String name = request.getParameter("search");
@@ -64,7 +65,7 @@ public class FacilityServlet extends HttpServlet {
         }
     }
 
-    /*============= EDIT =================*/
+    /*============= REMOVE(XÓA) =================*/
     private void removeFacility(HttpServletRequest request, HttpServletResponse response) {
         int id = Integer.parseInt(request.getParameter("id"));
         boolean check = facilityService.removeFacility(id);
@@ -76,7 +77,27 @@ public class FacilityServlet extends HttpServlet {
         showFacility(request, response);
     }
 
+    /*=============EDIT (SỬA)============*/
     private void updateFacility(HttpServletRequest request, HttpServletResponse response) {
+        int id = Integer.parseInt(request.getParameter("id"));
+        String name = request.getParameter("name");
+        int area = Integer.parseInt(request.getParameter("area"));
+        double cost = Double.parseDouble(request.getParameter("cost"));
+        int maxPeople = Integer.parseInt(request.getParameter("maxPeople"));
+        String standardRoom = request.getParameter("standardRoom");
+        String descriptionOtherConvenience = request.getParameter("descriptionOtherConvenience");
+        double poolArea = Double.parseDouble(request.getParameter("poolArea"));
+        int numberOfFloors = Integer.parseInt(request.getParameter("numberOfFloors"));
+        String facilityFree = request.getParameter("facilityFree");
+        int rentTypeId = Integer.parseInt(request.getParameter("rentTypeId"));
+        int facilityTypeId = Integer.parseInt(request.getParameter("facilityTypeId"));
+        Facility facility = new Facility(id, name, area, cost, maxPeople, standardRoom, descriptionOtherConvenience, poolArea, numberOfFloors, facilityFree, rentTypeId, facilityTypeId);
+        boolean check = facilityService.editFacility(id, facility);
+        String mess = "Cập nhật thành công";
+        if (check) {
+            mess = "Cập nhật thành công";
+        }request.setAttribute("mess", mess);
+        showFacility(request, response);
     }
 
     /*========== ADD FACILITY======================*/
@@ -89,10 +110,10 @@ public class FacilityServlet extends HttpServlet {
         String descriptionOtherConvenience = request.getParameter("descriptionOtherConvenience");
         double poolArea = Double.parseDouble(request.getParameter("poolArea"));
         int numberOfFloors = Integer.parseInt(request.getParameter("numberOfFloors"));
-        String facilityFree=request.getParameter("facilityFree");
+        String facilityFree = request.getParameter("facilityFree");
         int rentTypeId = Integer.parseInt(request.getParameter("rentTypeId"));
         int facilityTypeId = Integer.parseInt(request.getParameter("facilityTypeId"));
-        Facility facility = new Facility(name, area, cost, maxPeople, standardRoom, descriptionOtherConvenience, poolArea, numberOfFloors,facilityFree,rentTypeId,facilityTypeId);
+        Facility facility = new Facility(name, area, cost, maxPeople, standardRoom, descriptionOtherConvenience, poolArea, numberOfFloors, facilityFree, rentTypeId, facilityTypeId);
         boolean check = facilityService.addFacility(facility);
         String mess = "Thêm mới không thành công";
         if (check) {
