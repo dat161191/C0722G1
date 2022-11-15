@@ -364,36 +364,36 @@
                         <table class="table table-primary" style="width: 100%;">
                             <tr>
                                 <td><label for="tdv">Tên Dịch vụ</label></td>
-                                <td><input name="name" type="text" style="width: 100%" id="tdv"></td>
+                                <td><input required name="name" type="text" style="width: 100%" id="tdv"></td>
                             </tr>
                             <tr>
                                 <td><label for="dtsd">Diện tích sử dụng</label></td>
-                                <td><input name="area" type="text" style="width: 100%" id="dtsd"></td>
+                                <td><input required name="area" type="text" style="width: 100%" id="dtsd"></td>
                             </tr>
                             <tr>
                                 <td><label for="cpt">Chi Phí Thuê</label></td>
-                                <td><input name="cost" type="text" style="width: 100%" id="cpt"></td>
+                                <td><input required name="cost" type="text" style="width: 100%" id="cpt"></td>
                             </tr>
                             <tr>
                                 <td><label for="slntd">Số lượng người tối đa</label></td>
-                                <td><input name="maxPeople" type="text" style="width: 100%" id="slntd"></td>
+                                <td><input required name="maxPeople" type="text" style="width: 100%" id="slntd"></td>
                             </tr>
                             <tr>
                                 <td><label for="tcp">Tiêu chuẩn phòng</label></td>
-                                <td><input name="standardRoom" type="text" style="width: 100%" id="tcp"></td>
+                                <td><input required name="standardRoom" type="text" style="width: 100%" id="tcp"></td>
                             </tr>
                             <tr>
                                 <td><label for="tnk">Tiện nghi khác</label></td>
-                                <td><input name="descriptionOtherConvenience" type="text" style="width: 100%" id="tnk">
+                                <td><input required name="descriptionOtherConvenience" type="text" style="width: 100%" id="tnk">
                                 </td>
                             </tr>
                             <tr>
                                 <td><label for="dthb">Diện tích hồ bơi</label></td>
-                                <td><input name="poolArea" type="text" style="width: 100%" id="dthb"></td>
+                                <td><input required name="poolArea" type="text" style="width: 100%" id="dthb"></td>
                             </tr>
                             <tr>
                                 <td><label for="st">Số tầng</label></td>
-                                <td><input name="numberOfFloors" type="text" style="width: 100%" id="st"></td>
+                                <td><input required name="numberOfFloors" type="text" style="width: 100%" id="st"></td>
                             </tr>
                             <tr>
                                 <td hidden><label for="dvmpdk">Dịch vụ miễn phí đi kèm</label></td>
@@ -402,7 +402,7 @@
 
                             <tr>
                                 <td><label for="kt">Kiểu thuê</label></td>
-                                <td><select name="rentTypeId" id="kt">
+                                <td><select required name="rentTypeId" id="kt">
                                     <option value="1" selected>-----†------ Năm -----†----</option>
                                     <option value="2">-----†------ Tháng -----†----</option>
                                     <option value="3">-----†------ Ngày -----†----</option>
@@ -411,7 +411,7 @@
                             </tr>
                             <tr>
                                 <td><label for="ldv">Loại dịch vụ</label></td>
-                                <td><select name="facilityTypeId" id="ldv">
+                                <td><select required name="facilityTypeId" id="ldv">
                                     <option value="1" selected>-----†------ Villa -----†----</option>
                                 </select></td>
                             </tr>
@@ -445,27 +445,27 @@
                         <table class="table table-primary" style="width: 100%;">
                             <tr>
                                 <td><label for="tdv1">Tên Dịch vụ</label></td>
-                                <td><input name="name" type="text" style="width: 100%" id="tdv1"></td>
+                                <td><input required name="name" type="text" style="width: 100%" id="tdv1"></td>
                             </tr>
                             <tr>
-                                <td><label for="dtsd1">Diện tích sử dụng</label></td>
-                                <td><input name="area" type="text" style="width: 100%" id="dtsd1"></td>
+                                <td><label  for="dtsd1">Diện tích sử dụng</label></td>
+                                <td><input required name="area" type="text" style="width: 100%" id="dtsd1"></td>
                             </tr>
                             <tr>
                                 <td><label for="cpt1">Chi Phí Thuê</label></td>
-                                <td><input name="cost" type="text" style="width: 100%" id="cpt1"></td>
+                                <td><input required name="cost" type="text" style="width: 100%" id="cpt1"></td>
                             </tr>
                             <tr>
                                 <td><label for="slntd1">Số lượng người tối đa</label></td>
-                                <td><input name="maxPeople" type="text" style="width: 100%" id="slntd1"></td>
+                                <td><input required name="maxPeople" type="text" style="width: 100%" id="slntd1"></td>
                             </tr>
                             <tr>
                                 <td><label for="tcp1">Tiêu chuẩn phòng</label></td>
-                                <td><input name="standardRoom" type="text" style="width: 100%" id="tcp1"></td>
+                                <td><input required name="standardRoom" type="text" style="width: 100%" id="tcp1"></td>
                             </tr>
                             <tr>
                                 <td><label for="tnk1">Tiện nghi khác</label></td>
-                                <td><input name="descriptionOtherConvenience" type="text" style="width: 100%" id="tnk1">
+                                <td><input required name="descriptionOtherConvenience" type="text" style="width: 100%" id="tnk1">
                                 </td>
                             </tr>
                             <tr>
@@ -475,7 +475,7 @@
                             </tr>
                             <tr>
                                 <td><label for="st1">Số tầng</label></td>
-                                <td><input name="numberOfFloors" type="text" style="width: 100%" id="st1"></td>
+                                <td><input required name="numberOfFloors" type="text" style="width: 100%" id="st1"></td>
                             </tr>
                             <tr>
                                 <td hidden><label for="dvmpdk1">Dịch vụ miễn phí đi kèm</label></td>
@@ -484,7 +484,7 @@
 
                             <tr>
                                 <td><label for="kt1">Kiểu thuê</label></td>
-                                <td><select name="rentTypeId" id="kt1">
+                                <td><select required name="rentTypeId" id="kt1">
                                     <option value="1" selected>-----†------ Năm -----†----</option>
                                     <option value="2">-----†------ Tháng -----†----</option>
                                     <option value="3">-----†------ Ngày -----†----</option>
@@ -493,10 +493,9 @@
                             </tr>
                             <tr>
                                 <td><label for="ldv1">Loại dịch vụ</label></td>
-                                <td><select name="facilityTypeId" id="ldv1">
+                                <td><select required name="facilityTypeId" id="ldv1">
                                     <option value="2" selected>-----†------ House -----†----</option>
                                 </select></td>
-
                                 </td>
                             </tr>
                         </table>
@@ -529,19 +528,19 @@
                         <table class="table table-primary" style="width: 100%;">
                             <tr>
                                 <td><label for="tdv2">Tên Dịch vụ</label></td>
-                                <td><input name="name" type="text" style="width: 100%" id="tdv2"></td>
+                                <td><input required name="name" type="text" style="width: 100%" id="tdv2"></td>
                             </tr>
                             <tr>
                                 <td><label for="dtsd2">Diện tích sử dụng</label></td>
-                                <td><input name="area" type="text" style="width: 100%" id="dtsd2"></td>
+                                <td><input required name="area" type="text" style="width: 100%" id="dtsd2"></td>
                             </tr>
                             <tr>
                                 <td><label for="cpt2">Chi Phí Thuê</label></td>
-                                <td><input name="cost" type="text" style="width: 100%" id="cpt2"></td>
+                                <td><input name="cost" required type="text" style="width: 100%" id="cpt2"></td>
                             </tr>
                             <tr>
                                 <td><label for="slntd2">Số lượng người tối đa</label></td>
-                                <td><input name="maxPeople" type="text" style="width: 100%" id="slntd2"></td>
+                                <td><input name="maxPeople" required type="text" style="width: 100%" id="slntd2"></td>
                             </tr>
                             <tr>
                                 <td hidden><label for="tcp2">Tiêu chuẩn phòng</label></td>
@@ -565,12 +564,12 @@
                             </tr>
                             <tr>
                                 <td><label for="dvmpdk2">Dịch vụ miễn phí đi kèm</label></td>
-                                <td><input name="facilityFree" type="text" style="width: 100%" id="dvmpdk2"></td>
+                                <td><input required name="facilityFree" type="text" style="width: 100%" id="dvmpdk2"></td>
                             </tr>
 
                             <tr>
                                 <td><label for="kt2">Kiểu thuê</label></td>
-                                <td><select name="rentTypeId" id="kt2">
+                                <td><select required name="rentTypeId" id="kt2">
                                     <option value="1" selected>-----†------ Năm -----†----</option>
                                     <option value="2">-----†------ Tháng -----†----</option>
                                     <option value="3">-----†------ Ngày -----†----</option>
@@ -580,7 +579,7 @@
                             <tr>
                                 <td><label for="ldv2">Loại dịch vụ</label></td>
                                 <td>
-                                    <select name="facilityTypeId" id="ldv2">
+                                    <select required name="facilityTypeId" id="ldv2">
                                         <option value="3" selected>-----†------ Room -----†----</option>
                                     </select>
                                 </td>
@@ -624,7 +623,8 @@
                         <table class="table table-primary" style="width: 100%;">
                             <tr>
                                 <td hidden><label for="update_id">ID</label></td>
-                                <td hidden><input name="id" type="text" style="width: 100%" id="update_id" value=""></td>
+                                <td hidden><input name="id" type="text" style="width: 100%" id="update_id" value="">
+                                </td>
                             </tr>
                             <tr>
                                 <td><label for="update_tdv">Tên Dịch vụ</label></td>
@@ -643,45 +643,35 @@
                                 <td><input name="maxPeople" type="text" style="width: 100%" id="update_slntd" value="">
                                 </td>
                             </tr>
-<%--                            <c:if test="${facility.facilityTypeId() == 1 || facility.facilityTypeId() == 2}">--%>
-                                <tr>
-                                    <td><label for="update_tcp">Tiêu chuẩn phòng</label></td>
-                                    <td><input name="standardRoom" type="text" style="width: 100%" id="update_tcp"
-                                               value="">
-                                    </td>
-                                </tr>
-<%--                            </c:if>--%>
-<%--                            <c:if test="${facility.facilityTypeId() == 1 || facility.facilityTypeId() == 2}}">--%>
-                                <tr>
-                                    <td><label for="update_tnk">Tiện nghi khác</label></td>
-                                    <td><input name="descriptionOtherConvenience" type="text" style="width: 100%"
-                                               id="update_tnk" value="">
-                                    </td>
-                                </tr>
-<%--                            </c:if>--%>
-<%--                            <c:if test="${facility.facilityTypeId() == 1 }">--%>
-                                <tr>
-                                    <td><label for="update_dthb">Diện tích hồ bơi</label></td>
-                                    <td>
-                                        <input name="poolArea" type="text" style="width: 100%" id="update_dthb"
-                                               value="">
-                                    </td>
-                                </tr>
-<%--                            </c:if>--%>
-<%--                            <c:if test="${facility.facilityTypeId() != 1 && facility.facilityTypeId() != 2}">--%>
-                                <tr>
-                                    <td ><label for="update_st">Số tầng</label></td>
-                                    <td ><input name="numberOfFloors" type="text" style="width: 100%" id="update_st"
-                                               value=""></td>
-                                </tr>
-<%--                            </c:if>--%>
-<%--                            <c:if test="${facility.facilityTypeId() != 1 && facility.facilityTypeId() != 2}">--%>
-                                <tr>
-                                    <td><label for="update_dvmpdk">Dịch vụ miễn phí đi kèm</label></td>
-                                    <td><input name="facilityFree" type="text" style="width: 100%" id="update_dvmpdk"
-                                               value=""></td>
-                                </tr>
-<%--                            </c:if>--%>
+                            <tr id="standardRoom">
+                                <td><label for="update_tcp">Tiêu chuẩn phòng</label></td>
+                                <td><input name="standardRoom" type="text" style="width: 100%" id="update_tcp"
+                                           value="">
+                                </td>
+                            </tr>
+                            <tr id="descriptionOtherConvenience">
+                                <td><label for="update_tnk">Tiện nghi khác</label></td>
+                                <td><input name="descriptionOtherConvenience" type="text" style="width: 100%"
+                                           id="update_tnk" value="">
+                                </td>
+                            </tr>
+                            <tr id="poolArea">
+                                <td><label for="update_dthb">Diện tích hồ bơi</label></td>
+                                <td>
+                                    <input name="poolArea" type="text" style="width: 100%" id="update_dthb"
+                                           value="">
+                                </td>
+                            </tr>
+                            <tr id="numberOfFloors">
+                                <td><label for="update_st">Số tầng</label></td>
+                                <td><input name="numberOfFloors" type="text" style="width: 100%" id="update_st"
+                                           value=""></td>
+                            </tr>
+                            <tr id="facilityFree">
+                                <td><label for="update_dvmpdk">Dịch vụ miễn phí đi kèm</label></td>
+                                <td><input name="facilityFree" type="text" style="width: 100%" id="update_dvmpdk"
+                                           value=""></td>
+                            </tr>
                             <tr>
                                 <td><label for="update_kt">Kiểu thuê</label></td>
                                 <td><select name="rentTypeId" id="update_kt">
@@ -693,11 +683,13 @@
                             </tr>
                             <tr>
                                 <td><label for="update_ldv">Loại dịch vụ</label></td>
-                                <td><select name="facilityTypeId" id="update_ldv">
-                                    <option value="1">-----†------ Villa -----†----</option>
-                                    <option value="2">-----†------ House -----†----</option>
-                                    <option value="3">-----†------ Room -----†----</option>
-                                </select></td>
+                                <td><input type="text" name="facilityTypeId" id="update_ldv" readonly>
+<%--                                    <select name="facilityTypeId" id="update_ldv">--%>
+<%--                                    <option value="1">-----†------ Villa -----†----</option>--%>
+<%--                                    <option value="2">-----†------ House -----†----</option>--%>
+<%--                                    <option value="3">-----†------ Room -----†----</option>--%>
+<%--                                </select>--%>
+                                </td>
                             </tr>
                         </table>
                     </div>
@@ -705,7 +697,7 @@
                         <a href="/facility" class="btn btn-primary btn-lg ms-2 text-light">
                             Quay về </a>
                         </button>
-                        <button type="submit" class="btn btn-primary btn-lg ms-2 text-light">Cập nhật </button>
+                        <button type="submit" class="btn btn-primary btn-lg ms-2 text-light">Cập nhật</button>
                     </div>
                 </div>
             </form>
@@ -728,6 +720,30 @@
         document.getElementById("update_dvmpdk").value = facilityFree;
         document.getElementById("update_kt").value = rentTypeId;
         document.getElementById("update_ldv").value = facilityTypeId;
+        if(facilityTypeId==1){
+            document.getElementById("update_ldv").value ="Villa"
+        }
+        if(facilityTypeId==2){
+            document.getElementById("update_ldv").value ="House"
+        }
+        if(facilityTypeId==3){
+            document.getElementById("update_ldv").value ="Room"
+        }
+        // facilityTypeId = document.getElementById("update_ldv")
+        if (facilityTypeId == 2 || facilityTypeId == 1) {
+            document.getElementById("facilityFree").style.display = "none";
+        }
+        if (facilityTypeId == 2 || facilityTypeId == 3) {
+            document.getElementById("poolArea").style.display = "none";
+        }
+        if (facilityTypeId == 3) {
+            document.getElementById("numberOfFloors").style.display = "none";
+        }
+        if (facilityTypeId == 3) {
+            document.getElementById("descriptionOtherConvenience").style.display = "none";
+        }if (facilityTypeId == 3) {
+            document.getElementById("standardRoom").style.display = "none";
+        }
     }
 
 </script>

@@ -191,7 +191,7 @@
                                         <div class="row">
                                             <div class="col-md-6 mb-4">
                                                 <label class="form-label" for="form3Example1m">Tên</label>
-                                                <input type="text" id="form3Example1m"
+                                                <input type="text" id="form3Example1m" required
                                                        class="form-control form-control-lg" placeholder="name"
                                                        name="name"/>
 
@@ -199,7 +199,7 @@
                                             <div class="col-md-6 mb-4">
                                                 <div class="form-outline">
                                                     <label class="form-label" for="form3Example1n">Ngày Sinh</label>
-                                                    <input type="date" id="form3Example1n" name="birthday"
+                                                    <input type="date" id="form3Example1n" name="birthday" required
                                                            class="form-control form-control-lg text-primary"/>
                                                 </div>
                                             </div>
@@ -210,12 +210,12 @@
                                             <h6 class="mb-0 me-4">Giới Tính: </h6>
                                             <div class="form-check form-check-inline mb-0 me-4">
                                                 <input class="form-check-input" type="radio" value="true" name="gender"
-                                                       id="maleGender"/>
+                                                       required id="maleGender"/>
                                                 <label class="form-check-label" for="maleGender">Nam</label>
                                             </div>
                                             <div class="form-check form-check-inline mb-0 me-4">
                                                 <input class="form-check-input" type="radio" value="false" name="gender"
-                                                       id="femaleGender"/>
+                                                       required id="femaleGender"/>
                                                 <label class="form-check-label" for="femaleGender">Nữ</label>
                                             </div>
 
@@ -224,7 +224,7 @@
                                             <div class="col-md-6 mb-3">
                                                 <div class="form-outline">
                                                     <label class="form-label" for="form3Example1m1">Số CMND </label>
-                                                    <input type="text" id="form3Example1m1"
+                                                    <input type="text" id="form3Example1m1" required
                                                            placeholder="ID Card" name="idCard"
                                                            class="form-control form-control-lg"/>
 
@@ -233,7 +233,7 @@
                                             <div class="col-md-6 mb-3">
                                                 <div class="form-outline">
                                                     <label class="form-label" for="form3Example1n1">Số ĐT</label>
-                                                    <input type="text" id="form3Example1n1"
+                                                    <input type="text" id="form3Example1n1" required
                                                            placeholder="PhoneNumber" name="phoneNumber"
                                                            class="form-control form-control-lg"/>
                                                 </div>
@@ -242,13 +242,14 @@
 
                                         <div class="form-outline mb-3">
                                             <label class="form-label" for="form3Example97">Email </label>
-                                            <input type="text" id="form3Example97" placeholder="@gmail.com"
+                                            <input type="text" id="form3Example97" placeholder="@gmail.com" required
                                                    name="email" class="form-control form-control-lg"/>
                                         </div>
 
                                         <div class="form-outline mb-3">
                                             <label class="form-label" name="address" for="form3Example8">Địa Chỉ</label>
                                             <input type="text" id="form3Example8" name="address" placeholder="Address"
+                                                   required
                                                    class="form-control form-control-lg"/>
                                         </div>
 
@@ -256,7 +257,7 @@
                                             <div class="col-md-12 mb-3">
                                                 <label class="form-label col-xl-3" for="form3Example8">Loại
                                                     Khách </label>
-                                                <select name="customerTypeId"
+                                                <select name="customerTypeId" required
                                                         class="form-select-lg col-xl-8 text-primary">
                                                     <option selected>-----†------Loại Khách-----†----</option>
                                                     <option value="1">Dimond</option>

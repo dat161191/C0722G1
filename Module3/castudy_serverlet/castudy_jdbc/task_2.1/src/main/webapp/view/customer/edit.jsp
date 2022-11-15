@@ -250,7 +250,7 @@
 
                                             <div class="form-outline mb-3">
                                                 <input type="text" id="form3Example97" value="${customer.getEmail()}"
-                                                       name="email" class="form-control form-control-lg"/>
+                                                        name="email" class="form-control form-control-lg"/>
                                                 <label class="form-label" for="form3Example97">Email </label>
                                             </div>
 
