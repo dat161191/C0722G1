@@ -7,18 +7,15 @@ import java.util.HashMap;
 import java.util.Map;
 @Service
 public class DictionaryService implements IDictionaryService {
-    private static Map<String, String> dictionary = new HashMap<String, String>();
+    private static final Map<String, String> dictionary = new HashMap<String, String>();
 
     static {
         dictionary.put("hello", "xin chào");
-        dictionary.put("Tấn", "Tệ Nạn");
-        dictionary.put("Bảo", "Ma bư");
-        dictionary.put("dictionary", "từ diển");
-        dictionary.put("Sang", "Sumo");
-        dictionary.put("Phương", "Chơi Chữ");
-        dictionary.put("Huy", "Nghiện bida");
+        dictionary.put("apple", "Táo");
+        dictionary.put("red", "Màu đỏ");
+        dictionary.put("grenn", "Màu xanh");
+        dictionary.put("chicken", "Gà");
     }
-
     @Override
     public String getViWord(String enWord) {
         String result;
