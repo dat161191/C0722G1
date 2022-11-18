@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="b6bfad47-5c3e-43d3-952b-fc43c381f628" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/Module3/ThiModulue3/.idea/gradle.xml" beforeDir="false" afterPath="$PROJECT_DIR$/Module3/ThiModulue3/.idea/gradle.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Module3/castudy_serverlet/castudy_jdbc/task_2.1/.idea/webContexts.xml" beforeDir="false" afterPath="$PROJECT_DIR$/Module3/castudy_serverlet/castudy_jdbc/task_2.1/.idea/webContexts.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Module3/text_module3/.gradle/7.1/executionHistory/executionHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/Module3/text_module3/.gradle/7.1/executionHistory/executionHistory.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Module3/text_module3/.gradle/7.1/executionHistory/executionHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/Module3/text_module3/.gradle/7.1/executionHistory/executionHistory.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Module3/text_module3/.gradle/7.1/fileHashes/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/Module3/text_module3/.gradle/7.1/fileHashes/fileHashes.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Module3/text_module3/.gradle/7.1/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/Module3/text_module3/.gradle/7.1/fileHashes/fileHashes.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Module3/text_module3/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/Module3/text_module3/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Module3/text_module3/build/classes/java/main/controller/PhongTroServlet.class" beforeDir="false" afterPath="$PROJECT_DIR$/Module3/text_module3/build/classes/java/main/controller/PhongTroServlet.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Module3/text_module3/build/classes/java/main/model/PhongTro.class" beforeDir="false" afterPath="$PROJECT_DIR$/Module3/text_module3/build/classes/java/main/model/PhongTro.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Module3/text_module3/build/classes/java/main/repository/impl/PhongTroRepository.class" beforeDir="false" afterPath="$PROJECT_DIR$/Module3/text_module3/build/classes/java/main/repository/impl/PhongTroRepository.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Module3/text_module3/build/libs/text_module3-1.0-SNAPSHOT.war" beforeDir="false" afterPath="$PROJECT_DIR$/Module3/text_module3/build/libs/text_module3-1.0-SNAPSHOT.war" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Module3/text_module3/build/tmp/compileJava/previous-compilation-data.bin" beforeDir="false" afterPath="$PROJECT_DIR$/Module3/text_module3/build/tmp/compileJava/previous-compilation-data.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Module3/text_module3/src/main/java/controller/PhongTroServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/Module3/text_module3/src/main/java/controller/PhongTroServlet.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Module3/text_module3/src/main/java/model/PhongTro.java" beforeDir="false" afterPath="$PROJECT_DIR$/Module3/text_module3/src/main/java/model/PhongTro.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Module3/text_module3/src/main/java/repository/impl/PhongTroRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/Module3/text_module3/src/main/java/repository/impl/PhongTroRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Module3/text_module3/src/main/webapp/view/create.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/Module3/text_module3/src/main/webapp/view/create.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Module3/text_module3/src/main/webapp/view/edit.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/Module3/text_module3/src/main/webapp/view/edit.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Module3/text_module3/src/main/webapp/view/list.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/Module3/text_module3/src/main/webapp/view/list.jsp" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="HTML File" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="ProjectId" id="2EKVyfZ02zhRp6WTcS4Bm2qY9Wp" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="DefaultHtmlFileTemplate" value="HTML File" />
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="aspect.path.notification.shown" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/Module2/src/case_study_module2/util/FuramaCheckException.java" />
+    <property name="node.js.detected.package.eslint" value="true" />
+    <property name="node.js.detected.package.tslint" value="true" />
+    <property name="node.js.path.for.package.eslint" value="project" />
+    <property name="node.js.path.for.package.tslint" value="project" />
+    <property name="node.js.selected.package.eslint" value="(autodetect)" />
+    <property name="node.js.selected.package.tslint" value="(autodetect)" />
+  </component>
+  <component name="SpellCheckerSettings" BundledDictionaries="0" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" Dictionaries="0" CorrectionsLimit="5" DefaultDictionary="application-level" UseSingleDictionary="true" />
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="b6bfad47-5c3e-43d3-952b-fc43c381f628" name="Default Changelist" comment="" />
+      <created>1662344518628</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1662344518628</updated>
+      <workItem from="1662344521985" duration="342000" />
+      <workItem from="1662344952276" duration="32000" />
+      <workItem from="1662345730513" duration="1000" />
+      <workItem from="1662345888334" duration="2000" />
+      <workItem from="1662470522058" duration="8418000" />
+      <workItem from="1662541089320" duration="3162000" />
+      <workItem from="1662557245587" duration="714000" />
+      <workItem from="1662687339481" duration="3000" />
+      <workItem from="1662716981188" duration="1127000" />
+      <workItem from="1665241109025" duration="3034000" />
+      <workItem from="1666605714101" duration="139000" />
+      <workItem from="1667363263317" duration="15000" />
+      <workItem from="1668392118687" duration="29000" />
+      <workItem from="1668495461106" duration="1155000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="2" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="549" y="172" key="FileChooserDialogImpl" timestamp="1668495513878">
+      <screen x="0" y="0" width="1536" height="834" />
+    </state>
+    <state x="549" y="172" key="FileChooserDialogImpl/0.0.1536.834@0.0.1536.834" timestamp="1668495513878" />
+  </component>
+</project>

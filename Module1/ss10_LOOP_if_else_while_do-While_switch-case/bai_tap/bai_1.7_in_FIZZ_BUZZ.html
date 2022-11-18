@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Fizz Buzz</title>
+</head>
+<body>
+
+</body>
+<script>
+    let number;
+    for (number = 1; number <= 15; number++) {
+        if (number % 3 == 0 && number % 5 !== 0) {
+            document.write("Fizz" + "<br>");
+            continue;
+        } else if (number % 5 == 0 && number % 3 !== 0) {
+            document.write("Buzz" + "<br>");
+            continue;
+        } else if (number % 3 == 0 && number % 5 == 0) {
+            document.write("FizzBuzz" + "<br>");
+            continue;
+        }
+        document.write(number + "<br>");
+    }
+
+</script>
+
+</scrip>
+</html>

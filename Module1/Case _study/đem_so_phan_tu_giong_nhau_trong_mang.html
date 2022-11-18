@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+</body>
+<script>function demPhanTu(array) {
+    let result = [];
+    let count = 0;
+
+    for (let i = 0; i < array.length - 1; ++i) {
+        for (let j = i + 1; j < array.length; ++j) {
+            if (array[i] == array[j]) {
+                //Tìm thấy phần tử giống nhau thì thêm vào mảng kết quả
+                result.push(array[i]);
+                ++count;
+            }
+        }
+    }
+    document.write(result + '<br>');
+    document.write("So phan tu giong nhau: " + result.length + '<br>');
+}
+
+
+let array1 = [1, 2, 3, 3, 2, 5];
+let array2 = [1, 1, 2, 3, 2, 5, 5, 8, 9, 6];
+
+//đếm số phần tử giống nhau trong mảng JavaScript
+demPhanTu(array1);
+demPhanTu(array2);
+</script>
+</html>

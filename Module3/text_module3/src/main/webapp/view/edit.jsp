@@ -62,7 +62,9 @@
                                                 </div>
                                                 <div class="col-md-6 mb-4">
                                                     <label class="form-label" for="form3Example1m">Tên</label>
-                                                    <input type="text" id="form3Example1m"
+                                                    <input type="text" id="form3Example1m" required
+                                                           pattern="([A-Z][a-z]+ )+([A-Z][a-z]+)$"
+                                                           title="Không chứa kí tự đặc biệt,chữ cái đầu viết hoa,có ít nhất 2 từ và cách nhau bởi khoảng trắng"
                                                            class="form-control form-control-lg"
                                                            placeholder="Trần Gia Gia" value="${phongTro.getTen()}"
                                                            name="ten"/>
@@ -70,7 +72,7 @@
                                                 <div class="col-md-6 mb-4">
                                                     <div class="form-outline">
                                                         <label class="form-label" for="form3Example1n">Ngày Thuê</label>
-                                                        <input type="date" id="form3Example1n" name="ngayThue"
+                                                        <input type="date" id="form3Example1n" name="ngayThue" required
                                                                value="${phongTro.getNgayThue()}"
                                                                class="form-control form-control-lg text-primary"/>
                                                     </div>
@@ -98,7 +100,9 @@
                                                 <div class="col-md-6 mb-3">
                                                     <div class="form-outline">
                                                         <label class="form-label" for="form3Example1m1">Số ĐT</label>
-                                                        <input type="text" id="form3Example1m1"
+                                                        <input type="text" id="form3Example1m1" required
+                                                               pattern="0[0-9]{9,10}"
+                                                               title="SDT bắt đầu từ số 0,không chứa chữ và ký tự đặc biệt.Từ 10 đến 11 số"
                                                                placeholder="0385425443" name="sdt"
                                                                value="${phongTro.getSdt()}"
                                                                class="form-control form-control-lg"/>
@@ -109,7 +113,7 @@
                                                     <div class="form-outline">
                                                         <label class="form-label" for="form3Example1n1">Ghi Chú</label>
                                                         <input type="text" id="form3Example1n1"
-                                                               value="${phongTro.getGhiChu()}"
+                                                               value="${phongTro.getGhiChu()}" required
                                                                placeholder="Có điều hòa" name="ghiChu"
                                                                class="form-control form-control-lg"/>
                                                     </div>
@@ -131,22 +135,33 @@
                                             <%--                                            </div>--%>
 
                                             <div class="row">
-                                                <div class="col-md-12 mb-3">
+                                                <div class="col-md-6 mb-3">
+                                                    <div class="form-outline">
+                                                        <label class="form-label" for="form3Example1nm1">Email</label>
+                                                        <input type="text" id="form3Example1nm1"
+                                                               value="${phongTro.getEmail()}" required
+                                                               pattern="^\w+\w*@\w+(\.\w*)*(\.\w*)$"
+                                                               title="Email không chứa ký tự đặc biệt"
+                                                               placeholder="Có điều hòa" name="email"
+                                                               class="form-control form-control-lg"/>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6 mb-3">
                                                     <label class="form-label col-xl-3" for="form3Example9">Kiểu
                                                         thuê </label>
-                                                    <select name="maThanhToan" id="form3Example9"
+                                                    <select name="maThanhToan" id="form3Example9" required style="width: 100%"
                                                             class="form-select-lg col-xl-8 text-primary">
                                                         <option value="1" ${phongTro.getMaThanhToan() == 1?"selected":""}>
-                                                            -----†---------------Năm---------------†------
+                                                            -†----------------------------------Năm---------------------------------†-
                                                         </option>
                                                         <option value="2" ${phongTro.getMaThanhToan() == 2?"selected":""}>
-                                                            -----†---------------Quý---------------†------
+                                                            -†----------------------------------Quý
+                                                            ---------------------------------†-
                                                         </option>
                                                         <option value="3" ${phongTro.getMaThanhToan() == 3?"selected":""}>
-                                                            -----†---------------Tháng-------------†------
+                                                            -†---------------------------------
+                                                            Tháng--------------------------------†-
                                                         </option>
-                                                        <%--                                                        <option value="4">Silver</option>--%>
-                                                        <%--                                                        <option value="5">Member</option>--%>
                                                     </select>
                                                 </div>
                                             </div>

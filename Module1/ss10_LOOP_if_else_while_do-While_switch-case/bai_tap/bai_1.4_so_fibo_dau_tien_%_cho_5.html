@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Tìm số chia hết cho 5 trong 10 số Fibonaci</title>
+</head>
+<body>
+
+</body>
+<script>
+    let n1 = 0;
+    let n2 = 1;
+    let fiBo = 0;
+    for (let i = 0; i < 10; i++) {
+        fiBo = n2 + n1;
+        document.write(fiBo + '<br>');// tìm 10 số fibo
+        n1 = n2;
+        n2 = fiBo;
+        if (fiBo % 5 === 0) {
+            document.write("số chia hết cho 5 trong dãy " + fiBo + '<br>')
+            break;
+        }
+    }
+    // document.writeln("<br>")
+    // let n3 = 0;
+    // let n4 = 1;
+    // let fiBo1 = 0;
+    // let array = []
+    //
+    // for (let i = 0; i < 10; i++) {
+    //     fiBo1 = n3 + n4;
+    //     if (fiBo1 <= 10) {
+    //         document.write(fiBo1 );
+    //         array.push(fiBo1)
+    //     }
+    //
+    //     n3 = n4;
+    //     n4 = fiBo1;
+    //
+    // }
+    // document.write(array);
+
+</script>
+</html>

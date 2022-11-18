@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+</body>
+<script>
+    let soLuong = +prompt("số lượng số phần tử trong mảng")
+    let mang = [];
+    for (let i = 0; i < soLuong; i++) {
+        // mang[i] = +prompt("nhập giá trị phần tử");
+        mang[i] = parseInt(Math.random() * 100);
+    }
+    alert(mang);
+
+    function soLonNhatMang(mang) {
+        let soLonNhat = mang[0]
+        for (let i = 0; i < mang.length; i++) {
+            if (soLonNhat < mang[i]) {
+                soLonNhat = mang[i];
+            }
+        }
+        return soLonNhat;
+    }
+
+    alert(soLonNhatMang(mang));
+
+    function mangFiBoNaCi(num) {
+        let so1 = 0;
+        let so2 = 1;
+        let soFiBo;
+        let mangFiBo = [];
+        for (let i = 0; so1 <= num; i++) {
+            mangFiBo.push(so1);
+            soFiBo = so1 + so2;
+            so1 = so2;
+            so2 = soFiBo;
+        }
+        return mangFiBo
+    }
+
+    alert(mangFiBoNaCi(soLonNhatMang(mang)))
+
+    function timFiBoTrongMang(array) {
+        let mang1 = [];
+        for (let i = 0; i < array.length; i++) {
+            if (mangFiBoNaCi(soLonNhatMang(mang)).indexOf(array[i]) != -1) {
+                mang1.push(array[i]);
+            }
+        }
+        mang1.sort(function (a, b) {
+            return a - b;
+
+        })
+        return mang1;
+    }
+
+    alert(timFiBoTrongMang(mang));
+
+</script>
+</html>

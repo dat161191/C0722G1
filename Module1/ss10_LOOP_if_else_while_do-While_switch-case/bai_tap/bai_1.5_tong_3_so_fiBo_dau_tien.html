@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Tổng 20 số đầu tiên dãy Fibo</title>
+</head>
+<body>
+<script>
+    let n1 = 0;
+    let n2 = 1;
+    let fiBo = 0;
+    let i;
+    let tong = 0;
+    for (i = 0; i < 3 ; i++ ) {
+        // document.write(n1 + "<br>")
+        fiBo = n2 + n1;
+        document.write(fiBo+ " ")
+        tong += fiBo;
+        n1 = n2;
+        n2 = fiBo;
+    }
+    document.write("Tổng 20 số đầu tiên:"+ tong);
+</script>
+
+
+</body>
+</html>

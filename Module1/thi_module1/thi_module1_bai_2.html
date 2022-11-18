@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    let soLuong = +prompt("số lượng số phần tử trong mảng")
+    let mang = [];
+    for (let i = 0; i < soLuong; i++) {
+        mang[i] = +prompt("nhập giá trị phần tử");
+    }
+    let mang2 = [];
+    let mang3 = [];
+
+    function timSoNhoNhat(mang) {
+
+        if (mang.length == 0)
+            return -1;
+        let soNhoNhat = mang[0]
+        for (let i = 0; i < mang.length; i++) {
+            if (soNhoNhat > mang[i]) {
+                soNhoNhat = mang[i];
+            }
+        }
+        return soNhoNhat;
+    }
+
+    function timViTriSoNhoNhatXuâtHienDauTien(mang) {
+
+        if (mang.length == 0)
+            return -1;
+        let soNhoNhat = mang[0];
+        for (let i = 0; i < mang.length; i++) {
+            if (soNhoNhat > mang[i]) {
+                soNhoNhat = mang[i];
+            }
+        }
+        return mang.indexOf(soNhoNhat);
+    }
+
+    function timSoLonNhat(mang) {
+        if (mang.length == 0)
+            return -1;
+        let soLonNhat = mang[0]
+        for (let i = 0; i < mang.length; i++) {
+            if (soLonNhat < mang[i]) {
+                soLonNhat = mang[i];
+            }
+        }
+        return soLonNhat;
+    }
+
+    function timViTriSoLonNhatXuâtHienDauTien(mang) {
+        if (mang.length == 0)
+            return -1;
+        let soLonNhat = mang[0];
+        for (let i = 0; i < mang.length; i++) {
+            if (soLonNhat < mang[i]) {
+                soLonNhat = mang[i];
+            }
+        }
+        return mang.indexOf(soLonNhat);
+    }
+
+    function timSoLonNhatVaNhoNhatTrongMang(mang) {
+
+        mang2.push(timSoNhoNhat(mang));
+        mang2.push(timSoLonNhat(mang));
+        return mang2;
+    }
+
+    function timViTriSoNhoNhatVaLonNhatDauTien(mang) {
+        mang3.push(timViTriSoNhoNhatXuâtHienDauTien(mang));
+        mang3.push(timViTriSoLonNhatXuâtHienDauTien(mang));
+        return mang3;
+    }
+
+    alert(timSoLonNhatVaNhoNhatTrongMang(mang));
+    alert(timViTriSoNhoNhatVaLonNhatDauTien(mang));
+
+
+</script>
+</body>
+</html>

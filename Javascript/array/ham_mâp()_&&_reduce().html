@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    let array = [{id: 1, name: "javascrpit", coin: 500}, {id: 2, name: "php", coin: 0}, {
+        id: 3,
+        name: "ruby",
+        coin: 300
+    }, {id: 4, name: "reatjs", coin: 400}]
+    let array1 = array.map(function (arr) {
+        return {
+            id: arr.id,
+            name: `Khoa hoc: ${arr.name}`,
+            coin: arr.coin,
+            coinText: `Gia: ${arr.coin}`,
+            originarray: arr
+        }
+    })
+    console.log(array1);
+    let array2 = array.map(function (arr) {
+        return {name: `Khoa hoc: ${arr.name}`}
+    })
+    console.log(array2) //chỉ hiện ra 1 phần tử muốn hiện
+    // tính tổng coin bằng vòng lặp
+    // let sum=0;
+    // for (let i of array) {
+    //     sum+= i.coin;
+    // } console.log(sum);
+    //Tính tổng coin bằng hàm reduce()
+    // function sumCoin(accumulator, currentValue, currentIndex, originArray) {
+        // hàm reduce trả về 4 giá trị sau mỗi lần lặp qua 1 phần tử trong mảng
+        // accumulator=biến lưu trữ; currentValue= giá trị hiện tại
+        //currentIndex= vị trí hiện tại; originArray= array gốc
+    //     // console.table(accumulator,currentValue,currentIndex,originArray);
+    //     let total = accumulator + currentValue.coin;
+    //     console.table({
+    //         "Biến lưu trữ: ": accumulator,
+    //         "Giá trị hiện tại: ": currentValue.coin,
+    //         "Tổng khóa học: ": total
+    //     })
+    //     return total;
+    // }
+    let sum1 = array.reduce(  function sumCoin(accumulator, currentValue){let total = accumulator + currentValue.coin;
+        console.table({
+            "Biến lưu trữ: ": accumulator,
+            "Giá trị hiện tại: ": currentValue.coin,
+            "Tổng khóa học: ": total
+        })
+        return total;
+    }, 0) // 0 là giá trị khỏi tạo biến lưu trữ (initialValue) tương ứng với sum=0; không bắt buộc có.
+    console.log(sum1)
+
+</script>
+</body>
+</html>

@@ -55,6 +55,7 @@ body {
 
 #header ul ul {
     position: absolute;
+    /*display: flex;*/
     top: 50px;
     left: 0;
     visibility: hidden;

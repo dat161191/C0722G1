@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>LẤY THÔNG TIN NHIỆT ĐỘ</title>
+</head>
+<body>
+
+</body>
+<script>
+    // let nhietDo=+prompt("nhập nhiệt độ");
+    // while (20 > nhietDo || nhietDo > 100) {
+    //     nhietDo = prompt("nhập nhiệt độ");
+    //     if (nhietDo < 20) {
+    //         alert("Hãy giảm nhiệt độ!");
+    //     }
+    //     if (nhietDo > 100) {
+    //         alert("Hãy tăng nhiệt độ!");
+    //     }
+    // }
+
+    
+    let nhietDo = null;
+    do {
+        nhietDo = prompt("nhập nhiệt độ");
+        if (nhietDo < 20) {
+            alert("Tăng nhiệt độ please!");
+        }
+        if (nhietDo > 100) {
+            alert("Giảm nhiệt độ please!");
+        }
+    } while (nhietDo < 20 || nhietDo > 100);
+
+</script>
+</html>

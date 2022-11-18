@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    let year = +prompt("nhập năm")
+
+    let month = +prompt("nhập tháng")
+
+    function leapYear(year1) {
+        if (year1 % 4 == 0 && year1 % 100 !== 0) {
+            return true;
+        } else if (year1 % 100 == 0 && year1 % 400 == 0) {
+            return true
+        } else {
+            return false;
+        }
+    }
+    alert(leapYear(year))
+
+    function checkDate(year,month) {
+        switch (month) {
+            case 1:
+            case 3:
+            case 5:
+            case 7:
+            case 8:
+            case 10:
+            case 12:
+                alert("tháng có 31 ngày")
+                break;
+            case 4:
+            case 6:
+            case 9:
+            case 11:
+                alert("tháng có 30 ngày")
+            case 2:
+                if (leapYear(year)) {
+                    alert("tháng có 29 ngày");
+                } else {
+                    alert("tháng có 28 ngày");
+                }
+        }
+    }
+    checkDate(year,month);
+</script>
+</body>
+</html>

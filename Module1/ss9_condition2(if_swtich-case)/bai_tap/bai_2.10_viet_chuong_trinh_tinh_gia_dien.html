@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<!--Bậc 1 (0 đến 50kWh)     mức giá     1.678 đồng/kWh-->
+<!--Bậc 2 (51 đến 100kWh)   mức giá     1.734 đồng/kWh-->
+<!--Bậc 3 (101 đến 200 kWh) mức giá     2.014 đồng/kWh-->
+<!--Bậc 4 (201 đến 300 kWh) mức giá     2.536 đồng/kWh-->
+<!--Bậc 5 (301 đến 400 kWh) mức giá     2.834 đồng/kWh-->
+<!--Bậc 6 (401 kWh trở lên) mức giá     2.927 đồng/kWh-->
+
+</body>
+<script>
+    let dienTieuThu = +prompt("nhập số điện tiêu thụ (kWh)")
+    switch (true) {
+        case dienTieuThu <= 50:
+            alert("Giá điện =" + " " + dienTieuThu * 1.678 + "Đ")
+            break;
+        case dienTieuThu <= 100:
+            alert("Giá điện =" + " " + dienTieuThu * 1.734 + "Đ")
+            break;
+        case dienTieuThu <= 200:
+            alert("Giá điện =" + " " + dienTieuThu * 2.014 + "Đ")
+            break;
+        case dienTieuThu <= 300:
+            alert("Giá điện =" + " " + dienTieuThu * 2.536 + "Đ")
+            break;
+        case dienTieuThu <= 400:
+            alert("Giá điện =" + " " + dienTieuThu * 2.834 + "Đ")
+            break;
+        default:
+            alert("Giá điện =" + " " + dienTieuThu * 2.927 + "Đ")
+            break;
+
+
+    }
+</script>
+</html>

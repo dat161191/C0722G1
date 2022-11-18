@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+</body>
+<script>
+    let h = 8
+    for (let i = 1; i <= h; i++) {
+        // for (let k = 1; k <= h - i; k++) {
+        //     document.write('o')
+        // }
+        for (let j = 1; j <= 2 * i - 1; j++) {
+            if (i == 1 || i == 8 ||j==1||j==2*i-1) {
+                document.write("*")
+            }else {document.write('&nbsp&nbsp')}
+
+        }
+        document.write('<br>')
+    }
+</script>
+</html>

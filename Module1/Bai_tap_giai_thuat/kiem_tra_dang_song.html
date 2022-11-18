@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+
+<!--5. Viết chương trình tính : S=1+1/3!+1/5!+…..+1/(2n-1)!-->
+
+</body>
+<script>
+    // let so = +prompt("nhập số n")
+    // let S = 0
+    // 3.	Viết chương trình tính :      S=1+1/2+1/3+....+1/n
+    // for (let i = 1; i <= so; i++) {
+    //     S = S + (1 / i);
+    // }
+    // alert(S)
+
+    // 4.	Viết chương trình tính : S=15-1+1/2-1/3!+....+(-1)^n  1/n!
+    //
+    // for (let i = 1; i <= so; i++) {
+    //     if (i % 2 != 0) {
+    //         S = S - 1 / i;
+    //     } else if (i % 2 == 0) {
+    //         S = S + 1 / i;
+    //     }
+    // }alert(S+15);
+    let array = [15, 5, 10, 4, 9, 3, 2, 5];
+    let count = 0
+
+    function kiemTraDangSong(array) {
+        for (let i = 1; i < array.length - 1; i++) {
+            if ((array[i] > array[i - 1] && array[i] > array[i + 1]) || (array[i] < array[i - 1] && array[i] < array[i + 1])) {
+                count++
+            }
+        }
+        if (count == array.length - 2) {
+            alert("dạng sóng")
+        } else {
+            alert("không phải dạng sóng")
+        }
+    }
+
+    kiemTraDangSong(array);
+
+</script>
+</html>

@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+</body>
+<script>
+    var [emailKey] = 'e3';     // thêm 1 key mới bằng 1 biến
+    var myInfo = {
+        name: 'Tran Quoc Dat',
+        age: 31,
+        address: 'Quảng Ngãi',
+        [emailKey]: 'quocdat.tran453@gmail.com',
+        getName: function () {
+            return this.name;
+        },
+        getAge: function () {
+            return this.age;
+        }
+    }
+    myInfo.email = 'quocdat.tran453@gmail.com';// thêm key mới cách 1
+    myInfo['email2'] = 'quocdat.tran453@gmail.com';// thêm key mới cách 2
+    console.log(myInfo);
+    console.log(myInfo.name);
+    console.log(myInfo['email']);
+    // xóa key
+    // delete myInfo[emailKey];
+    // delete myInfo.email;
+    console.log(myInfo.getAge());
+</script>
+</html>

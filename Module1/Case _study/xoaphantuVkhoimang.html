@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+</body>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    let array = [];
+    let soLuong = parseInt(prompt('Số lượng số trong mảng'));
+    for (let i = 0; i < soLuong; i++) {
+        let so = parseInt(prompt('Nhập các phần tử trong mảng'));
+        array.push(so);
+    }
+    let viTri;
+    let soDem = 0;
+    let V = parseInt(prompt('Nhập số V cần kiểm tra'));
+
+    for (let j = 0; j < array.length; j++) {
+        if (V == array[j]) {
+            viTri = j;
+            soDem++
+            for (let b = viTri; b < array.length - 1; b++) {
+                array[b] = array[b + 1];
+            }
+            array[array.length - 1] = 0;
+            j--
+        }
+    }
+    document.write(array.toString() + "<br>");
+    if (soDem == 0) {
+        document.write(V + "Số không có trong dãy");
+    } else {
+        document.write(V + "số có trong dãy");
+    }
+
+</script>
+</body>
+</html>
+</html>

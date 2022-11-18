@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+</body>
+<script>
+    class User {
+        constructor(name, age, address) {
+            this.name = name;
+            this.age = age;
+            this.address = address;
+        }
+
+        getAge() {
+            return this.age;
+        }
+
+        setAge(age) {
+            this.age = age;
+        }
+    }
+
+    let uSer1 = new User('A', 19, 'HN');
+    let uSer2 = new User('B', 20, 'DN');
+    uSer1.tittle = 'HelloWorld'     // thêm class vào cho đối tượng
+    User.prototype.class = 'c0722g1'; // thêm 1 thuộc tính cho 1 Class
+    User.prototype.getavartar = function () {// thêm hàm vào thuộc tính chuỗi
+        return this.address;
+    }
+    console.log(uSer1.getAge());//gọi trực tiếp qua phương thưc get
+    console.log(uSer1.getavartar());
+    console.log(uSer2.class);
+    console.log(uSer2.age);// gọi trực tiếp bằng tên thuộc tính
+    console.log(uSer1);
+    console.log(uSer2);
+    console.log(uSer1.tittle);
+    uSer2.setAge(12)     // thay đổi thuộc tính
+    console.log(uSer2.getAge());
+
+
+</script>
+</html>

@@ -27,8 +27,10 @@
 </head>
 <body>
 <div class="container-fluid">
-    <div class="row headers-region" style="display: flex;flex-wrap: nowrap;text-align: center;background-color: #c71212">
-        <a href="/phongtro" style="text-decoration: none" ><i class="fa fa-home" style="font-size:40px;color:white"></i> <span style="font-size: 40px;color: white">Trần Quốc Đạt - C0722G1</span>
+    <div class="row headers-region"
+         style="display: flex;flex-wrap: nowrap;text-align: center;background-color: #c71212">
+        <a href="/phongtro" style="text-decoration: none"><i class="fa fa-home" style="font-size:40px;color:white"></i>
+            <span style="font-size: 40px;color: white">Trần Quốc Đạt - C0722G1</span>
         </a>
     </div>
     <div class="row content">
@@ -50,16 +52,16 @@
                                                 style="text-align: center;color: blue;font-size: 40px">
                                                 <b>THÊM MỚI</b></h3>
                                             <div class="row">
-                                                <div class="col-md-6 mb-4">
+                                                <div class="col-md-6 mb-3">
                                                     <label class="form-label" for="form3Example1m">Tên</label>
                                                     <input type="text" id="form3Example1m" required
-                                                           pattern="^([A-Z][a-z]+[ ])+([A-Z][a-z]+)$"
+                                                           pattern="([A-Z][a-z]+ )+([A-Z][a-z]+)$"
                                                            title="Không chứa kí tự đặc biệt,chữ cái đầu viết hoa,có ít nhất 2 từ và cách nhau bởi khoảng trắng"
                                                            class="form-control form-control-lg"
                                                            placeholder="VD:Trần Gia Gia"
                                                            name="ten"/>
                                                 </div>
-                                                <div class="col-md-6 mb-4">
+                                                <div class="col-md-6 mb-3">
                                                     <div class="form-outline">
                                                         <label class="form-label" for="form3Example1n">Ngày Thuê</label>
                                                         <input type="date" id="form3Example1n" required name="ngayThue"
@@ -89,7 +91,9 @@
                                                 <div class="col-md-6 mb-3">
                                                     <div class="form-outline">
                                                         <label class="form-label" for="form3Example1m1">Số ĐT</label>
-                                                        <input type="text" id="form3Example1m1"
+                                                        <input type="text" id="form3Example1m1" required
+                                                               pattern="0[0-9]{9,10}"
+                                                               title="SDT bắt đầu từ số 0,không chứa chữ và ký tự đặc biệt.Từ 10 đến 11 số"
                                                                placeholder="0385425443" name="sdt"
                                                                class="form-control form-control-lg"/>
 
@@ -98,47 +102,40 @@
                                                 <div class="col-md-6 mb-3">
                                                     <div class="form-outline">
                                                         <label class="form-label" for="form3Example1n1">Ghi Chú</label>
-                                                        <input type="text" id="form3Example1n1"
+                                                        <input type="text" id="form3Example1n1" required
                                                                placeholder="Có điều hòa" name="ghiChu"
                                                                class="form-control form-control-lg"/>
                                                     </div>
                                                 </div>
                                             </div>
-
-                                            <%--                                            <div class="form-outline mb-3">--%>
-                                            <%--                                                <label class="form-label" for="form3Example97">Email </label>--%>
-                                            <%--                                                <input type="text" id="form3Example97" placeholder="@gmail.com"--%>
-                                            <%--                                                       name="email" class="form-control form-control-lg"/>--%>
-                                            <%--                                            </div>--%>
-
-                                            <%--                                            <div class="form-outline mb-3">--%>
-                                            <%--                                                <label class="form-label" name="address" for="form3Example8">Địa--%>
-                                            <%--                                                    Chỉ</label>--%>
-                                            <%--                                                <input type="text" id="form3Example8" name="address"--%>
-                                            <%--                                                       placeholder="Address"--%>
-                                            <%--                                                       class="form-control form-control-lg"/>--%>
-                                            <%--                                            </div>--%>
-
                                             <div class="row">
-                                                <div class="col-md-12 mb-3">
+                                                <div class="col-md-6 mb-3">
+                                                    <div class="form-outline">
+                                                        <label class="form-label" for="form3Example1nm1">Enail</label>
+                                                        <input type="text" id="form3Example1nm1" required
+                                                               pattern="^\w+\w*@\w+(\.\w*)$"
+                                                               title="Email không chứa ký tự đặc biệt"
+                                                               placeholder="trangiagia1611@gmail.com" name="email"
+                                                               class="form-control form-control-lg"/>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6 mb-3">
                                                     <label class="form-label col-xl-3" for="form3Example9">Kiểu
                                                         thuê </label>
-                                                    <select name="maThanhToan" id="form3Example9"
+                                                    <select name="maThanhToan" id="form3Example9" required
+                                                            style="width: 100%"
                                                             class="form-select-lg col-xl-8 text-primary">
-                                                        <option selected>-----†----------------Kiểu
-                                                            thuê--------------†----
-                                                        </option>
-                                                        <option value="1">
-                                                            -----†---------------Năm---------------†------
+                                                        <option value="1" selected>
+                                                            -†----------------------------------Năm---------------------------------†-
                                                         </option>
                                                         <option value="2">
-                                                            -----†---------------Quý---------------†------
+                                                            -†----------------------------------Quý
+                                                            ---------------------------------†-
                                                         </option>
                                                         <option value="3">
-                                                            -----†---------------Tháng-------------†------
+                                                            -†---------------------------------
+                                                            Tháng--------------------------------†-
                                                         </option>
-                                                        <%--                                                        <option value="4">Silver</option>--%>
-                                                        <%--                                                        <option value="5">Member</option>--%>
                                                     </select>
                                                 </div>
                                             </div>

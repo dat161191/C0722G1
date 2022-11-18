@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Trần Quốc Đạt</title>
+</head>
+<body>
+<!--<input type="number" id="sonam">-->
+<!--<button onclick="nhapso()">OK</button>-->
+<!--<p style="color: red" id="năm">Năm này là</p>-->
+</body>
+<script>
+    // cách 1
+    //     var year = parseFloat(prompt("enter the year"))
+    //     if (year % 4 == 0) {
+    //         if (year % 100 == 0) {
+    //             if (year % 400 == 0)
+    //                 document.writeln("năm nhuận")
+    //             else{
+    //         document.write("nănm không nhuận")
+    //         }
+    //     } else {document.write("năm nhuận")}
+    // }
+    //
+    //     else { document.write("năm không nhuận")
+    //     }
+
+    // cách 2
+    function isValidDate(strDate) {
+        if (strDate.length != 10) return false;
+        var dateParts = strDate.split("/");
+        var date = new Date(dateParts[2], (dateParts[1] - 1), dateParts[0]);
+        if (date.getDate() == dateParts[0] && date.getMonth() == (dateParts[1] - 1) && date.getFullYear() == dateParts[2]) {
+            return true;
+        } else return false;
+    }
+
+    function nhapso(year1) {
+        if (year1 % 4 == 0 && year1 % 100 !== 0) {
+            alert("Năm này là năm nhuận")
+        } else if (year1 % 100 == 0 && year1 % 400 == 0) {
+            alert("Năm này là năm nhuận")
+        } else {
+            alert("Năm này là năm không nhuận")
+        }
+    }
+
+    let str = prompt("nhập ngày tháng năm")
+    alert(isValidDate(str))
+    let year=+prompt("nhập năm cần kiểm tra");
+    nhapso(year)
+
+
+</script>
+</html>

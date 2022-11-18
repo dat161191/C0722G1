@@ -6,34 +6,46 @@ public class PhongTro {
     private String sdt;
     private String ngayThue;
     private String ghiChu;
+    private String email;
     private int maThanhToan;
     private String tenHinhThuc;
 
-    public PhongTro(int maPhongTro, String ten, String sdt, String ngayThue, String ghiChu, int maThanhToan, String tenHinhThuc) {
+    public PhongTro(int maPhongTro, String ten, String sdt, String ngayThue, String ghiChu, String email, int maThanhToan, String tenHinhThuc) {
         this.maPhongTro = maPhongTro;
         this.ten = ten;
         this.sdt = sdt;
         this.ngayThue = ngayThue;
         this.ghiChu = ghiChu;
+        this.email = email;
         this.maThanhToan = maThanhToan;
         this.tenHinhThuc = tenHinhThuc;
     }
 
-    public PhongTro(int maPhongTro, String ten, String sdt, String ngayThue, String ghiChu, int maThanhToan) {
+    public PhongTro(String ten, String sdt, String ngayThue, String ghiChu, String email, int maThanhToan) {
+        this.ten = ten;
+        this.sdt = sdt;
+        this.ngayThue = ngayThue;
+        this.ghiChu = ghiChu;
+        this.email = email;
+        this.maThanhToan = maThanhToan;
+    }
+
+    public PhongTro(int maPhongTro, String ten, String sdt, String ngayThue, String ghiChu, String email, int maThanhToan) {
         this.maPhongTro = maPhongTro;
         this.ten = ten;
         this.sdt = sdt;
         this.ngayThue = ngayThue;
         this.ghiChu = ghiChu;
+        this.email = email;
         this.maThanhToan = maThanhToan;
     }
 
-    public PhongTro(String ten, String sdt, String ngayThue, String ghiChu, int maThanhToan) {
-        this.ten = ten;
-        this.sdt = sdt;
-        this.ngayThue = ngayThue;
-        this.ghiChu = ghiChu;
-        this.maThanhToan = maThanhToan;
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     public int getMaPhongTro() {

@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>TRẦN QUỐC ĐẠT</title>
+</head>
+<body>
+<table>
+    <tr>
+        <td colspan="4"><input type="text" id="hienthi"></td>
+    </tr>
+    <tr>
+        <td>
+            <button type="button" value="1" onclick="nhap(1)">1</button>
+        </td>
+        <td>
+            <button type="button" value="2" onclick="nhap(2)">2</button>
+        </td>
+        <td>
+            <button type="button" value="3" onclick="nhap(3)">3</button>
+        </td>
+        <td>
+            <button type="button" value="+" onclick="nhap('+')">+</button>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <button type="button" value="4" onclick="nhap(4)">4</button>
+        </td>
+        <td>
+            <button type="button" value="5" onclick="nhap(5)">5</button>
+        </td>
+        <td>
+            <button type="button" value="6" onclick="nhap(6)">6</button>
+        </td>
+        <td>
+            <button type="button" value="-" onclick="nhap('-')">-</button>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <button type="button" value="7" onclick="nhap(7)">7</button>
+        </td>
+        <td>
+            <button type="button" value="8" onclick="nhap(8)">8</button>
+        </td>
+        <td>
+            <button type="button" value="9" onclick="nhap(9)">9</button>
+        </td>
+        <td>
+            <button type="button" value="*" onclick="nhap('*')">x</button>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <button type="button" onclick="xoa()">C</button>
+        </td>
+        <td>
+            <button type="button" value="0" onclick="nhap(0)">0</button>
+        </td>
+        <td>
+            <button onclick="bang()">=</button>
+        </td>
+        <td>
+            <button type="button" value="/" onclick="nhap('/')">/</button>
+        </td>
+    </tr>
+</table>
+
+</body>
+<script>
+    function nhap(so) {
+        document.getElementById("hienthi").value += so
+    }
+
+    function bang() {
+        let phepTinh = document.getElementById("hienthi").value;
+        let kQua = eval(phepTinh)
+        document.getElementById("hienthi").value = kQua
+    }
+
+    function xoa() {
+        document.getElementById("hienthi").value = " "
+
+    }
+</script>
+</html>

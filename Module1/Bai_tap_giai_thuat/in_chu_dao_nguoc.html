@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<!--Nhập vào một chuỗi ký tự  thực hiện công việc sau:-->
+<!--a.	In ra chuỗi đảo ngược của chuỗi đã cho-->
+<!--b.	Đổi chuổi đã cho sang chữ hoa-->
+<!--c.	Đổi chuỗi đã cho sang chữ thường-->
+<!--d.	Đổi chuỗi đã cho sang vừa chữ hoa vừa chữ thường (các ký tự chữ hoa thì thành chữ thường và ngược lại)-->
+</body>
+<script>
+    let str = prompt("nhập chuỗi")
+    // let strdaonguoc = str.split("").reverse().join("")
+    // document.write(strdaonguoc + '<br>');
+    // let strVietHoa = str.toUpperCase();
+    // document.write(strVietHoa + '<br>');
+    // let strVietThuong = str.toLowerCase();
+    // document.write(strVietThuong);
+    let UPPER = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+    let LOWER = 'abcdefghijklmnopqrstuvwxyz';
+    let result = [];
+    for (let i = 0; i < str.length; i++) {
+        if (UPPER.indexOf(str[i]) != -1) {
+            result.push(str[i].toLowerCase())
+        } else if (LOWER.indexOf(str[i]) != -1) {
+            result.push(str[i].toUpperCase())
+        } else {
+            result.push(str);
+        }
+    }
+    document.write(result.join(""))
+
+</script>
+</html>

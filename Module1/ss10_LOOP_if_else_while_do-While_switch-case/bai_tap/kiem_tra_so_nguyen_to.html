@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    let number = +prompt("nhập số cần kiểm tra")
+    let count = 0;// Số lượng số nguyên tố
+    let N = 1; //số nguyên tố
+    while (count < number) {
+        let giatri = 0;
+        for (let j = 1; j <= N; j++) {
+            if (N % j == 0) {
+                giatri += 1;
+            }
+        }
+        if (giatri == 2) {
+            document.write(N + "<br>");
+            count++;
+        }
+        N++;
+    }
+
+
+</script>
+
+</body>
+</html>

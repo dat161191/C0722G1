@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+</body>
+<script>
+    function uocChungLoNhat(num1,num2) {
+        while (num1 != num2) {
+            if (num1 > num2) {
+                num1 = num1 - num2;
+            } else {
+                num2 = num2 - num1;
+            }
+        }
+        return num1;
+    }
+    let number1 = prompt("nhập số thứ 1");
+    let number2 = prompt("nhập số thứ 2");
+    document.writeln("ước chung : " + uocChungLoNhat(number1, number2));
+    document.write("bội chung : " + number1 * number2 / uocChungLoNhat(number1, number2));
+
+</script>
+</html>

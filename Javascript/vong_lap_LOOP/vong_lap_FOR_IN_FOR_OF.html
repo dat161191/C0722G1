@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+</body>
+<script>
+    let myInfo = {name: 'BossTran', age: 31, address: 'QNgai'}
+    // console.log(myInfo.name);
+    let arr = [];
+    for (let i in myInfo) {
+        // console.log(i)
+        console.log(myInfo[i]);// trả về giá trị của key của đói tượng
+        // arr.push('Thuộc tính ' + i + ' có giá trị ' + myInfo[i])
+        arr.push(`Thuộc tính ${i} có giá trị ${myInfo[i]}`);
+    } console.log(arr)
+    console.log(Object.keys(myInfo));//trả về 1 mảng  key của đối tượng vd:[name,age,address]
+    for (let i of Object.keys(myInfo)) {
+        console.log(i);  // trả về key đối tượng VD: name,age,address
+        console.log(myInfo[i]);   // trả về giá trị tương ứng mỗi key VD: BossTran,31,Qngai
+    }
+    console.log(Object.values(myInfo));   // trả về 1 mảng là giá trị từng key VD: ['BossTran',31,'Qngai']
+    for (let i of Object.values(myInfo)) {
+        console.log(i);      // trả về các giá trị của key : BossTran,31,Qngai
+    }
+</script>
+</html>

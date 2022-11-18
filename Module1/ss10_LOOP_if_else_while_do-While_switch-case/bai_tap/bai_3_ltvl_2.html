@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+</body>
+<script>
+    // tam giác vuông 1
+    for (let i = 1; i <= 5; i++) {
+        for (let j = 1; j <= i; j++) {
+            document.write("*");
+        }
+        document.write("<br>");
+    }
+    document.write("<br>");
+
+
+    // tam giác vuông 2
+    for (let i = 5; i > 0 && i <= 5; i--) {
+        for (let j = 1; j <= i; j++) {
+            document.write("*");
+        }
+        document.write("<br>");
+    }
+    // 2 tam giác vuông
+    for (let i = 5; i > 0; i--) {
+        for (let j = 1; j < i; j++) {
+            document.write('&nbsp&nbsp');
+        }
+        for (let k = 5; k >= i; k--) {
+            document.write("*")
+        }
+
+        document.write("<br>");
+    }
+    document.write("<br>")
+
+    for (let i = 5; i > 0 && i <= 5; i--) {
+        for (let j = 4; j >= i; j--) {
+            document.write('&nbsp&nbsp');
+        }
+        for (let k = 1; k <= i; k++) {
+            document.write("*")
+        }
+        document.write("<br>");
+    }
+
+</script>
+</html>

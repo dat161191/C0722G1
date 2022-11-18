@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>TRẦN QUỐC ĐẠT</title>
+</head>
+<body>
+<!--Bậc	Thu nhập tính thuế/tháng (triệu đồng)	Thuế suất-->
+<!--1	Đến           05	                        5 %-->
+<!--2	Trên        05 đến 10	                    10 %-->
+<!--3	Trên        10 đến 18	                    15 %-->
+<!--4	Trên        18 đến 32	                    20 %-->
+<!--5	Trên        32 đến 52	                    25 %-->
+<!--6	Trên        52 đến 80	                    30 %-->
+<!--7	Trên          80	                        35 %-->
+
+</body>
+<script>
+    let thuNhap = +prompt("Thu nhập tính thuế")
+    switch (true) {
+        case thuNhap <= 5000000:
+            alert("TTNCN =" + " " + thuNhap * 5 / 100 + "Đ")
+            break;
+        case thuNhap <= 10000000:
+            alert("TTNCN =" + " " + thuNhap * 10 / 100 + "Đ")
+            break;
+        case thuNhap < 18000000:
+            alert("TTNCN =" + " " + thuNhap * 15 / 100 + "Đ")
+            break;
+        case thuNhap < 32000000:
+            alert("TTNCN =" + " " + thuNhap * 20 / 100 + "Đ")
+            break;
+        case thuNhap < 52000000:
+            alert("TTNCN =" + " " + thuNhap * 25 / 100 + "Đ")
+            break;
+        case thuNhap < 80000000:
+            alert("TTNCN =" + " " + thuNhap * 30 / 100 + "Đ")
+            break;
+        default:
+            alert("TTNCN =" + " " + thuNhap * 30 / 100 + "Đ")
+            breakl;
+    }
+</script>
+</html>

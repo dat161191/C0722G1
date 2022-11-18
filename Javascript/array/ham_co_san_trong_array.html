@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+</body>
+<script>
+    // duyệt các phần tử trong mảng forEach:
+    let array = [{id: 1, name: "javascrpit", coin: 500}, {id: 2, name: "php", coin: 0}, {
+        id: 3,
+        name: "ruby",
+        coin: 300
+    }, {id: 4, name: "reatjs", coin: 400}]
+    array.forEach(function (element, index) {
+        console.log(element, index);
+    })
+    //duyệt qua phần tử trả về giá trị boolean: trường dùng để kiểm tra tất cả các phần tử đúng đk thì trả về true
+    let isFree = array.every(function (element, index) {
+        console.log(index);
+        return element.coin > 0;// return rất quan trọng...phần tử nào thỏa đk thì mới xét tiếp phần tử sau,nếu sai đk thì dừng luôn
+    })
+    console.log(isFree);
+    //duyệt qua phần tử trả về giá trị boolean: trường dùng để kiểm tra tất cả các phần tử,chỉ cần 1 phần tử đúng đk thì trả về true
+    let isFree1 = array.some(function (element, index) {
+        console.log(index);
+        return element.coin === 0;// return rất quan trọng...phần tử nào thỏa đk true thì dừng,fasle thì xét tiếp
+    })
+    console.log(isFree1);
+    // tìm và trả về phần tử đầu tiên trong mảng thỏa đk find(), không thỏa đk trả về undefined
+    let element = array.find(function (arr, index) {
+        return arr.name === 'ruby'
+    })
+    console.log(element)
+    // tìm và trả về danh sách thỏa đk filter(), không thỏa đk trả về undefined
+    let listarr = array.filter(function (arr, index) {
+        return arr.coin > 300;
+    })
+    console.log(listarr)
+    //thay đổi 1 element 1 array, thường dung để hiển thị view (tên chỉ mục) cho người người dùng nhìn thấy.
+
+
+</script>
+</html>

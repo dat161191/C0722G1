@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>TRẦN QUỐC ĐẠT</title>
+</head>
+<body>
+<form><img id="hinh" src="http://upload.wikimedia.org/wikipedia/commons/6/6e/Football_%28soccer_ball%29.svg" style="width: 20%">
+    <p>Click chuột để bóng lăn qua phải</p>
+    <input type="button" value="Clickme!" onclick="moveRight()">
+</form>
+<!--    <img id="hinh" src="http://upload.wikimedia.org/wikipedia/commons/6/6e/Football_%28soccer_ball%29.svg" style="width: 20%">-->
+<!--    <p>Click chuột để bóng lăn qua phải</p>-->
+<!--    <button onclick="moveRight()">Clickme!</button>-->
+
+<script>
+    //tạo biến để lưu ảnh
+    let bong ;
+    bong = document.getElementById("hinh");
+    //Tạo hàm init () để khởi tạo biến mà chúng ta đã đặt vị trí và các thuộc tính còn lại.
+    function innit() {
+        bong = document.getElementById("hinh");
+        bong.style.position = 'relative';
+        bong.style.left = '0px';
+   }
+    function moveRight() {
+       bong.style.left = parseInt(bong.style.left) + 10 + 'px';
+    }
+    window.onload = innit;
+
+</script>
+
+</body>
+</html>

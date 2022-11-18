@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<!--    CT tính lãi kép
+T = M*(1+r)^n
+Trong đó:
+T = Tổng tiền phải trả
+M = Số tiền ban đầu
+r = lãi suất hàng tháng
+n = số tháng vay     -->
+
+</body>
+<script>
+    let soTienVay = +prompt("Số tiền vay ban đầu");
+    let month = +prompt("Số tháng vay");
+    let laiThang = +prompt("Lãi hàng tháng");
+    let tongTientra = soTienVay * Math.pow(1 + laiThang, month);
+    let laiNganHang = tongTientra - soTienVay;
+    alert("Tổng tiền trả là" + " " + tongTientra);
+    alert("Lãi ngân hàng là" + " " + laiNganHang);
+</script>
+</html>

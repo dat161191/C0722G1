@@ -11,9 +11,9 @@ import java.util.List;
 public class PhongTroRepository implements IPhongTroRepository {
     private final String SELECT_SQL = "SELECT ttpt.*,httt.ten_hinh_thuc FROM thong_tin_phong_tro ttpt JOIN hinh_thuc_thanh_toan httt ON ttpt.ma_hinh_thuc_thanh_toan=httt.ma_hinh_thuc_thanh_toan WHERE flag =0;";
     private final String DELETE_SQL = "UPDATE thong_tin_phong_tro SET flag =1 WHERE ma_phong_tro = ?;";
-    private final String INSERT_SQL = "INSERT INTO thong_tin_phong_tro (ten_nguoi_thue, so_dien_thoai, ngay_thue_tro, ghi_chu, ma_hinh_thuc_thanh_toan) VALUES ( ?, ?, ?, ?, ?);";
+    private final String INSERT_SQL = "INSERT INTO thong_tin_phong_tro (ten_nguoi_thue, so_dien_thoai, ngay_thue_tro, ghi_chu,email, ma_hinh_thuc_thanh_toan) VALUES ( ?, ?, ?, ?,?, ?);";
     private final String UPDATE_SQL =
-            "UPDATE thong_tin_phong_tro SET ten_nguoi_thue = ? ,so_dien_thoai = ?, ngay_thue_tro = ?, ghi_chu = ?, ma_hinh_thuc_thanh_toan = ? WHERE flag =0 and ma_phong_tro = ?;";
+            "UPDATE thong_tin_phong_tro SET ten_nguoi_thue = ? ,so_dien_thoai = ?, ngay_thue_tro = ?, ghi_chu = ?,email= ?, ma_hinh_thuc_thanh_toan = ? WHERE flag =0 and ma_phong_tro = ?;";
 
     /* QUERY TÌM 1 Ô NHIỀU TRƯỜNG*/
 //    private final String SEARCH_SQL =
@@ -38,9 +38,11 @@ public class PhongTroRepository implements IPhongTroRepository {
                 String sdt = resultSet.getString("so_dien_thoai");
                 String ngayThue = resultSet.getString("ngay_thue_tro");
                 String ghiChu = resultSet.getString("ghi_chu");
+                String email = resultSet.getString("email");
+
                 int maThanhToan = resultSet.getInt("ma_hinh_thuc_thanh_toan");
                 String tenHinhThuc = resultSet.getString("ten_hinh_thuc");
-                PhongTro phongTro = new PhongTro(maPhongTro, ten, sdt, ngayThue, ghiChu, maThanhToan, tenHinhThuc);
+                PhongTro phongTro = new PhongTro(maPhongTro, ten, sdt, ngayThue, ghiChu,email, maThanhToan, tenHinhThuc);
                 phongTroList.add(phongTro);
             }
 
@@ -50,7 +52,7 @@ public class PhongTroRepository implements IPhongTroRepository {
         return phongTroList;
     }
 
-            /*===== ADD===========*/
+    /*===== ADD===========*/
     @Override
     public boolean add(PhongTro phongTro) {
         Connection connection = BaseRepository.getConnectDB();
@@ -61,9 +63,9 @@ public class PhongTroRepository implements IPhongTroRepository {
 //            preparedStatement.setBoolean(2, customer.isGender());
             preparedStatement.setString(2, phongTro.getSdt());
             preparedStatement.setString(4, phongTro.getGhiChu());
-//            preparedStatement.setString(5, customer.getEmail());
+            preparedStatement.setString(5, phongTro.getEmail());
 //            preparedStatement.setString(7, customer.getAddress());
-            preparedStatement.setInt(5, phongTro.getMaThanhToan());
+            preparedStatement.setInt(6, phongTro.getMaThanhToan());
             return preparedStatement.executeUpdate() > 0;
         } catch (SQLException e) {
             e.printStackTrace();
@@ -97,9 +99,10 @@ public class PhongTroRepository implements IPhongTroRepository {
             preparedStatement.setDate(3, Date.valueOf(phongTro.getNgayThue()));
             preparedStatement.setString(2, phongTro.getSdt());
             preparedStatement.setString(4, phongTro.getGhiChu());
-            preparedStatement.setInt(5, phongTro.getMaThanhToan());
-            preparedStatement.setInt(6, phongTro.getMaPhongTro());
-            return preparedStatement.executeUpdate()>0;
+            preparedStatement.setInt(6, phongTro.getMaThanhToan());
+            preparedStatement.setString(5, phongTro.getEmail());
+            preparedStatement.setInt(7, phongTro.getMaPhongTro());
+            return preparedStatement.executeUpdate() > 0;
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -121,8 +124,9 @@ public class PhongTroRepository implements IPhongTroRepository {
                 String sdt = resultSet.getString("so_dien_thoai");
                 String ngayThue = resultSet.getString("ngay_thue_tro");
                 String ghiChu = resultSet.getString("ghi_chu");
+                String email = resultSet.getString("email");
                 int maThanhToan = resultSet.getInt("ma_hinh_thuc_thanh_toan");
-                phongTro = new PhongTro(ma_phong_tro, ten, sdt, ngayThue, ghiChu, maThanhToan);
+                phongTro = new PhongTro(ma_phong_tro, ten, sdt, ngayThue, ghiChu,email, maThanhToan);
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -134,7 +138,7 @@ public class PhongTroRepository implements IPhongTroRepository {
     /*============= SEARCH================*/
     @Override
 //    public List<PhongTro> search(String ten) {
-        public List<PhongTro> search(String ten,String sdt,String tenHinhThuc) {
+    public List<PhongTro> search(String ten, String sdt, String tenHinhThuc) {
         List<PhongTro> phongTroList = new ArrayList<>();
 
         Connection connection = BaseRepository.getConnectDB();
@@ -155,10 +159,11 @@ public class PhongTroRepository implements IPhongTroRepository {
                 String sdtSearch = resultSet.getString("so_dien_thoai");
                 String ngayThue = resultSet.getString("ngay_thue_tro");
                 String ghiChuSearch = resultSet.getString("ghi_chu");
+                String email = resultSet.getString("email");
                 int maThanhToan = resultSet.getInt("ma_hinh_thuc_thanh_toan");
                 String tenHinhThucSearch = resultSet.getString("ten_hinh_thuc");
 
-                phongTroList.add(new PhongTro(id, tenSearch, sdtSearch, ngayThue, ghiChuSearch, maThanhToan,tenHinhThucSearch));
+                phongTroList.add(new PhongTro(id, tenSearch, sdtSearch, ngayThue, ghiChuSearch,email, maThanhToan, tenHinhThucSearch));
             }
         } catch (SQLException throwables) {
             throwables.printStackTrace();

@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+</body>
+<script>
+    let arr=[1,2,3,4,4,3,2,1,5]
+    console.log(new Set(arr));   // trả về 1 set mới là các phần tử không trùng nhau. {1,2,3,4,}
+    b=[...(new Set(arr))]       // trả về 1 mảng là các phần tử của Set [1,2,3,4]
+    console.log(b);
+</script>
+</html>

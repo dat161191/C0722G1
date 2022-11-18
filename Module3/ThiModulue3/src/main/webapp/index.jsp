@@ -12,6 +12,6 @@
     <title>$Title$</title>
   </head>
   <body>
-  <c:redirect url="/???"></c:redirect>
+  <c:redirect url="/benhNhan"></c:redirect>
   </body>
 </html>

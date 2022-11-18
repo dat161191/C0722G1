@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+</body>
+<script>
+
+    let str = prompt("nhập chuỗi");
+
+    function cumTuVietHoa(str) {
+        str = str.trim();
+        if (str.indexOf(" ") == -1) {
+            return 'Chuỗi chỉ có 1 từ nên không cần viết tắc';
+        } else {
+            let mang1 = str.split(' ');
+            alert(mang1);
+            let mang2 = [];
+            for (let i = 0; i < mang1.length; i++) {
+                mang1[i].charAt(0).toUpperCase();
+                mang2.push(mang1[i].charAt(0).toUpperCase());
+            }
+            return mang2.join('');
+        }
+    }
+
+    let vietTat = cumTuVietHoa(str);
+    alert(vietTat);
+
+
+</script>
+</html>

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+</body>
+<script>
+    let soLuong = +prompt("số lượng số phần tử trong mảng")
+    let mang = [];
+
+    for (let i = 0; i < soLuong; i++) {
+        mang[i] = +prompt("nhập giá trị phần tử");
+    }
+    alert(mang);
+    mang2 = [];
+    let so = +prompt("Nhập số")
+    function timPhanTuChiHet(mang, s0) {
+        for (let i = 0; i < mang.length; i++) {
+            if (mang2.indexOf(mang[i]) == -1) {
+                mang2.push(mang[i])
+            }
+        }
+        let dem = 0
+        for (let i = 0; i < mang2.length; i++) {
+            if (mang2[i] % s0 == 0) {
+                dem++
+            }
+
+        }
+        return dem;
+    }
+
+    alert(timPhanTuChiHet(mang, so));
+</script>
+</html>

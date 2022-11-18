@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>đoán số</title>
+</head>
+<body>
+<button onclick="nhapso()"><h1>Start</h1></button>
+</body>
+<script>
+    function nhapso() {
+        let soKhoang = parseInt(prompt("nhập khoảng số bạn muốn đoán"));
+        let soMayRandom = parseInt(Math.random() * soKhoang);
+        console.log(soMayRandom);
+        let soDoan;
+        let coutn = 0;
+        do {
+            soDoan = parseInt(prompt("nhập số bạn muốn đoán"));
+            if (soDoan == soMayRandom) {
+                alert("Bạn đã đoán trúng");
+            } else {
+                if (soDoan < soMayRandom) {
+                    alert('Ban đã đoán số nhỏ hơn');
+                } else {
+                    alert("Bạn đã đoán số lớn hơn");
+                }
+                coutn++
+            }
+            if (coutn === 3) {
+                alert("Bạn đã hết lượt")
+                break;
+            }
+        }
+        while (soMayRandom !== soDoan) ;
+    }
+
+
+</script>
+</html>

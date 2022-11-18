@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+</body>
+<script>
+    /*  // Lấy 1 số random trong mảng
+      function getRandomItem(arr) {
+          let random4=Math.floor(Math.random() * arr.length)
+          return arr[random4];
+      }
+      var arr=[1,2,3,2,3,2,5,2];
+      console.log(getRandomItem(arr))
+      // tạo danh sách mảng ngẫu nhiên vs độ dài length,min,max cho trước
+      function getRandNumbers (min,max,length){
+          var arr= new Array(length)
+          var random=Math.floor(Math.random()*(max - min)+min)// tạo 1 số ngẫu nhiên trong khoảng min max
+          for (let i=0;i<arr.length-1;i++){
+              arr[i]=random;
+          }return arr;
+      }*/
+
+    var orders = [
+        {
+            name: 'Khóa học HTML - CSS Pro',
+            price: 3000000
+        },
+        {
+            name: 'Khóa học Javascript Pro',
+            price: 2500000
+        },
+        {
+            name: 'Khóa học React Pro',
+            price: 3200000
+        }
+    ]
+    //
+    // function getTotal(orders){
+    //     var sum = 0
+    //     orders.forEach(item => {
+    //         // console.log(item.price)
+    //         sum += item.price
+    //     });
+    //
+    //     return sum
+    // }
+    //
+    // console.log(getTotal(orders))
+
+    function getTotal(arr) {
+        let sum = 0;
+        for (let i = 0; i < arr.length; i++) {
+            sum += arr[i].price;
+        }
+        return sum;
+    }
+
+    console.log(getTotal(orders))
+
+
+</script>
+</html>

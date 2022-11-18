@@ -26,30 +26,17 @@
     </style>
 </head>
 <body>
-<div class="container">
+<div class="container-fluid">
     <%--    <div class="row text-center"><h2>Danh sách phòng trọ</h2></div>--%>
     <div class="row headers-region" style="background: #0cab0c">
         <div class="row" style="padding-top: 5px">
-<%--            <div class="col-3">--%>
-<%--                <form class="d-flex" action="/phongtro?action=search" method="post">--%>
-<%--                    <input class="form-control me-2" type="search" name="ten" placeholder="Trần Gia Gia"--%>
-<%--                           value="${ten}" aria-label="Search">--%>
-<%--                    <button class="btn btn-primary" type="submit">Search</button>--%>
-<%--                </form>--%>
-<%--            </div>--%>
-<%--            <div class="col-7">--%>
-            <div class="row" style="margin-top: 10px">
+            <div class="row" style="margin-top: 5px">
                 <h2 style="text-align: center;color: white;font-size: 30px">DANH SÁCH PHÒNG TRỌ</h2>
                 <h2 style="text-align: center;color: white;font-size: 25px">
                     <c:if test="${mess!=null}">
                         <span>${mess}</span>
                     </c:if></h2>
             </div>
-<%--            <div class="col-2">--%>
-<%--                <a href="/phongtro?action=add">--%>
-<%--                    <button class="btn btn-primary" type="button"> Thêm mới khách hàng</button>--%>
-<%--                </a>--%>
-<%--            </div>--%>
         </div>
     </div>
     <div class="row content" style="align-items: center;justify-content: center">
@@ -67,9 +54,16 @@
             </div>
             <div class="col-3"></div>
             <div class="col-2">
-                <a href="/phongtro?action=add">
-                    <button class="btn btn-primary" type="button"> Thêm mới khách hàng</button>
-                </a>
+                <%--Nhảy trang--%>
+                                <a href="/phongtro?action=add">
+                                    <button class="btn btn-primary" type="button"> Thêm mới</button>
+                                </a>
+
+                    <%-- MODAL--%>
+                <button type="button" class="btn btn-primary col-12"
+                        data-bs-toggle="modal"
+                        data-bs-target="#addmodal">Thêm mới
+                </button>
             </div>
         </div>
         <table id="tableCustomer" class="table table-striped table-hover table-primary"
@@ -81,6 +75,7 @@
                 <th>Số điện thoại</th>
                 <th>Ngày bắt đàu thuê</th>
                 <th>Ghi chú</th>
+                <th>Email</th>
                 <th>Hình thức thuê</th>
                 <th>Cập nhật</th>
                 <th>Xóa</th>
@@ -95,6 +90,7 @@
                     <td>${phongTro.getSdt()}</td>
                     <td>${phongTro.getNgayThue()}</td>
                     <td>${phongTro.getGhiChu()}</td>
+                    <td>${phongTro.getEmail()}</td>
                     <td>${phongTro.getTenHinhThuc()}</td>
                     <td>
                         <a href="/phongtro?action=edit&maPhongTro=${phongTro.getMaPhongTro()}"
@@ -133,7 +129,9 @@
         <div class="modal-content">
             <div class="modal-body">
                 <p style="font-size: 15px;color: blue;text-align: center">Bạn có chắc muốn xóa người thuê này???</p>
-                <P id="name" style="font-size: 25px;color: red;text-align: center"></P>
+                <div style="text-align: center"><span>ID: </span><span id="id" style="font-size: 25px;color: blue;"></span>
+                    <span> Tên: </span><span id="name" style="font-size: 25px;color: red;"></span>
+                </div>
 
             </div>
             <div class="modal-footer">
@@ -148,13 +146,102 @@
     </div>
 </div>
 
+<%------------------MODAL ADD---------------%>
+<div class="modal fade" id="addmodal" tabindex="-1"
+     aria-labelledby="exampleModalLabel" aria-hidden="true"
+     data-bs-backdrop="static">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header-xl">
+                <h1 style="text-align: center;color: blue; padding-top: 5px" class="modal-title fs-5">THÊM MỚI
+                </h1>
+            </div>
+            <%--ĐỔI VALUE ACTION--%>
+            <form action="/phongtro?action=add" method="post">
+                <div class="modal-body-xl">
+                    <div class="container">
+                        <table class="table table-primary" style="width: 100%;">
+                            <tr>
+                                <td><label class="form-label" for="form3Example1m">Tên</label></td>
+                                <td><input type="text" id="form3Example1m" required
+                                           pattern="([A-Z][a-z]+ )+([A-Z][a-z]+)$"
+                                           title="Không chứa kí tự đặc biệt,chữ cái đầu viết hoa,có ít nhất 2 từ và cách nhau bởi khoảng trắng"
+                                           class="form-control form-control-lg"
+                                           placeholder="VD:Trần Gia Gia"
+                                           name="ten"/></td>
+                            </tr>
+                            <tr>
+                                <td><label class="form-label" for="form3Example1n">Ngày Thuê</label></td>
+                                <td><input type="date" id="form3Example1n" required name="ngayThue"
+                                           class="form-control form-control-lg text-primary"/></td>
+                            </tr>
+                            <tr>
+                                <td><label class="form-label" for="form3Example1m1">Số ĐT</label></td>
+                                <td><input type="text" id="form3Example1m1" required
+                                           pattern="0[0-9]{9,10}"
+                                           title="SDT bắt đầu từ số 0,không chứa chữ và ký tự đặc biệt.Từ 10 đến 11 số"
+                                           placeholder="0385425443" name="sdt"
+                                           class="form-control form-control-lg"/></td>
+                            </tr>
+                            <tr>
+                                <td><label class="form-label" for="form3Example1n1">Ghi Chú</label></td>
+                                <td><input type="text" id="form3Example1n1" required
+                                           placeholder="Có điều hòa" name="ghiChu"
+                                           class="form-control form-control-lg"/></td>
+                            </tr>
+                            <tr>
+                                <td><label class="form-label" for="form3Example1nm1">Enail</label></td>
+                                <td><input type="text" id="form3Example1nm1" required
+                                           pattern="^\w+\w*@\w+(\.\w*)$" title="Email không chứa ký tự đặc biệt"
+                                           placeholder="trangiagia1611@gmail.com" name="email"
+                                           class="form-control form-control-lg"/></td>
+                            </tr>
+                            <tr>
+                                <td><label class="form-label col-xl-3" for="form3Example9">Kiểu
+                                    thuê </label></td>
+                                <td><select name="maThanhToan" id="form3Example9" required
+                                            style="width: 100%"
+                                            class="form-select-xl col-xl-8 text-primary">
+                                    <option selected>--†----------------------Kiểu
+                                        thuê----------------------†--
+                                    </option>
+                                    <option value="1">
+                                        --†-------------------------Năm-------------------------†--
+                                    </option>
+                                    <option value="2">
+                                        --†-------------------------Quý-------------------------†--
+                                    </option>
+                                    <option value="3">
+                                        --†-------------------------Tháng------------------------†--
+                                    </option>
+                                </select></td>
+                            </tr>
+                        </table>
+                    </div>
+                    <div class="modal-footer">
+                        <%--ĐỔI ĐƯỜNG LINK /phongtro--%>
+                        <a href="/phongtro" class="btn btn-primary btn-lg ms-2 text-light">
+                            Quay về </a>
+                        </button>
+                        <button type="submit" class="btn btn-primary btn-lg ms-2 text-light">Thêm mới</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+
 <%---------------FUNCTION REMOVE------------------%>
 <script>
     function idRemove(id, name) {
         document.getElementById("idInput").value = id;
         document.getElementById("name").innerText = name;
+        document.getElementById("id").innerText = id;
     }
 </script>
+
+
 </body>
 <script src="jquery/jquery-3.5.1.min.js"></script>
 <script src="datatables/js/jquery.dataTables.min.js"></script>

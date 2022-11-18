@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>TRẦN QUỐC ĐẠT</title>
+</head>
+<body>
+
+</body>
+<script>
+    let canhA = +prompt("cạnh a");
+    let canhB = +prompt("cạnh b");
+    let canhC = +prompt("cạnh c");
+    let d = canhA + canhB;
+    let e = canhB + canhC;
+    let f = canhC + canhA;
+    if (canhA > 0 && canhB > 0 && canhC > 0 && d > canhC && e > canhA && f > canhB) {
+        alert("Đây là ba cạnh tam giác")
+    } else {
+        alert("Đây không phải ba cạnh tam giác")
+    }
+</script>
+</html>

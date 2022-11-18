@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body >
+<input type="text" id="tensanpham">
+<button onclick="add()">Add</button>
+<p id="hiển thị"></p>
+</body>
+<script>
+    let array = [];
+
+    function table(array) {
+        let table = "<table border='1' style='border-collapse:collapse;border: #ff0000; '>" +
+            "<tr >" +
+            "<th>STT</th>" +
+            "<th>Tên Sản Phẩm</th>" +
+            "<th colspan ='2' > Action </th> " +
+            "</tr>"
+        for (let i = 0; i < array.length; i++) {
+            table +="<tr>" +
+                "<td>" + (i + 1) + "</td>" +
+                "<td>" + array[i] + "</td>" +
+                "<td><button onclick='edit("+i+")'>Edit</button></td>" +
+                "<td><button onclick='remove(" + i + ")'>Del</button></td>" +
+                "</tr>"
+        }
+        table = table + "</table>";
+        document.getElementById("hiển thị").innerHTML = table;
+    }
+
+    table(array)
+
+    function add() {
+        let sanpham = document.getElementById("tensanpham").value;
+        array.push(sanpham);
+        table(array);
+    }
+
+    function edit(index) {
+        array[index] = prompt("Nhập tên sản phẩm")
+        table(array);
+    }
+
+    function remove(index) {
+        array.splice(index, 1);
+        table(array)
+    }
+
+</script>
+</html>

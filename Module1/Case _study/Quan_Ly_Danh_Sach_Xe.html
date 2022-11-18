@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<style>
+    table, tr th, tr td {
+        border-collapse: collapse;
+        border: black 1px solid;
+    }
+</style>
+<body>
+<label><input type="text" id="bienSoXe" placeholder="Nhap bien so xe"></label>
+<label><input type="text" id="tenSinhVien" placeholder="Nhap ten sinh vien"></label>
+<label><input type="text" id="cmnd" placeholder="Nhap so chung minh"></label>
+<label><select name="Hang xe" id="hangXe">
+    <option value="HonDa">HonDa</option>
+    <option value="Suzuki">Suzuki</option>
+    <option value="Yamaha">Yamaha</option>
+    <option value="Piaggio">Piaggio</option>
+    <option value="Ducati">Ducati</option>
+    <option value="Sym">Sym</option>
+    <option value="HangKhac">Hang Khac</option>
+</select></label>
+<label><input type="number" id="phi" placeholder="Nhap so tien gui xe da nop"></label>
+<input type="button" onclick="themDS()" value="Them">
+<input type="button" onclick="timkiem()" value="TimKiem">
+
+<p id="display"></p>
+<h6 id="play"></h6>
+<script>
+    function view(array) {
+        let text = "<table><tr><th>Bien so xe</th><th>Ten sinh vien</th><th>Chung minh nhan dan</th><th>Hangxe</th><th>Phi gui xe da dong</th></tr>";
+        for (let i = 0; i < array.length; i++) {
+            text += "<tr>";
+            for (let j = 0; j < array[i].length; j++) {
+                text += "<td>" + array[i][j] + "</td>";
+
+            }
+            text += "<td><input type='button' value='sua' onclick='sua(" + i + ")'></td>";
+            text += "<td><input type='button' value='xoa' onclick='xoa(" + i + ")'></td>";
+            text += "</tr>";
+        }
+        text += "</table>";
+        document.getElementById("display").innerHTML = text;
+    }
+
+    function themDS() {
+        let bs = document.getElementById("bienSoXe").value;
+        while (bs.length > 10) {
+            bs = prompt("Nhập lại BSX ký tự nhỏ hơn 10")
+        }
+
+        let ten = document.getElementById("tenSinhVien").value;
+        while (ten.length > 4) {
+            ten = prompt("Nhập lại tên ký tự nhỏ hơn 20")
+        }
+        let cmnd = document.getElementById("cmnd").value;
+        let hx = document.getElementById("hangXe").value;
+        let phi = document.getElementById("phi").value;
+        danhSach.push([bs, ten, cmnd, hx, phi]);
+        view(danhSach);
+        document.getElementById("play").innerHTML=danhSach
+
+    }
+
+    function sua(index) {
+        let bs;
+        do {
+            bs = prompt("Nhap bien so xe:");
+        } while (bs.length > 10);
+        let ten;
+        do {
+            ten = prompt("Nhap ten sinh vien:");
+        } while (ten.length > 15);
+        let cmnd = prompt("Nhap cmnd:");
+        let hx = prompt("Nhap hang xe");
+        let phi = prompt("Nhap so tien da dong phi:");
+        danhSach[index] = [bs, ten, cmnd, hx, phi];
+        view(danhSach)
+    }
+
+    function xoa(index) {
+        danhSach.splice(index, 1);
+        view(danhSach);
+    }
+
+    function timkiem() {
+       let a = prompt("Nhap ten chu xe ban muon tim kiem");
+        for (let i = 0; i < danhSach.length; i++) {
+            if (danhSach[i][1] === a) {
+                alert(danhSach[i]);
+            }
+        }
+    }
+
+    let danhSach = [
+        ["43c1-12312", "A", 123456869, "Honda", 100000],
+        ["76c1-12312", "B", 123466869, "Suzuki", 100000]
+    ]
+    view(danhSach);
+</script>
+</body>
+</html>
