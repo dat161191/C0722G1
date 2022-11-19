@@ -14,11 +14,11 @@ public class DictionaryController {
     @Autowired
     private IDictionaryService dictionaryService;
 
-    @GetMapping("")
+    @GetMapping("/")
     public String dictionary(){
         return "dictionary";
     }
-    @PostMapping("/find")
+    @PostMapping("find")
     public String search(String enWord, Model model) {
         String result = dictionaryService.getViWord(enWord);
         model.addAttribute("viWord",result);

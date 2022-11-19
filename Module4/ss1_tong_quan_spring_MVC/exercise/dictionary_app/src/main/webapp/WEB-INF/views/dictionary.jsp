@@ -24,10 +24,10 @@
 </head>
 <body>
 <div class="container">
-    <form method="post" action="/find">
+    <form method="post" action="find">
         <div class="mb-3">
-            <label for="enWord" class="form-label">Tiếng anh:</label>
-            <input type="text" class="form-control" placeholder="ex:Chicken" id="enWord" name="enWord" >
+            <label>Tiếng anh:
+            <input type="text" class="form-control" placeholder="ex:Chicken" id="enWord" name="enWord" ></label>
         </div>
         <button type="submit" class="btn btn-primary">Dịch</button>
         <div class="mb-3">
