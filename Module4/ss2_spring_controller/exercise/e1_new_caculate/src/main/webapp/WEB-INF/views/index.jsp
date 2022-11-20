@@ -31,11 +31,11 @@
             <p>CACULATE</p>
             <label>Số thứ nhất<input type="text" name="num1"></label>
             <label>Số thứ hai<input type="text" name="num2"></label>
-            <input type="button" name="match" value="+">
-<%--            <input type="button" name="match" value="-">--%>
-<%--            <input type="button" name="match" value="*">--%>
-<%--            <input type="button" name="match" value="/">--%>
-            <button>Enter</button>
+            <input type="submit" name="match" value="+">
+            <input type="submit" name="match" value="-">
+            <input type="submit" name="match" value="*">
+            <input type="submit" name="match" value="/">
+<%--            <button>Enter</button>--%>
             <h4>Kết quả: ${result}</h4>
         </div>
     </form>

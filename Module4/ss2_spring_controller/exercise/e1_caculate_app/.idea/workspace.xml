@@ -174,7 +174,7 @@
       <option name="presentableId" value="Default" />
       <updated>1668824659381</updated>
       <workItem from="1668824661818" duration="2971000" />
-      <workItem from="1668958760013" duration="2099000" />
+      <workItem from="1668958760013" duration="5052000" />
     </task>
     <servers />
   </component>
@@ -183,5 +183,19 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-method">
+          <url>file://$PROJECT_DIR$/src/main/java/com/example/controller/MathController.java</url>
+          <line>18</line>
+          <properties class="com.example.controller.MathController" method="mathController">
+            <option name="EMULATED" value="true" />
+          </properties>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>
