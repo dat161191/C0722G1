@@ -6,6 +6,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 public class CaculateController {
@@ -15,8 +16,8 @@ public class CaculateController {
     public String display(){
         return "index";
     }
-    @PostMapping("match")
-    public String mathController(double num1, double num2, String match, Model model){
+    @PostMapping("/match")
+    public String mathController(@RequestParam double num1,@RequestParam double num2,@RequestParam String match, Model model){
         double result=matchService.Match(num1,num2,match);
         model.addAttribute("result",result);
         return "index";

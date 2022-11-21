@@ -26,7 +26,7 @@
 <div class="row" style="height:20px"></div>
 <div class="container">
     <div class="col-3"></div>
-    <form action="match" method="post">
+    <form action="/match" method="post">
         <div class="col-8">
             <p>CACULATE</p>
             <label>Số thứ nhất<input type="text" name="num1"></label>
@@ -35,7 +35,6 @@
             <input type="submit" name="match" value="-">
             <input type="submit" name="match" value="*">
             <input type="submit" name="match" value="/">
-<%--            <button>Enter</button>--%>
             <h4>Kết quả: ${result}</h4>
         </div>
     </form>
