@@ -77,4 +77,9 @@ public class ProductController {
         model.addAttribute("productList",productList);
         return "home";
     }
+    @GetMapping("/view")
+    public String view(@RequestParam int id, Model model) {
+        model.addAttribute("product", iProductService.findProductById(id));
+        return "view";
+    }
 }

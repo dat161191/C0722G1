@@ -18,44 +18,48 @@
     <title>BossTran</title>
 </head>
 <body>
-<h3 class="text-center">Edit Product</h3>
+<h3>View Product</h3>
+
 <div class="row">
     <div class="col-4">
         <div>
-            <p><a th:href="@{/}">
-                <button class="btn btn-primary">Back to Product list</button>
+            <p><a th:href="@{/edit(id=${product.id})}">
+                <button class="btn btn-primary">Edit Product</button>
             </a></p>
         </div>
     </div>
     <div class="col-6">
         <div class="row justify-content-center align-items-lg-center text-center" id="form">
-            <form th:action="@{/edit}" th:object="${product}"
-                  method="POST" novalidate="novalidate">
-                <input type="hidden" th:field="*{id}"/>
+            <form th:object="${product}">
+                <div>
+                    <label>ID</label>
+                    <input type="text" disabled th:field="*{name}"/>
+                </div>
                 <div>
                     <label>Name</label>
-                    <input type="text" th:field="*{name}"/>
+                    <input type="text" disabled th:field="*{name}"/>
                 </div>
                 <div>
                     <label>Price</label>
-                    <input type="text" th:field="*{price}"/>
+                    <input type="text" disabled th:field="*{price}"/>
                 </div>
                 <div>
                     <label>Description</label>
-                    <input type="text" th:field="*{description}"/>
+                    <input type="text" disabled th:field="*{description}"/>
                 </div>
                 <div>
                     <label>Producer</label>
-                    <input type="text" th:field="*{producer}"/>
+                    <input type="text" disabled  th:field="*{producer}"/>
                 </div>
                 <input type="submit" value="Edit"/>
+                <a th:href="@{/}" class="btn btn-primary">
+                    Back to Product list
+                </a>
             </form>
         </div>
     </div>
 </div>
 
-
 <div th:replace="~{layout::footer}"></div>
-
 </body>
 </html>

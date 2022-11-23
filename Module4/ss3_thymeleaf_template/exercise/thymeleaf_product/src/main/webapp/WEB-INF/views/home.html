@@ -32,11 +32,10 @@
             <h2 th:text="${message}" style="color: red;text-align: center"></h2>
         </div>
         <div class="col-4">
-            <form action="search" method="post">
-                <div class="row mb-3">
-                    <div class="col-6"><input type="text"  name="search" id="search" placeholder="Product Name"></div>
-                    <div class="col-6"><button class="btn btn-primary" type="submit">Search</button></div>
-                </div>
+            <form class="d-flex" action="/search" method="post">
+                <input class="form-control me-2" type="search" name="search" placeholder="Product Name"
+                       aria-label="Search">
+                <button class="btn btn-primary" type="submit">Search</button>
             </form>
         </div>
     </div>
@@ -62,39 +61,40 @@
             <td th:text="${product.getPrice()}"></td>
             <td th:text="${product.getDescription()}"></td>
             <td th:text="${product.getProducer()}"></td>
-            <td><a th:href="@{/edit(id=${product.id})}">Edit</a></td>
+            <td><a th:href="@{/edit(id=${product.id})}" class="btn btn-primary">Edit</a></td>
             <td>
                 <button type="button" class="btn btn-danger"
                         th:attr="onclick=|showAlertDelete('${product.id}','${product.name}');|" data-bs-toggle="modal"
                         data-bs-target="#delete">Delete
                 </button>
             </td>
-            <td><a th:href="@{/view(id=${product.id})}">View</a></td>
+            <td><a th:href="@{/view(id=${product.id})}" class="btn btn-dark">View</a></td>
         </tr>
         </tbody>
     </table>
     <div th:replace="~{layout::footer}"></div>
 
-    <!--Modal delete-->
-    <div class="modal fade" id="delete" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h1 class="modal-title fs-5">XOÁ SẢN PHẨM</h1>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <form th:action="@{/delete}">
-                    <div class="modal-body">
-                        <p id="deleteAlert"></p>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="submit" class="btn btn-primary" th:id="deleteConfirm" th:name="deleteConfirm">
-                            Acept
-                        </button>
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>
-                    </div>
-                </form>
+</div>
+
+<!--Modal delete-->
+<div class="modal fade" id="delete" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5">XOÁ SẢN PHẨM</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
+            <form th:action="@{/delete}">
+                <div class="modal-body">
+                    <p id="deleteAlert"></p>
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-primary" th:id="deleteConfirm" th:name="deleteConfirm">
+                        Acept
+                    </button>
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>
+                </div>
+            </form>
         </div>
     </div>
 </div>
