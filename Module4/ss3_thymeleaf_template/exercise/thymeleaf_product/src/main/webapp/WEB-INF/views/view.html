@@ -33,26 +33,25 @@
             <form th:object="${product}">
                 <div>
                     <label>ID</label>
-                    <input type="text" disabled th:field="*{name}"/>
+                    <input type="text" readonly th:field="*{id}"/>
                 </div>
                 <div>
                     <label>Name</label>
-                    <input type="text" disabled th:field="*{name}"/>
+                    <input type="text" readonly th:field="*{name}"/>
                 </div>
                 <div>
                     <label>Price</label>
-                    <input type="text" disabled th:field="*{price}"/>
+                    <input type="text" readonly th:field="*{price}"/>
                 </div>
                 <div>
                     <label>Description</label>
-                    <input type="text" disabled th:field="*{description}"/>
+                    <input type="text" readonly th:field="*{description}"/>
                 </div>
                 <div>
                     <label>Producer</label>
-                    <input type="text" disabled  th:field="*{producer}"/>
+                    <input type="text" readonly  th:field="*{producer}"/>
                 </div>
-                <input type="submit" value="Edit"/>
-                <a th:href="@{/}" class="btn btn-primary">
+                <a th:href="@{/}" class="btn btn-light">
                     Back to Product list
                 </a>
             </form>

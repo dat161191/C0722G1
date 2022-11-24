@@ -8,13 +8,13 @@ import java.util.Map;
 public interface IProductRepository {
     List<Product> findAll();
 
-    boolean addProduct(Product product);
+    void addProduct(Product product);
 
-    boolean updateProduct(Product product);
+    void updateProduct(Product product);
 
-    boolean removeProduct(int id);
+    void removeProduct(Product product);
 
     Product findProductById(int id);
 
-    Map<Integer, Product> searchByName(String name);
+    List<Product> searchByName(String name);
 }

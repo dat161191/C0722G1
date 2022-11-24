@@ -13,24 +13,25 @@ import java.util.Map;
 public class ProductService implements IProductService {
     @Autowired
     private IProductRepository iProductRepository;
+
     @Override
     public List<Product> findAll() {
         return iProductRepository.findAll();
     }
 
     @Override
-    public boolean addProduct(Product product) {
-        return iProductRepository.addProduct(product);
+    public void addProduct(Product product) {
+        iProductRepository.addProduct(product);
     }
 
     @Override
-    public boolean updateProduct(Product product) {
-        return iProductRepository.updateProduct(product);
+    public void updateProduct(Product product) {
+        iProductRepository.updateProduct(product);
     }
 
     @Override
-    public boolean removeProduct(int id) {
-        return iProductRepository.removeProduct(id);
+    public void removeProduct(Product product) {
+        iProductRepository.removeProduct(product);
     }
 
     @Override
@@ -39,7 +40,7 @@ public class ProductService implements IProductService {
     }
 
     @Override
-    public Map<Integer, Product> searchByName(String name) {
+    public List<Product> searchByName(String name) {
         return iProductRepository.searchByName(name);
     }
 }
