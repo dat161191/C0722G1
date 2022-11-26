@@ -102,11 +102,9 @@ public class ProductRepository implements IProductRepository {
     public List<Product> searchByName(String name) {
         List<Product> productList = new ArrayList<>();
         Session session = null;
-
         try {
             session = ConnectionUtil.sessionFactory.openSession();
             productList = session.createQuery("FROM Product where name like :name").setParameter("name", "%" + name + "%").getResultList();
-
         } catch (NoResultException e) {
         } finally {
             if (session != null) {
