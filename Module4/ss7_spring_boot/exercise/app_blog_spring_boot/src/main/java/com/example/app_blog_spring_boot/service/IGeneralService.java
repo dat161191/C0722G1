@@ -1,9 +1,14 @@
 package com.example.app_blog_spring_boot.service;
 
+import com.example.app_blog_spring_boot.model.Blog;
+
+import java.util.List;
 import java.util.Optional;
 
-public interface IGeneralService <T> {
+public interface IGeneralService<T> {
     Iterable<T> findAll();
+
+    List<Blog> findByBlogNameOrAuthorContaining(String name);
 
     Optional<T> findById(Integer id);
 

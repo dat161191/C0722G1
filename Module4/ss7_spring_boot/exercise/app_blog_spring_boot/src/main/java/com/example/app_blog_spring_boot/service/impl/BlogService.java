@@ -6,6 +6,7 @@ import com.example.app_blog_spring_boot.service.IBlogService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -20,6 +21,11 @@ public class BlogService implements IBlogService {
     @Override
     public Iterable<Blog> findAll() {
         return iBlogRepository.findAll();
+    }
+
+    @Override
+    public List<Blog> findByBlogNameOrAuthorContaining(String name) {
+        return iBlogRepository.findByBlogNameOrAuthorContaining(name,name);
     }
 
     @Override

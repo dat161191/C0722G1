@@ -14,53 +14,75 @@
             crossorigin="anonymous"></script>
     <link rel="stylesheet"
           href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
+    <style>
+        * {
+            font-family: "Palatino Linotype"
+        }
 
+        input {
+            width: 100%;
+            border-radius: 3px;
+        }
+        span{font-size: 30px;
+        color: red}
+    </style>
     <title>BossTran</title>
 </head>
 <body>
-<a href="/create" class="btn btn-primary">Create new Blog</a>
-<h1>Blog</h1>
-<h2 th:text="${message}" style="color: red;text-align: center"></h2>
-<table border="1" class="table table-hover table-primary text-center">
-    <tr>
-        <th>STT</th>
-        <th>Blog Name</th>
-        <th>Author</th>
-        <th>Edit</th>
-        <th>Delete</th>
-        <th>View</th>
-    </tr>
-    <th:block th:each="blog,stt : ${blogList}">
+<div class="row mt-3 mb-2">
+    <div class="col-2"><a href="/create" class="btn btn-primary">Create new Blog</a></div>
+    <div class="col-6 text-center"><span><b>Blog List</b></span>
+        <span th:text="${message}"></span></div>
+    <div class="col-4">
+        <form class="d-flex form-check-inline my-2 my-lg-0">
+            <input class="form-control me-2" type="search" name="search" th:value="${search}"
+                   placeholder="Blog Name & Author"
+                   aria-label="Search">
+            <button class="btn btn-primary" type="submit">Search</button>
+        </form>
+    </div>
+</div>
+<div class="row mt-2">
+    <table border="1" class="table table-hover table-primary text-center">
         <tr>
-            <td th:text="${stt.count}"></td>
-            <td th:text="${blog.blogName}"></td>
-            <td th:text="${blog.author}"></td>
-            <td><a th:href="@{/edit/__${blog.id}__ }" class="btn bg-primary">Edit</a></td>
-            <td>
-                <button type="button" class="btn btn-danger"
-                        th:attr="onclick=|showAlertDelete('${blog.id}','${blog.blogName}');|" data-bs-toggle="modal"
-                        data-bs-target="#delete">Delete
-                </button>
-            </td>
-            <td>
-                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#detailModal"
-                        th:attr="onclick=|showDetail('${blog.id}','${blog.blogName}','${blog.content}','${blog.author}','${blog.dateWriting}');|">
-                    View
-                </button>
-            </td>
+            <th>STT</th>
+            <th>Blog Name</th>
+            <th>Author</th>
+            <th>Edit</th>
+            <th>Delete</th>
+            <th>View</th>
         </tr>
-    </th:block>
-</table>
+        <th:block th:each="blog,stt : ${blogList}">
+            <tr>
+                <td th:text="${stt.count}"></td>
+                <td th:text="${blog.blogName}"></td>
+                <td th:text="${blog.author}"></td>
+                <td><a th:href="@{/edit/__${blog.id}__ }" class="btn bg-primary">Edit</a></td>
+                <td>
+                    <button type="button" class="btn btn-danger"
+                            th:attr="onclick=|showAlertDelete('${blog.id}','${blog.blogName}');|" data-bs-toggle="modal"
+                            data-bs-target="#delete">Delete
+                    </button>
+                </td>
+                <td>
+                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#detailModal"
+                            th:attr="onclick=|showDetail('${blog.id}','${blog.blogName}','${blog.content}','${blog.author}','${blog.dateWriting}');|">
+                        View
+                    </button>
+                </td>
+            </tr>
+        </th:block>
+    </table>
+</div>
 </body>
 <!--=======ModalView=========-->
 <div class="modal fade" id="detailModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h1 class="modal-title fs-5">Information Detail</h1>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                <h1 class="text-lg table-primary" style="text-align: center">Information Detail</h1>
             </div>
-            <div class="modal-body">
+            <div class="modal-body text-lg-center text-bg-danger">
                 <label for="detailID">ID: </label>
                 <input type="text" readonly id="detailID"><br>
                 <label for="detailName">Blog Name: </label>
@@ -72,9 +94,8 @@
                 <label for="detailDateWriting">Date Write: </label>
                 <input type="date" readonly id="detailDateWriting">
             </div>
-            <!--            <td><a th:href="@{/edit/__${blog.id}__ }" class="btn bg-primary">Edit</a></td>-->
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-outline-primary" data-bs-dismiss="modal">Close</button>
             </div>
         </div>
     </div>

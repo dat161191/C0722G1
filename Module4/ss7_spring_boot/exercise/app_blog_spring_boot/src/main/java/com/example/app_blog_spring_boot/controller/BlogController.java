@@ -2,6 +2,7 @@ package com.example.app_blog_spring_boot.controller;
 
 import com.example.app_blog_spring_boot.model.Blog;
 import com.example.app_blog_spring_boot.service.IBlogService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -12,14 +13,18 @@ import java.util.Optional;
 
 @Controller
 public class BlogController {
-    private IBlogService iBlogService;
 
+    private IBlogService iBlogService;
+    @Autowired
     public BlogController(IBlogService iBlogService) {
         this.iBlogService = iBlogService;
     }
+    /*========Display and search===========*/
     @GetMapping("")
-    public String display(Model model){
-        model.addAttribute("blogList",iBlogService.findAll());
+
+    public String display(@RequestParam(defaultValue = "") String search, Model model){
+        model.addAttribute("search",search);
+        model.addAttribute("blogList",iBlogService.findByBlogNameOrAuthorContaining(search));
         return "/list";
     }
     /*=========CREATE==========*/
@@ -36,9 +41,10 @@ public class BlogController {
         return "redirect:/";
     }
 
+
     /*===========EDIT==============*/
     @GetMapping("/edit/{id}")
-    public ModelAndView showEditForm(@PathVariable Integer id) {
+    public ModelAndView showEditForm(@PathVariable("id") Integer id) {
         Optional<Blog> blog = iBlogService.findById(id);
         ModelAndView modelAndView = new ModelAndView("/edit");
         modelAndView.addObject("blog", blog.get());
@@ -49,9 +55,9 @@ public class BlogController {
     public String edit(@ModelAttribute("blog") Blog blog,RedirectAttributes redirectAttributes){
         iBlogService.save(blog);
         redirectAttributes.addFlashAttribute("message", "Edit Success");
-        redirectAttributes.addFlashAttribute("blog", blog);
         return "redirect:/";
     }
+
     @GetMapping("/delete")
     public String delete(@RequestParam int deleteConfirm, RedirectAttributes redirectAttributes) {
         iBlogService.remove(deleteConfirm);
