@@ -24,14 +24,13 @@
     <title>BossTran</title>
 </head>
 <body>
-<div class="row mb-5 mt-5">
+<div class="row mb-3 mt-3">
     <div class="col-3"></div>
-
     <div class="col-6">
         <div class="row justify-content-center align-items-lg-center text-center" id="form">
             <form th:action="@{/edit}" th:object="${blog}"
                   method="POST" novalidate="novalidate">
-                <table class="table table-hover table-success text-success">
+                <table class="table table-hover table-dark text-success">
                     <tr>
                         <td colspan="2"><h3 class="text-center">Edit Blog</h3></td>
                     </tr>
@@ -58,10 +57,9 @@
                         <td colspan="2">
                             <button class="btn btn-primary" type="submit">Edit Blog</button>
                             <a th:href="@{/}">
-                                <button class="btn btn-primary">Back to Blog list</button>
+                                <button class="btn btn-outline-primary">Back to Blog list</button>
                             </a>
                         </td>
-
                     </tr>
                 </table>
             </form>

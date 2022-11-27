@@ -23,14 +23,17 @@
             width: 100%;
             border-radius: 3px;
         }
-        span{font-size: 30px;
-        color: red}
+
+        span {
+            font-size: 30px;
+            color: red
+        }
     </style>
     <title>BossTran</title>
 </head>
 <body>
 <div class="row mt-3 mb-2">
-    <div class="col-2"><a href="/create" class="btn btn-primary">Create new Blog</a></div>
+    <div class="col-2"><a th:href="@{/create}" class="btn btn-primary">Create new Blog</a></div>
     <div class="col-6 text-center"><span><b>Blog List</b></span>
         <span th:text="${message}"></span></div>
     <div class="col-4">
@@ -57,7 +60,8 @@
                 <td th:text="${stt.count}"></td>
                 <td th:text="${blog.blogName}"></td>
                 <td th:text="${blog.author}"></td>
-                <td><a th:href="@{/edit/__${blog.id}__ }" class="btn bg-primary">Edit</a></td>
+                <!--                <td><a th:href="@{/edit/__${blog.id}__ }" class="btn bg-primary">Edit</a></td>-->
+                <td><a th:href="@{/edit(id=${blog.id})}" class="btn bg-primary">Edit</a></td>
                 <td>
                     <button type="button" class="btn btn-danger"
                             th:attr="onclick=|showAlertDelete('${blog.id}','${blog.blogName}');|" data-bs-toggle="modal"
@@ -74,29 +78,33 @@
         </th:block>
     </table>
 </div>
+
 </body>
 <!--=======ModalView=========-->
 <div class="modal fade" id="detailModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
-            <div class="modal-header">
-                <h1 class="text-lg table-primary" style="text-align: center">Information Detail</h1>
-            </div>
-            <div class="modal-body text-lg-center text-bg-danger">
-                <label for="detailID">ID: </label>
-                <input type="text" readonly id="detailID"><br>
-                <label for="detailName">Blog Name: </label>
-                <input type="text" readonly id="detailName"><br>
-                <label for="detailContent">Content: </label>
-                <input type="text" readonly id="detailContent"><br>
-                <label for="detailAuthor">Author: </label>
-                <input type="text" readonly id="detailAuthor"><br>
-                <label for="detailDateWriting">Date Write: </label>
-                <input type="date" readonly id="detailDateWriting">
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-outline-primary" data-bs-dismiss="modal">Close</button>
-            </div>
+            <form th:action="@{/edit}" method="get">
+                <div class="modal-header">
+                    <h1 class="text-lg table-primary" style="text-align: center">Information Detail</h1>
+                </div>
+                <div class="modal-body text-lg-center text-bg-danger">
+                    <label for="id">ID: </label>
+                    <input type="text" readonly id="id" th:name="id"><br>
+                    <label for="detailName">Blog Name: </label>
+                    <input type="text" readonly id="detailName"><br>
+                    <label for="detailContent">Content: </label>
+                    <input type="text" readonly id="detailContent"><br>
+                    <label for="detailAuthor">Author: </label>
+                    <input type="text" readonly id="detailAuthor"><br>
+                    <label for="detailDateWriting">Date Write: </label>
+                    <input type="date" readonly id="detailDateWriting">
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-primary">Edit</button>
+                    <button type="button" class="btn btn-outline-primary" data-bs-dismiss="modal">Close</button>
+                </div>
+            </form>
         </div>
     </div>
 </div>
@@ -104,19 +112,15 @@
 <div class="modal fade" id="delete" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
-            <div class="modal-header">
-                <h1 class="modal-title fs-5">XOÁ SẢN PHẨM</h1>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
             <form th:action="@{/delete}">
-                <div class="modal-body">
-                    <p id="deleteAlert"></p>
+                <div class="modal-body bg-danger text-center text-light">
+                    <h3 >Are you sure you want to delete?</h3><h2 id="blogName"></h2>
                 </div>
                 <div class="modal-footer">
-                    <button type="submit" class="btn btn-primary" th:id="deleteConfirm" th:name="deleteConfirm">
+                    <button type="submit" class="btn btn-danger" th:id="id" th:name="id">
                         Acept
                     </button>
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>
+                    <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Close</button>
                 </div>
             </form>
         </div>
@@ -126,7 +130,7 @@
 <script>
     /*====VIEW====*/
     function showDetail(id, blogName, content, author, dateWriting) {
-        document.getElementById("detailID").value = id;
+        document.getElementById("id").value = id;
         document.getElementById("detailName").value = blogName;
         document.getElementById("detailContent").value = content;
         document.getElementById("detailAuthor").value = author;
@@ -135,8 +139,8 @@
 
     /*====DELETE====*/
     function showAlertDelete(id, blogName) {
-        document.getElementById("deleteAlert").innerText = "Xác nhận xoá " + blogName + " ?";
-        document.getElementById("deleteConfirm").value = id;
+        document.getElementById("blogName").innerText = blogName;
+        document.getElementById("id").value = id;
     }
 </script>
 </html>

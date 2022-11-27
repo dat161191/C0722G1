@@ -43,8 +43,8 @@ public class BlogController {
 
 
     /*===========EDIT==============*/
-    @GetMapping("/edit/{id}")
-    public ModelAndView showEditForm(@PathVariable("id") Integer id) {
+    @GetMapping("/edit")
+    public ModelAndView showEditForm(@RequestParam("id") Integer id) {
         Optional<Blog> blog = iBlogService.findById(id);
         ModelAndView modelAndView = new ModelAndView("/edit");
         modelAndView.addObject("blog", blog.get());
@@ -59,8 +59,8 @@ public class BlogController {
     }
 
     @GetMapping("/delete")
-    public String delete(@RequestParam int deleteConfirm, RedirectAttributes redirectAttributes) {
-        iBlogService.remove(deleteConfirm);
+    public String delete(@RequestParam Integer id, RedirectAttributes redirectAttributes) {
+        iBlogService.remove(id);
         redirectAttributes.addFlashAttribute("message", "Delete success");
         return "redirect:/";
     }
