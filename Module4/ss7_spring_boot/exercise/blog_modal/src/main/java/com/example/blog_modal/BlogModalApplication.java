@@ -1,13 +1,13 @@
-package com.example.blog_spring_boot;
+package com.example.blog_modal;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class BlogSpringBootApplication {
+public class BlogModalApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(BlogSpringBootApplication.class, args);
+        SpringApplication.run(BlogModalApplication.class, args);
     }
 
 }
