@@ -14,35 +14,25 @@ public class Blog {
     private String author;
     @Column(columnDefinition = "date")
     private String dateWriting;
-    @ManyToOne
-    private Category category;
 
     public Blog() {
     }
 
-    public Blog(Integer id, String blogName, String content, String author, String dateWriting, Category category) {
+    public Blog(Integer id, String blogName, String content, String author, String dateWriting) {
         this.id = id;
         this.blogName = blogName;
         this.content = content;
         this.author = author;
         this.dateWriting = dateWriting;
-        this.category = category;
+
     }
 
-    public Blog(String blogName, String content, String author, String dateWriting, Category category) {
+    public Blog(String blogName, String content, String author, String dateWriting) {
         this.blogName = blogName;
         this.content = content;
         this.author = author;
         this.dateWriting = dateWriting;
-        this.category = category;
-    }
 
-    public Category getCategory() {
-        return category;
-    }
-
-    public void setCategory(Category category) {
-        this.category = category;
     }
 
     public Integer getId() {

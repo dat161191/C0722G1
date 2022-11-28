@@ -19,7 +19,7 @@ public class DictionaryController {
         return "dictionary";
     }
     @PostMapping("find")
-    public String search(String enWord, Model model) {
+    public String search(@RequestParam("enWord") String enWord, Model model) {
         String result = dictionaryService.getViWord(enWord);
         model.addAttribute("viWord",result);
         return "dictionary";

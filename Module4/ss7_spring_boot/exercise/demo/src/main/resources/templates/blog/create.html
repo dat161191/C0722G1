@@ -67,6 +67,7 @@
                         <td><label for="category">Category</label></td>
                         <td>
                             <select id="category" th:field="*{category}">
+                                <option value="Category">Category</option>
                                 <option th:each="category : ${categoryList}"
                                         th:value="${category.id}"
                                         th:text="${category.name}"></option>

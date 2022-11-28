@@ -2,6 +2,7 @@ package com.example.demo.controller;
 
 
 import com.example.demo.model.Blog;
+import com.example.demo.model.Category;
 import com.example.demo.service.IBlogService;
 import com.example.demo.service.ICategoryService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,10 +29,13 @@ public class BlogController {
     /*========Display and search===========*/
     @GetMapping("")
     public String display(@RequestParam(defaultValue = "") String search, @PageableDefault(page = 0, size = 5) Pageable pageable, Model model) {
+        Category category = new Category();
         model.addAttribute("search", search);
+        model.addAttribute("category", category);
         model.addAttribute("blogList", iBlogService.findByBlogNameContainingOrAuthorContainingOrderByAuthor(search, pageable));
         return "/blog/list";
     }
+
     /*=========CREATE==========*/
     @GetMapping("/create")
     public String showListCreate(Model model) {
@@ -65,10 +69,18 @@ public class BlogController {
         redirectAttributes.addFlashAttribute("mess", "Edit Success");
         return "redirect:/";
     }
+
     @PostMapping("/delete")
     public String delete(@RequestParam("deleteConfirm") Integer id, RedirectAttributes redirectAttributes) {
         iBlogService.remove(id);
         redirectAttributes.addFlashAttribute("mess", "Delete Success");
+        return "redirect:/";
+    }
+
+    @PostMapping("/add-category")
+    public String addCategory(@ModelAttribute("category") Category category,RedirectAttributes redirectAttributes){
+        iCategoryService.save(category);
+        redirectAttributes.addFlashAttribute("mess","Add Success");
         return "redirect:/";
     }
 }

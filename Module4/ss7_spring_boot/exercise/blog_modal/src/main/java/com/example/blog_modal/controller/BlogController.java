@@ -33,31 +33,31 @@ public class BlogController {
     }
     /*=========CREATE==========*/
 
-//    @PostMapping("/create")
-//    public String save(@RequestParam("blogName") String blogName
-//            , @RequestParam("content") String content, @RequestParam("author") String author, @RequestParam("dateWriting") String dateWriting, RedirectAttributes redirect) {
-//        Blog blog = new Blog(blogName, content, author, dateWriting);
-//        iBlogService.save(blog);
-//        redirect.addFlashAttribute("message", "Add Success");
-//        return "redirect:/";
-//    }
+    @PostMapping("/create")
+    public String save(@RequestParam("blogName") String blogName
+            , @RequestParam("content") String content, @RequestParam("author") String author, @RequestParam("dateWriting") String dateWriting, RedirectAttributes redirect) {
+        Blog blog = new Blog(blogName, content, author, dateWriting);
+        iBlogService.save(blog);
+        redirect.addFlashAttribute("message", "Add Success");
+        return "redirect:/";
+    }
 
 
     /*===========EDIT==============*/
 
-//    @PostMapping("/edit")
-//    public String edit(@RequestParam("id") Integer id, @RequestParam("blogName") String blogName
-//            , @RequestParam("content") String content, @RequestParam("author") String author, @RequestParam("dateWriting") String dateWriting, RedirectAttributes redirectAttributes) {
-//        Blog blog = new Blog(id, blogName, content, author, dateWriting);
-//        iBlogService.save(blog);
-//        redirectAttributes.addFlashAttribute("message", "Edit Success");
-//        return "redirect:/";
-//    }
+    @PostMapping("/edit")
+    public String edit(@RequestParam("id") Integer id, @RequestParam("blogName") String blogName
+            , @RequestParam("content") String content, @RequestParam("author") String author, @RequestParam("dateWriting") String dateWriting, RedirectAttributes redirectAttributes) {
+        Blog blog = new Blog(id, blogName, content, author, dateWriting);
+        iBlogService.save(blog);
+        redirectAttributes.addFlashAttribute("message", "Edit Success");
+        return "redirect:/";
+    }
 
-//    @GetMapping("/delete")
-//    public String delete(@RequestParam Integer deleteConfirm, RedirectAttributes redirectAttributes) {
-//        iBlogService.remove(deleteConfirm);
-//        redirectAttributes.addFlashAttribute("message", "Delete success");
-//        return "redirect:/";
-//    }
+    @GetMapping("/delete")
+    public String delete(@RequestParam Integer deleteConfirm, RedirectAttributes redirectAttributes) {
+        iBlogService.remove(deleteConfirm);
+        redirectAttributes.addFlashAttribute("message", "Delete success");
+        return "redirect:/";
+    }
 }

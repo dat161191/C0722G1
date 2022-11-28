@@ -59,16 +59,47 @@
         </th:block>
     </table>
     <div>
-        <a th:href="@{'/'(page=${blogList.number - 1})}" th:if="${blogList.hasPrevious()}"><button type="button" class="btn btn-outline-primary">Previous</button></a>
-        <span style="font-size: 20px" th:text="${blogList.number + 1}"></span>/<span style="font-size: 20px" th:text="${blogList.totalPages}"></span>
-        <a th:href="@{'/'(page=${blogList.number + 1})}" th:if="${blogList.hasNext()}"><button type="button" class="btn btn-outline-primary">Next</button></a>
+        <a th:href="@{'/'(page=${blogList.number - 1})}" th:if="${blogList.hasPrevious()}">
+            <button type="button" class="btn btn-outline-primary">Previous</button>
+        </a>
+        <span style="font-size: 20px" th:text="${blogList.number + 1}"></span>/<span style="font-size: 20px"
+                                                                                     th:text="${blogList.totalPages}"></span>
+        <a th:href="@{'/'(page=${blogList.number + 1})}" th:if="${blogList.hasNext()}">
+            <button type="button" class="btn btn-outline-primary">Next</button>
+        </a>
     </div>
 </div>
 <div th:replace="~{layout::footer}"></div>
 
+<!--Add Category-->
+<div class="modal fade" id="addCategory" data-bs-backdrop="static" tabindex="-1" aria-labelledby="exampleModalLabel"
+     aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header text-lg-center text-primary">
+                <h1 class="modal-title fs-5">Add Category</h1>
+            </div>
+            <form th:action="@{/add-category}" method="post" th:object="${category}">
+                <div class="modal-body bg-primary text-light">
+                    <label for="addId" hidden>ID: </label>
+                    <input type="text" hidden id="addId"><br>
+                    <label for="addName">Category Name: </label>
+                    <input type="text" id="addName" th:field="*{name}"><br>
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-primary">
+                        ADD CATEGORY
+                    </button>
+                    <button type="button" class="btn btn-success" data-bs-dismiss="modal">Close</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
 
 <!--View Modal-->
-<div class="modal fade" id="view" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="view" data-bs-backdrop="static" tabindex="-1" aria-labelledby="exampleModalLabel"
+     aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header text-lg-center text-primary">
@@ -96,7 +127,8 @@
 </div>
 
 <!--Delete Modal-->
-<div class="modal fade" id="delete" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="delete" tabindex="-1" data-bs-backdrop="static" aria-labelledby="exampleModalLabel"
+     aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <form th:action="@{/delete}" method="post">
@@ -114,6 +146,7 @@
         </div>
     </div>
 </div>
+
 </body>
 <script>
     /*===DELETE==*/
@@ -123,7 +156,7 @@
     }
 
     /*===VIEW====*/
-    function viewModal(id, blogName, content, author, dateWriting,category) {
+    function viewModal(id, blogName, content, author, dateWriting, category) {
         document.getElementById("viewId").value = id;
         document.getElementById("viewBlogName").value = blogName;
         document.getElementById("viewContent").value = content;

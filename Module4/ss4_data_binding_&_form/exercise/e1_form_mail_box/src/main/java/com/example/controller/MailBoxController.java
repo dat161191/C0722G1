@@ -38,7 +38,7 @@ public class MailBoxController {
         return "edit";
     }
     @PostMapping("update")
-    public String edit(Mailbox mailbox, RedirectAttributes redirectAttributes){
+    public String edit(@RequestParam Mailbox mailbox, RedirectAttributes redirectAttributes){
         iMailBoxService.update(mailbox);
         redirectAttributes.addFlashAttribute("mess","Update success");
         return "redirect:/";
