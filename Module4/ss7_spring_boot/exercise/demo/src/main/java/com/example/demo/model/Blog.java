@@ -1,4 +1,4 @@
-package com.example.blog_modal.model;
+package com.example.demo.model;
 
 import javax.persistence.*;
 

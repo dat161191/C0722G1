@@ -14,28 +14,13 @@
             crossorigin="anonymous"></script>
     <link rel="stylesheet"
           href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
-    <style>
-        * {
-            font-family: "Palatino Linotype"
-        }
-
-        input {
-            width: 100%;
-            border-radius: 5px;
-        }
-
-        span {
-            font-size: 30px;
-            color: red
-        }
-    </style>
     <title>BossTran</title>
 </head>
 <body>
 <div th:replace="~{layout::header}"></div>
 <div class="row message">
     <div class="text-center"><span><b>Blog List</b></span>
-        <span th:text="${message}"></span>
+        <span th:text="${mess}"></span>
     </div>
 </div>
 <div class="row mt-2">
@@ -44,6 +29,7 @@
             <th>STT</th>
             <th>Blog Name</th>
             <th>Author</th>
+            <th>Category</th>
             <th>Edit</th>
             <th>Delete</th>
             <th>View</th>
@@ -53,11 +39,9 @@
                 <td th:text="${stt.count}+${blogList.number}*${blogList.size}"></td>
                 <td th:text="${blog.blogName}"></td>
                 <td th:text="${blog.author}"></td>
+                <td th:text="${blog.category.name}"></td>
                 <td>
-                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#edit"
-                            th:attr="onclick=|editModal('${blog.id}','${blog.blogName}','${blog.content}','${blog.author}','${blog.dateWriting}');|">
-                        Edit
-                    </button>
+                    <a th:href="@{/edit/__${blog.id}__ }" class="btn btn-primary">Edit</a>
                 </td>
                 <td>
                     <button type="button" class="btn btn-danger"
@@ -67,7 +51,7 @@
                 </td>
                 <td>
                     <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#view"
-                            th:attr="onclick=|viewModal('${blog.id}','${blog.blogName}','${blog.content}','${blog.author}','${blog.dateWriting}');|">
+                            th:attr="onclick=|viewModal('${blog.id}','${blog.blogName}','${blog.content}','${blog.author}','${blog.dateWriting}','${blog.category.name}');|">
                         View
                     </button>
                 </td>
@@ -82,63 +66,6 @@
 </div>
 <div th:replace="~{layout::footer}"></div>
 
-<!--Add modal-->
-<div class="modal fade" id="create" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <form th:action="@{/create}" method="post">
-                <div class="modal-header text-lg-center text-primary">
-                    <h1 class="modal-title fs-5">Add New Blog</h1>
-                </div>
-                <div class="modal-body bg-primary text-light">
-                    <label hidden for="addId">ID: </label>
-                    <input hidden type="text" id="addId" name="id"><br>
-                    <label for="addBlogName">Blog Name: </label>
-                    <input type="text" id="addBlogName" name="blogName"><br>
-                    <label for="addContent">Content: </label>
-                    <input type="text" id="addContent" name="content"><br>
-                    <label for="addAuthor">Author: </label>
-                    <input type="text" id="addAuthor" name="author"><br>
-                    <label for="addDateWriting">Author: </label>
-                    <input type="date" id="addDateWriting" name="dateWriting"><br>
-                </div>
-                <div class="modal-footer">
-                    <button type="submit" class="btn btn-primary" data-bs-dismiss="modal">Add New Blog</button>
-                    <button type="button" class="btn btn-outline-primary" data-bs-dismiss="modal">Close</button>
-                </div>
-            </form>
-        </div>
-    </div>
-</div>
-
-<!--Edit modal-->
-<div class="modal fade" id="edit" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <form th:action="@{/edit}" method="post">
-                <div class="modal-header text-lg-center text-primary">
-                    <h1 class="modal-title fs-5">Edit Blog</h1>
-                </div>
-                <div class="modal-body bg-primary text-light">
-                    <label hidden for="editId">ID: </label>
-                    <input hidden type="text" readonly id="editId" name="id"><br>
-                    <label for="editBlogName">Blog Name: </label>
-                    <input type="text" id="editBlogName" name="blogName"><br>
-                    <label for="editContent">Content: </label>
-                    <input type="text" id="editContent" name="content"><br>
-                    <label for="editAuthor">Author: </label>
-                    <input type="text" id="editAuthor" name="author"><br>
-                    <label for="editDateWriting">Author: </label>
-                    <input type="date" id="editDateWriting" name="dateWriting"><br>
-                </div>
-                <div class="modal-footer">
-                    <button type="submit" class="btn btn-primary" data-bs-dismiss="modal">Edit Blog</button>
-                    <button type="button" class="btn btn-outline-primary" data-bs-dismiss="modal">Close</button>
-                </div>
-            </form>
-        </div>
-    </div>
-</div>
 
 <!--View Modal-->
 <div class="modal fade" id="view" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -158,6 +85,8 @@
                 <input type="text" readonly id="viewAuthor">
                 <label for="viewDateWriting">Author: </label>
                 <input type="text" readonly id="viewDateWriting">
+                <label for="viewCategory">Category: </label>
+                <input type="text" readonly id="viewCategory">
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-success" data-bs-dismiss="modal">Close</button>
@@ -170,7 +99,7 @@
 <div class="modal fade" id="delete" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
-            <form th:action="@{/delete}">
+            <form th:action="@{/delete}" method="post">
                 <div class="modal-body bg-danger text-center text-light">
                     <h3>Are you sure you want to delete?</h3>
                     <h2 id="deleteAlert"></h2>
@@ -194,21 +123,13 @@
     }
 
     /*===VIEW====*/
-    function viewModal(id, blogName, content, author, dateWriting) {
+    function viewModal(id, blogName, content, author, dateWriting,category) {
         document.getElementById("viewId").value = id;
         document.getElementById("viewBlogName").value = blogName;
         document.getElementById("viewContent").value = content;
         document.getElementById("viewAuthor").value = author;
         document.getElementById("viewDateWriting").value = dateWriting;
-    }
-
-    /*===EDIT===*/
-    function editModal(id, blogName, content, author, dateWriting) {
-        document.getElementById("editId").value = id;
-        document.getElementById("editBlogName").value = blogName;
-        document.getElementById("editContent").value = content;
-        document.getElementById("editAuthor").value = author;
-        document.getElementById("editDateWriting").value = dateWriting;
+        document.getElementById("viewCategory").value = category;
     }
 
 </script>
