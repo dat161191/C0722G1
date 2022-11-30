@@ -12,5 +12,6 @@ public interface ISongService {
     Optional<Song> findById(Integer id);
 
     Page<Song> findAll(Pageable pageable);
+
     void  remove(Integer id);
 }
