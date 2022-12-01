@@ -33,7 +33,7 @@
 </head>
 <body>
 <div class="row navbar navbar-dark bg-primary align-items-center justify-content-center text-center">
-    <a th:href="@{/}">
+    <a th:href="@{/book}">
         <button class="btn btn-outline-light">
             <i class="bi bi-house-heart-fill"></i> BACK TO HOME
         </button>
@@ -43,7 +43,7 @@
     <div class="col-3"></div>
     <div class="col-6">
         <div class="row justify-content-center align-items-center text-center">
-            <form th:action="@{/savePay}" th:object="${oderBook}" method="post">
+            <form th:action="@{/pay}" th:object="${oderBook}" method="post">
                 <table class="table text-primary table-success table-hover">
                     <tr>
                         <td colspan="2"><h2>PAY BOOK</h2>
