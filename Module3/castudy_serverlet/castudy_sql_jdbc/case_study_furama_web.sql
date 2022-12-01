@@ -40,17 +40,17 @@ CREATE TABLE user_role (
 
 CREATE TABLE employee (
     id INT AUTO_INCREMENT PRIMARY KEY,
-    name VARCHAR(45) NOT NULL,
-    day_of_birth DATE NOT NULL,
-    id_card VARCHAR(45) UNIQUE NOT NULL,
+    name VARCHAR(45),
+    date_of_birth DATE ,
+    id_card VARCHAR(45),
     salary DOUBLE NOT NULL,
-    phone_number VARCHAR(45) UNIQUE NOT NULL,
-    email VARCHAR(45) UNIQUE,
+    phone_number VARCHAR(45),
+    email VARCHAR(45),
     address VARCHAR(45),
     position_id INT,
     education_degree_id INT,
     division_id INT,
-    username VARCHAR(255) UNIQUE,
+    username VARCHAR(255) ,
     is_delete BIT(1) DEFAULT 0,
     FOREIGN KEY (position_id)
         REFERENCES position (id),
@@ -69,11 +69,11 @@ CREATE TABLE customer_type (
 
 CREATE TABLE customer (
     id INT AUTO_INCREMENT PRIMARY KEY,
-    name VARCHAR(45) NOT NULL,
-    day_of_birth DATE NOT NULL,
-    gender BIT(1) NOT NULL,
-    id_card VARCHAR(45)  NOT NULL,
-    phone_number VARCHAR(45)  NOT NULL,
+    name VARCHAR(45),
+    date_of_birth DATE,
+    gender BIT(1),
+    id_card VARCHAR(45),
+    phone_number VARCHAR(45),
     email VARCHAR(45),
     address VARCHAR(45),
     customer_type_id INT,
@@ -95,9 +95,9 @@ CREATE TABLE rent_type (
 
 CREATE TABLE facility (
     id INT AUTO_INCREMENT PRIMARY KEY,
-    name VARCHAR(45) NOT NULL,
+    name VARCHAR(45) ,
     area INT,
-    cost DOUBLE NOT NULL,
+    cost DOUBLE ,
     max_people INT,
     standard_room VARCHAR(45),
     description_other_convenience VARCHAR(45),
@@ -115,17 +115,17 @@ CREATE TABLE facility (
 
 CREATE TABLE attach_facility (
     id INT AUTO_INCREMENT PRIMARY KEY,
-    name VARCHAR(45) NOT NULL,
-    cost DOUBLE NOT NULL,
-    unit VARCHAR(45) NOT NULL,
+    name VARCHAR(45),
+    cost DOUBLE,
+    unit VARCHAR(45),
     status VARCHAR(45)
 );
 
 CREATE TABLE contract (
     id INT AUTO_INCREMENT PRIMARY KEY,
-    start_day DATE NOT NULL,
-    end_day DATE NOT NULL,
-    deposit DOUBLE NOT NULL,
+    start_day DATE,
+    end_day DATE ,
+    deposit DOUBLE ,
     employee_id INT,
     customer_id INT,
     facility_id INT,
@@ -141,7 +141,7 @@ CREATE TABLE contract (
 
 CREATE TABLE contract_detail (
     id INT AUTO_INCREMENT PRIMARY KEY,
-    quantity INT NOT NULL,
+    quantity INT,
     contract_id INT,
     attach_facility_id INT,
     FOREIGN KEY (contract_id)

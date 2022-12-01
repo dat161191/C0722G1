@@ -20,6 +20,7 @@ public class Song {
     private String songName;
     @Pattern(regexp ="^([A-Z][a-z]+[ ])+([A-Z][a-z]+)$",message = "Định dạng tên Nghệ Sĩ sai!Vui lòng nhập lại")
     private String artist;
+
     @Pattern(regexp ="^([A-Z][a-z]+)+[,]*([A-Z][a-z]+)*$",message = "Định dạng thể loại nhạc sai!Vui lòng nhập lại")
     private String genre;
     public Song() {
