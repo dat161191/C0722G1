@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <link
+            href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css"
+            rel="stylesheet"
+            integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi"
+            crossorigin="anonymous">
+
+    <script
+            src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3"
+            crossorigin="anonymous"></script>
+    <link rel="stylesheet"
+          href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css">
+    <style>
+        * {
+            font-family: "Palatino Linotype"
+        }
+
+        input {
+            width: 100%;
+            border-radius: 5px;
+        }
+
+        span {
+            font-size: 30px;
+            color: red
+        }
+    </style>
+    <title>BossTran</title>
+</head>
+<body>
+<!--<p>-->
+<!--    <a class="btn btn-primary btn-sm" href="/cart"><i class="bi bi-cart4"></i>Your cart</a>-->
+<!--</p>-->
+
+<div class="container">
+    <div class="row bg-primary align-items-center justify-content-center text-center">
+        <div class="col col-2"></div>
+        <div class="mb-1 mt-1">
+            <a th:href="@{/cart}">
+                <button class="btn btn-outline-light">
+                    <i class="bi bi-cart4"></i> Your cart
+                </button>
+            </a>
+        </div>
+        <div class="col col-2"></div>
+    </div>
+
+    <div class="row message">
+        <div class="text-center"><span><b>SUPER CAR SHOWROOM</b></span>
+            <span th:if="${mess != null}" th:text="${mess}"></span>
+        </div>
+    </div>
+    <div class="row">
+        <div class=" col col-8">
+            <table class="table table-striped table-primary table-hover">
+                <thead>
+                <tr>
+                    <td>STT</td>
+                    <td>Name</td>
+                    <td>Price</td>
+                    <td>Description</td>
+                    <td>Image</td>
+                    <td>Add To Cart</td>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="product, stt : ${productList}">
+                    <td th:text="${stt.count}+${productList.number}*${productList.size}"></td>
+                    <td th:text="${product.name}"></td>
+                    <td th:text="${product.price} +' Million USD'"></td>
+                    <td th:text="${product.description}"></td>
+                    <td>
+                        <div style="width: 150px">
+                            <a th:href="@{/detail/{id}(id=${product.id})}">
+                                <img th:src="@{${product.image}}" alt="No image" style="width: 100%">
+                            </a>
+                        </div>
+                    </td>
+                    <td>
+                        <a class="btn btn-success btn-sm" th:href="@{/add/__${product.id}__(action='list')}"><i
+                                class="bi bi-bag-plus-fill"></i> Add To Cart</a>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+            <div>
+                <a th:href="@{'/shop'(page=${productList.number - 1})}" th:if="${productList.hasPrevious()}">
+                    <button type="button" class="btn btn-outline-primary">Previous</button>
+                </a>
+                <span style="font-size: 20px" th:text="${productList.number + 1}"></span>/<span
+                    style="font-size: 20px"
+                    th:text="${productList.totalPages}"></span>
+                <a th:href="@{'/shop'(page=${productList.number + 1})}" th:if="${productList.hasNext()}">
+                    <button type="button" class="btn btn-outline-primary">Next</button>
+                </a>
+            </div>
+        </div>
+        <div class="col col-4" th:if="${historyProduct}">
+            <div class="card sticky-top border-0">
+                <img th:src="${historyProduct.image}" class="card-img-top" alt="No image">
+                <div class="card-body">
+                    <h4 class="card-title" th:text="${historyProduct.name}"></h4>
+                    <p class="card-text" th:text="${historyProduct.price} +' MILLION USD'"></p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="bg-primary text-light mt-2 text-center">
+    <h2 class="text-light">&copy; BossTran1611 - 038.542.5443</h2>
+</div>
+</div>
+</body>
+</html>
