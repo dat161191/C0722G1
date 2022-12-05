@@ -49,7 +49,6 @@
     <div class="col col-8">
         <h1>Your Cart</h1>
         <span th:if="${mess != null}" th:text="${mess}"></span>
-        <!--        <form th:action="@{/shop}" th:object="${cart}" method="post">-->
         <form th:action="@{/cart/pay}" th:object="${cart}" method="post">
             <h3>Total Items: <span th:text="${cart.countItemQuantity()}"></span></h3>
             <h3>Total Products: <span th:text="${cart.countProductQuantity()}"></span></h3>

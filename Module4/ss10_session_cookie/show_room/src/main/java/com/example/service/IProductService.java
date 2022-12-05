@@ -10,5 +10,6 @@ public interface IProductService {
     Iterable<Product> findAll();
 
     Optional<Product> findById(Long id);
+
     Page<Product> findAll(Pageable pageable);
 }
