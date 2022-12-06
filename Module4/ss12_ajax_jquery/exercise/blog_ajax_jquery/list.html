@@ -7,8 +7,12 @@
           integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 </head>
 </script>
-<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">Add Blog
-</button>
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">Add Blog</button>
+
+<input type="text" id="search" placeholder="Search by author">
+<button class="btn btn-outline-success" type="button" id="searchButton">search</button>
+
+<!--Modal add-->
 <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
      aria-hidden="true">
     <div class="modal-dialog" role="document">
@@ -81,95 +85,39 @@
         integrity="sha256-3zlB5s2uwoUzrXK3BT7AX3FyvojsraNFxCc2vC/7pNI="
         crossorigin="anonymous">
 </script>
-<button type="button" id="loadMore">Load More</button>
+<button type="button" id="jumpPage">Load More</button>
 <script>
-    let mainView = 'http://localhost:8080/blogs';
-    let pageURL = "?page="
-    let pageNumber = 0;
-
-    $("#loadMore").click(function () {
-        $.ajax({
-            type: 'GET',
-            url: mainView + pageURL + ++pageNumber,
-            dataType: 'json',
-            success: function (data) {
-                let list = data.content;
-                let viewDataBlog = "";
-                for (let i = 0; i < list.length; i++) {
-                    viewDataBlog +=
-                        `
-                        <tr>
-                        <td>${i + 1 + pageNumber * 3}</td>
-                        <td>${list[i].title}</td>
-                        <td>${list[i].content}</td>
-                        <td>${list[i].author}</td>
-                        <td>${list[i].category.name}</td>
-                        <td>${list[i].date}</td>
-                        </tr>
-                        `
-                }
-                $("#myBody").append(viewDataBlog);
-            }
-        })
-    })
-</script>
-<script>
-    $("#save").click(function () {
-        //lay du lieu
-        let title = $('#title').val();
-        let content = $('#content').val();
-        let author = $('#author').val();
-        let blog = {
-            title: title,
-            content: content,
-            author: author
-        };
-
-        // goi ajax
-        $.ajax({
-            headers: {
-                'Accept': 'application/json',
-                'Content-Type': 'application/json'
-            },
-            type: "POST",
-            data: JSON.stringify(blog),
-            //tên API
-            url: "http://localhost:8080/blogs/create",
-            success: function () {
-                $.ajax({
-                    url: 'http://localhost:8080/blogs',
-                    type: 'GET',
-                    dataType: 'json',
-                    success: function (data) {
-                        let list1 = data.content;
-                        let myTable = "";
-                        for (let i = 0; i < list1.length; i++) {
-                            myTable +=
-                                `
-                            <tr>
-                              <th>${i + 1}</th>
-                              <td>${list1[i].title}</td>
-                              <td>${list1[i].content}</td>
-                              <td>${list1[i].author}</td>
-                              <td>${list1[i].category.name}</td>
-                              <td>${list1[i].date}</td>
-
-                            </tr>
-                            `
-                        }
-                        debugger
-                        $("#myBody").empty();
-                        $("#myBody").append(myTable);
-                        $('#exampleModal').hide();
-                        $('.modal-backdrop').hide();
-                    }
-                })
-            }
-        });
-        event.preventDefault();
-    })
-
     $(document).ready(function () {
+        function create() {
+            $("#save").click(function () {
+                //lay du lieu
+                let title = $('#title').val();
+                let content = $('#content').val();
+                let author = $('#author').val();
+                let blog = {
+                    title: title,
+                    content: content,
+                    author: author
+                };
+                $("#myBody").empty();
+                $.ajax({
+                    headers: {
+                        'Accept': 'application/json',
+                        'Content-Type': 'application/json'
+                    },
+                    type: "POST",
+                    data: JSON.stringify(blog),
+                    //tên API
+                    url: "http://localhost:8080/blogs/create",
+                    success: init()
+                });
+                $('#exampleModal').hide();
+                $('.modal-backdrop').hide();
+                //chặn sự kiện mặc định của thẻ
+                // event.preventDefault();
+            })
+        }
+
         function init() {
             $.ajax({
                 url: 'http://localhost:8080/blogs',
@@ -198,9 +146,69 @@
                 }
             })
         }
-
         init();
-    });
+
+        /*==Phân trang==*/
+        let mainView = 'http://localhost:8080/blogs';
+        let pageURL = "?page="
+        let pageNumber = 0;
+        $("#jumpPage").click(function () {
+            $.ajax({
+                type: 'GET',
+                url: mainView + pageURL + ++pageNumber,
+                dataType: 'json',
+                success: function (data) {
+                    let list = data.content;
+                    let viewDataBlog = "";
+                    for (let i = 0; i < list.length; i++) {
+                        viewDataBlog +=
+                            `
+                        <tr>
+                        <td>${i + 1 + pageNumber * 3}</td>
+                        <td>${list[i].title}</td>
+                        <td>${list[i].content}</td>
+                        <td>${list[i].author}</td>
+                        <td>${list[i].category.name}</td>
+                        <td>${list[i].date}</td>
+                        </tr>
+                        `
+                    }
+                    $("#myBody").append(viewDataBlog);
+                }
+            })
+        })
+
+        /*==Search===*/
+        $("#searchButton").click(function () {
+            $("#myBody").empty();
+            let search = $("#search").val();
+            $.ajax({
+                url: 'http://localhost:8080/blogs?search=' + search,
+                type: 'GET',
+                dataType: 'json',
+                success: function (data) {
+                    console.log(data)
+                    totalPage = data.totalPages
+                    let myTable = "";
+                    for (let i = 0; i < data.content.length; i++) {
+                        myTable +=
+                            `
+                            <tr>
+                              <th scope="row " class="text-danger">${i + 1}</th>
+                              <td>${data.content[i].title}</td>
+                              <td>${data.content[i].content}</td>
+                              <td>${data.content[i].author}</td>
+                              <td>${data.content[i].category.name}</td>
+                              <td>${data.content[i].date}</td>
+                            </tr>
+                            `
+                    }
+                    // debugger
+                    $("#myBody").append(myTable);
+                }
+            })
+        })
+    })
 </script>
 </body>
 

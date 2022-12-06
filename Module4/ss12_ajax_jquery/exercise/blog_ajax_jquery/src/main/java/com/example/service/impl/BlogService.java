@@ -37,8 +37,8 @@ public class BlogService implements IBlogService {
     }
 
     @Override
-    public Page<Blog> findByDeleted(Pageable pageable) {
-        return iBlogRepository.findByDeleted(false,pageable);
+    public Page<Blog> findAll(Pageable pageable,String search) {
+        return iBlogRepository.findByAuthorContaining(pageable,search);
     }
 
     @Override

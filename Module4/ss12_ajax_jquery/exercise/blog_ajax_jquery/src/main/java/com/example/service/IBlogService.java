@@ -14,7 +14,7 @@ public interface IBlogService{
 
     void save(Blog blog);
 
-    Page<Blog> findByDeleted(Pageable pageable);
+    Page<Blog> findAll(Pageable pageable,String search);
 
     void remove(Integer id);
 

@@ -29,8 +29,8 @@ public class BlogRestController {
     }
 
     @GetMapping("")
-    public ResponseEntity<Page<Blog>> getList(@PageableDefault(size = 3) Pageable pageable) {
-        Page<Blog> blogList = blogService.findByDeleted(pageable);
+    public ResponseEntity<Page<Blog>> getList(@RequestParam(defaultValue = "")String search,@PageableDefault(size = 3) Pageable pageable) {
+        Page<Blog> blogList = blogService.findAll(pageable,search);
         if (blogList.isEmpty()) {
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         }
