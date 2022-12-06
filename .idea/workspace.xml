@@ -2,46 +2,27 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="b6bfad47-5c3e-43d3-952b-fc43c381f628" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/Module4/ss3_thymeleaf_template/.idea/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Module4/ss3_thymeleaf_template/.idea/modules.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Module4/ss3_thymeleaf_template/.idea/runConfigurations.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Module4/ss3_thymeleaf_template/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Module4/ss7_spring_boot/practice/create_web_spring_boot/src/main/java/com/example/create_web_spring_boot/controller/GreetingController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Module4/ss7_spring_boot/practice/create_web_spring_boot/src/main/resources/templates/greeting.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Module4/ss7_spring_boot/practice/customer/src/main/java/com/example/customer/controller/CustomerController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Module4/ss7_spring_boot/practice/customer/src/main/java/com/example/customer/model/Customer.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Module4/ss7_spring_boot/practice/customer/src/main/java/com/example/customer/repository/ICustomerRepository.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Module4/ss7_spring_boot/practice/customer/src/main/java/com/example/customer/service/ICustomerService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Module4/ss7_spring_boot/practice/customer/src/main/java/com/example/customer/service/IGeneralService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Module4/ss7_spring_boot/practice/customer/src/main/java/com/example/customer/service/impl/CustomerService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Module4/ss7_spring_boot/practice/customer/src/main/resources/templates/create.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Module4/ss7_spring_boot/practice/customer/src/main/resources/templates/edit.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Module4/ss7_spring_boot/practice/customer/src/main/resources/templates/error-404.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Module4/ss7_spring_boot/practice/customer/src/main/resources/templates/list.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Module4/ss7_spring_boot/practice/spring_boot_handling_exception/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Module4/ss7_spring_boot/practice/spring_boot_handling_exception/build.gradle" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Module4/ss7_spring_boot/practice/spring_boot_handling_exception/gradle/wrapper/gradle-wrapper.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Module4/ss7_spring_boot/practice/spring_boot_handling_exception/gradle/wrapper/gradle-wrapper.properties" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Module4/ss7_spring_boot/practice/spring_boot_handling_exception/gradlew" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Module4/ss7_spring_boot/practice/spring_boot_handling_exception/gradlew.bat" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Module4/ss7_spring_boot/practice/spring_boot_handling_exception/settings.gradle" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Module4/ss7_spring_boot/practice/spring_boot_handling_exception/src/main/java/com/example/spring_boot_handling_exception/SpringBootHandlingExceptionApplication.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Module4/ss7_spring_boot/practice/spring_boot_handling_exception/src/main/java/com/example/spring_boot_handling_exception/controller/HandleErrorController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Module4/ss7_spring_boot/practice/spring_boot_handling_exception/src/main/resources/application.properties" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Module4/ss7_spring_boot/practice/spring_boot_handling_exception/src/main/resources/templates/error-404.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Module4/ss7_spring_boot/practice/spring_boot_handling_exception/src/test/java/com/example/spring_boot_handling_exception/SpringBootHandlingExceptionApplicationTests.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Module4/ss3_thymeleaf_template/exercise/thymeleaf_product/.gradle/7.1/executionHistory/executionHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/Module4/ss3_thymeleaf_template/exercise/thymeleaf_product/.gradle/7.1/executionHistory/executionHistory.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Module4/ss3_thymeleaf_template/exercise/thymeleaf_product/.gradle/7.1/executionHistory/executionHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/Module4/ss3_thymeleaf_template/exercise/thymeleaf_product/.gradle/7.1/executionHistory/executionHistory.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Module4/ss3_thymeleaf_template/exercise/thymeleaf_product/.gradle/7.1/fileHashes/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/Module4/ss3_thymeleaf_template/exercise/thymeleaf_product/.gradle/7.1/fileHashes/fileHashes.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Module4/ss3_thymeleaf_template/exercise/thymeleaf_product/.gradle/7.1/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/Module4/ss3_thymeleaf_template/exercise/thymeleaf_product/.gradle/7.1/fileHashes/fileHashes.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Module4/ss3_thymeleaf_template/exercise/thymeleaf_product/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/Module4/ss3_thymeleaf_template/exercise/thymeleaf_product/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Module4/ss3_thymeleaf_template/exercise/thymeleaf_product/build/classes/java/main/com/example/controller/ProductController.class" beforeDir="false" afterPath="$PROJECT_DIR$/Module4/ss3_thymeleaf_template/exercise/thymeleaf_product/build/classes/java/main/com/example/controller/ProductController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Module4/ss3_thymeleaf_template/exercise/thymeleaf_product/build/classes/java/main/com/example/repository/impl/ProductRepository.class" beforeDir="false" afterPath="$PROJECT_DIR$/Module4/ss3_thymeleaf_template/exercise/thymeleaf_product/build/classes/java/main/com/example/repository/impl/ProductRepository.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Module4/ss3_thymeleaf_template/exercise/thymeleaf_product/build/libs/thymeleaf_product-1.0-SNAPSHOT.war" beforeDir="false" afterPath="$PROJECT_DIR$/Module4/ss3_thymeleaf_template/exercise/thymeleaf_product/build/libs/thymeleaf_product-1.0-SNAPSHOT.war" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Module4/ss3_thymeleaf_template/exercise/thymeleaf_product/build/tmp/compileJava/previous-compilation-data.bin" beforeDir="false" afterPath="$PROJECT_DIR$/Module4/ss3_thymeleaf_template/exercise/thymeleaf_product/build/tmp/compileJava/previous-compilation-data.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Module4/ss3_thymeleaf_template/exercise/thymeleaf_product/src/main/java/com/example/controller/ProductController.java" beforeDir="false" afterPath="$PROJECT_DIR$/Module4/ss3_thymeleaf_template/exercise/thymeleaf_product/src/main/java/com/example/controller/ProductController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Module4/ss3_thymeleaf_template/exercise/thymeleaf_product/src/main/java/com/example/repository/impl/ProductRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/Module4/ss3_thymeleaf_template/exercise/thymeleaf_product/src/main/java/com/example/repository/impl/ProductRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Module4/ss3_thymeleaf_template/exercise/thymeleaf_product/src/main/webapp/WEB-INF/views/home.html" beforeDir="false" afterPath="$PROJECT_DIR$/Module4/ss3_thymeleaf_template/exercise/thymeleaf_product/src/main/webapp/WEB-INF/views/home.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Module4/casetudy_module4/src/main/java/com/casetudy_module4/codegym/controller/EmployeeController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Module4/casetudy_module4/src/main/java/com/casetudy_module4/codegym/controller/HomeController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Module4/casetudy_module4/src/main/java/com/casetudy_module4/codegym/dto/employee_dto/EmployeeDtoList.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Module4/casetudy_module4/src/main/java/com/casetudy_module4/codegym/model/contact/ContractDetail.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Module4/casetudy_module4/src/main/java/com/casetudy_module4/codegym/repository/IEmployeeRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Module4/casetudy_module4/src/main/java/com/casetudy_module4/codegym/service/IEmployeeService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Module4/casetudy_module4/src/main/java/com/casetudy_module4/codegym/service/dumb/TestLombok.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Module4/casetudy_module4/src/main/java/com/casetudy_module4/codegym/service/impl/EmployeeService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Module4/casetudy_module4/src/main/resources/templates/employee.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Module4/casetudy_module4/src/main/resources/templates/my_home.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Module4/casetudy_module4/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/Module4/casetudy_module4/build.gradle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Module4/casetudy_module4/src/main/java/com/casetudy_module4/codegym/model/contact/AttachFacility.java" beforeDir="false" afterPath="$PROJECT_DIR$/Module4/casetudy_module4/src/main/java/com/casetudy_module4/codegym/model/contact/AttachFacility.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Module4/casetudy_module4/src/main/java/com/casetudy_module4/codegym/model/contact/Contact.java" beforeDir="false" afterPath="$PROJECT_DIR$/Module4/casetudy_module4/src/main/java/com/casetudy_module4/codegym/model/contact/Contract.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Module4/casetudy_module4/src/main/java/com/casetudy_module4/codegym/model/contact/ContactDetail.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Module4/casetudy_module4/src/main/java/com/casetudy_module4/codegym/model/customer/Customer.java" beforeDir="false" afterPath="$PROJECT_DIR$/Module4/casetudy_module4/src/main/java/com/casetudy_module4/codegym/model/customer/Customer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Module4/casetudy_module4/src/main/java/com/casetudy_module4/codegym/model/customer/CustomerType.java" beforeDir="false" afterPath="$PROJECT_DIR$/Module4/casetudy_module4/src/main/java/com/casetudy_module4/codegym/model/customer/CustomerType.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Module4/casetudy_module4/src/main/java/com/casetudy_module4/codegym/model/employee/Employee.java" beforeDir="false" afterPath="$PROJECT_DIR$/Module4/casetudy_module4/src/main/java/com/casetudy_module4/codegym/model/employee/Employee.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Module4/casetudy_module4/src/main/java/com/casetudy_module4/codegym/model/employee/Position.java" beforeDir="false" afterPath="$PROJECT_DIR$/Module4/casetudy_module4/src/main/java/com/casetudy_module4/codegym/model/employee/Position.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Module4/ss10_session_cookie/show_room/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/Module4/ss10_session_cookie/show_room/src/main/resources/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Module4/ss11_website_service_and _restful/exercise/blog_rest_full/src/main/java/com/example/controller/BlogRestController.java" beforeDir="false" afterPath="$PROJECT_DIR$/Module4/ss11_website_service_and _restful/exercise/blog_rest_full/src/main/java/com/example/controller/BlogRestController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Module4/ss11_website_service_and _restful/exercise/blog_rest_full/src/main/java/com/example/repository/IBlogRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/Module4/ss11_website_service_and _restful/exercise/blog_rest_full/src/main/java/com/example/repository/IBlogRepository.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -76,6 +57,7 @@
     <property name="node.js.path.for.package.tslint" value="project" />
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
     <property name="node.js.selected.package.tslint" value="(autodetect)" />
+    <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
   </component>
   <component name="SpellCheckerSettings" BundledDictionaries="0" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" Dictionaries="0" CorrectionsLimit="5" DefaultDictionary="application-level" UseSingleDictionary="true" />
   <component name="SvnConfiguration">
@@ -103,6 +85,7 @@
       <workItem from="1668392118687" duration="29000" />
       <workItem from="1668495461106" duration="1155000" />
       <workItem from="1669347132166" duration="31000" />
+      <workItem from="1670297305659" duration="417000" />
     </task>
     <servers />
   </component>
@@ -114,5 +97,9 @@
       <screen x="0" y="0" width="1536" height="834" />
     </state>
     <state x="549" y="172" key="FileChooserDialogImpl/0.0.1536.834@0.0.1536.834" timestamp="1668495513878" />
+    <state x="277" y="62" key="SettingsEditor" timestamp="1670297722251">
+      <screen x="0" y="0" width="1536" height="834" />
+    </state>
+    <state x="277" y="62" key="SettingsEditor/0.0.1536.834@0.0.1536.834" timestamp="1670297722251" />
   </component>
 </project>

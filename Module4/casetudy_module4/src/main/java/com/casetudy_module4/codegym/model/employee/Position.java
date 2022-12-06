@@ -9,7 +9,8 @@ public class Position {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     private String name;
-
+    @Column(columnDefinition = "boolean default false")
+    private Boolean deleted = false;
     @OneToMany
     private Set<Employee> employees;
 
@@ -20,6 +21,14 @@ public class Position {
         this.id = id;
         this.name = name;
         this.employees = employees;
+    }
+
+    public Boolean getDeleted() {
+        return deleted;
+    }
+
+    public void setDeleted(Boolean deleted) {
+        this.deleted = deleted;
     }
 
     public Integer getId() {

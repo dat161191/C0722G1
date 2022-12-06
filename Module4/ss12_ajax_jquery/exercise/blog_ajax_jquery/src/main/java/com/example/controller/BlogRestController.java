@@ -6,7 +6,6 @@ import com.example.model.Category;
 import com.example.service.IBlogService;
 import com.example.service.ICategoryService;
 import org.springframework.beans.factory.annotation.Autowired;
-
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -17,6 +16,7 @@ import org.springframework.web.bind.annotation.*;
 
 
 @RestController
+@CrossOrigin("*")
 @RequestMapping("blogs")
 public class BlogRestController {
     private final ICategoryService categoryService;
@@ -28,7 +28,6 @@ public class BlogRestController {
         this.categoryService = categoryService;
     }
 
-
     @GetMapping("")
     public ResponseEntity<Page<Blog>> getList(@PageableDefault(size = 3) Pageable pageable) {
         Page<Blog> blogList = blogService.findByDeleted(pageable);
@@ -38,7 +37,7 @@ public class BlogRestController {
         return new ResponseEntity<>(blogList, HttpStatus.OK);
     }
 
-    @GetMapping("{id}/{page}")
+    @GetMapping("/search_category/{id}/{page}")
     public ResponseEntity<Page<Blog>> getByID(@PathVariable("id") int id, @PathVariable("page") int page) {
         Pageable pageable = PageRequest.of(page - 1, 2);
         Category category = categoryService.findById(id);
@@ -49,7 +48,7 @@ public class BlogRestController {
         return new ResponseEntity<>(blogCategory, HttpStatus.OK);
     }
 
-    @GetMapping("{id}")
+    @GetMapping("/detail/{id}")
     public ResponseEntity<Blog> detail(@PathVariable("id") int id) {
         Blog blog = blogService.findById(id);
         if (blog == null) {
@@ -67,8 +66,16 @@ public class BlogRestController {
         blogService.remove(id);
         return new ResponseEntity<>(blog, HttpStatus.OK);
     }
+    @PostMapping("/create")
+    public ResponseEntity<Blog> create(@RequestBody Blog blog) {
+        if (blog.isDeleted()) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+        blogService.save(blog);
+        return new ResponseEntity<>(blog, HttpStatus.OK);
+    }
 
-    @PutMapping("{id}")
+    @PutMapping("/update/{id}")
     public ResponseEntity<Blog> update(@PathVariable("id") int id,@RequestBody Blog blog) {
         if (blog.isDeleted()) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);

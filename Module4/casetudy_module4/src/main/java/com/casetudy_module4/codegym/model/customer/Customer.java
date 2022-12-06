@@ -1,6 +1,9 @@
 package com.casetudy_module4.codegym.model.customer;
 
+import com.casetudy_module4.codegym.model.contact.Contract;
+
 import javax.persistence.*;
+import java.util.Set;
 
 @Entity
 public class Customer {
@@ -17,9 +20,32 @@ public class Customer {
     private String phoneNumber;
     private String email;
     private String address;
-    private boolean isDelete=true;
+    @Column(columnDefinition = "boolean default false")
+    private Boolean deleted = false;
+    @OneToMany(mappedBy = "customer")
+    private Set<Contract> contracts;
 
     public Customer() {
+    }
+
+    public Boolean getDeleted() {
+        return deleted;
+    }
+
+    public void setDeleted(Boolean deleted) {
+        this.deleted = deleted;
+    }
+
+    public Set<Contract> getContracts() {
+        return contracts;
+    }
+
+    public void setContracts(Set<Contract> contracts) {
+        this.contracts = contracts;
+    }
+
+    public Customer(Set<Contract> contracts) {
+        this.contracts = contracts;
     }
 
     public Integer getId() {

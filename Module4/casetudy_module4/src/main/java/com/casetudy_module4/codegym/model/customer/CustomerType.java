@@ -9,6 +9,16 @@ public class CustomerType {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     private String name;
+    @Column(columnDefinition = "boolean default false")
+    private Boolean deleted = false;
+
+    public Boolean getDeleted() {
+        return deleted;
+    }
+
+    public void setDeleted(Boolean deleted) {
+        this.deleted = deleted;
+    }
 
     @OneToMany(mappedBy = "customerType")
     private Set<Customer> customer;
