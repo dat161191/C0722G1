@@ -2,27 +2,16 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="b6bfad47-5c3e-43d3-952b-fc43c381f628" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/Module4/casetudy_module4/src/main/java/com/casetudy_module4/codegym/controller/EmployeeController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Module4/casetudy_module4/src/main/java/com/casetudy_module4/codegym/controller/HomeController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Module4/casetudy_module4/src/main/java/com/casetudy_module4/codegym/dto/employee_dto/EmployeeDtoList.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Module4/casetudy_module4/src/main/java/com/casetudy_module4/codegym/model/contact/ContractDetail.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Module4/casetudy_module4/src/main/java/com/casetudy_module4/codegym/repository/IEmployeeRepository.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Module4/casetudy_module4/src/main/java/com/casetudy_module4/codegym/service/IEmployeeService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Module4/casetudy_module4/src/main/java/com/casetudy_module4/codegym/service/dumb/TestLombok.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Module4/casetudy_module4/src/main/java/com/casetudy_module4/codegym/service/impl/EmployeeService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Module4/casetudy_module4/src/main/resources/templates/employee.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Module4/casetudy_module4/src/main/resources/templates/my_home.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Module4/casetudy_module4/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/Module4/casetudy_module4/build.gradle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Module4/casetudy_module4/src/main/java/com/casetudy_module4/codegym/model/contact/AttachFacility.java" beforeDir="false" afterPath="$PROJECT_DIR$/Module4/casetudy_module4/src/main/java/com/casetudy_module4/codegym/model/contact/AttachFacility.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Module4/casetudy_module4/src/main/java/com/casetudy_module4/codegym/model/contact/Contact.java" beforeDir="false" afterPath="$PROJECT_DIR$/Module4/casetudy_module4/src/main/java/com/casetudy_module4/codegym/model/contact/Contract.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Module4/casetudy_module4/src/main/java/com/casetudy_module4/codegym/model/contact/ContactDetail.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Module4/casetudy_module4/src/main/java/com/casetudy_module4/codegym/model/customer/Customer.java" beforeDir="false" afterPath="$PROJECT_DIR$/Module4/casetudy_module4/src/main/java/com/casetudy_module4/codegym/model/customer/Customer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Module4/casetudy_module4/src/main/java/com/casetudy_module4/codegym/model/customer/CustomerType.java" beforeDir="false" afterPath="$PROJECT_DIR$/Module4/casetudy_module4/src/main/java/com/casetudy_module4/codegym/model/customer/CustomerType.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Module4/casetudy_module4/src/main/java/com/casetudy_module4/codegym/model/employee/Employee.java" beforeDir="false" afterPath="$PROJECT_DIR$/Module4/casetudy_module4/src/main/java/com/casetudy_module4/codegym/model/employee/Employee.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Module4/casetudy_module4/src/main/java/com/casetudy_module4/codegym/model/employee/Position.java" beforeDir="false" afterPath="$PROJECT_DIR$/Module4/casetudy_module4/src/main/java/com/casetudy_module4/codegym/model/employee/Position.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Module4/ss10_session_cookie/show_room/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/Module4/ss10_session_cookie/show_room/src/main/resources/application.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Module4/ss11_website_service_and _restful/exercise/blog_rest_full/src/main/java/com/example/controller/BlogRestController.java" beforeDir="false" afterPath="$PROJECT_DIR$/Module4/ss11_website_service_and _restful/exercise/blog_rest_full/src/main/java/com/example/controller/BlogRestController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Module4/ss11_website_service_and _restful/exercise/blog_rest_full/src/main/java/com/example/repository/IBlogRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/Module4/ss11_website_service_and _restful/exercise/blog_rest_full/src/main/java/com/example/repository/IBlogRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Module3/castudy_module3_database+web/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Module4/casetudy_module4/src/main/java/com/casetudy_module4/codegym/dto/customer_dto/CustomerDto.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Module3/ss12_jdbc_&amp;_crud/exercise/crud_user/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/Module3/ss12_jdbc_&amp;_crud/exercise/crud_user/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Module4/casetudy_module4/src/main/java/com/casetudy_module4/codegym/controller/HomeController.java" beforeDir="false" afterPath="$PROJECT_DIR$/Module4/casetudy_module4/src/main/java/com/casetudy_module4/codegym/controller/HomeController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Module4/casetudy_module4/src/main/java/com/casetudy_module4/codegym/dto/employee_dto/EmployeeDtoList.java" beforeDir="false" afterPath="$PROJECT_DIR$/Module4/casetudy_module4/src/main/java/com/casetudy_module4/codegym/dto/employee_dto/EmployeeDtoList.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Module4/casetudy_module4/src/main/resources/templates/employee.html" beforeDir="false" afterPath="$PROJECT_DIR$/Module4/casetudy_module4/src/main/resources/templates/employee.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Module4/casetudy_module4/src/main/resources/templates/my_home.html" beforeDir="false" afterPath="$PROJECT_DIR$/Module4/casetudy_module4/src/main/resources/templates/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Module4/ss12_ajax_jquery/exercise/blog_ajax_jquery/list.html" beforeDir="false" afterPath="$PROJECT_DIR$/Module4/ss12_ajax_jquery/exercise/blog_ajax_jquery/src/main/list.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Module4/ss12_ajax_jquery/exercise/blog_ajax_jquery/src/main/java/com/example/controller/BlogRestController.java" beforeDir="false" afterPath="$PROJECT_DIR$/Module4/ss12_ajax_jquery/exercise/blog_ajax_jquery/src/main/java/com/example/controller/BlogRestController.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -86,6 +75,7 @@
       <workItem from="1668495461106" duration="1155000" />
       <workItem from="1669347132166" duration="31000" />
       <workItem from="1670297305659" duration="417000" />
+      <workItem from="1670383574037" duration="997000" />
     </task>
     <servers />
   </component>

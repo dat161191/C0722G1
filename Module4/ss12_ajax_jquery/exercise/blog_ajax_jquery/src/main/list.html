@@ -38,11 +38,11 @@
 
                 <label for="category">Category</label>
                 <select id="category">
-                    <option value="1">Tình cảm</option>
-                    <option value="2">Tình bạn</option>
-                    <option value="3">Sức Khỏe</option>
-                    <option value="4">Thể Thao</option>
-                    <option value="5">Cuộc sống</option>
+                    <option value=1>Tình cảm</option>
+                    <option value=2>Tình bạn</option>
+                    <option value=3>Sức Khỏe</option>
+                    <option value=4>Thể Thao</option>
+                    <option value=5>Cuộc sống</option>
                 </select>
 
 
@@ -87,36 +87,72 @@
 </script>
 <button type="button" id="jumpPage">Load More</button>
 <script>
+    let search = "";
     $(document).ready(function () {
-        function create() {
-            $("#save").click(function () {
-                //lay du lieu
-                let title = $('#title').val();
-                let content = $('#content').val();
-                let author = $('#author').val();
-                let blog = {
-                    title: title,
-                    content: content,
-                    author: author
-                };
-                $("#myBody").empty();
-                $.ajax({
-                    headers: {
-                        'Accept': 'application/json',
-                        'Content-Type': 'application/json'
-                    },
-                    type: "POST",
-                    data: JSON.stringify(blog),
-                    //tên API
-                    url: "http://localhost:8080/blogs/create",
-                    success: init()
-                });
-                $('#exampleModal').hide();
-                $('.modal-backdrop').hide();
-                //chặn sự kiện mặc định của thẻ
-                // event.preventDefault();
+
+        $("#save").click(function () {
+            //lay du lieu
+            let title = $('#title').val();
+            let content = $('#content').val();
+            let author = $('#author').val();
+            let date = $('#date').val();
+            let categoryId = $('#category').val();
+            /* ko có tham số date vs category thì nó add  ko vô database*/
+            let blog = {
+                title: title,
+                content: content,
+                author: author,
+                date: date,
+                category:
+                categoryId,
+
+            };
+            $("#myBody").empty();
+            $.ajax({
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json'
+                },
+                type: "POST",
+                data: JSON.stringify(blog),
+                //tên API
+                url: "http://localhost:8080/blogs/create",
+                success: init()
+            });
+            $('#exampleModal').hide();
+            $('.modal-backdrop').hide();
+        })
+
+        /*==Search===*/
+        $("#searchButton").click(function () {
+            $("#myBody").empty();
+            search = $("#search").val();
+            $.ajax({
+                url: 'http://localhost:8080/blogs?search=' + search,
+                type: 'GET',
+                dataType: 'json',
+                success: function (data) {
+                    console.log(data)
+                    totalPage = data.totalPages
+                    let myTable = "";
+                    for (let i = 0; i < data.content.length; i++) {
+                        myTable +=
+                            `
+                            <tr>
+                              <th scope="row " class="text-danger">${i + 1}</th>
+                              <td>${data.content[i].title}</td>
+                              <td>${data.content[i].content}</td>
+                              <td>${data.content[i].author}</td>
+                              <td>${data.content[i].category.name}</td>
+                              <td>${data.content[i].date}</td>
+                            </tr>
+                            `
+                    }
+                    // debugger
+                    $("#myBody").append(myTable);
+                }
             })
-        }
+        })
 
         function init() {
             $.ajax({
@@ -146,16 +182,18 @@
                 }
             })
         }
+
         init();
 
         /*==Phân trang==*/
-        let mainView = 'http://localhost:8080/blogs';
+        let mainView = 'http://localhost:8080/blogs/';
         let pageURL = "?page="
+        let searchURL = "&search="
         let pageNumber = 0;
         $("#jumpPage").click(function () {
             $.ajax({
                 type: 'GET',
-                url: mainView + pageURL + ++pageNumber,
+                url: mainView + pageURL + ++pageNumber + searchURL + search,
                 dataType: 'json',
                 success: function (data) {
                     let list = data.content;
@@ -178,36 +216,7 @@
             })
         })
 
-        /*==Search===*/
-        $("#searchButton").click(function () {
-            $("#myBody").empty();
-            let search = $("#search").val();
-            $.ajax({
-                url: 'http://localhost:8080/blogs?search=' + search,
-                type: 'GET',
-                dataType: 'json',
-                success: function (data) {
-                    console.log(data)
-                    totalPage = data.totalPages
-                    let myTable = "";
-                    for (let i = 0; i < data.content.length; i++) {
-                        myTable +=
-                            `
-                            <tr>
-                              <th scope="row " class="text-danger">${i + 1}</th>
-                              <td>${data.content[i].title}</td>
-                              <td>${data.content[i].content}</td>
-                              <td>${data.content[i].author}</td>
-                              <td>${data.content[i].category.name}</td>
-                              <td>${data.content[i].date}</td>
-                            </tr>
-                            `
-                    }
-                    // debugger
-                    $("#myBody").append(myTable);
-                }
-            })
-        })
+
     })
 </script>
 </body>

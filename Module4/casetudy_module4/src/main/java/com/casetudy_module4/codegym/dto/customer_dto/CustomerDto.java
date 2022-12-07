@@ -1,26 +1,21 @@
-package com.casetudy_module4.codegym.model.customer;
-
+package com.casetudy_module4.codegym.dto.customer_dto;
 
 import com.casetudy_module4.codegym.model.contact.Contract;
-import lombok.*;
-import javax.persistence.*;
+import com.casetudy_module4.codegym.model.customer.CustomerType;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Getter;
+import lombok.experimental.FieldDefaults;
 import java.util.Set;
 
+@FieldDefaults(makeFinal = true)
 @Builder
 @AllArgsConstructor
-@NoArgsConstructor
 @Getter
-@Setter
-@Entity
-
-public class Customer {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+public class CustomerDto {
     private Integer id;
-    @ManyToOne
     private CustomerType customerType;
     private String name;
-    @Column(columnDefinition = "date")
     private String dateOfBirth;
     private boolean gender;
     private String idCard;
@@ -28,6 +23,5 @@ public class Customer {
     private String email;
     private String address;
     private Boolean deleted = false;
-    @OneToMany(mappedBy = "customer")
     private Set<Contract> contracts;
 }

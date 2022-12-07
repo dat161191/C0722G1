@@ -29,7 +29,7 @@ public class BlogRestController {
     }
 
     @GetMapping("")
-    public ResponseEntity<Page<Blog>> getList(@RequestParam(defaultValue = "")String search,@PageableDefault(size = 3) Pageable pageable) {
+    public ResponseEntity<Page<Blog>> getList(@RequestParam(defaultValue = "") String search,@PageableDefault(size = 3) Pageable pageable) {
         Page<Blog> blogList = blogService.findAll(pageable,search);
         if (blogList.isEmpty()) {
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
@@ -68,9 +68,9 @@ public class BlogRestController {
     }
     @PostMapping("/create")
     public ResponseEntity<Blog> create(@RequestBody Blog blog) {
-        if (blog.isDeleted()) {
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-        }
+//        if (blog.isDeleted()) {
+//            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+//        }
         blogService.save(blog);
         return new ResponseEntity<>(blog, HttpStatus.OK);
     }
