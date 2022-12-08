@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
     <meta charset="UTF-8">
     <link
@@ -84,7 +84,7 @@
 
     <div class="row justify-content-center align-items-center text-center mt-1 mb-1">
         <div class="col-5"></div>
-        <div class="col-2">
+        <div class="col-2" sec:authorize="hasRole('ADMIN')">
             <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#create">Create
                 new Blog
             </button>

@@ -3,6 +3,9 @@ package com.casetudy_module4.codegym.model.customer;
 
 import com.casetudy_module4.codegym.model.contact.Contract;
 import lombok.*;
+import org.hibernate.annotations.SQLDelete;
+import org.hibernate.annotations.Where;
+
 import javax.persistence.*;
 import java.util.Set;
 
@@ -12,7 +15,8 @@ import java.util.Set;
 @Getter
 @Setter
 @Entity
-
+@SQLDelete(sql = "UPDATE customer SET deleted = true WHERE id=?")
+@Where(clause = "deleted=false")
 public class Customer {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

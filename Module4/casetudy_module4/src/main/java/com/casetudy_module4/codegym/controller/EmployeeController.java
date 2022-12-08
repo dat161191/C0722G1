@@ -6,13 +6,14 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 
+import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
-@RequestMapping("employee")
+@RequestMapping("/employee")
 public class EmployeeController {
     private IEmployeeService employeeService;
 
@@ -21,10 +22,9 @@ public class EmployeeController {
     }
 
     @GetMapping("")
-    public String showList(Model model){
-        Pageable pageable = PageRequest.of(0, 2);
+    public String showList(Model model, @PageableDefault(size = 0,page = 0) Pageable pageable){
         Page<EmployeeDtoList> employeeDtoLists=employeeService.findByDeleted(pageable);
         model.addAttribute("employeeDtoLists",employeeDtoLists);
-        return "employee";
+        return "/employee/list";
     }
 }

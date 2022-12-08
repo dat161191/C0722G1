@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{layout::head}">
+</head>
+<body>
+<div class="container">
+    <div th:replace="~{layout::header}"></div>
+
+    <div class="row content mt-1 mb-1">
+        <div class="row">
+            <table class="table table-bordered table-hover table-primary text-center table-striped">
+                <thead>
+                <tr>
+                    <th>STT</th>
+                    <th>Customer Name</th>
+                    <th>Birthday</th>
+                    <th>Gender</th>
+                    <th>Email</th>
+                    <th>CustomerType</th>
+                    <th>Edit</th>
+                    <th>Delete</th>
+                    <th>View</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="cus,stt : ${customerList}">
+                    <td th:text="${stt.count}+${customerList.number}*${customerList.size}"></td>
+                    <td th:text="${cus.name}"></td>
+                    <td th:text="${cus.dateOfBirth}"></td>
+                    <td th:if="${cus.gender}" th:text="Nam"></td>
+                    <td th:if="${cus.gender==false}" th:text="Nữ"></td>
+                    <!--                    <td th:if th:text="${cus.gender}"></td>-->
+                    <td th:text="${cus.email}"></td>
+                    <td th:text="${cus.customerType.name}"></td>
+                    <td><a th:href="@{/edit/__${cus.id}__ }" class="btn btn-primary">Edit</a></td>
+                    <td>
+                        <button type="button" class="btn btn-danger"
+                                th:attr="onclick=|showtDelete('${cus.id}','${cus.name}');|" data-bs-toggle="modal"
+                                data-bs-target="#delete">Delete
+                        </button>
+                    </td>
+                    <td>
+                        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#view"
+                                th:attr="onclick=|viewModal('${cus.id}','${cus.name}','${cus.dateOfBirth}','${cus.gender}','${cus.email}','${cus.customerType.name}',
+                            '${cus.idCard}','${cus.phoneNumber}','${cus.address}');|">
+                            View
+                        </button>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+        <div>
+            <a th:href="@{'/customer'(page=${customerList.number - 1})}" th:if="${customerList.hasPrevious()}">
+                <button type="button" class="btn btn-outline-primary">Previous</button>
+            </a>
+            <span style="font-size: 20px" th:text="${customerList.number + 1}"></span>/<span style="font-size: 20px"
+                                                                                             th:text="${customerList.totalPages}"></span>
+            <a th:href="@{'/customer'(page=${customerList.number + 1})}" th:if="${customerList.hasNext()}">
+                <button type="button" class="btn btn-outline-primary">Next</button>
+            </a>
+        </div>
+    </div>
+    <div th:replace="~{layout::footer}"></div>
+</div>
+
+<!--Function-->
+
+<!--Modal delete-->
+</body>
+</html>

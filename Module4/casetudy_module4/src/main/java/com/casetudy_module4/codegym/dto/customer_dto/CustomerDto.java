@@ -23,5 +23,4 @@ public class CustomerDto {
     private String email;
     private String address;
     private Boolean deleted = false;
-    private Set<Contract> contracts;
 }
