@@ -16,7 +16,7 @@ public class CustomerService implements ICustomerService {
 
     @Override
     public Page<CustomerDto> findByDeleted(Pageable pageable) {
-        return customerRepository.findByDeleted(pageable,false);
+        return customerRepository.findByDeleted(pageable, false);
     }
 
     @Override
@@ -38,5 +38,10 @@ public class CustomerService implements ICustomerService {
     public Page<CustomerDto> showList(Pageable pageable) {
 
         return customerRepository.showList(pageable);
+    }
+
+    @Override
+    public Page<Customer> showListAndSearch(String name, String email, String customerTypeId, Pageable pageable) {
+        return customerRepository.showListAndSearch(name, email, customerTypeId, pageable);
     }
 }

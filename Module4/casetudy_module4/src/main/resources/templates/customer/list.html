@@ -1,63 +1,140 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
-<head th:replace="~{layout::head}">
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link
+            href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css"
+            rel="stylesheet"
+            integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi"
+            crossorigin="anonymous">
+
+    <script
+            src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3"
+            crossorigin="anonymous"></script>
+    <link rel="stylesheet"
+          href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+
+    <style>
+        * {
+            font-family: "Palatino Linotype"
+        }
+
+        input {
+            width: 100%;
+            border-radius: 5px;
+        }
+
+        span {
+            font-size: 30px;
+            color: red
+        }
+
+        img {
+            border-radius: 20px;
+            border: 1px solid red;
+        }
+    </style>
+    <title>BossTran</title>
 </head>
 <body>
-<div class="container">
+<div class="container"
+     style="background-image: url(https://c4.wallpaperflare.com/wallpaper/682/97/249/lorena-rae-model-victoria-s-secret-hd-wallpaper-preview.jpg);background-repeat: no-repeat; background-size: 100%;min-height: 100vh">
     <div th:replace="~{layout::header}"></div>
+    <div class="row mt-1 mb-1">
+        <div class="col-6">
+            <form class="d-flex" role="search">
+                <input class="form-control me-2" type="search" placeholder="Customer Name" aria-label="Search"
+                       name="name"
+                       style="background-color: rgba(132,151,241,0.2)">
+                <input class="form-control me-2" type="search" placeholder="Email" aria-label="Search" name="email"
+                       style="background-color: rgba(132,151,241,0.2)">
+                <select name="customerTypeId" style="border-radius: 30px;margin-right: 2px">
+                    <option selected value="">CustomerType</option>
+                    <option th:each="customerType:${customerTypeList}" th:value="${customerType.id}"
+                            th:text="${customerType.name}"></option>
+                </select>
+                <button class="btn btn-outline-danger" type="submit">Search</button>
+            </form>
+        </div>
+        <div class="col col-4"></div>
+        <div class="col col-2">
+            <button type="button" id="btn-create" class="btn btn-outline-danger me-auto" data-bs-target="#create"
+                    data-bs-toggle="modal">
+                Create Customer
+            </button>
+        </div>
+
+    </div>
+    <div class="row text-center"><span><b>Customer List</b></span>
+        <span th:text="${mess}"></span>
+    </div>
 
     <div class="row content mt-1 mb-1">
         <div class="row">
-            <table class="table table-bordered table-hover table-primary text-center table-striped">
-                <thead>
-                <tr>
-                    <th>STT</th>
-                    <th>Customer Name</th>
-                    <th>Birthday</th>
-                    <th>Gender</th>
-                    <th>Email</th>
-                    <th>CustomerType</th>
-                    <th>Edit</th>
-                    <th>Delete</th>
-                    <th>View</th>
-                </tr>
-                </thead>
-                <tbody>
-                <tr th:each="cus,stt : ${customerList}">
-                    <td th:text="${stt.count}+${customerList.number}*${customerList.size}"></td>
-                    <td th:text="${cus.name}"></td>
-                    <td th:text="${cus.dateOfBirth}"></td>
-                    <td th:if="${cus.gender}" th:text="Nam"></td>
-                    <td th:if="${cus.gender==false}" th:text="Nữ"></td>
-                    <!--                    <td th:if th:text="${cus.gender}"></td>-->
-                    <td th:text="${cus.email}"></td>
-                    <td th:text="${cus.customerType.name}"></td>
-                    <td><a th:href="@{/edit/__${cus.id}__ }" class="btn btn-primary">Edit</a></td>
-                    <td>
-                        <button type="button" class="btn btn-danger"
-                                th:attr="onclick=|showtDelete('${cus.id}','${cus.name}');|" data-bs-toggle="modal"
-                                data-bs-target="#delete">Delete
-                        </button>
-                    </td>
-                    <td>
-                        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#view"
-                                th:attr="onclick=|viewModal('${cus.id}','${cus.name}','${cus.dateOfBirth}','${cus.gender}','${cus.email}','${cus.customerType.name}',
-                            '${cus.idCard}','${cus.phoneNumber}','${cus.address}');|">
-                            View
-                        </button>
-                    </td>
-                </tr>
-                </tbody>
-            </table>
+            <div class="col col-1"></div>
+            <div class="col col-10">
+                <table class="table table-bordered text-center text-danger"
+                       style="width: 100%">
+                    <thead>
+                    <tr>
+                        <th>STT</th>
+                        <th>Customer Name</th>
+                        <th>Birthday</th>
+                        <th>Gender</th>
+                        <th>Email</th>
+                        <th>CustomerType</th>
+                        <th>Edit</th>
+                        <th>Delete</th>
+                        <th>View</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr th:each="cus,stt : ${customerList}">
+                        <td th:text="${stt.count}+${customerList.number}*${customerList.size}"></td>
+                        <td th:text="${cus.name}"></td>
+                        <td th:text="${cus.dateOfBirth}"></td>
+                        <td th:text="${cus.gender==true?'Male':'Female'}"></td>
+                        <td th:text="${cus.email}"></td>
+                        <td th:text="${cus.customerType.name}"></td>
+                        <td>
+                            <button type="button" class="btn btn-outline-danger" data-bs-toggle="modal"
+                                    data-bs-target="#edit"
+                                    th:attr="onclick=|edit('${cus.id}','${cus.name}','${cus.dateOfBirth}','${cus.gender}','${cus.email}',
+                            '${cus.idCard}','${cus.phoneNumber}','${cus.address}','${cus.customerType.id}');|">
+                                Edit
+                            </button>
+                        </td>
+                        <td>
+                            <button type="button" class="btn btn-outline-danger"
+                                    th:attr="onclick=|showtDelete('${cus.id}','${cus.name}');|" data-bs-toggle="modal"
+                                    data-bs-target="#delete">Delete
+                            </button>
+                        </td>
+                        <td>
+                            <button type="button" class="btn btn-outline-danger" data-bs-toggle="modal"
+                                    data-bs-target="#view"
+                                    th:attr="onclick=|viewModal('${cus.id}','${cus.name}','${cus.dateOfBirth}','${cus.gender}','${cus.email}',
+                            '${cus.idCard}','${cus.phoneNumber}','${cus.address}','${cus.customerType.id}');|">
+                                View
+                            </button>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="col col-1"></div>
+
         </div>
         <div>
             <a th:href="@{'/customer'(page=${customerList.number - 1})}" th:if="${customerList.hasPrevious()}">
-                <button type="button" class="btn btn-outline-primary">Previous</button>
+                <button type="button" class="btn btn-outline-danger"> Previous</button>
             </a>
             <span style="font-size: 20px" th:text="${customerList.number + 1}"></span>/<span style="font-size: 20px"
                                                                                              th:text="${customerList.totalPages}"></span>
             <a th:href="@{'/customer'(page=${customerList.number + 1})}" th:if="${customerList.hasNext()}">
-                <button type="button" class="btn btn-outline-primary">Next</button>
+                <button type="button" class="btn btn-outline-danger">Next</button>
             </a>
         </div>
     </div>
@@ -65,7 +142,300 @@
 </div>
 
 <!--Function-->
+<script>
+    /*==VIEW MODAL==*/
+    function viewModal(id, name, dateOfBirth, gender, email, idCard, phoneNumber, address, customerType) {
+        document.getElementById("viewId").value = id;
+        document.getElementById("viewName").value = name;
+        document.getElementById("viewDateOfBirth").value = dateOfBirth;
+        document.getElementById("viewGender").value = gender ? "Male" : "Female";
+        document.getElementById("viewIdCard").value = idCard;
+        document.getElementById("viewPhoneNumber").value = phoneNumber;
+        document.getElementById("viewEmail").value = email;
+        document.getElementById("viewAddress").value = address;
+        document.getElementById("viewCustomerType").value = customerType;
+    }
 
-<!--Modal delete-->
+    function edit(id, name, dateOfBirth, gender, email, idCard, phoneNumber, address, customerType) {
+        document.getElementById("editId").value = id;
+        document.getElementById("editName").value = name;
+        document.getElementById("editDateOfBirth").value = dateOfBirth;
+        document.getElementById("editGender").value = gender ? true : false;
+        document.getElementById("editIdCard").value = idCard;
+        document.getElementById("editPhoneNumber").value = phoneNumber;
+        document.getElementById("editEmail").value = email;
+        document.getElementById("editAddress").value = address;
+        document.getElementById("editCustomerType").value = customerType;
+    }
+
+    function showtDelete(id, name) {
+        document.getElementById("deleteId").value = id;
+        document.getElementById("deleteName").innerText = name;
+    }
+</script>
+
+<!--Modal create+validate-->
+<div class="modal fade" id="create" tabindex="-1" data-bs-backdrop="static" aria-labelledby="exampleModalLabel"
+     aria-hidden="true">
+    <script th:inline="javascript" th:if="${hasErrors == 2}">
+        $(document).ready(function () {
+            $("#create").modal("show");
+        });
+    </script>
+    <div class="modal-dialog">
+        <div class="modal-content"
+                         style="background-image: url(https://c4.wallpaperflare.com/wallpaper/182/967/716/lorena-rae-model-victoria-s-secret-hd-wallpaper-preview.jpg);background-repeat: no-repeat; background-size: 100%">
+            <div class="modal-header text-danger">
+                <h1 class="modal-title fs-5"><b>CREATE NEW CUSTOME</b></h1>
+            </div>
+            <form id="form-create" th:action="@{/customer/create}" method="post" th:object="${customerDto}"
+                  class="mb-1">
+                <div class="modal-body text-success" style="background-color: rgba(132,151,241,0)">
+                    <div class="mb-1">
+                        <label th:for="name" class="form-label"><b>CustomerName</b></label>
+                        <input type="text" required class="form-control" th:field="*{name}" placeholder="Trần Gia Gia"
+                               style="background-color: rgba(132,151,241,0.2)">
+                        <p th:errors="*{name}" class="text-danger"></p>
+                        <!--                        <p th:if="${#fields.hasErrors('name')&& hasErrorsEdit==2}" th:errors="*{name}" class="text-light"></p>-->
+                    </div>
+                    <div class="mb-1">
+                        <label th:for="dateOfBirth" class="form-label"><b>Birthday</b></label>
+                        <input type="date" required class="form-control" th:field="*{dateOfBirth}"
+                               placeholder="01/01/2022"
+                               style="background-color: rgba(132,151,241,0.2)">
+                        <p th:errors="*{dateOfBirth}" class="text-danger"></p>
+                        <!--                        <p th:if="${#fields.hasErrors('dateOfBirth')&& hasErrorsEdit==2}" th:errors="*{dateOfBirth}" class="text-light"></p>-->
+                    </div>
+                    <div class="mb-1">
+                        <label th:for="idCard" class="form-label"><b>ID Card</b></label>
+                        <input type="text" required class="form-control" th:field="*{idCard}" placeholder="0123456789"
+                               style="background-color: rgba(132,151,241,0.2)">
+                        <p th:errors="*{idCard}" class="text-danger"></p>
+                        <!--                        <p th:if="${#fields.hasErrors('dateOfBirth')&& hasErrorsEdit==2}" th:errors="*{dateOfBirth}" class="text-light"></p>-->
+                    </div>
+
+                    <div class="mb-1">
+                        <label th:for="phoneNumber" class="form-label"><b>PhoneNumber</b></label>
+                        <input type="text" required class="form-control" th:field="*{phoneNumber}"
+                               placeholder="0385425443"
+                               style="background-color: rgba(132,151,241,0.2)">
+                        <p th:errors="*{phoneNumber}" class="text-danger"></p>
+                    </div>
+
+                    <div class="mb-1">
+                        <label th:for="email" class="form-label"><b>Email</b></label>
+                        <input type="text" required class="form-control" th:field="*{email}"
+                               placeholder="shmily1611@gmail.com"
+                               style="background-color: rgba(132,151,241,0.2)">
+                        <p th:errors="*{email}" class="text-danger"></p>
+                    </div>
+                    <div class="mb-1">
+                        <label th:for="address" class="form-label"><b>Address</b></label>
+                        <input type="text" required class="form-control" th:field="*{address}" placeholder="Quảng Ngãi"
+                               style="background-color: rgba(132,151,241,0.2)">
+                    </div>
+                    <div class="mb-1">
+                        <label for="gender"><b>Gender</b></label>
+                        <select required id="gender" class="form-control form-select"
+                                aria-label="Default select example"
+                                style="border-radius: 30px" th:field="*{gender}">
+                            <option style="background-color: rgba(132,151,241,0.2)" th:value="true">Male</option>
+                            <option style="background-color: rgba(132,151,241,0.2)" th:value="false">Female</option>
+                        </select>
+                        <p th:errors="*{gender}" class="text-danger"></p>
+                    </div>
+                    <div class="mb-1">
+                        <label for="customerType"><b>Customer Type</b> </label>
+                        <select required id="customerType" class="form-select"
+                                aria-label="Default select example"
+                                th:field="*{customerType}" style="border-radius: 30px">
+                            <option style="background-color: rgba(132,151,241,0.2)"
+                                    th:each="customerType : ${customerTypeList}"
+                                    th:value="${customerType.id}"
+                                    th:text="${customerType.name}">
+                            </option>
+                        </select>
+                        <p th:errors="*{customerType}" class="text-danger"></p>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-outline-danger"><b>Add New Customer</b></button>
+                    <button type="button" class="btn btn-outline-danger" data-bs-dismiss="modal"><b>Close</b></button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<!--Modal edit+validate-->
+
+<div class="modal fade" id="edit" tabindex="-1" data-bs-backdrop="static" aria-labelledby="exampleModalLabel"
+     aria-hidden="true">
+    <script th:inline="javascript" th:if="${hasErrorsEdit == 1}">
+        $(document).ready(function () {
+            $("#edit").modal("show");
+        });
+    </script>
+    <div class="modal-dialog">
+        <div class="modal-content"
+                         style="background-image: url(https://c4.wallpaperflare.com/wallpaper/267/844/967/ashar-model-women-candice-swanepoel-victoria-s-secret-hd-wallpaper-preview.jpg);background-repeat: no-repeat; background-size: 100%">
+            <div class="modal-header text-danger">
+                <h1 class="modal-title fs-5"><b>EDIT CUSTOME</b></h1>
+            </div>
+            <form th:action="@{/customer/edit}" method="post" th:object="${customerDtoEdit}" class="mb-1">
+                <div class="modal-body text-success" style="background-color: rgba(132,151,241,0)">
+                    <div class="mb-1" hidden>
+                        <input type="text" id="editId" th:field="*{id}">
+                    </div>
+                    <div class="mb-1">
+                        <label th:for="name" class="form-label"><b>CustomerName</b></label>
+                        <input type="text" id="editName" required class="form-control" th:field="*{name}"
+                               style="background-color: rgba(132,151,241,0.2)">
+                        <!--                        <p th:errors="*{name}" class="text-light"></p>-->
+                        <p th:if="${#fields.hasErrors('name')&& hasErrorsEdit==1}" th:errors="*{name}"
+                           class="text-danger"></p>
+                    </div>
+                    <div class="mb-1">
+                        <label th:for="dateOfBirth" class="form-label"><b>Birthday</b></label>
+                        <input type="date" id="editDateOfBirth" required class="form-control" th:field="*{dateOfBirth}"
+                               style="background-color: rgba(132,151,241,0.2)">
+                        <!--                        <p th:errors="*{dateOfBirth}" class="text-light"></p>-->
+                        <p th:if="${#fields.hasErrors('dateOfBirth')&& hasErrorsEdit==1}" th:errors="*{dateOfBirth}"
+                           class="text-danger"></p>
+
+                    </div>
+                    <div class="mb-1">
+                        <label th:for="idCard" class="form-label"><b>ID Card</b></label>
+                        <input type="text" id="editIdCard" required class="form-control" th:field="*{idCard}"
+                               style="background-color: rgba(132,151,241,0.2)">
+                        <!--                        <p th:errors="*{idCard}" class="text-light"></p>-->
+                        <p th:if="${#fields.hasErrors('idCard')&& hasErrorsEdit==1}" th:errors="*{idCard}"
+                           class="text-danger"></p>
+                    </div>
+
+                    <div class="mb-1">
+                        <label th:for="phoneNumber" class="form-label"><b>PhoneNumber</b></label>
+                        <input type="text" id="editPhoneNumber" required class="form-control" th:field="*{phoneNumber}"
+                               style="background-color: rgba(132,151,241,0.2)">
+                        <!--                        <p th:errors="*{phoneNumber}" class="text-light"></p>-->
+                        <p th:if="${#fields.hasErrors('phoneNumber')&& hasErrorsEdit==1}" th:errors="*{phoneNumber}"
+                           class="text-danger"></p>
+
+                    </div>
+
+                    <div class="mb-1">
+                        <label th:for="email" class="form-label"><b>Email</b></label>
+                        <input type="text" id="editEmail" required class="form-control" th:field="*{email}"
+                               style="background-color: rgba(132,151,241,0.2)">
+                        <!--                        <p th:errors="*{email}" class="text-light"></p>-->
+                        <p th:if="${#fields.hasErrors('email')&& hasErrorsEdit==1}" th:errors="*{email}"
+                           class="text-danger"></p>
+
+                    </div>
+                    <div class="mb-1">
+                        <label th:for="address" class="form-label"><b>Address</b></label>
+                        <input type="text" id="editAddress" required class="form-control" th:field="*{address}"
+                               placeholder="Quảng Ngãi"
+                               style="background-color: rgba(132,151,241,0.2)">
+                    </div>
+                    <div class="mb-1">
+                        <label for="editGender"><b>Gender</b></label>
+                        <select required id="editGender" class="form-control form-select"
+                                aria-label="Default select example"
+                                style="border-radius: 30px" th:field="*{gender}">
+                            <option style="background-color: rgba(132,151,241,0.2)" th:value="true">Male</option>
+                            <option style="background-color: rgba(132,151,241,0.2)" th:value="false">Female</option>
+                        </select>
+                        <!--                        <p th:errors="*{gender}" class="text-danger"></p>-->
+                        <!--                        <p th:if="${#fields.hasErrors('gender')&& hasErrorsEdit==1}" th:errors="*{gender}" class="text-light"></p>-->
+                    </div>
+                    <div class="mb-1">
+                        <label for="editCustomerType"><b>Customer Type</b> </label>
+                        <select required id="editCustomerType" class="form-select"
+                                aria-label="Default select example"
+                                th:field="*{customerType}" style="border-radius: 30px">
+                            <option style="background-color: rgba(132,151,241,0.2)"
+                                    th:each="customerType : ${customerTypeList}"
+                                    th:value="${customerType.id}"
+                                    th:text="${customerType.name}">
+                            </option>
+                        </select>
+                        <!--                        <p th:errors="*{customerType}" class="text-danger"></p>-->
+                        <!--                        <p th:if="${#fields.hasErrors('customerType')&& hasErrorsEdit==1}" th:errors="*{customerType}" class="text-light"></p>-->
+
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-outline-danger"><b>Edit Customer</b></button>
+                    <button type="button" class="btn btn-outline-danger" data-bs-dismiss="modal"><b>Close</b></button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+<!--Modal Delete-->
+<div class="modal fade" id="delete" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content"
+             style="background-image: url(https://c4.wallpaperflare.com/wallpaper/592/569/318/ashar-josephine-skriver-model-women-victoria-s-secret-hd-wallpaper-thumb.jpg);background-repeat: no-repeat; background-size: 100%">
+            <form th:action="@{/customer/delete}" method="get">
+                <div class="modal-body text-center text-success" style="background-color: rgba(132,151,241,0)">
+                    <h3>Are you sure you want to delete?</h3>
+                    <h2 id="deleteName"></h2>
+                </div>
+                <div class="modal-footer text-success " style="background-color: rgba(132,151,241,0)">
+                    <button type="submit" class="btn btn-outline-danger" th:id="deleteId" th:name="deleteId">
+                        <b>Acept</b>
+                    </button>
+                    <button type="button" class="btn btn-outline-primary" data-bs-dismiss="modal"><b>Close</b></button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<!--Modal View-->
+<div class="modal fade" id="view" tabindex="-1" data-bs-backdrop="static" aria-labelledby="exampleModalLabel"
+     aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content"
+             style="background-image: url(https://c4.wallpaperflare.com/wallpaper/182/967/716/lorena-rae-model-victoria-s-secret-hd-wallpaper-preview.jpg);background-repeat: no-repeat; background-size: 100%">
+            <div class="modal-header text-lg-center text-primary">
+                <h1 class="modal-title fs-5"><b>Information Customer</b></h1>
+            </div>
+            <div class="modal-body text-success" style="background-color: rgba(132,151,241,0)">
+                <label hidden for="viewId">ID: </label>
+                <input type="text" hidden id="viewId" style="background-color: rgba(132,151,241,0.2)"><br>
+                <label for="viewName"><b>CustomerName</b> </label>
+                <input type="text" readonly id="viewName" style="background-color: rgba(132,151,241,0.2)"><br>
+                <label for="viewDateOfBirth"><b>Birthday</b> </label>
+                <input type="text" readonly id="viewDateOfBirth" style="background-color: rgba(132,151,241,0.2)"><br>
+                <label for="viewGender"><b>Gender</b>: </label>
+                <input type="text" readonly id="viewGender" style="background-color: rgba(132,151,241,0.2)">
+                <label for="viewIdCard"><b>ID Card:</b> </label>
+                <input type="text" readonly id="viewIdCard" style="background-color: rgba(132,151,241,0.2)">
+                <label for="viewEmail"><b>Email</b>: </label>
+                <input type="text" readonly id="viewEmail" style="background-color: rgba(132,151,241,0.2)">
+                <label for="viewPhoneNumber"><b>Phone</b>: </label>
+                <input type="text" readonly id="viewPhoneNumber" style="background-color: rgba(132,151,241,0.2)">
+                <label for="viewAddress"><b>Address</b>: </label>
+                <input type="text" readonly id="viewAddress" style="background-color: rgba(132,151,241,0.2)">
+                <label for="viewCustomerType"><b>CustomerType</b>: </label>
+                <input type="text" readonly id="viewCustomerType" style="background-color: rgba(132,151,241,0.2)">
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-outline-danger" data-bs-dismiss="modal"><b>Close</b></button>
+            </div>
+        </div>
+    </div>
+</div>
+<!--<script>-->
+<!--    $("#btn-create").click(function () {-->
+<!--        alert("ok")-->
+<!--        $("#form-create").get(0).reset()-->
+<!--    })-->
+</script>
 </body>
 </html>

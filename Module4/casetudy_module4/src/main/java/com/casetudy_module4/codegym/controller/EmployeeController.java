@@ -22,7 +22,7 @@ public class EmployeeController {
     }
 
     @GetMapping("")
-    public String showList(Model model, @PageableDefault(size = 0,page = 0) Pageable pageable){
+    public String showList(Model model, @PageableDefault(size = 4,page = 0) Pageable pageable){
         Page<EmployeeDtoList> employeeDtoLists=employeeService.findByDeleted(pageable);
         model.addAttribute("employeeDtoLists",employeeDtoLists);
         return "/employee/list";

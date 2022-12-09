@@ -8,11 +8,14 @@ import org.springframework.data.domain.Pageable;
 
 public interface ICustomerService {
     Page<CustomerDto> findByDeleted(Pageable pageable);
+
     Customer findById(Integer id);
 
     void save(Customer customer);
 
     void remove(Integer id);
+
     Page<CustomerDto> showList(Pageable pageable);
 
+    Page<Customer> showListAndSearch(String name, String email, String customerTypeId, Pageable pageable);
 }
