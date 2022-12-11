@@ -41,7 +41,7 @@
         <div class="col col-2"></div>
         <div class="col col-8">
             <div class="row justify-content-center align-items-center">
-                <form th:action="@{/facility/edit}" method="post" th:object="${facility}">
+                <form th:action="@{/facility/edit}" method="post" th:object="${facilityDto}">
                     <table class="table table-hover text-light"
                            style="width: 100%;background-color: rgba(252,252,253,0.2)">
                         <tr>
@@ -56,7 +56,7 @@
                                             <label th:for="facilityType"><b>FacilityType</b></label>
                                         </td>
                                         <td>
-                                            <select id="facilityType" th:field="*{facilityType}"
+                                            <select  th:field="*{facilityType}"
                                                     style="border-radius: 20px; background-color: rgba(252,252,253,0.2)"
                                                     class="form-select" aria-label="Default select example">
                                                 <!--                                                <option value="" disabled selected>Chosce Facility</option>-->
@@ -86,12 +86,12 @@
                                             </select>
                                         </td>
                                     </tr>
-                                    <tr id="descriptionOtherConvenience">
+                                    <tr id="descriptionOtherConveniences">
                                         <td><label th:for="descriptionOtherConvenience"
                                                    class="form-label"><b>OtherConvenience</b></label>
                                         </td>
                                         <td><input type="text" class="form-control text-light"
-                                                   th:field="*{descriptionOtherConvenience}" th:value="null"
+                                                   th:field="*{descriptionOtherConvenience}"
                                                    style="background-color: rgba(132,151,241,0.2)">
                                             <small>Example:Massage Body</small>
                                             <!-- <p th:errors="*{descriptionOtherConvenience}" class="text-danger"></p>-->
@@ -110,26 +110,26 @@
                                         </td>
                                     </tr>
 
-                                    <tr id="numberOfFloors">
+                                    <tr id="numberOfFloorss">
                                         <td>
                                             <label th:for="numberOfFloors"
                                                    class="form-label"><b>NumberFloors</b></label>
                                         </td>
                                         <td>
                                             <input type="text" class="form-control text-light"
-                                                   th:field="*{numberOfFloors}" th:value="null"
+                                                   th:field="*{numberOfFloors}"
                                                    style="background-color: rgba(132,151,241,0.2)">
                                             <small>Example:30 or 40 or 50</small>
                                             <!-- <p th:errors="*{numberOfFloors}" class="text-danger"></p>-->
                                         </td>
                                     </tr>
 
-                                    <tr id="facilityFree">
+                                    <tr id="facilityFrees">
                                         <td><label th:for="facilityFree"
                                                    class="form-label"><b>FacilityFree</b></label>
                                         </td>
                                         <td><input type="text" class="form-control text-light"
-                                                   th:field="*{facilityFree}" th:value="null"
+                                                   th:field="*{facilityFree}"
                                                    style="background-color: rgba(132,151,241,0.2)">
                                             <small>Example:1 bike,1 bicycle</small>
                                             <!-- <p th:errors="*{facilityFree}" class="text-danger"></p>-->
@@ -151,12 +151,12 @@
                                             </select>
                                         </td>
                                     </tr>
-                                    <tr id="standardRoom">
+                                    <tr id="standardRooms">
                                         <td><label th:for="standardRoom"
                                                    class="form-label"><b>StandardRoom</b></label>
                                         </td>
                                         <td><input type="text" class="form-control text-light"
-                                                   th:field="*{standardRoom}" th:value="null"
+                                                   th:field="*{standardRoom}"
                                                    style="background-color: rgba(132,151,241,0.2)">
                                             <small>Example:Vip or Nomal</small>
                                             <!-- <p th:errors="*{standardRoom}" class="text-danger"></p>-->
@@ -183,12 +183,12 @@
                                             <!-- <p th:errors="*{maxPeople}" class="text-danger"></p>-->
                                         </td>
                                     </tr>
-                                    <tr id="poolArea">
+                                    <tr id="poolAreas">
                                         <td><label th:for="poolArea"
                                                    class="form-label"><b>PoolArea(m<sup>2</sup>)</b></label>
                                         </td>
                                         <td><input type="text" class="form-control text-light"
-                                                   th:field="*{poolArea}" th:value="null"
+                                                   th:field="*{poolArea}"
                                                    style="background-color: rgba(132,151,241,0.2)">
                                             <small>Example:30 or 40 or 50</small>
                                             <!-- <p th:errors="*{poolArea}" class="text-danger"></p>-->
@@ -220,79 +220,62 @@
     $(document).ready(function () {
         function init() {
             if ($('#facilityType').val() == 1) {
-                $('#facilityFree').hide();
-                $('#numberOfFloors').show();
-                $('#poolArea').show();
-                $('#descriptionOtherConvenience').show();
-                $('#standardRoom').show();
+                $('#facilityFrees').hide();
+                $('#numberOfFloorss').show();
+                $('#poolAreas').show();
+                $('#descriptionOtherConveniences').show();
+                $('#standardRooms').show();
             }
             if ($('#facilityType').val() == 2) {
-                $('#facilityFree').hide();
-                $('#poolArea').hide();
-                $('#numberOfFloors').show();
-                $('#descriptionOtherConvenience').show();
-                $('#standardRoom').show();
+                $('#facilityFrees').hide();
+                $('#poolAreas').hide();
+                $('#numberOfFloorss').show();
+                $('#descriptionOtherConveniences').show();
+                $('#standardRooms').show();
             }
             if ($('#facilityType').val() == 3) {
-                $('#numberOfFloors').hide();
-                $('#poolArea').hide();
-                $('#standardRoom').hide();
-                $('#descriptionOtherConvenience').hide();
-                $('#facilityFree').show();
+                $('#numberOfFloorss').hide();
+                $('#poolAreas').hide();
+                $('#standardRooms').hide();
+                $('#descriptionOtherConveniences').hide();
+                $('#facilityFrees').show();
             }
         }
 
         init();
         $('#facilityType').change(function () {
+            debugger
+            confirm("Are you sure you want to change the facility type?")
             if ($('#facilityType').val() == 1) {
-                $('#facilityFree').hide();
-                $('#numberOfFloors').show();
-                $('#poolArea').show();
-                $('#descriptionOtherConvenience').show();
-                $('#standardRoom').show();
-
+                $('#facilityFrees').hide();
+                $('#facilityFree').val(null);
+                $('#numberOfFloorss').show();
+                $('#poolAreas').show();
+                $('#descriptionOtherConveniences').show();
+                $('#standardRooms').show();
             }
             if ($('#facilityType').val() == 2) {
-                $('#facilityFree').hide();
-                $('#poolArea').hide();
-                $('#numberOfFloors').show();
-                $('#descriptionOtherConvenience').show();
-                $('#standardRoom').show();
+                $('#facilityFrees').hide();
+                $('#facilityFree').val(null);
+                $('#poolAreas').hide();
+                $('#poolArea').val(null);
+                $('#numberOfFloorss').show();
+                $('#descriptionOtherConveniences').show();
+                $('#standardRooms').show();
             }
             if ($('#facilityType').val() == 3) {
-                $('#numberOfFloors').hide();
-                $('#poolArea').hide();
-                $('#standardRoom').hide();
-                $('#descriptionOtherConvenience').hide();
-                $('#facilityFree').show();
-            }
+                $('#numberOfFloorss').hide();
+                $('#numberOfFloors').val(null);
+                $('#poolAreas').hide();
+                $('#poolArea').val(null);
+                $('#standardRooms').hide();
+                $('#standardRoom').val(null);
+                $('#descriptionOtherConveniences').hide();
+                $('#descriptionOtherConvenience').val(null);
+                $('#facilityFrees').show();
+            }// $("#facilityType").return($('facilityType'));
         })
     })
-    // $('#facilityType').change(function () {
-    //     if ($('#facilityType').val() == 1) {
-    //         $('#facilityFree').hide();
-    //         $('#numberOfFloors').show();
-    //         $('#poolArea').show();
-    //         $('#descriptionOtherConvenience').show();
-    //         $('#standardRoom').show();
-    //
-    //     }
-    //     if ($('#facilityType').val() == 2) {
-    //         $('#facilityFree').hide();
-    //         $('#poolArea').hide();
-    //         $('#numberOfFloors').show();
-    //         $('#descriptionOtherConvenience').show();
-    //         $('#standardRoom').show();
-    //     }
-    //     if ($('#facilityType').val() == 3) {
-    //         $('#numberOfFloors').hide();
-    //         $('#poolArea').hide();
-    //         $('#standardRoom').hide();
-    //         $('#descriptionOtherConvenience').hide();
-    //         $('#facilityFree').show();
-    //     }
-    //     // $("#facilityType").return($('facilityType'));
-    // })
 </script>
 
 </html>

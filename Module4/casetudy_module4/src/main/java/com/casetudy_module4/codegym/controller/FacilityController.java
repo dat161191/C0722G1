@@ -41,6 +41,8 @@ public class FacilityController {
         model.addAttribute("facilityTypeList", facilityTyeService.findAll());
         model.addAttribute("rentTypeList", rentTypeService.findAll());
         model.addAttribute("facilityDto", FacilityDto.builder().build());
+//        model.addAttribute("facilityDto",new FacilityDto());
+
         model.addAttribute("facilityType", new FacilityType());
         model.addAttribute("rentType", new RentType());
         model.addAttribute("searchName", searchName);
@@ -58,6 +60,7 @@ public class FacilityController {
     public String showCreate(Model model) {
         model.addAttribute("facility", Facility.builder().build());
         model.addAttribute("facilityDto", FacilityDto.builder().build());
+//        model.addAttribute("facilityDto",new FacilityDto());
         model.addAttribute("facilityTypeList", facilityTyeService.findAll());
         model.addAttribute("rentTypeList", rentTypeService.findAll());
         return "facility/create";
@@ -74,20 +77,21 @@ public class FacilityController {
 
     @GetMapping("edit/{id}")
     public String showFormEdit(@PathVariable("id") Integer id, Model model) {
-//        Facility facility=facilityService.findById(id);
-//        FacilityDto facilityDto=FacilityDto.builder().build();
-//        BeanUtils.copyProperties(facility,facilityDto);
-        model.addAttribute("facility", facilityService.findById(id));
-//        model.addAttribute("facilityDto",facilityDto);
+        Facility facility=facilityService.findById(id);
+        FacilityDto facilityDto=FacilityDto.builder().build();
+//        FacilityDto facilityDto=new FacilityDto();
+        BeanUtils.copyProperties(facility,facilityDto);
+//        model.addAttribute("facility", facilityService.findById(id));
+        model.addAttribute("facilityDto",facilityDto);
         model.addAttribute("facilityTypeList", facilityTyeService.findAll());
         model.addAttribute("rentTypeList", rentTypeService.findAll());
         return "facility/edit";
     }
     @PostMapping("edit")
-    public String Edit(@ModelAttribute("facility") Facility facility,RedirectAttributes redirectAttributes ){
-//    public String Edit(@ModelAttribute("facilityDto") FacilityDto facilityDto,RedirectAttributes redirectAttributes ){
-//        Facility facility=Facility.builder().build();
-//        BeanUtils.copyProperties(facilityDto,facility);
+//    public String Edit(@ModelAttribute("facility") Facility facility,RedirectAttributes redirectAttributes ){
+    public String Edit(@ModelAttribute("facilityDto") FacilityDto facilityDto,RedirectAttributes redirectAttributes ){
+        Facility facility=Facility.builder().build();
+        BeanUtils.copyProperties(facilityDto,facility);
         facilityService.save(facility);
         redirectAttributes.addFlashAttribute("mess","Edit Success!!!");
         return "redirect:/facility/";
