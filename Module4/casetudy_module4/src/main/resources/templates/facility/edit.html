@@ -56,7 +56,7 @@
                                             <label th:for="facilityType"><b>FacilityType</b></label>
                                         </td>
                                         <td>
-                                            <select  th:field="*{facilityType}"
+                                            <select th:field="*{facilityType}"
                                                     style="border-radius: 20px; background-color: rgba(252,252,253,0.2)"
                                                     class="form-select" aria-label="Default select example">
                                                 <!--                                                <option value="" disabled selected>Chosce Facility</option>-->
@@ -245,7 +245,6 @@
         init();
         $('#facilityType').change(function () {
             debugger
-            confirm("Are you sure you want to change the facility type?")
             if ($('#facilityType').val() == 1) {
                 $('#facilityFrees').hide();
                 $('#facilityFree').val(null);
