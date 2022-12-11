@@ -1,7 +1,7 @@
-package com.casetudy_module4.codegym.service.impl;
+package com.casetudy_module4.codegym.service.impl_customer;
 
 import com.casetudy_module4.codegym.model.customer.CustomerType;
-import com.casetudy_module4.codegym.repository.ICustomerTypeRepository;
+import com.casetudy_module4.codegym.repository.customer.ICustomerTypeRepository;
 import com.casetudy_module4.codegym.service.ICustomerTypeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

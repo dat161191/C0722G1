@@ -1,8 +1,8 @@
-package com.casetudy_module4.codegym.service.impl;
+package com.casetudy_module4.codegym.service.impl_customer;
 
 import com.casetudy_module4.codegym.dto.customer_dto.CustomerDto;
 import com.casetudy_module4.codegym.model.customer.Customer;
-import com.casetudy_module4.codegym.repository.ICustomerRepository;
+import com.casetudy_module4.codegym.repository.customer.ICustomerRepository;
 import com.casetudy_module4.codegym.service.ICustomerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;

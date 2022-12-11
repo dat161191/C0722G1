@@ -1,9 +1,8 @@
-package com.casetudy_module4.codegym.service.impl;
+package com.casetudy_module4.codegym.service.impl_customer;
 
 import com.casetudy_module4.codegym.dto.employee_dto.EmployeeDtoList;
-import com.casetudy_module4.codegym.repository.IEmployeeRepository;
+import com.casetudy_module4.codegym.repository.employee.IEmployeeRepository;
 import com.casetudy_module4.codegym.service.IEmployeeService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
