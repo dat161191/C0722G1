@@ -44,38 +44,35 @@
                        aria-label="Search"
                        th:value="${searchName}" name="searchName"
                        style="background-color: rgba(132,151,241,0.2)">
-                <select style="margin-right:2px;border-radius: 20px; background-color: rgba(252,252,253,0.2)"
+                <select style="margin-right:2px;border-radius: 20px; background-color: rgba(252,252,253,0.5)"
                         name="searchFacilityType" class="form-select" aria-label="Default select example">
                     <option value="-1">FacilityType</option>
                     <option th:each="facilityType:${facilityTypeList}" th:value="${facilityType.id}"
-                            th:text="${facilityType.name}"></option>
+                            th:text="${facilityType.name}"
+                            th:selected="${searchFacilityType==facilityType.id}"></option>
                 </select>
                 <button class="btn btn-outline-light" type="submit"><b>Search</b></button>
             </form>
         </div>
         <div class="col col-2">
             <a th:href="@{/facility/create}" class="btn btn-outline-light">Add Facility</a>
-            <!--            <button type="button" id="btn-create" class="btn btn-outline-light me-auto" data-bs-target="#create"-->
-            <!--                    data-bs-toggle="modal">-->
-            <!--                <b>Create Facility</b>-->
-            <!--            </button>-->
         </div>
         <div class="col col-6"></div>
     </div>
-    <div class="row text-center"><span><b>Facility List</b></span>
-        <span th:text="${mess}"></span>
+    <div class="row text-center text-light"><h3><b>Facility List</b></h3>
+        <h4 th:text="${mess}"></h4>
     </div>
     <div class="row content mt-1 mb-1">
         <div class="row">
             <div class="col col-12">
-                <table class="table table-hover text-center text-dark"
-                       style="width: 100%;background-color: rgba(252,252,253,0.4)">
+                <table class="table table-hover text-center text-light"
+                       style="width: 100%;background-color: rgba(252,252,253,0.5)">
                     <thead>
                     <tr>
                         <th>STT</th>
                         <th>Facility Name</th>
                         <th>Area(m<sup>2</sup>)</th>
-                        <th>Cost</th>
+                        <th>Cost(USD)</th>
                         <th>MaxPeople</th>
                         <th>Standard Room</th>
                         <th>Other Convenience</th>
@@ -117,18 +114,48 @@
             </div>
 
         </div>
-        <div>
-            <a th:href="@{'/facility'(page=${facilityList.number - 1})}" th:if="${facilityList.hasPrevious()}">
-                <button type="button" class="btn btn-outline-light"> Previous</button>
-            </a>
-            <span style="font-size: 15px" th:text="${facilityList.number + 1}"></span><b
-                style="color: red">/</b><span
-                style="font-size: 15px"
-                th:text="${facilityList.totalPages}"></span>
-            <a th:href="@{'/facility'(page=${facilityList.number + 1})}" th:if="${facilityList.hasNext()}">
-                <button type="button" class="btn btn-outline-light">Next</button>
-            </a>
+        <div class="d-flex justify-content-center ">
+            <nav aria-label="..." class="justify-content-center d-flex">
+                <ul class="pagination">
+                    <li class="page-item">
+                        <a class="page-link" th:href="@{/facility/(page=${facilityList.number - 1},
+            searchName=${searchName}, searchFacilityType=${searchFacilityType})}"
+                           th:if="${facilityList.hasPrevious()}">
+                            &laquo;</a>
+                    </li>
+                    <li class="page-item disabled" th:unless="${facilityList.hasPrevious()}">
+                        <a class="page-link">&laquo;</a>
+                    </li>
+
+                    <li class="page-item"><a class="page-link" th:href="@{/facility/(page=${facilityList.number - 1},
+         searchName=${searchName}, searchFacilityType=${searchFacilityType})}"
+                                             th:if="${facilityList.hasPrevious()}" th:text="${facilityList.number}"></a>
+                    </li>
+
+                    <li class="page-item active">
+                        <a class="page-link" th:href="@{/facility/(page=${facilityList.number},
+            searchName=${searchName}, searchFacilityType=${searchFacilityType})}"
+                           th:text="${facilityList.number + 1}">
+                            <span class="sr-only">(trang hiện tại)</span></a>
+                    </li>
+
+                    <li class="page-item"><a class="page-link" th:href="@{/facility/(page=${facilityList.number + 1},
+       searchName=${searchName}, searchFacilityType=${searchFacilityType})}"
+                                             th:if="${facilityList.hasNext()}" th:text="${facilityList.number + 2}"></a>
+                    </li>
+
+                    <li class="page-item">
+                        <a class="page-link" th:href="@{/facility/(page=${facilityList.number + 1}, name=${name},
+            searchName=${searchName}, searchFacilityType=${searchFacilityType})}"
+                           th:if="${facilityList.hasNext()}">&raquo;</a>
+                    </li>
+                    <li class="page-item disabled" th:unless="${facilityList.hasNext()}">
+                        <a class="page-link">&raquo;</a>
+                    </li>
+                </ul>
+            </nav>
         </div>
+
     </div>
 
     <div th:replace="~{layout::footer}"></div>
@@ -139,6 +166,8 @@
     function showDelete(id, name) {
         document.getElementById("deleteId").value = id;
         document.getElementById("deleteName").innerText = name;
+        // document.getElementById("deleteName").value = name;
+        document.getElementById("deleteName2").value = name;
     }
 </script>
 
@@ -152,12 +181,13 @@
                 <div class="modal-body text-center text-success" style="background-color: rgba(132,151,241,0)">
                     <h1>Are you sure you want to delete?</h1>
                     <h1 id="deleteName"></h1>
+                    <input type="hidden" name="deleteName2" id="deleteName2">
                 </div>
                 <div class="modal-footer text-success " style="background-color: rgba(132,151,241,0)">
                     <!--                    <button type="submit" class="btn btn-outline-danger" th:id="deleteId" th:name="deleteId">-->
                     <!--                        <b>Acept</b></button>-->
-                    <button type="submit" class="btn btn-outline-danger" th:id="deleteId" th:name="deleteId"
-                            data-bs-toggle="modal" data-bs-target="#alert"><b>Acept</b></button>
+                    <button type="submit" class="btn btn-outline-danger" th:id="deleteId" th:name="deleteId">
+                        <b>Acept</b></button>
                     <button type="button" class="btn btn-outline-primary" data-bs-dismiss="modal"><b>Close</b></button>
                 </div>
             </form>
@@ -165,19 +195,25 @@
     </div>
 </div>
 
-<!--<div class="modal fade" id="alert" tabindex="-1" data-bs-backdrop="static" aria-labelledby="exampleModalLabel"-->
-<!--     aria-hidden="true">-->
-<!--    <div class="modal-dialog">-->
-<!--        <div class="modal-content"-->
-<!--             style="background-image: url(https://c4.wallpaperflare.com/wallpaper/592/569/318/ashar-josephine-skriver-model-women-victoria-s-secret-hd-wallpaper-thumb.jpg);background-repeat: no-repeat; background-size: 100%">-->
-<!--            <div class="modal-body text-center text-success" style="background-color: rgba(132,151,241,0)">-->
-<!--                <h1>Delete success</h1>-->
-<!--            </div>-->
-<!--            <div class="modal-footer text-success " style="background-color: rgba(132,151,241,0)">-->
-<!--                <button type="button" class="btn btn-outline-primary" data-bs-dismiss="modal"><b>Close</b></button>-->
-<!--            </div>-->
-<!--        </div>-->
-<!--    </div>-->
-<!--</div>-->
+<div class="modal fade" id="alert" tabindex="-1" data-bs-backdrop="static" aria-labelledby="exampleModalLabel"
+     aria-hidden="true">
+    <script th:inline="javascript" th:if="${mess == 1}">
+        $(document).ready(function () {
+            $("#alert").modal("show");
+        });
+    </script>
+    <div class="modal-dialog">
+        <div class="modal-content"
+             style="background-image: url(https://c4.wallpaperflare.com/wallpaper/592/569/318/ashar-josephine-skriver-model-women-victoria-s-secret-hd-wallpaper-thumb.jpg);background-repeat: no-repeat; background-size: 100%">
+            <div class="modal-body text-center text-success" style="background-color: rgba(132,151,241,0)">
+                <h1>Delete success!!!</h1>
+                <h1 th:text="${deleteName2}"></h1>
+            </div>
+            <div class="modal-footer text-success " style="background-color: rgba(132,151,241,0)">
+                <button type="button" class="btn btn-outline-primary" data-bs-dismiss="modal"><b>Close</b></button>
+            </div>
+        </div>
+    </div>
+</div>
 
 </html>

@@ -31,7 +31,7 @@ public class FacilityController {
     }
 
     @GetMapping("")
-    public String home(@RequestParam(defaultValue = "") String searchName, @RequestParam(defaultValue = "-1") int searchFacilityType, @PageableDefault(page = 0, size = 4) Pageable pageable, Model model) {
+    public String home(@RequestParam(defaultValue = "") String searchName, @RequestParam(defaultValue = "-1") int searchFacilityType, @PageableDefault(page = 0, size = 2) Pageable pageable, Model model) {
         if (searchFacilityType != -1) {
             FacilityType facilityType = facilityTyeService.findById(searchFacilityType);
             model.addAttribute("facilityList", facilityService.findByNameContainingAndFacilityTypeOrderByName(searchName, facilityType, pageable));
@@ -46,13 +46,15 @@ public class FacilityController {
         model.addAttribute("facilityType", new FacilityType());
         model.addAttribute("rentType", new RentType());
         model.addAttribute("searchName", searchName);
+        model.addAttribute("searchFacilityType", searchFacilityType);
         return "facility/list";
     }
 
     @GetMapping("delete")
-    public String delete(@RequestParam Integer deleteId, RedirectAttributes redirectAttributes) {
+    public String delete(@RequestParam Integer deleteId,@RequestParam("deleteName2") String deleteName2, RedirectAttributes redirectAttributes) {
         facilityService.remove(deleteId);
-        redirectAttributes.addFlashAttribute("mess", "Delete success!!!");
+        redirectAttributes.addFlashAttribute("mess", 1);
+        redirectAttributes.addFlashAttribute("deleteName2", deleteName2);
         return "redirect:/facility/";
     }
 

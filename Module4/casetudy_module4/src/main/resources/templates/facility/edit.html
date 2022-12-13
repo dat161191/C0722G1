@@ -100,12 +100,12 @@
 
                                     <tr>
                                         <td><label th:for="cost"
-                                                   class="form-label"><b>Cost(USD)</b></label>
+                                                   class="form-label"><b>Cost(VND)</b></label>
                                         </td>
                                         <td><input type="text" class="form-control text-light"
                                                    th:field="*{cost}"
                                                    style="background-color: rgba(132,151,241,0.2)">
-                                            <small>Example:2000,1000,500 or 200</small>
+                                            <small>Example:2000,1000 or 500</small>
                                             <!-- <p th:errors="*{cost}" class="text-danger"></p>-->
                                         </td>
                                     </tr>
@@ -244,10 +244,9 @@
 
         init();
         $('#facilityType').change(function () {
-            debugger
             if ($('#facilityType').val() == 1) {
                 $('#facilityFrees').hide();
-                $('#facilityFree').val(null);
+                $('#facilityFree').val("");
                 $('#numberOfFloorss').show();
                 $('#poolAreas').show();
                 $('#descriptionOtherConveniences').show();
@@ -255,22 +254,22 @@
             }
             if ($('#facilityType').val() == 2) {
                 $('#facilityFrees').hide();
-                $('#facilityFree').val(null);
+                $('#facilityFree').val("");
                 $('#poolAreas').hide();
-                $('#poolArea').val(null);
+                $('#poolArea').val(0);
                 $('#numberOfFloorss').show();
                 $('#descriptionOtherConveniences').show();
                 $('#standardRooms').show();
             }
-            if ($('#facilityType').val() == 3) {
+            if ($('#facilityType').val()== 3) {
                 $('#numberOfFloorss').hide();
-                $('#numberOfFloors').val(null);
+                $('#numberOfFloors').val(0);
                 $('#poolAreas').hide();
-                $('#poolArea').val(null);
+                $('#poolArea').val(0);
                 $('#standardRooms').hide();
-                $('#standardRoom').val(null);
+                $('#standardRoom').val("");
                 $('#descriptionOtherConveniences').hide();
-                $('#descriptionOtherConvenience').val(null);
+                $('#descriptionOtherConvenience').val("");
                 $('#facilityFrees').show();
             }// $("#facilityType").return($('facilityType'));
         })

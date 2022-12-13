@@ -31,7 +31,7 @@ public class CustomerController {
     private ICustomerTypeService customerTypeService;
 
     @GetMapping("")
-    public String home(@RequestParam(defaultValue = "") String name, @RequestParam(defaultValue = "") String email, @RequestParam(defaultValue = "") String customerTypeId, @PageableDefault(page = 0, size = 4) Pageable pageable, Model model) {
+    public String home(@RequestParam(defaultValue = "") String name, @RequestParam(defaultValue = "") String email, @RequestParam(defaultValue = "") String customerTypeId, @PageableDefault(page = 0, size = 3) Pageable pageable, Model model) {
         CustomerType customerType1 = new CustomerType();
         CustomerDto customerDto = CustomerDto.builder().build();
         CustomerDto customerDtoEdit = CustomerDto.builder().build();
@@ -42,6 +42,11 @@ public class CustomerController {
         model.addAttribute("customerTypeList", customerTypeList);
         model.addAttribute("customerDto", customerDto);
         model.addAttribute("customerDtoEdit", customerDtoEdit);
+        model.addAttribute("name", name);
+        model.addAttribute("email", email);
+        if (!customerTypeId.isEmpty()) {
+            model.addAttribute("customerTypeId",Integer.parseInt(customerTypeId));
+        }
         return "customer/list";
     }
 
@@ -53,9 +58,9 @@ public class CustomerController {
     }
 
     @PostMapping("create")
-    public String create(@Validated @ModelAttribute("customerDto") CustomerDto customerDto, BindingResult bindingResultCreate,Model model,
-                             RedirectAttributes redirectAttributes,  @ModelAttribute("customerDtoEdit") CustomerDto customerDtoEdit) {
-        Page<Customer> customerList = customerService.showListAndSearch("", "", "", PageRequest.of(0,4));
+    public String create(@Validated @ModelAttribute("customerDto") CustomerDto customerDto, BindingResult bindingResultCreate, Model model,
+                         RedirectAttributes redirectAttributes, @ModelAttribute("customerDtoEdit") CustomerDto customerDtoEdit) {
+        Page<Customer> customerList = customerService.showListAndSearch("", "", "", PageRequest.of(0, 4));
         List<CustomerType> customerTypeList = customerTypeService.findAll();
         CustomerType customerType1 = new CustomerType();
         if (bindingResultCreate.hasErrors()) {
@@ -75,11 +80,11 @@ public class CustomerController {
 
     @PostMapping("edit")
     public String edit(@Valid @ModelAttribute("customerDtoEdit") CustomerDto customerDtoEdit, BindingResult bindingResultEdit,
-                           RedirectAttributes redirectAttributes, Model model,@ModelAttribute("customerDto") CustomerDto customerDto) {
+                       RedirectAttributes redirectAttributes, Model model, @ModelAttribute("customerDto") CustomerDto customerDto) {
         CustomerType customerType1 = new CustomerType();
         customerDto = CustomerDto.builder().build();
 
-        Page<Customer> customerList = customerService.showListAndSearch("", "", "", PageRequest.of(0,4));
+        Page<Customer> customerList = customerService.showListAndSearch("", "", "", PageRequest.of(0, 4));
         List<CustomerType> customerTypeList = customerTypeService.findAll();
         if (bindingResultEdit.hasErrors()) {
             model.addAttribute("customerDto", customerDto);

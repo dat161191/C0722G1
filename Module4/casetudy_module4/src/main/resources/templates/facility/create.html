@@ -60,6 +60,7 @@
                                                 <option th:each="faci:${facilityTypeList}" th:value="${faci.id}"
                                                         th:text="${faci.name}"></option>
                                             </select>
+                                            <small id="tittle" style="color:red;">Please choose to initialize the form!!!</small>
                                         </td>
                                     </tr>
                                 </table>
@@ -67,7 +68,7 @@
                         </tr>
                         <tr>
                             <td>
-                                <table>
+                                <table id="hide1">
                                     <tr>
                                         <td><label th:for="name" class="form-label"><b>FacilityName</b></label></td>
                                         <td>
@@ -101,7 +102,7 @@
                                         <td><input type="text" class="form-control text-light"
                                                    th:field="*{cost}"
                                                    style="background-color: rgba(132,151,241,0.2)">
-                                            <small>Example:2000,1000,500 or 200</small>
+                                            <small>Example:2000,1000 or 500</small>
                                             <!-- <p th:errors="*{cost}" class="text-danger"></p>-->
                                         </td>
                                     </tr>
@@ -131,7 +132,7 @@
                                 </table>
                             </td>
                             <td>
-                                <table>
+                                <table id="hide2">
                                     <tr>
                                         <td><label for="rentType"><b>RentType</b></label></td>
                                         <td>
@@ -210,30 +211,41 @@
 </div>
 </body>
 <script>
-    $('#facilityType').change(function () {
-        if ($('#facilityType').val() == 1) {
-            $('#facilityFree').hide();
-            $('#numberOfFloors').show();
-            $('#poolArea').show();
-            $('#descriptionOtherConvenience').show();
-            $('#standardRoom').show();
+    $(document).ready(function () {
+        function init() {
+            $('#hide1').hide();
+            $('#hide2').hide();
+        }
 
-        }
-        if ($('#facilityType').val() == 2) {
-            $('#facilityFree').hide();
-            $('#poolArea').hide();
-            $('#numberOfFloors').show();
-            $('#descriptionOtherConvenience').show();
-            $('#standardRoom').show();
-        }
-        if ($('#facilityType').val() == 3) {
-            $('#numberOfFloors').hide();
-            $('#poolArea').hide();
-            $('#standardRoom').hide();
-            $('#descriptionOtherConvenience').hide();
-            $('#facilityFree').show();
-        }
-        // $("#facilityType").return($('facilityType'));
+        init()
+        $('#facilityType').change(function () {
+            $('#hide1').show();
+            $('#hide2').show();
+            $('#tittle').hide();
+            if ($('#facilityType').val() == 1) {
+                $('#facilityFree').hide();
+                $('#numberOfFloors').show();
+                $('#poolArea').show();
+                $('#descriptionOtherConvenience').show();
+                $('#standardRoom').show();
+
+            }
+            if ($('#facilityType').val() == 2) {
+                $('#facilityFree').hide();
+                $('#poolArea').hide();
+                $('#numberOfFloors').show();
+                $('#descriptionOtherConvenience').show();
+                $('#standardRoom').show();
+            }
+            if ($('#facilityType').val() == 3) {
+                $('#numberOfFloors').hide();
+                $('#poolArea').hide();
+                $('#standardRoom').hide();
+                $('#descriptionOtherConvenience').hide();
+                $('#facilityFree').show();
+            }
+        })
     })
+
 </script>
 </html>
