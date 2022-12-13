@@ -36,7 +36,7 @@
 </head>
 <body>
 <div class="container"
-     style="background-image: url(https://c4.wallpaperflare.com/wallpaper/682/97/249/lorena-rae-model-victoria-s-secret-hd-wallpaper-preview.jpg);background-repeat: no-repeat; background-size: 100%;min-height: 100vh">
+     style="background-image: url(https://c4.wallpaperflare.com/wallpaper/323/372/925/lamborghini-car-lamborghini-aventador-vehicle-wallpaper-preview.jpg);background-repeat: no-repeat; background-size: 100%;min-height: 100vh">
     <div th:replace="~{layout::header}"></div>
     <div class="row mt-1 mb-1">
         <div class="col-6">
@@ -203,6 +203,8 @@
     function showDelete(id, name) {
         document.getElementById("deleteId").value = id;
         document.getElementById("deleteName").innerText = name;
+        document.getElementById("deleteName2").value = name;
+
     }
 </script>
 
@@ -414,9 +416,10 @@
         <div class="modal-content"
              style="background-image: url(https://c4.wallpaperflare.com/wallpaper/592/569/318/ashar-josephine-skriver-model-women-victoria-s-secret-hd-wallpaper-thumb.jpg);background-repeat: no-repeat; background-size: 100%">
             <form th:action="@{/customer/delete}" method="get">
-                <div class="modal-body text-center text-success" style="background-color: rgba(132,151,241,0)">
-                    <h3>Are you sure you want to delete?</h3>
+                <div class="modal-body text-center text-danger" style="background-color: rgba(132,151,241,0)">
+                    <h1>Are you sure you want to delete?</h1>
                     <h2 id="deleteName"></h2>
+                    <input type="hidden" name="deleteName2" id="deleteName2">
                 </div>
                 <div class="modal-footer text-success " style="background-color: rgba(132,151,241,0)">
                     <button type="submit" class="btn btn-outline-danger" th:id="deleteId" th:name="deleteId">
@@ -464,11 +467,28 @@
         </div>
     </div>
 </div>
-<!--<script>-->
-<!--    $("#btn-create").click(function () {-->
-<!--        alert("ok")-->
-<!--        $("#form-create").get(0).reset()-->
-<!--    })-->
+
+<!--MODAL ALEART-->
+<div class="modal fade" id="alert" tabindex="-1" data-bs-backdrop="static" aria-labelledby="exampleModalLabel"
+     aria-hidden="true">
+    <script th:inline="javascript" th:if="${deleteAlert == 1}">
+        $(document).ready(function () {
+            $("#alert").modal("show");
+        });
+    </script>
+    <div class="modal-dialog">
+        <div class="modal-content"
+             style="background-image: url(https://c4.wallpaperflare.com/wallpaper/592/569/318/ashar-josephine-skriver-model-women-victoria-s-secret-hd-wallpaper-thumb.jpg);background-repeat: no-repeat; background-size: 100%">
+            <div class="modal-body text-center text-danger" style="background-color: rgba(132,151,241,0)">
+                <h1>Delete success!!!</h1>
+                <h1 th:text="${deleteName2}"></h1>
+            </div>
+            <div class="modal-footer text-success " style="background-color: rgba(132,151,241,0)">
+                <button type="button" class="btn btn-outline-primary" data-bs-dismiss="modal"><b>Close</b></button>
+            </div>
+        </div>
+    </div>
+</div>
 </script>
 </body>
 </html>

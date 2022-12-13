@@ -35,7 +35,7 @@
 </head>
 <body>
 <div class="container"
-     style="background-image: url(https://c4.wallpaperflare.com/wallpaper/430/114/513/erin-heatherton-victoria-secret-wallpaper-preview.jpg);background-repeat: no-repeat; background-size: 100%;min-height: 100vh">
+     style="background-image: url(https://c4.wallpaperflare.com/wallpaper/9/146/335/car-mclaren-vehicle-mclaren-mp4-12c-wallpaper-preview.jpg);background-repeat: no-repeat; background-size: 100%;min-height: 100vh">
     <div th:replace="~{layout::header}"></div>
     <div class="row mt-1 mb-1">
         <div class="col-4">
@@ -66,7 +66,7 @@
         <div class="row">
             <div class="col col-12">
                 <table class="table table-hover text-center text-light"
-                       style="width: 100%;background-color: rgba(252,252,253,0.5)">
+                       style="width: 100%;background-color: rgba(146,195,245,0.5)">
                     <thead>
                     <tr>
                         <th>STT</th>
@@ -166,7 +166,6 @@
     function showDelete(id, name) {
         document.getElementById("deleteId").value = id;
         document.getElementById("deleteName").innerText = name;
-        // document.getElementById("deleteName").value = name;
         document.getElementById("deleteName2").value = name;
     }
 </script>
@@ -178,14 +177,12 @@
         <div class="modal-content"
              style="background-image: url(https://c4.wallpaperflare.com/wallpaper/592/569/318/ashar-josephine-skriver-model-women-victoria-s-secret-hd-wallpaper-thumb.jpg);background-repeat: no-repeat; background-size: 100%">
             <form th:action="@{/facility/delete}" method="get">
-                <div class="modal-body text-center text-success" style="background-color: rgba(132,151,241,0)">
+                <div class="modal-body text-center text-danger" style="background-color: rgba(132,151,241,0)">
                     <h1>Are you sure you want to delete?</h1>
                     <h1 id="deleteName"></h1>
                     <input type="hidden" name="deleteName2" id="deleteName2">
                 </div>
-                <div class="modal-footer text-success " style="background-color: rgba(132,151,241,0)">
-                    <!--                    <button type="submit" class="btn btn-outline-danger" th:id="deleteId" th:name="deleteId">-->
-                    <!--                        <b>Acept</b></button>-->
+                <div class="modal-footer text-danger " style="background-color: rgba(132,151,241,0)">
                     <button type="submit" class="btn btn-outline-danger" th:id="deleteId" th:name="deleteId">
                         <b>Acept</b></button>
                     <button type="button" class="btn btn-outline-primary" data-bs-dismiss="modal"><b>Close</b></button>
@@ -197,7 +194,7 @@
 
 <div class="modal fade" id="alert" tabindex="-1" data-bs-backdrop="static" aria-labelledby="exampleModalLabel"
      aria-hidden="true">
-    <script th:inline="javascript" th:if="${mess == 1}">
+    <script th:inline="javascript" th:if="${deleteAlert == 1}">
         $(document).ready(function () {
             $("#alert").modal("show");
         });
@@ -205,7 +202,7 @@
     <div class="modal-dialog">
         <div class="modal-content"
              style="background-image: url(https://c4.wallpaperflare.com/wallpaper/592/569/318/ashar-josephine-skriver-model-women-victoria-s-secret-hd-wallpaper-thumb.jpg);background-repeat: no-repeat; background-size: 100%">
-            <div class="modal-body text-center text-success" style="background-color: rgba(132,151,241,0)">
+            <div class="modal-body text-center text-danger" style="background-color: rgba(132,151,241,0)">
                 <h1>Delete success!!!</h1>
                 <h1 th:text="${deleteName2}"></h1>
             </div>

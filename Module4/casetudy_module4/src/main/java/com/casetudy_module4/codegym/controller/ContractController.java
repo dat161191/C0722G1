@@ -1,5 +1,6 @@
 package com.casetudy_module4.codegym.controller;
 
+import com.casetudy_module4.codegym.dto.contact_dto.ContractDetailDto;
 import com.casetudy_module4.codegym.dto.contact_dto.ContractDto;
 import com.casetudy_module4.codegym.dto.contact_dto.ContractDtoList;
 import com.casetudy_module4.codegym.model.contact.AttachFacility;
@@ -49,6 +50,7 @@ public class ContractController {
         model.addAttribute("employeeList",employeeService.findAll());
         model.addAttribute("customerList",customerService.findAll());
         model.addAttribute("facilityList",facilityService.findAll());
+        model.addAttribute("contractDetailDto",new ContractDetailDto());
         return "contract/list";
     }
     @PostMapping("create")

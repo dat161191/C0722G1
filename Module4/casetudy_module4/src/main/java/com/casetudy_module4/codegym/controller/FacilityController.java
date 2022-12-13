@@ -53,7 +53,7 @@ public class FacilityController {
     @GetMapping("delete")
     public String delete(@RequestParam Integer deleteId,@RequestParam("deleteName2") String deleteName2, RedirectAttributes redirectAttributes) {
         facilityService.remove(deleteId);
-        redirectAttributes.addFlashAttribute("mess", 1);
+        redirectAttributes.addFlashAttribute("deleteAlert", 1);
         redirectAttributes.addFlashAttribute("deleteName2", deleteName2);
         return "redirect:/facility/";
     }

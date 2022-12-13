@@ -35,13 +35,13 @@
 </head>
 <body>
 <div class="container"
-     style="background-image: url(https://c4.wallpaperflare.com/wallpaper/1010/784/999/women-hair-legs-blonde-wallpaper-preview.jpg);background-repeat: no-repeat; background-size: 100%;min-height: 100vh">
+     style="background-image: url(https://c4.wallpaperflare.com/wallpaper/922/618/521/auto-black-machine-nissan-nfs-hd-wallpaper-preview.jpg);background-repeat: no-repeat; background-size: 100%;min-height: 100vh">
 
     <div th:replace="~{layout::header}"></div>
 
     <div class="row text-center mt-1 mb-1">
         <div class="col col-1"></div>
-        <div class="col col-10 text-center text-danger">
+        <div class="col col-10 text-center text-light">
             <h3><b>Contract List</b></h3>
             <!--        <span th:text="${mess}"></span>--></div>
         <div class="col col-1">
@@ -55,11 +55,12 @@
     <div class="row">
         <div class="col col-1"></div>
         <div class="col col-10">
-            <table class="table text-center table-hover text-danger"
+            <table class="table text-center table-hover text-light"
                    style="width: 100%;background-color: rgba(146,195,245,0.5)">
                 <thead>
                 <tr>
                     <th>#</th>
+                    <th hidden>C.id</th>
                     <th>Facility</th>
                     <th>CustomerName</th>
                     <th>StarDate</th>
@@ -72,6 +73,7 @@
                 <tbody>
                 <tr th:each="contract,stt : ${contractDtoList}">
                     <td th:text="${stt.count}+${contractDtoList.number}*${contractDtoList.size}"></td>
+                    <td th:text="${contract.id}" hidden></td>
                     <td th:text="${contract.nameFacility}"></td>
                     <td th:text="${contract.nameCustomer}"></td>
                     <td th:text="${contract.startDate}"></td>
@@ -80,7 +82,8 @@
                     <td th:text="${contract.totalValue}"></td>
                     <td>
                         <button type="button" class="btn btn-outline-danger" data-bs-toggle="modal"
-                                data-bs-target="#edit" th:attr="onclick=|createCon('${faci.id}','${faci.name}');|">+
+                                data-bs-target="#createContractDetail"
+                                th:attr="onclick=|createContractDetail('${contract.id}','${contract.nameCustomer}');|">+
                         </button>
                     </td>
                     <td>
@@ -139,6 +142,21 @@
     <div th:replace="~{layout::footer}"></div>
 </div>
 </body>
+<!--FUNCTION-->
+<script th:inline="javascript">
+    /*==CREATE CONTRACTDETAIL==*/
+    // $(document).ready(function (){
+    //     function createContractDetail(id,name){
+    //         $("#showId").val(id);
+    //         $("#showName").val(name);
+    //     }
+    // })
+    function createContractDetail(id, name) {
+        document.getElementById("showId").value = id;
+        document.getElementById("showName").value = name;
+    }
+</script>
+
 <!--CREATE CONTRACT-->
 <div class="modal fade" id="create" tabindex="-1" data-bs-backdrop="static" aria-labelledby="exampleModalLabel"
      aria-hidden="true">
@@ -220,6 +238,56 @@
     </div>
 </div>
 
+<!--CREATE CONTRACTDETAIL-->
+<div class="modal fade" id="createContractDetail" tabindex="-1" data-bs-backdrop="static"
+     aria-labelledby="exampleModalLabel"
+     aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header text-danger">
+                <h1 class="modal-title fs-5"><b>CREATE NEW CONTRACT</b></h1>
+            </div>
+            <form id="form-createDetail" th:action="@{/contractDetail/create}" method="post"
+                  th:object="${contractDetailDto}"
+                  class="mb-1">
+                <div class="modal-body text-light bg-primary">
+                    <div class="mb-1">
+                        <label for="showName" class="form-label"><b>CustomerName</b></label>
+                        <input type="text" class="form-control" id="showName" readonly>
+                    </div>
+                    <div class="mb-1">
+                        <input type="text" class="form-control" hidden id="showId" th:field="*{contract}">
+                    </div>
+                    <div class="mb-1">
+                        <label for="attachFacilityName"><b>AttachFacilityName</b> </label>
+                        <select id="attachFacilityName" class="form-select" required
+                                aria-label="Default select example"
+                                th:field="*{attachFacility}" style="border-radius: 30px">
+                            <option value="">Choosen FacilityName</option>
+
+                            <option
+                                    th:each="attach : ${attachList}"
+                                    th:value="${attach.id}"
+                                    th:text="${attach.name}">
+                            </option>
+                        </select>
+                    </div>
+                    <div class="mb-1">
+                        <label for="quantity" class="form-label"><b>Quantity</b></label>
+                        <input type="number" min="0" class="form-control" id="quantity" th:field="*{quantity}">
+                    </div>
+
+
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-outline-danger"><b>Add New ContractDetail</b></button>
+                    <button type="button" class="btn btn-outline-danger" data-bs-dismiss="modal"><b>Close</b></button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
 <!--Modal alert-->
 <div class="modal fade" id="alert" tabindex="-1" data-bs-backdrop="static" aria-labelledby="exampleModalLabel"
      aria-hidden="true">
@@ -229,7 +297,8 @@
         });
     </script>
     <div class="modal-dialog">
-        <div class="modal-content">
+        <div class="modal-content"
+             style="background-image: url(https://c4.wallpaperflare.com/wallpaper/592/569/318/ashar-josephine-skriver-model-women-victoria-s-secret-hd-wallpaper-thumb.jpg);background-repeat: no-repeat; background-size: 100%">
             <div class="modal-body text-center text-danger" style="background-color: rgba(132,151,241,0)">
                 <h1>Create success!!!</h1>
             </div>

@@ -45,15 +45,16 @@ public class CustomerController {
         model.addAttribute("name", name);
         model.addAttribute("email", email);
         if (!customerTypeId.isEmpty()) {
-            model.addAttribute("customerTypeId",Integer.parseInt(customerTypeId));
+            model.addAttribute("customerTypeId", Integer.parseInt(customerTypeId));
         }
         return "customer/list";
     }
 
     @GetMapping("delete")
-    public String delete(@RequestParam Integer deleteId, RedirectAttributes redirectAttributes) {
+    public String delete(@RequestParam Integer deleteId, @RequestParam("deleteName2") String deleteName2, RedirectAttributes redirectAttributes) {
         customerService.remove(deleteId);
-        redirectAttributes.addFlashAttribute("mess", "Delete success!!!");
+        redirectAttributes.addFlashAttribute("deleteAlert", 1);
+        redirectAttributes.addFlashAttribute("deleteName2", deleteName2);
         return "redirect:/customer/";
     }
 
