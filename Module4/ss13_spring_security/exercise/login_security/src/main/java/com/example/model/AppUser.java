@@ -17,8 +17,7 @@ public class AppUser {
     private Long id;
     private String username;
     private String password;
-//    @Column(columnDefinition = "boolean default true")
-    private boolean isEnabled= true;
+    private boolean isEnabled = true;
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(
             name = "user_role",

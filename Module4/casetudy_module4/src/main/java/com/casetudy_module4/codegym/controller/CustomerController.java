@@ -75,7 +75,9 @@ public class CustomerController {
         Customer customer = Customer.builder().build();
         BeanUtils.copyProperties(customerDto, customer);
         customerService.save(customer);
-        redirectAttributes.addFlashAttribute("mess", "Add new Customer success!!!");
+//        redirectAttributes.addFlashAttribute("mess", "Add new Customer success!!!");
+        redirectAttributes.addFlashAttribute("createAlert", 1);
+
         return "redirect:/customer";
     }
 
@@ -100,7 +102,8 @@ public class CustomerController {
         Customer customer = Customer.builder().build();
         BeanUtils.copyProperties(customerDtoEdit, customer);
         customerService.save(customer);
-        redirectAttributes.addFlashAttribute("mess", "Edit Customer success!!!");
+//        redirectAttributes.addFlashAttribute("mess", "Edit Customer success!!!");
+        redirectAttributes.addFlashAttribute("editAlert", 1);
         return "redirect:/customer";
     }
 }

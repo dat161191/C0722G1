@@ -41,25 +41,26 @@
     <div class="row mt-1 mb-1">
         <div class="col-6">
             <form class="d-flex" role="search">
-                <input class="form-control me-2" type="search" placeholder="Customer Name" aria-label="Search"
-                       th:value="${name}" name="name" style="background-color: rgba(132,151,241,0.5)">
-                <input class="form-control me-2" type="search" placeholder="Email" aria-label="Search" name="email"
-                       th:value="${email}" style="background-color: rgba(132,151,241,0.2)">
-                <select name="customerTypeId" class="form-select"
-                        aria-label="Default select example"
-                        style="width: 100%;background-color: rgba(252,252,253,0.3);border-radius: 20px;margin-right: 2px;">
+                <input class="form-control text-light me-2" type="search" placeholder="Customer Name"
+                       aria-label="Search"
+                       th:value="${name}" name="name" style="background-color: rgba(101,126,246,0.3)">
+                <input class="form-control text-light me-2" type="search" placeholder="Email" aria-label="Search"
+                       name="email"
+                       th:value="${email}" style="background-color: rgba(101,126,246,0.3)">
+                <select name="customerTypeId" class="form-select text-light" aria-label="Default select example"
+                        style="width: 100%;background-color: rgba(101,126,246,0.3);border-radius: 20px;margin-right: 2px;">
                     <option value="">CustomerType</option>
                     <option th:each="customerType:${customerTypeList}" th:value="${customerType.id}"
                             th:text="${customerType.name}" th:selected="${customerTypeId==customerType.id}">
 
                     </option>
                 </select>
-                <button class="btn btn-outline-danger" type="submit">Search</button>
+                <button class="btn btn-outline-primary" type="submit">Search</button>
             </form>
         </div>
         <div class="col col-4"></div>
         <div class="col col-2">
-            <button type="button" id="btn-create" class="btn btn-outline-danger me-auto" data-bs-target="#create"
+            <button type="button" id="btn-create" class="btn btn-outline-primary me-auto" data-bs-target="#create"
                     data-bs-toggle="modal">
                 Create Customer
             </button>
@@ -74,8 +75,8 @@
         <div class="row">
             <div class="col col-1"></div>
             <div class="col col-10">
-                <table class="table text-center table-hover text-primary"
-                       style="width: 100%;background-color: rgba(252,252,253,0.5)">
+                <table class="table text-center table-hover text-light"
+                       style="width: 100%;background-color: rgba(146,195,245,0.5)">
                     <thead>
                     <tr>
                         <th>STT</th>
@@ -469,11 +470,11 @@
 </div>
 
 <!--MODAL ALEART-->
-<div class="modal fade" id="alert" tabindex="-1" data-bs-backdrop="static" aria-labelledby="exampleModalLabel"
+<div class="modal fade" id="deleteAlert" tabindex="-1" data-bs-backdrop="static" aria-labelledby="exampleModalLabel"
      aria-hidden="true">
     <script th:inline="javascript" th:if="${deleteAlert == 1}">
         $(document).ready(function () {
-            $("#alert").modal("show");
+            $("#deleteAlert").modal("show");
         });
     </script>
     <div class="modal-dialog">
@@ -482,6 +483,47 @@
             <div class="modal-body text-center text-danger" style="background-color: rgba(132,151,241,0)">
                 <h1>Delete success!!!</h1>
                 <h1 th:text="${deleteName2}"></h1>
+            </div>
+            <div class="modal-footer text-success " style="background-color: rgba(132,151,241,0)">
+                <button type="button" class="btn btn-outline-primary" data-bs-dismiss="modal"><b>Close</b></button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--Edit-->
+<div class="modal fade" id="editAlert" tabindex="-1" data-bs-backdrop="static" aria-labelledby="exampleModalLabel"
+     aria-hidden="true">
+    <script th:inline="javascript" th:if="${editAlert == 1}">
+        $(document).ready(function () {
+            $("#editAlert").modal("show");
+        });
+    </script>
+    <div class="modal-dialog">
+        <div class="modal-content"
+             style="background-image: url(https://c4.wallpaperflare.com/wallpaper/592/569/318/ashar-josephine-skriver-model-women-victoria-s-secret-hd-wallpaper-thumb.jpg);background-repeat: no-repeat; background-size: 100%">
+            <div class="modal-body text-center text-danger" style="background-color: rgba(132,151,241,0)">
+                <h1>Edit Customer success!!!!!!</h1>
+            </div>
+            <div class="modal-footer text-success " style="background-color: rgba(132,151,241,0)">
+                <button type="button" class="btn btn-outline-primary" data-bs-dismiss="modal"><b>Close</b></button>
+            </div>
+        </div>
+    </div>
+</div>
+<!--Create-->
+<div class="modal fade" id="createAlert" tabindex="-1" data-bs-backdrop="static" aria-labelledby="exampleModalLabel"
+     aria-hidden="true">
+    <script th:inline="javascript" th:if="${createAlert == 1}">
+        $(document).ready(function () {
+            $("#createAlert").modal("show");
+        });
+    </script>
+    <div class="modal-dialog">
+        <div class="modal-content"
+             style="background-image: url(https://c4.wallpaperflare.com/wallpaper/592/569/318/ashar-josephine-skriver-model-women-victoria-s-secret-hd-wallpaper-thumb.jpg);background-repeat: no-repeat; background-size: 100%">
+            <div class="modal-body text-center text-danger" style="background-color: rgba(132,151,241,0)">
+                <h1>Create New Customer success!!!!!!</h1>
             </div>
             <div class="modal-footer text-success " style="background-color: rgba(132,151,241,0)">
                 <button type="button" class="btn btn-outline-primary" data-bs-dismiss="modal"><b>Close</b></button>

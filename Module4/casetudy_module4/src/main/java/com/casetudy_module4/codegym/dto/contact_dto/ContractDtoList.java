@@ -14,4 +14,6 @@ public interface ContractDtoList {
     String getDeposit();
 
     String getTotalValue();
+
+//    String getAttachFacilityName();
 }

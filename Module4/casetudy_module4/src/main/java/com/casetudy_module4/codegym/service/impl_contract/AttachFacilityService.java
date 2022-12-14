@@ -1,5 +1,6 @@
 package com.casetudy_module4.codegym.service.impl_contract;
 
+import com.casetudy_module4.codegym.dto.contact_dto.AttachFacilityDto;
 import com.casetudy_module4.codegym.model.contact.AttachFacility;
 import com.casetudy_module4.codegym.repository.contract.IAttachFacilityRepository;
 import com.casetudy_module4.codegym.service.IAttachFacilityService;
@@ -31,5 +32,10 @@ public class AttachFacilityService implements IAttachFacilityService {
     @Override
     public void remove(Long id) {
         attachFacilityRepository.deleteById(id);
+    }
+
+    @Override
+    public List<AttachFacilityDto> showListAttach(Long id) {
+        return attachFacilityRepository.showListAttach(id);
     }
 }

@@ -73,7 +73,8 @@ public class FacilityController {
         Facility facility = Facility.builder().build();
         BeanUtils.copyProperties(facilityDto, facility);
         facilityService.save(facility);
-        redirectAttributes.addFlashAttribute("mess", "Create success!!!");
+//        redirectAttributes.addFlashAttribute("mess", "Create success!!!");
+        redirectAttributes.addFlashAttribute("createAlert", 1);
         return "redirect:/facility/";
     }
 
@@ -95,7 +96,9 @@ public class FacilityController {
         Facility facility=Facility.builder().build();
         BeanUtils.copyProperties(facilityDto,facility);
         facilityService.save(facility);
-        redirectAttributes.addFlashAttribute("mess","Edit Success!!!");
+//        redirectAttributes.addFlashAttribute("mess","Edit Success!!!");
+        redirectAttributes.addFlashAttribute("editAlert", 1);
+
         return "redirect:/facility/";
     }
 }
