@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<html lang="en" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
     <meta charset="UTF-8">
     <link
@@ -31,6 +31,11 @@
             border-radius: 20px;
             border: 1px solid red;
         }
+
+        span {
+            font-size: 15px;
+            color: red
+        }
     </style>
     <title>BossTran</title>
 </head>
@@ -42,17 +47,15 @@
         <div class="col-6">
             <form class="d-flex" role="search">
                 <input class="form-control text-light me-2" type="search" placeholder="Customer Name"
-                       aria-label="Search"
-                       th:value="${name}" name="name" style="background-color: rgba(101,126,246,0.3)">
+                       aria-label="Search" th:value="${name}" name="name"
+                       style="background-color: rgba(101,126,246,0.3)">
                 <input class="form-control text-light me-2" type="search" placeholder="Email" aria-label="Search"
-                       name="email"
-                       th:value="${email}" style="background-color: rgba(101,126,246,0.3)">
+                       name="email" th:value="${email}" style="background-color: rgba(101,126,246,0.3)">
                 <select name="customerTypeId" class="form-select text-light" aria-label="Default select example"
                         style="width: 100%;background-color: rgba(101,126,246,0.3);border-radius: 20px;margin-right: 2px;">
                     <option value="">CustomerType</option>
                     <option th:each="customerType:${customerTypeList}" th:value="${customerType.id}"
                             th:text="${customerType.name}" th:selected="${customerTypeId==customerType.id}">
-
                     </option>
                 </select>
                 <button class="btn btn-outline-primary" type="submit">Search</button>
@@ -67,109 +70,150 @@
         </div>
 
     </div>
-    <div class="row text-center text-primary"><h3><b>Customer List</b></h3>
-        <h4 th:text="${mess}"></h4>
-    </div>
-
     <div class="row content mt-1 mb-1">
-        <div class="row">
-            <div class="col col-1"></div>
-            <div class="col col-10">
-                <table class="table text-center table-hover text-light"
-                       style="width: 100%;background-color: rgba(146,195,245,0.5)">
-                    <thead>
-                    <tr>
-                        <th>STT</th>
-                        <th>Customer Name</th>
-                        <th>Birthday</th>
-                        <th>Gender</th>
-                        <th>Email</th>
-                        <th>CustomerType</th>
-                        <th>Edit</th>
-                        <th>Delete</th>
-                        <th>View</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    <tr th:each="cus,stt : ${customerList}">
-                        <td th:text="${stt.count}+${customerList.number}*${customerList.size}"></td>
-                        <td th:text="${cus.name}"></td>
-                        <td th:text="${cus.dateOfBirth}"></td>
-                        <td th:text="${cus.gender==true?'Male':'Female'}"></td>
-                        <td th:text="${cus.email}"></td>
-                        <td th:text="${cus.customerType.name}"></td>
-                        <td>
-                            <button type="button" class="btn btn-outline-danger" data-bs-toggle="modal"
-                                    data-bs-target="#edit"
-                                    th:attr="onclick=|edit('${cus.id}','${cus.name}','${cus.dateOfBirth}','${cus.gender}','${cus.email}',
+        <div class="row text-center text-primary mt-1 mb-1"><h3><b>Customer List</b></h3>
+            <h4 th:text="${mess}"></h4>
+        </div>
+        <div class="row content mt-1 mb-1">
+            <div class="row">
+                <div class="col col-1"></div>
+                <div class="col col-10">
+                    <table class="table text-center table-hover text-light"
+                           style="width: 100%;background-color: rgba(146,195,245,0.5)">
+                        <thead>
+                        <tr>
+                            <th>STT</th>
+                            <th>Customer Name</th>
+                            <th>Birthday</th>
+                            <th>Gender</th>
+                            <th>Email</th>
+                            <th>CustomerType</th>
+                            <th>Edit</th>
+                            <th>Delete</th>
+                            <th>View</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr th:each="cus,stt : ${customerList}">
+                            <td th:text="${stt.count}+${customerList.number}*${customerList.size}"></td>
+                            <td th:text="${cus.name}"></td>
+                            <td th:text="${cus.dateOfBirth}"></td>
+                            <td th:text="${cus.gender==true?'Male':'Female'}"></td>
+                            <td th:text="${cus.email}"></td>
+                            <td th:text="${cus.customerType.name}"></td>
+                            <td>
+                                <button type="button" class="btn btn-outline-danger" data-bs-toggle="modal"
+                                        data-bs-target="#edit"
+                                        th:attr="onclick=|edit('${cus.id}','${cus.name}','${cus.dateOfBirth}','${cus.gender}','${cus.email}',
                             '${cus.idCard}','${cus.phoneNumber}','${cus.address}','${cus.customerType.id}');|">
-                                Edit
-                            </button>
-                        </td>
-                        <td>
-                            <button type="button" class="btn btn-outline-danger"
-                                    th:attr="onclick=|showDelete('${cus.id}','${cus.name}');|" data-bs-toggle="modal"
-                                    data-bs-target="#delete">Delete
-                            </button>
-                        </td>
-                        <td>
-                            <button type="button" class="btn btn-outline-danger" data-bs-toggle="modal"
-                                    data-bs-target="#view"
-                                    th:attr="onclick=|viewModal('${cus.id}','${cus.name}','${cus.dateOfBirth}','${cus.gender}','${cus.email}',
+                                    Edit
+                                </button>
+                            </td>
+                            <td>
+                                <button type="button" class="btn btn-outline-danger"
+                                        th:attr="onclick=|showDelete('${cus.id}','${cus.name}');|" data-bs-toggle="modal"
+                                        data-bs-target="#delete">Delete
+                                </button>
+                            </td>
+                            <td>
+                                <button type="button" class="btn btn-outline-danger" data-bs-toggle="modal"
+                                        data-bs-target="#view"
+                                        th:attr="onclick=|viewModal('${cus.id}','${cus.name}','${cus.dateOfBirth}','${cus.gender}','${cus.email}',
                             '${cus.idCard}','${cus.phoneNumber}','${cus.address}','${cus.customerType.name}');|">
-                                View
-                            </button>
-                        </td>
-                    </tr>
-                    </tbody>
-                </table>
+                                    View
+                                </button>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="col col-1"></div>
             </div>
-
-            <div class="col col-1"></div>
-
-        </div>
-        <!--PHÂN TRANG-->
-        <div class="d-flex justify-content-center ">
-            <nav aria-label="..." class="justify-content-center d-flex">
-                <ul class="pagination">
-                    <li class="page-item">
-                        <a class="page-link" th:href="@{/customer/(page=${customerList.number - 1}, name=${name},
+            <!--PHÂN TRANG-->
+            <div class="d-flex justify-content-center ">
+                <nav aria-label="..." class="justify-content-center d-flex">
+                    <ul class="pagination">
+                        <li class="page-item">
+                            <a class="page-link" th:href="@{/customer/(page=${customerList.number - 1}, name=${name},
             email=${email}, customerTypeId=${customerTypeId})}"
-                           th:if="${customerList.hasPrevious()}">
-                            &laquo;</a>
-                    </li>
-                    <li class="page-item disabled" th:unless="${customerList.hasPrevious()}">
-                        <a class="page-link">&laquo;</a>
-                    </li>
+                               th:if="${customerList.hasPrevious()}">
+                                &laquo;</a>
+                        </li>
+                        <li class="page-item disabled" th:unless="${customerList.hasPrevious()}">
+                            <a class="page-link">&laquo;</a>
+                        </li>
 
-                    <li class="page-item"><a class="page-link" th:href="@{/customer/(page=${customerList.number - 1},
+                        <li class="page-item"><a class="page-link" th:href="@{/customer/(page=${customerList.number - 1},
         name=${name}, email=${email}, customerTypeId=${customerTypeId})}"
-                                             th:if="${customerList.hasPrevious()}" th:text="${customerList.number}"></a>
-                    </li>
+                                                 th:if="${customerList.hasPrevious()}" th:text="${customerList.number}"></a>
+                        </li>
 
-                    <li class="page-item active">
-                        <a class="page-link" th:href="@{/customer/(page=${customerList.number}, name=${name},
+                        <li class="page-item active">
+                            <a class="page-link" th:href="@{/customer/(page=${customerList.number}, name=${name},
             email=${email}, customerTypeId=${customerTypeId})}"
-                           th:text="${customerList.number + 1}">
-                            <span class="sr-only">(trang hiện tại)</span></a>
-                    </li>
+                               th:text="${customerList.number + 1}">
+                                <span class="sr-only">(trang hiện tại)</span></a>
+                        </li>
 
-                    <li class="page-item"><a class="page-link" th:href="@{/customer/(page=${customerList.number + 1},
+                        <li class="page-item"><a class="page-link" th:href="@{/customer/(page=${customerList.number + 1},
         name=${name}, email=${email}, customerTypeId=${customerTypeId})}"
-                                             th:if="${customerList.hasNext()}" th:text="${customerList.number + 2}"></a>
-                    </li>
+                                                 th:if="${customerList.hasNext()}" th:text="${customerList.number + 2}"></a>
+                        </li>
 
-                    <li class="page-item">
-                        <a class="page-link" th:href="@{/customer/(page=${customerList.number + 1}, name=${name},
+                        <li class="page-item">
+                            <a class="page-link" th:href="@{/customer/(page=${customerList.number + 1}, name=${name},
             email=${email}, customerTypeId=${customerTypeId})}"
-                           th:if="${customerList.hasNext()}">&raquo;</a>
-                    </li>
-                    <li class="page-item disabled" th:unless="${customerList.hasNext()}">
-                        <a class="page-link">&raquo;</a>
-                    </li>
-                </ul>
-            </nav>
+                               th:if="${customerList.hasNext()}">&raquo;</a>
+                        </li>
+                        <li class="page-item disabled" th:unless="${customerList.hasNext()}">
+                            <a class="page-link">&raquo;</a>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
         </div>
+
+    </div>
+    <div class="d-flex justify-content-center ">
+        <nav aria-label="..." class="justify-content-center d-flex">
+            <ul class="pagination">
+                <li class="page-item">
+                    <a class="page-link" th:href="@{/customer/(page=${customerList.number - 1}, name=${name},
+            email=${email}, customerTypeId=${customerTypeId})}"
+                       th:if="${customerList.hasPrevious()}">
+                        &laquo;</a>
+                </li>
+                <li class="page-item disabled" th:unless="${customerList.hasPrevious()}">
+                    <a class="page-link">&laquo;</a>
+                </li>
+
+                <li class="page-item"><a class="page-link" th:href="@{/customer/(page=${customerList.number - 1},
+        name=${name}, email=${email}, customerTypeId=${customerTypeId})}"
+                                         th:if="${customerList.hasPrevious()}" th:text="${customerList.number}"></a>
+                </li>
+
+                <li class="page-item active">
+                    <a class="page-link" th:href="@{/customer/(page=${customerList.number}, name=${name},
+            email=${email}, customerTypeId=${customerTypeId})}"
+                       th:text="${customerList.number + 1}">
+                        <span class="sr-only">(trang hiện tại)</span></a>
+                </li>
+
+                <li class="page-item"><a class="page-link" th:href="@{/customer/(page=${customerList.number + 1},
+        name=${name}, email=${email}, customerTypeId=${customerTypeId})}"
+                                         th:if="${customerList.hasNext()}" th:text="${customerList.number + 2}"></a>
+                </li>
+
+                <li class="page-item">
+                    <a class="page-link" th:href="@{/customer/(page=${customerList.number + 1}, name=${name},
+            email=${email}, customerTypeId=${customerTypeId})}"
+                       th:if="${customerList.hasNext()}">&raquo;</a>
+                </li>
+                <li class="page-item disabled" th:unless="${customerList.hasNext()}">
+                    <a class="page-link">&raquo;</a>
+                </li>
+            </ul>
+        </nav>
     </div>
     <div th:replace="~{layout::footer}"></div>
 </div>
@@ -208,7 +252,6 @@
 
     }
 </script>
-
 <!--Modal create+validate-->
 <div class="modal fade" id="create" tabindex="-1" data-bs-backdrop="static" aria-labelledby="exampleModalLabel"
      aria-hidden="true">

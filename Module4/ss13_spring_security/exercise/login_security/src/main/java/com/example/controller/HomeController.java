@@ -9,6 +9,12 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 
 @Controller
 public class HomeController {
+    @GetMapping("")
+//    public String home(@ModelAttribute AppUser appUser, Model model) {
+    public String home() {
+        return "list";
+    }
+
     @GetMapping("/user")
     public String user(@ModelAttribute AppUser appUser, Model model) {
         model.addAttribute("user", new AppUser());

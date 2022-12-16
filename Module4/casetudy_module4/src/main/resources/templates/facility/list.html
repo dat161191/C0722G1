@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
     <meta charset="UTF-8">
     <link
@@ -27,8 +27,8 @@
         }
 
         span {
-            font-size: 30px;
-            color: white;
+            font-size: 15px;
+            color: red
         }
     </style>
     <title>BossTran</title>
@@ -81,8 +81,7 @@
                         <th>Facility Free</th>
                         <th>Rent Type</th>
                         <th>Facility Type</th>
-                        <th>Edit</th>
-                        <th>Delete</th>
+                        <th colspan="2" sec:authorize="hasRole('ADMIN')">Action</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -100,12 +99,13 @@
                         <td th:text="${faci.rentType.name}"></td>
                         <td th:text="${faci.facilityType.name}"></td>
                         <td>
-                            <a th:href="@{/facility/edit/__${faci.getId()}__ }" class="btn btn-outline-primary">Edit</a>
+                            <a th:href="@{/facility/edit/__${faci.getId()}__ }" class="btn btn-outline-primary"
+                               sec:authorize="hasRole('ADMIN')">Edit</a>
                         </td>
                         <td>
                             <button type="button" class="btn btn-outline-danger"
                                     th:attr="onclick=|showDelete('${faci.id}','${faci.name}');|" data-bs-toggle="modal"
-                                    data-bs-target="#delete">Delete
+                                    data-bs-target="#delete" sec:authorize="hasRole('ADMIN')">Delete
                             </button>
                         </td>
                     </tr>
@@ -224,7 +224,7 @@
         <div class="modal-content"
              style="background-image: url(https://c4.wallpaperflare.com/wallpaper/592/569/318/ashar-josephine-skriver-model-women-victoria-s-secret-hd-wallpaper-thumb.jpg);background-repeat: no-repeat; background-size: 100%">
             <div class="modal-body text-center text-danger" style="background-color: rgba(132,151,241,0)">
-                <h1>Edit Customer success!!!!!!</h1>
+                <h1>Edit Facility success!!!!!!</h1>
             </div>
             <div class="modal-footer text-success " style="background-color: rgba(132,151,241,0)">
                 <button type="button" class="btn btn-outline-primary" data-bs-dismiss="modal"><b>Close</b></button>

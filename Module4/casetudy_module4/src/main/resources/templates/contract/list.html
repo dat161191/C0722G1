@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
     <meta charset="UTF-8">
     <link
@@ -26,7 +26,7 @@
         }
 
         span {
-            font-size: 30px;
+            font-size: 15px;
             color: red
         }
     </style>
@@ -80,7 +80,7 @@
                     <td th:text="${contract.totalValue}"></td>
                     <td>
                         <button type="button" class="btn btn-outline-light" data-bs-toggle="modal"
-                                data-bs-target="#createContractDetail"
+                                data-bs-target="#createContractDetail" sec:authorize="hasRole('ADMIN')"
                                 th:attr="onclick=|createContractDetail('${contract.id}','${contract.nameCustomer}');|">+
                         </button>
                     </td>
@@ -156,11 +156,11 @@
         <form th:action="@{/contract/create}" method="post" th:object="${contractDto}" class="mb-1">
 
             <div class="modal-content" style="background: -webkit-linear-gradient(left, rgba(26,102,246,0.5), rgba(246,89,89,0.5))">
-                <div class="modal-header text-danger">
+                <div class="modal-header text-light">
                     <h1 class="modal-title fs-5"><b>CREATE NEW CONTRACT</b></h1>
                 </div>
 
-                <div class="modal-body text-danger">
+                <div class="modal-body text-light">
                     <input type="hidden" th:field="*{id}">
                     <div class="mb-1">
                         <label for="facilityName"><b>FacilityName</b> </label>
@@ -228,8 +228,8 @@
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="submit" class="btn btn-outline-danger"><b>Add New Contract</b></button>
-                    <button type="button" class="btn btn-outline-danger" data-bs-dismiss="modal"><b>Close</b>
+                    <button type="submit" class="btn btn-outline-light"><b>Add New Contract</b></button>
+                    <button type="button" class="btn btn-outline-light" data-bs-dismiss="modal"><b>Close</b>
                     </button>
                 </div>
             </div>
@@ -242,14 +242,14 @@
      aria-labelledby="exampleModalLabel"
      aria-hidden="true">
     <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header text-danger">
+        <div class="modal-content text-light" style="background: -webkit-linear-gradient(left, rgba(26,102,246,0.5), rgba(246,89,89,0.5))">
+            <div class="modal-header">
                 <h1 class="modal-title fs-5"><b>CREATE NEW CONTRACTDETAIL</b></h1>
             </div>
             <form id="form-createDetail" th:action="@{/contractDetail/create}" method="post"
                   th:object="${contractDetailDto}"
                   class="mb-1">
-                <div class="modal-body text-light bg-primary">
+                <div class="modal-body">
                     <div class="mb-1">
                         <label for="showName" class="form-label"><b>CustomerName</b></label>
                         <input type="text" class="form-control" id="showName" readonly>
@@ -279,8 +279,8 @@
 
                 </div>
                 <div class="modal-footer">
-                    <button type="submit" class="btn btn-outline-danger"><b>Add New ContractDetail</b></button>
-                    <button type="button" class="btn btn-outline-danger" data-bs-dismiss="modal"><b>Close</b></button>
+                    <button type="submit" class="btn btn-outline-light"><b>Add New ContractDetail</b></button>
+                    <button type="button" class="btn btn-outline-light" data-bs-dismiss="modal"><b>Close</b></button>
                 </div>
             </form>
         </div>
@@ -303,11 +303,10 @@
                             <thead>
                             <tr>
                                 <th scope="col">STT</th>
-                                <th scope="col">CONTRACT ID</th>
                                 <th scope="col">ATTACH FACILITY NAME</th>
                                 <th scope="col">STATUS</th>
                                 <th scope="col">QUANTITY</th>
-                                <th scope="col">COST</th>
+                                <th scope="col">COST(USD)</th>
                             </tr>
                             </thead>
                             <tbody id="myBody">
@@ -336,7 +335,6 @@
                         `
                             <tr>
                               <th scope="row ">${i + 1}</th>
-                              <td>${data[i].contractId}</td>
                               <td>${data[i].name}</td>
                               <td>${data[i].status}</td>
                               <td>${data[i].quantity}</td>

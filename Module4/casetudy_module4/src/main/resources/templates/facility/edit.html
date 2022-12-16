@@ -59,7 +59,7 @@
                                             <select th:field="*{facilityType}"
                                                     style="border-radius: 20px; background-color: rgba(252,252,253,0.2)"
                                                     class="form-select" aria-label="Default select example">
-                                                <!--                                                <option value="" disabled selected>Chosce Facility</option>-->
+
                                                 <option th:each="faci:${facilityTypeList}" th:value="${faci.id}"
                                                         th:text="${faci.name}"></option>
                                             </select>
@@ -261,7 +261,7 @@
                 $('#descriptionOtherConveniences').show();
                 $('#standardRooms').show();
             }
-            if ($('#facilityType').val()== 3) {
+            if ($('#facilityType').val() == 3) {
                 $('#numberOfFloorss').hide();
                 $('#numberOfFloors').val(0);
                 $('#poolAreas').hide();

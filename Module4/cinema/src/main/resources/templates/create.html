@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <link
+            href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css"
+            rel="stylesheet"
+            integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi"
+            crossorigin="anonymous">
+
+    <script
+            src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3"
+            crossorigin="anonymous"></script>
+    <link rel="stylesheet"
+          href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+
+    <style>
+        * {
+            font-family: "Palatino Linotype"
+        }
+
+        input {
+            width: 100%;
+            border-radius: 5px;
+        }
+
+        span {
+            font-size: 15px;
+            color: white;
+        }
+    </style>
+    <title>BossTran</title>
+</head>
+<body>
+<div class="container"
+     style="background-image: url(https://c4.wallpaperflare.com/wallpaper/9/146/335/car-mclaren-vehicle-mclaren-mp4-12c-wallpaper-preview.jpg);background-repeat: no-repeat; background-size: 100%;min-height: 100vh">
+    <div class="row align-items-center justify-content-center text-center"
+         style="background: -webkit-linear-gradient(left, rgba(26,102,246,0.5), rgba(246,89,89,0.5))">
+        <nav class="navbar navbar-expand-lg text-xxl-center">
+            <div class="container-fluid">
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                        <li class="nav-item ">
+                            <a class="nav-link active align-items-lg-center text-light text-xl-center"
+                               aria-current="page" th:href="@{/}"><i
+                                    class="bi bi-house-heart-fill"></i>Home</a>
+                        </li>
+
+<!--                        <li class="nav-item ">-->
+<!--                            <a class="nav-link active text-decoration-none align-items-lg-center text-light text-xl-center"-->
+<!--                               aria-current="page" data-bs-toggle="modal" href="#create">Create Modal</a>-->
+<!--                        </li>-->
+                        <li class="nav-item ">
+                            <a class="nav-link active text-decoration-none align-items-lg-center text-light text-xl-center"
+                               href="/create">Create</a>
+                        </li>
+                        <li class="nav-item ">
+                        </li>
+                        <li class="nav-item ">
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </div>
+
+    <div class="row mt-1 mb-1">
+        <div class="col col-4"></div>
+        <div class="col col-4">
+            <div class="row text-light" style="border-radius: 15px;background: -webkit-linear-gradient(left, rgba(229,4,246,0.5), rgba(3,246,185,0.5))">
+                <div class="mb-1 ">
+                    <h3><b>CREATE NEW CINEMA</b></h3>
+                </div>
+                <form id="form-create" th:action="@{/create}" method="post" th:object="${cinema}"
+                      class="mb-1">
+                    <div class="text-light" style="background-color: rgba(0,0,0,0)">
+                        <div class="mb-1">
+                            <label th:for="code" class="form-label"><b>ShowtimeCode</b></label>
+                            <input type="text" required class="form-control" th:field="*{code}" placeholder="CI-0001">
+                            <p th:errors="*{code}" class="text-danger"></p>
+                        </div>
+                        <div class="mb-1">
+                            <label th:for="date" class="form-label"><b>Day Movie</b></label>
+                            <input type="date" required class="form-control" th:field="*{date}">
+                            <p th:errors="*{date}" class="text-danger"></p>
+                        </div>
+                        <div class="mb-1">
+                            <label th:for="count" class="form-label"><b>Tickets</b></label>
+                            <input type="number" min="0" required class="form-control" th:field="*{count}">
+                            <p th:errors="*{count}" class="text-danger"></p>
+                        </div>
+                        <div class="mb-1">
+                            <label th:for="nameMovie"><b>Movie's Name</b> </label>
+                            <select required class="form-select"
+                                    aria-label="Default select example"
+                                    th:field="*{nameMovie}">
+                                <option value="" selected>Chosce Movie's Name</option>
+                                <option
+                                        th:each="movie : ${nameMovieList}"
+                                        th:value="${movie.id}"
+                                        th:text="${movie.name}">
+                                </option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="row text-center">
+                        <table>
+                            <tr>
+                                <td colspan="2">
+                                    <button type="submit" class="btn btn-outline-danger"><b>Add New Customer</b>
+                                    </button>
+                                    <a href="/" class="btn btn-outline-danger"><i
+                                            class="bi bi-house-heart-fill"></i><b>Home</b></a>
+                                </td>
+                            </tr>
+
+                        </table>
+
+                    </div>
+                </form>
+
+            </div>
+        </div>
+        <div class="col col-4"></div>
+    </div>
+
+    <div class="row text-light mt-2 text-center fixed-bottom"
+         style="background: -webkit-linear-gradient(left, rgba(26,102,246,0.5), rgba(246,89,89,0.5))">
+        <h5 class="text-light">&copy; Trần Quốc Đạt - 038.542.5443 &copy;</h5>
+        <h6 class="text-light">&copy; quocdat.tran453@gmail.com &copy;</h6>
+    </div>
+
+
+</div>
+</body>
+</html>

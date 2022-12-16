@@ -32,12 +32,14 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        http.csrf().disable()
+        http.csrf().disable().authorizeRequests().antMatchers("/login").permitAll().and()
                 .formLogin()
-                .defaultSuccessUrl("/").permitAll()
-                .and()
-                .authorizeRequests()
-                .anyRequest().authenticated();
+                .loginProcessingUrl("/j_spring_security_check")
+                .loginPage("/")
+                .defaultSuccessUrl("/", true).permitAll()
+                .and().authorizeRequests()
+                .anyRequest().authenticated()
+                .and().logout().logoutUrl("/logout");
         http.authorizeRequests().and().rememberMe()
                 .tokenRepository(persistentTokenReepository())
                 .tokenValiditySeconds(60 * 5);

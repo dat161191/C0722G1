@@ -2,12 +2,10 @@ package com.casetudy_module4.codegym.dto.facility_dto;
 import com.casetudy_module4.codegym.model.facility.FacilityType;
 import com.casetudy_module4.codegym.model.facility.RentType;
 import lombok.*;
-import lombok.experimental.FieldDefaults;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
-import lombok.experimental.FieldDefaults;
-//@FieldDefaults(makeFinal = true)
+
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor

@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <meta charset="UTF-8">
+    <link
+            href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css"
+            rel="stylesheet"
+            integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi"
+            crossorigin="anonymous">
+
+    <script
+            src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3"
+            crossorigin="anonymous"></script>
+    <link rel="stylesheet"
+          href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+
+    <style>
+        * {
+            font-family: "Palatino Linotype"
+        }
+
+        input {
+            width: 100%;
+            border-radius: 5px;
+        }
+
+        span {
+            font-size: 15px;
+            color: red
+        }
+    </style>
+    <title>BossTran</title>
+</head>
+<body>
+<div class="container"
+     style="background-image: url(https://c4.wallpaperflare.com/wallpaper/9/146/335/car-mclaren-vehicle-mclaren-mp4-12c-wallpaper-preview.jpg);background-repeat: no-repeat; background-size: 100%;min-height: 100vh">
+
+    <div th:replace="~{layout::header}"></div>
+    <div class="row mt-1 mb-1">
+        <div class="row mt-1 mb-1">
+            <div class="col-7">
+                <form class="d-flex" role="search">
+                    <input class="form-control text-light me-2" type="search" placeholder="Tên Người Thuê"
+                           aria-label="Search" th:value="${tnt}" name="tnt"
+                           style="background-color: rgba(101,126,246,0.3)">
+                    <input class="form-control text-light me-2" type="date" placeholder="Ngày Thuê Trọ"
+                           name="ngay" th:value="${ngay}" style="background-color: rgba(101,126,246,0.3)">
+                    <select name="hinhThucId" class="form-select text-light" aria-label="Default select example"
+                            style="width: 100%;background-color: rgba(101,126,246,0.3);border-radius: 20px;margin-right: 2px;">
+                        <option selected value="-1">Hình Thức Thanh Toán</option>
+                        <option th:each="hinhThucTT:${hinhThucThanhToanList}" th:value="${hinhThucTT.id}"
+                                th:text="${hinhThucTT.tenHinhThuc}" th:selected="${hinhThucId==hinhThucTT.id}">
+                        </option>
+                    </select>
+                    <button class="btn btn-outline-primary" type="submit">Tìm</button>
+                </form>
+            </div>
+            <div class="col col-3"></div>
+            <div class="col col-2">
+                <button type="button" id="btn-create" class="btn btn-outline-primary me-auto" data-bs-target="#create"
+                        data-bs-toggle="modal">
+                    Create
+                </button>
+                <a class="text-decoration-none text-light" data-bs-toggle="modal" href="#create" >Create +</a>
+            </div>
+        </div>
+
+        <div class="row content mt-1 mb-1">
+            <div class="row text-center text-primary mt-1 mb-1"><h3><b>Thông Tin Thuê Trọ</b></h3>
+                <h4 th:text="${mess}"></h4>
+            </div>
+            <div class="row mt-1 mb-1">
+                <div class="col col-1"></div>
+                <div class="col col-10">
+                    <table class="table text-center table-hover text-light"
+                           style="width: 100%;background-color: rgba(146,195,245,0.5)">
+                        <thead>
+                        <tr>
+                            <th>STT</th>
+                            <th>Tên Người Thuê</th>
+                            <th>Số Điện Thoại</th>
+                            <th>Ngày Thuê Trọ</th>
+                            <th>Hình Thức Thanh Toán</th>
+                            <th colspan="2">...</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr th:each="tt,stt : ${thongTinThueTroList}">
+
+
+                            <td th:text="${stt.count}+${thongTinThueTroList.number}*${thongTinThueTroList.size}"></td>
+                            <td th:text="${tt.tenNguoiThue}"></td>
+                            <td th:text="${tt.soDienThoai}"></td>
+                            <td th:text="${tt.ngayThueTro}"></td>
+                            <td th:text="${tt.hinhThucThanhToans.tenHinhThuc}"></td>
+                            <td>
+                                <button type="button" class="btn btn-outline-danger" data-bs-toggle="modal"
+                                        data-bs-target="#edit"
+                                        th:attr="onclick=|edit('${tt.id}','${tt.tenNguoiThue}','${tt.soDienThoai}','${tt.ngayThueTro}','${tt.hinhThucThanhToans.id}');|">
+                                    Sửa
+                                </button>
+                            </td>
+                            <td>
+                                <button type="button" class="btn btn-outline-danger"
+                                        th:attr="onclick=|showDelete('${tt.id}','${tt.tenNguoiThue}');|"
+                                        data-bs-toggle="modal" data-bs-target="#delete">Xóa
+                                </button>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="col col-1"></div>
+            </div>
+        </div>
+
+        <div>
+            <a th:href="@{/(page=${thongTinThueTroList.number - 1}, tnt=${tnt},
+            ngay=${ngay}, hinhThucId=${hinhThucId})}" th:if="${thongTinThueTroList.hasPrevious()}">
+                <button type="button" class="btn btn-outline-primary">Previous</button>
+            </a>
+            <span style="font-size: 20px" th:text="${thongTinThueTroList.number + 1}"></span>/<span
+                style="font-size: 20px"
+                th:text="${thongTinThueTroList.totalPages}"></span>
+            <a th:href="@{/(page=${thongTinThueTroList.number + 1}, tnt=${tnt},
+            ngay=${ngay}, hinhThucId=${hinhThucId})}" th:if="${thongTinThueTroList.hasNext()}">
+                <button type="button" class="btn btn-outline-primary">Next</button>
+            </a>
+        </div>
+    </div>
+    <div th:replace="~{layout::footer}"></div>
+</div>
+</body>
+<!--MODAL + FUNCTION EDIT-->
+<script>
+    function edit(id, name, sdt, ngay, htttId) {
+        document.getElementById("editId").value = id;
+        document.getElementById("editName").value = name;
+        document.getElementById("editSdt").value = sdt;
+        document.getElementById("editNgay").value = ngay;
+        document.getElementById("editHtttId").value = htttId;
+    }
+</script>
+<div class="modal fade" id="edit" tabindex="-1" data-bs-backdrop="static" aria-labelledby="exampleModalLabel"
+     aria-hidden="true">
+    <script th:inline="javascript" th:if="${hasErrorsEdit == 1}">
+        $(document).ready(function () {
+            $("#edit").modal("show");
+        });
+    </script>
+    <div class="modal-dialog">
+        <div class="modal-content"
+             style="background: -webkit-linear-gradient(left, rgba(26,102,246,0.5), rgba(246,89,89,0.6))">
+            <div class="modal-header text-light">
+                <h1 class="modal-title fs-5"><b>Sửa thông tin thuê trọ</b></h1>
+            </div>
+            <form th:action="@{/edit}" method="post" th:object="${thongTinThueTro}" class="mb-1">
+                <div class="modal-body text-light">
+                    <div class="mb-1" hidden>
+                        <input type="text" id="editId" th:field="*{id}">
+                    </div>
+                    <div class="mb-1">
+                        <label th:for="name" class="form-label"><b>Tên Người Thuê</b></label>
+                        <input type="text" id="editName" required class="form-control" th:field="*{tenNguoiThue}">
+                        <!--                        <p th:errors="*{name}" class="text-light"></p>-->
+                    </div>
+                    <div class="mb-1">
+                        <label th:for="dateOfBirth" class="form-label"><b>Ngày Thuê</b></label>
+                        <input type="date" id="editNgay" required class="form-control" th:field="*{ngayThueTro}">
+                        <!--                        <p th:errors="*{dateOfBirth}" class="text-light"></p>-->
+                        <!--                        <p th:if="${#fields.hasErrors('dateOfBirth')&& hasErrorsEdit==1}" th:errors="*{dateOfBirth}"-->
+                        <!--                           class="text-danger"></p>-->
+
+                    </div>
+                    <div class="mb-1">
+                        <label th:for="idCard" class="form-label"><b>SDT</b></label>
+                        <input type="text" id="editSdt" required class="form-control" th:field="*{soDienThoai}">
+                        <!--                        <p th:errors="*{idCard}" class="text-light"></p>-->
+                    </div>
+                    <div class="mb-1">
+                        <label for="editHtttId"><b>Hình thức thanh toán</b> </label>
+                        <select required id="editHtttId" class="form-select"
+                                aria-label="Default select example"
+                                th:field="*{hinhThucThanhToans}" style="border-radius: 30px">
+                            <option
+                                    th:each="httt : ${hinhThucThanhToanList}"
+                                    th:value="${httt.id}"
+                                    th:text="${httt.tenHinhThuc}">
+                            </option>
+                        </select>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-outline-primary"><b>Sửa thông tin</b></button>
+                    <button type="button" class="btn btn-outline-primary" data-bs-dismiss="modal"><b>Close</b></button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+<!--MODAL+FUNCTION DELETE-->
+<script>
+    function showDelete(id, name) {
+        document.getElementById("deleteId").value = id;
+        document.getElementById("deleteName").innerText = name;
+        document.getElementById("deleteName2").value = name;
+    }
+</script>
+<div class="modal fade" id="delete" data-bs-backdrop="static" tabindex="-1" aria-labelledby="exampleModalLabel"
+     aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content"
+             style="background: -webkit-linear-gradient(left, rgba(26,102,246,0.5), rgba(246,89,89,0.6))">
+            <form th:action="@{/delete}" method="get">
+                <div class="modal-body text-center text-light" style="background-color: rgba(132,151,241,0)">
+                    <h1>Bạn có chắc muốn xóa</h1>
+                    <h2 id="deleteName"></h2>
+                    <input type="hidden" name="deleteName2" id="deleteName2">
+                </div>
+                <div class="modal-footer text-success " style="background-color: rgba(132,151,241,0)">
+                    <button type="submit" class="btn btn-outline-primary" th:id="deleteId" th:name="deleteId">
+                        <b>Xóa</b>
+                    </button>
+                    <button type="button" class="btn btn-outline-primary" data-bs-dismiss="modal"><b>Đóng</b></button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+
+<div class="modal fade" id="create" tabindex="-1" data-bs-backdrop="static" aria-labelledby="exampleModalLabel"
+     aria-hidden="true">
+    <script th:inline="javascript" th:if="${hasErrors == 2}">
+        $(document).ready(function () {
+            $("#create").modal("show");
+        });
+    </script>
+    <div class="modal-dialog">
+        <div class="modal-content text-light"
+             style="background: -webkit-linear-gradient(left, rgba(26,102,246,0.5), rgba(246,89,89,0.5))">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5"><b>Thêm mới thuê trọ</b></h1>
+            </div>
+            <form th:action="@{/create}" method="post" th:object="${thongTinThueTro}"
+                  class="mb-1">
+                <div class="modal-body" style="background-color: rgba(132,151,241,0)">
+                    <div class="mb-1" hidden>
+                        <input type="text" th:field="*{id}">
+                    </div>
+                    <div class="mb-1">
+                        <label th:for="tenNguoiThue" class="form-label"><b>Tên Người Thuê</b></label>
+                        <input type="text" required class="form-control" th:field="*{tenNguoiThue}">
+                        <!--                        <p th:errors="*{name}" class="text-light"></p>-->
+                    </div>
+                    <div class="mb-1">
+                        <label th:for="ngayThueTro" class="form-label"><b>Ngày Thuê</b></label>
+                        <input type="date" required class="form-control" th:field="*{ngayThueTro}">
+                        <!--                        <p th:errors="*{dateOfBirth}" class="text-light"></p>-->
+                        <!--                        <p th:if="${#fields.hasErrors('dateOfBirth')&& hasErrorsEdit==1}" th:errors="*{dateOfBirth}"-->
+                        <!--                           class="text-danger"></p>-->
+
+                    </div>
+                    <div class="mb-1">
+                        <label th:for="soDienThoai" class="form-label"><b>SDT</b></label>
+                        <input type="text" required class="form-control" th:field="*{soDienThoai}">
+                        <!--                        <p th:errors="*{idCard}" class="text-light"></p>-->
+                    </div>
+                    <div class="mb-1">
+                        <label th:for="hinhThucThanhToans"><b>Hình thức thanh toán</b> </label>
+                        <select required class="form-select"
+                                aria-label="Default select example"
+                                th:field="*{hinhThucThanhToans}" style="border-radius: 30px">
+                            <option
+                                    th:each="httt : ${hinhThucThanhToanList}"
+                                    th:value="${httt.id}"
+                                    th:text="${httt.tenHinhThuc}">
+                            </option>
+                        </select>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-outline-primary"><b>Thêm mới</b></button>
+                    <button type="button" class="btn btn-outline-primary" data-bs-dismiss="modal"><b>Đóng</b></button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+</html>

@@ -5,7 +5,6 @@ import com.casetudy_module4.codegym.model.contact.Contract;
 import lombok.*;
 import org.hibernate.annotations.SQLDelete;
 import org.hibernate.annotations.Where;
-
 import javax.persistence.*;
 import java.util.Set;
 
