@@ -65,7 +65,8 @@
                     <form class="d-flex" role="search">
                         <input class="form-control text-light me-2" type="date"
                                name="date" th:value="${date}" style="background-color: rgba(101,126,246,0.5)">
-                        <select name="nameMovieid" class="form-select text-light me-2" aria-label="Default select example"
+                        <select name="nameMovieid" class="form-select text-light me-2"
+                                aria-label="Default select example"
                                 style="width: 100%;background-color: rgba(101,126,246,0.5);border-radius: 20px;margin-right: 2px;">
                             <option selected value="-1">Movie's Names</option>
                             <option th:each="nameMovie:${nameMovieList}" th:value="${nameMovie.id}"
@@ -113,7 +114,7 @@
                                     th:attr="onclick=|edit('${cinema.id}','${cinema.code}','${cinema.date}','${cinema.count}','${cinema.nameMovie.id}');|">
                                 Edit Modal
                             </button>
-                        <a class="btn btn-outline-primary" th:href="@{/edit/__${cinema.getId()}__ }" >Edit</a>
+                            <a class="btn btn-outline-primary" th:href="@{/edit/__${cinema.getId()}__ }">Edit</a>
                         </td>
                         <td>
                             <button type="button" class="btn btn-outline-danger"
@@ -179,7 +180,7 @@
                     </div>
                     <div class="mb-1">
                         <label th:for="date" class="form-label"><b>Day Movie</b></label>
-                        <input type="date"  required class="form-control" th:field="*{date}">
+                        <input type="date" required class="form-control" th:field="*{date}">
 
                     </div>
                     <div class="mb-1">
@@ -310,8 +311,8 @@
     </script>
     <div class="modal-dialog">
         <div class="modal-content"
-             style="background-image: url(https://c4.wallpaperflare.com/wallpaper/592/569/318/ashar-josephine-skriver-model-women-victoria-s-secret-hd-wallpaper-thumb.jpg);background-repeat: no-repeat; background-size: 100%">
-            <div class="modal-body text-center text-danger" style="background-color: rgba(132,151,241,0)">
+             style="background: -webkit-linear-gradient(left, rgba(26,102,246,0.5), rgba(246,89,89,0.6))">
+            <div class="modal-body text-center text-light">
                 <h1>Delete success!!!</h1>
                 <h1 th:text="${deleteName2}"></h1>
             </div>
@@ -331,8 +332,8 @@
     </script>
     <div class="modal-dialog">
         <div class="modal-content"
-             style="background-image: url(https://c4.wallpaperflare.com/wallpaper/592/569/318/ashar-josephine-skriver-model-women-victoria-s-secret-hd-wallpaper-thumb.jpg);background-repeat: no-repeat; background-size: 100%">
-            <div class="modal-body text-center text-danger" style="background-color: rgba(132,151,241,0)">
+             style="background: -webkit-linear-gradient(left, rgba(26,102,246,0.5), rgba(246,89,89,0.6))">
+            <div class="modal-body text-center text-light">
                 <h1>Edit success!!!!!!</h1>
                 <h1>See you again!!!!!!</h1>
             </div>
@@ -352,8 +353,8 @@
     </script>
     <div class="modal-dialog">
         <div class="modal-content"
-             style="background-image: url(https://c4.wallpaperflare.com/wallpaper/592/569/318/ashar-josephine-skriver-model-women-victoria-s-secret-hd-wallpaper-thumb.jpg);background-repeat: no-repeat; background-size: 100%">
-            <div class="modal-body text-center text-danger" style="background-color: rgba(132,151,241,0)">
+             style="background: -webkit-linear-gradient(left, rgba(26,102,246,0.5), rgba(246,89,89,0.6))">
+            <div class="modal-body text-center text-light">
                 <h1>Create success!!!!!!</h1>
                 <h1>See you again!!!!!!</h1>
             </div>

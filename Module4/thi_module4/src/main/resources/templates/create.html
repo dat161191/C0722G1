@@ -47,11 +47,6 @@
                                aria-current="page" th:href="@{/}"><i
                                     class="bi bi-house-heart-fill"></i>Home</a>
                         </li>
-
-<!--                        <li class="nav-item ">-->
-<!--                            <a class="nav-link active text-decoration-none align-items-lg-center text-light text-xl-center"-->
-<!--                               aria-current="page" data-bs-toggle="modal" href="#create">Create Modal</a>-->
-<!--                        </li>-->
                         <li class="nav-item ">
                             <a class="nav-link active text-decoration-none align-items-lg-center text-light text-xl-center"
                                href="/create">Create</a>
@@ -69,38 +64,35 @@
     <div class="row mt-1 mb-1">
         <div class="col col-4"></div>
         <div class="col col-4">
-            <div class="row text-light" style="border-radius: 15px;background: -webkit-linear-gradient(left, rgba(229,4,246,0.5), rgba(3,246,185,0.5))">
+            <div class="row text-light"
+                 style="border-radius: 15px;background: -webkit-linear-gradient(left, rgba(229,4,246,0.5), rgba(3,246,185,0.5))">
                 <div class="mb-1 ">
-                    <h3><b>CREATE NEW CINEMA</b></h3>
+                    <h3><b>CREATE NEW QUESTION</b></h3>
                 </div>
-                <form th:action="@{/create}" method="post" th:object="${cinemaDto}"
+                <form th:action="@{/create}" method="post" th:object="${questionContentDto}"
                       class="mb-1">
                     <div class="text-light" style="background-color: rgba(0,0,0,0)">
                         <div class="mb-1">
-                            <label th:for="code" class="form-label"><b>ShowtimeCode</b></label>
-                            <input type="text" required class="form-control" th:field="*{code}" placeholder="CI-0001">
-                            <p th:errors="*{code}" class="text-danger"></p>
+                            <label th:for="title" class="form-label"><b>Title</b></label>
+                            <input type="text"  class="form-control" th:field="*{title}" placeholder="Title from 5 to 100 characters ">
+                            <p th:errors="*{title}" class="text-danger"></p>
                         </div>
                         <div class="mb-1">
-                            <label th:for="date" class="form-label"><b>Day Movie</b></label>
-                            <input type="date" required class="form-control" th:field="*{date}">
-                            <p th:errors="*{date}" class="text-danger"></p>
+                            <label th:for="content" class="form-label"><b>Content</b></label>
+                            <input type="text"  class="form-control" th:field="*{content}"
+                                   placeholder="Title from 10 to 500 characters ">
+                            <p th:errors="*{content}" class="text-danger"></p>
                         </div>
                         <div class="mb-1">
-                            <label th:for="count" class="form-label"><b>Tickets</b></label>
-                            <input type="number" min="0" required class="form-control" th:field="*{count}">
-                            <p th:errors="*{count}" class="text-danger"></p>
-                        </div>
-                        <div class="mb-1">
-                            <label th:for="nameMovie"><b>Movie's Name</b> </label>
+                            <label th:for="questionType"><b>QuestionType</b> </label>
                             <select required class="form-select"
                                     aria-label="Default select example"
-                                    th:field="*{nameMovie}">
-                                <option value="" selected>Chosce Movie's Name</option>
+                                    th:field="*{questionType}">
+                                <option value="" selected>Chosce QuestionType</option>
                                 <option
-                                        th:each="movie : ${nameMovieList}"
-                                        th:value="${movie.id}"
-                                        th:text="${movie.name}">
+                                        th:each="question : ${questionTypeList}"
+                                        th:value="${question.id}"
+                                        th:text="${question.name}">
                                 </option>
                             </select>
                         </div>
@@ -109,7 +101,7 @@
                         <table>
                             <tr>
                                 <td colspan="2">
-                                    <button type="submit" class="btn btn-outline-danger"><b>Add New Customer</b>
+                                    <button type="submit" class="btn btn-outline-danger"><b>Add New Question</b>
                                     </button>
                                     <a href="/" class="btn btn-outline-danger"><i
                                             class="bi bi-house-heart-fill"></i><b>Home</b></a>

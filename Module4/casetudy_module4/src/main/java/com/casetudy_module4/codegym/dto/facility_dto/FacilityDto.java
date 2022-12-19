@@ -24,7 +24,6 @@ public class FacilityDto {
     private String facilityFree;
     private RentType rentType;
     private FacilityType facilityType;
-//
 //    public FacilityDto() {
 //    }
 //

@@ -1,5 +1,6 @@
 package com.example.cinema.controller;
 
+import com.example.cinema.dto.CinemaDto;
 import com.example.cinema.model.Cinema;
 import com.example.cinema.model.NameMovie;
 import com.example.cinema.service.ICinemaService;
@@ -45,8 +46,7 @@ public class CinemaController {
         }
         model.addAttribute("nameMovieid", nameMovieid);
         model.addAttribute("date", date);
-        model.addAttribute("nameMovieList", nameMovieService.findAll());
-        model.addAttribute("cinema", Cinema.builder().build());
+        model.addAttribute("cinema", Cinema.builder().build());//dùng cho modal
         return "/list";
     }
     /*Delete*/
@@ -63,18 +63,20 @@ public class CinemaController {
     public String showCreate(Model model) {
         Cinema cinema = Cinema.builder().build();
         model.addAttribute("cinema", cinema);
+        model.addAttribute("cinemaDto", CinemaDto.builder().build());
         return "/create";
     }
 
     @PostMapping("create")
-    public String add(@Validated @ModelAttribute("cinema") Cinema cinema, BindingResult bindingResult, RedirectAttributes redirectAttributes) {
-        new Cinema().validate(cinema, bindingResult);
+    public String add(@Validated @ModelAttribute("cinemaDto") CinemaDto cinemaDto, BindingResult bindingResult, RedirectAttributes redirectAttributes) {
+        new CinemaDto().validate(cinemaDto, bindingResult);
         if (bindingResult.hasErrors()) {
             return "/create";
         }
+        Cinema cinema=Cinema.builder().build();
+        BeanUtils.copyProperties(cinemaDto,cinema);
         cinemaService.save(cinema);
         redirectAttributes.addFlashAttribute("createAlert", 1);
-
         return "redirect:/";
     }
 
@@ -90,16 +92,20 @@ public class CinemaController {
     @GetMapping("edit/{id}")
     public String showFormEdit(@PathVariable("id") Integer id, Model model) {
         Cinema cinema = cinemaService.findByID(id);
-        model.addAttribute("cinema", cinema);
+        CinemaDto cinemaDto=CinemaDto.builder().build();
+        BeanUtils.copyProperties(cinema,cinemaDto);
+        model.addAttribute("cinemaDto", cinemaDto);
         return "edit";
     }
 
     @PostMapping("edit")
-    public String update(@Validated @ModelAttribute("cinema") Cinema cinema, BindingResult bindingResult, RedirectAttributes redirectAttributes) {
-        new Cinema().validate(cinema, bindingResult);
+    public String update(@Validated @ModelAttribute("cinemaDto") CinemaDto cinemaDto, BindingResult bindingResult, RedirectAttributes redirectAttributes) {
+        new CinemaDto().validate(cinemaDto, bindingResult);
         if (bindingResult.hasErrors()) {
             return "/edit";
         }
+        Cinema cinema=Cinema.builder().build();
+        BeanUtils.copyProperties(cinemaDto,cinema);
         cinemaService.save(cinema);
         redirectAttributes.addFlashAttribute("editAlert", 1);
         return "redirect:/";
